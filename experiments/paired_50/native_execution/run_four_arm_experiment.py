@@ -166,6 +166,49 @@ def make_payload(trial, official_run):
     }
 
 
+def candidate_availability_audit(trials):
+    """Audit oracle-best first actions against the exact current tool interface and typed state."""
+    checkpoints = {}
+    for trial in trials:
+        key = (trial["query_id"], trial["environment_condition"])
+        if key in checkpoints:
+            continue
+        prepared = trial["prepared"]
+        best_value, action_values, optimal = optimal_first_actions(prepared)
+        interface_names = {
+            item["function"]["name"] for item in prepared["tool_interfaces"]
+        }
+        candidates = []
+        for name in optimal:
+            tool = prepared["tool_objects"].get(name)
+            if tool is None or name not in interface_names:
+                raise ValueError(f"Oracle-optimal action missing from current tool interface: {key} / {name}")
+            missing = sorted(set(tool.input_types) - set(prepared["state"]))
+            if missing:
+                raise ValueError(f"Oracle-optimal action is infeasible at checkpoint: {key} / {name} / {missing}")
+            candidates.append({
+                "tool": name,
+                "tool_cost": float(tool.cost),
+                "required_inputs": sorted(set(tool.input_types)),
+                "missing_inputs": missing,
+                "available_in_interface": True,
+                "feasible_from_checkpoint": True,
+                "action_value": float(action_values[name]),
+            })
+        incumbent = prepared["incumbent_suffix"][0]
+        checkpoints[key] = {
+            "query_id": key[0],
+            "environment_condition": key[1],
+            "checkpoint_sha256": prepared["checkpoint_sha256"],
+            "oracle_optimal_value": best_value,
+            "incumbent_first_action": incumbent,
+            "incumbent_first_action_value": action_values.get(incumbent),
+            "incumbent_is_optimal": incumbent in optimal,
+            "oracle_optimal_first_actions": candidates,
+        }
+    return [checkpoints[key] for key in sorted(checkpoints)]
+
+
 def offline_audit(trials, official_run, max_tokens: int):
     payload_hashes = {}
     summaries = Counter()
@@ -190,6 +233,7 @@ def offline_audit(trials, official_run, max_tokens: int):
         "unique_request_hashes": len(set(payload_hashes.values())),
         "provider_calls": 0,
         "payload_hashes": payload_hashes,
+        "candidate_availability_audit": candidate_availability_audit(trials),
     }
 
 
