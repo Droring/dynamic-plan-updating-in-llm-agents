@@ -37,31 +37,14 @@ Each cell reports the first-action relation to the incumbent in the RETAIN and S
 
 Only one pair showed the expected first-action distinction (RETAIN under RETAIN, SWITCH under SWITCH). This is a behavioral pairing result, not a path-optimality score.
 
-## Interpretation boundary
+## Path-value audit
 
-The native solver computes an optimal continuation in the current tool-cost graph, while the model executes tool calls from the same visible registry. However, the archived execution summary does not include a verified end-to-end comparison of each executed continuation's cumulative cost against the solver's optimal total cost. A raw tool-sequence equality check is not a valid substitute unless action granularity and composite-tool representation are shown to be equivalent.
+The subsequent offline audit replays all 100 executed paths against the frozen current tool graph and compares their total value with the current-condition native optimum. An independent Dijkstra implementation matches the pinned solver's saved optimal-path value in **100/100** trials.
 
-Accordingly, this report describes incumbent adherence, observed deviations, and goal completion. It does not claim that all four deviations are correct switches or that the two-condition path-optimality rate is 2%.
+- RETAIN: 48/50 executed paths are value-optimal; the other two have regret 0.11 and 0.26.
+- SWITCH: only 2/50 executed paths are value-optimal. The other 48 execute the exact incumbent suffix and each has regret 1.30.
+- Paired value-optimality: 1/50 task pairs are optimal in both conditions.
+- Total path regret: 62.77; 52.53 (83.7%) is introduced by the first action and 10.24 (16.3%) by subsequent actions.
 
-## Execution record
+See [NATIVE_PATH_VALUE_AUDIT.md](NATIVE_PATH_VALUE_AUDIT.md) for the complete method, validation and interpretation, and [trajectory-level CSV](path_value_audit/trajectory_value_audit.csv) when generated from the archived artifact.
 
-The initial full-cohort run completed 66 trajectories. Its 67th trajectory executed one successful native tool call and then stopped at the token reservation guard. The continuation restarted that same frozen trial from its original checkpoint, completed it, and then completed the remaining 33 trials.
-
-The scored cohort consists of the first run's 66 completed records plus all 34 continuation records. The partial first attempt is excluded from the scored cohort and included in execution accounting.
-
-- Scored provider usage: **1,191,160 tokens** across 287 model calls.
-- Superseded partial attempt: **5,688 tokens** across one model call.
-- Total provider usage across both runs: **1,196,848 tokens**.
-- API errors: 0.
-- Runner errors: 0.
-- Incomplete trajectories in the scored cohort: 0.
-
-## Reproducibility
-
-The merged historical artifact was recovered from the retired repository's Actions storage and inspected offline. The raw per-trajectory files are not yet committed in this repository. The recovered ZIP is identified by artifact ID `13646976640` and SHA-256 `6587a6b2c319069d27d07fe9ca21eb3464b38f200f73f6ef4555208b13694630`. It contains `RESULTS.md`, `scores.json`, `ledger.json`, and `responses.jsonl`.
-
-
-Frozen request SHA-256: `a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7`.  
-Frozen manifest SHA-256: `ef1470f06191ce2d8792da8034dc6e1225d6ddda4f6bb5c29cae6a642579a8c8`.
-
-The incumbent first-action relation is descriptive only. This report does not yet provide a validated path-level optimality comparison. The measure captures observable execution, not hidden model reasoning.
