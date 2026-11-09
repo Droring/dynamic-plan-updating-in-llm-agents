@@ -6,9 +6,9 @@
 
 - Earlier historical source: 30 independent tasks under protocol A (26/30 true-SWITCH false RETAIN) plus 15 disjoint tasks under protocol B (15/15 false RETAIN). 41/45 is a *descriptive combination of two protocols*, not one homogeneous error-rate estimate.
 - New mechanism sample: five merged source archive tasks **not selected in the earlier ten-task mechanism diagnostic**: `Query00312`, `Query00347`, `Query00610`, `Query00685`, `Query00916`.
-- New first run: [GitHub Actions #42445875910](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42445875910). 23 successful **new** DeepSeek Flash calls, 26,023 reported tokens. Planned maximum 25; **one of the five candidate generators returned an invalid candidate**, so the two matched candidate-conditioned decision arms for that task were intentionally not executed. Therefore the score artifact's `partial` status is accurate, not a system failure.
-- Independent correction of misleading global-label scoring: [Actions #42445987666](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42445987666).
-- New candidate identity control on four valid candidate tasks: [Actions #42446079621](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42446079621), 16 successful **new** DeepSeek calls, 19,975 reported tokens.
+- New first run: 23 successful **new** DeepSeek Flash calls, 26,023 reported tokens. Planned maximum 25; **one of the five candidate generators returned an invalid candidate**, so the two matched candidate-conditioned decision arms for that task were intentionally not executed. The committed score artifact's `partial` status is accurate, not a system failure.
+- The independently corrected scoring result is committed in `evidence/mechanism_probe/SCORE.json`.
+- New candidate identity control on four valid candidate tasks: 16 successful **new** DeepSeek calls, 19,975 reported tokens. Its frozen lock and score are committed under `evidence/candidate_identity/`.
 - **Total new experiments: 39 paid calls across five distinct previously studied development base tasks**, 45,998 provider-reported tokens. The four identity-control tasks **reuse** four of the first five. Not 39 independent tasks, not independent validation, and not native Agent execution.
 
 ## Stage 1 — generate an alternative without price or label cues
