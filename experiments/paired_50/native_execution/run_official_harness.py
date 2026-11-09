@@ -659,18 +659,16 @@ def grade_execution(records, manifest, planned_trials: int = 100):
             continue
         truth = manifest_row["condition"]
         prediction = record.get("first_action_prediction")
-        oracle_match = record.get("oracle_path_match")
         by_condition[truth]["total"] += 1
         if prediction is None:
             by_condition[truth]["no_first_action"] += 1
+        elif prediction == "RETAIN":
+            by_condition[truth]["followed_incumbent"] += 1
+        elif prediction == "SWITCH":
+            by_condition[truth]["departed_incumbent"] += 1
         else:
-            by_condition[truth]["valid"] += 1
-        if oracle_match is None:
-            by_condition[truth]["oracle_unscorable"] += 1
-        else:
-            by_condition[truth]["oracle_scored"] += 1
-            by_condition[truth]["correct"] += int(oracle_match)
-        pairs[manifest_row["query_id"]][truth] = oracle_match
+            by_condition[truth]["invalid_prediction"] += 1
+        pairs[manifest_row["query_id"]][truth] = prediction
         relation_counts[record.get("trajectory_relation", "unknown")] += 1
         goal_reached += int(record.get("goal_state_reached") is True)
 
@@ -679,17 +677,12 @@ def grade_execution(records, manifest, planned_trials: int = 100):
     complete = len(seen) == planned_trials
     cohort_complete = len(seen) == 100
     paired_tasks_attempted = sum(len(values) == 2 for values in pairs.values())
-    pair_correct = sum(
-        len(values) == 2
-        and values.get("RETAIN") == "RETAIN"
-        and values.get("SWITCH") == "SWITCH"
-        for values in pairs.values()
-    )
+    pair_outcomes = Counter()
+    for values in pairs.values():
+        if len(values) == 2:
+            pair_outcomes[f'{values.get("RETAIN")}/{values.get("SWITCH")}'] += 1
     switch_rows = by_condition["SWITCH"]
     retain_rows = by_condition["RETAIN"]
-    attempted_actions = retain_rows["total"] + switch_rows["total"]
-    valid_actions = retain_rows["valid"] + switch_rows["valid"]
-    correct_actions = retain_rows["correct"] + switch_rows["correct"]
     return {
         "status": "complete" if complete else "incomplete",
         "attempted_trials": len(seen),
@@ -698,38 +691,16 @@ def grade_execution(records, manifest, planned_trials: int = 100):
         "cohort_complete": cohort_complete,
         "cohort_coverage": len(seen) / 100,
         "base_tasks": 50,
-        "retain": dict(retain_rows),
-        "switch": dict(switch_rows),
-        "pair_correct": pair_correct,
+        "retain_condition_first_action_behavior": dict(retain_rows),
+        "switch_condition_first_action_behavior": dict(switch_rows),
         "paired_tasks_attempted": paired_tasks_attempted,
         "paired_task_coverage": paired_tasks_attempted / 50,
-        "pair_accuracy": (
-            pair_correct / paired_tasks_attempted if paired_tasks_attempted else None
+        "paired_first_action_behavior": dict(pair_outcomes),
+        "first_action_followed_incumbent": sum(
+            row["followed_incumbent"] for row in by_condition.values()
         ),
-        "full_cohort_pair_accuracy": pair_correct / 50 if paired_tasks_attempted == 50 else None,
-        "first_action_accuracy": (
-            correct_actions / attempted_actions if attempted_actions else None
-        ),
-        "valid_action_accuracy": (
-            correct_actions / valid_actions if valid_actions else None
-        ),
-        "retain_accuracy": (
-            retain_rows["correct"] / retain_rows["total"] if retain_rows["total"] else None
-        ),
-        "switch_accuracy": (
-            switch_rows["correct"] / switch_rows["total"] if switch_rows["total"] else None
-        ),
-        "switch_condition_nonincumbent_first_action": (
-            switch_rows["valid"] - sum(
-                int(seen[trial_id].get("first_action_prediction") == "RETAIN")
-                for trial_id, row in manifest.items()
-                if row["condition"] == "SWITCH" and trial_id in seen
-            )
-        ),
-        "scoring_note": (
-            "Primary correctness is exact executed-path equality with the pinned "
-            "native solver's current-condition optimal path. First-action relation "
-            "to the incumbent is descriptive only and is not used as SWITCH correctness."
+        "first_action_departed_incumbent": sum(
+            row["departed_incumbent"] for row in by_condition.values()
         ),
         "goal_state_reached": goal_reached,
         "goal_state_rate": goal_reached / len(seen) if seen else None,
@@ -749,7 +720,13 @@ def grade_execution(records, manifest, planned_trials: int = 100):
         "provider_total_tokens": sum(
             int(row.get("provider_total_tokens") or 0) for row in seen.values()
         ),
+        "interpretation": (
+            "First-action behavior is descriptive: RETAIN means the first executed "
+            "tool equals the incumbent's first tool; SWITCH means it differs. "
+            "Neither label alone establishes current-condition optimality."
+        ),
     }
+
 
 
 class TokenBudget:
@@ -1010,16 +987,6 @@ async def execute_trial(
     prediction = classify_first_action(executed_path, prepared["incumbent_suffix"])
     oracle_path = prepared["native_optimal_path"]
     oracle_first_action = oracle_path[0] if oracle_path else None
-    oracle_first_action_match = (
-        executed_path[0] == oracle_first_action
-        if executed_path and oracle_first_action
-        else None
-    )
-    oracle_path_match = (
-        executed_path == oracle_path
-        if executed_path and oracle_path
-        else None
-    )
     record = {
         "trial_id": request["trial_id"],
         "query_id": request["query_id"],
@@ -1030,9 +997,8 @@ async def execute_trial(
         "model_reported": reported_model,
         "resumed_from_partial": resumed_from_partial,
         "first_action_prediction": prediction,
-        "first_action_optimal": oracle_first_action_match,
+        "first_action_is_incumbent": prediction == "RETAIN" if prediction is not None else None,
         "oracle_first_action": oracle_first_action,
-        "oracle_path_match": oracle_path_match,
         "first_action_success": trace[0]["success"] if trace else None,
         "first_action": executed_path[0] if executed_path else None,
         "incumbent_first_action": prepared["incumbent_suffix"][0],
