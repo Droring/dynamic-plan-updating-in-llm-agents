@@ -105,11 +105,15 @@ def optimal_first_actions(prepared: dict[str, Any], tolerance: float = 1e-6):
     return best_value, values, optimal
 
 
-def build_trials(selected, task_manifest, repetitions: int, task_limit: int, seed: int):
-    task_rows = task_manifest["tasks"][:task_limit]
+def build_trials(selected, task_manifest, repetitions: int, task_limit: int, seed: int, task_ids=None):
+    if task_ids:
+        wanted = set(task_ids)
+        task_rows = [row for row in task_manifest["tasks"] if row["query_id"] in wanted]
+        if len(task_rows) != len(wanted):
+            raise ValueError("One or more requested task IDs are absent from the frozen manifest.")
+    else:
+        task_rows = task_manifest["tasks"][:task_limit]
     allowed = {row["query_id"] for row in task_rows}
-    by_trial = {(request["trial_id"]): (task, request, manifest_row, prepared)
-                for task, request, manifest_row, prepared in selected if task["query_id"] in allowed}
     trials = []
     for task in task_rows:
         env_trials = [row for row in selected if row[0]["query_id"] == task["query_id"]]
@@ -202,6 +206,7 @@ async def run_live(trials, official_run, args):
     try:
         for index, trial in enumerate(trials, 1):
             payload = make_payload(trial, official_run)
+            payload["max_tokens"] = args.max_tokens
             request_record = {
                 "trial_id": trial["trial_id"],
                 "query_id": trial["query_id"],
@@ -421,7 +426,8 @@ def parse_args():
     parser.add_argument("--data-dir", type=Path, default=DATA_DIR)
     parser.add_argument("--out", type=Path, default=HERE / "four_arm_results" / "deepseek-flash")
     parser.add_argument("--live", action="store_true", help="Authorize billable DeepSeek API calls.")
-    parser.add_argument("--task-limit", type=int, default=8, help="First N preselected tasks; use 2 for the planned smoke test.")
+    parser.add_argument("--task-limit", type=int, default=8, help="First N preselected tasks when --task-ids is omitted.")
+    parser.add_argument("--task-ids", type=str, default="", help="Explicit comma-separated frozen task IDs; smoke test: Query00188,Query00347.")
     parser.add_argument("--repetitions", type=int, default=2)
     parser.add_argument("--seed", type=int, default=20261110)
     parser.add_argument("--cap", type=int, default=300000)
@@ -447,7 +453,8 @@ def main():
 
     costbench = native.load_costbench(args.costbench_root)
     selected, _, _ = load_selected_trials(args.data_dir, costbench, task_manifest)
-    trials = build_trials(selected, task_manifest, args.repetitions, args.task_limit, args.seed)
+    requested_ids = [value.strip() for value in args.task_ids.split(",") if value.strip()] or None
+    trials = build_trials(selected, task_manifest, args.repetitions, args.task_limit, args.seed, requested_ids)
     official_run = costbench["official_run"]
     audit = offline_audit(trials, official_run)
     audit.update({
