@@ -54,3 +54,56 @@ The result does show that the four prompt conditions did not rescue the SWITCH f
 ## Decision
 
 The smoke test passed its engineering criteria. It does not justify changing prompts or introducing an intervention. The next planned step is a full audit of the frozen task definitions and scoring path, followed—only after a separate budget check/approval—by the 8-task, 128-request first-action screen. The two-task full-continuation check should remain a separately reported diagnostic and must not be selectively run only on favorable conditions.
+
+## Post-run mechanism audit: candidate availability and prompt integrity
+
+A separate audit of the archived request payloads and tool schemas was completed after the smoke run.
+
+### 1. The optimal alternatives were available and feasible
+
+The optimal first-action alternatives were present in the exact native tool interface sent to DeepSeek. Their required input types were all present in the checkpoint state.
+
+| Task / condition | Model first action | Independently reconstructed optimal first action | Feasibility |
+|---|---|---|---|
+| Query00188 / SWITCH | `Transportation_Search_to_Final_4Steps` | `Transportation_Search_Planning_to_Step2` | All required inputs present |
+| Query00347 / SWITCH | `Search_Accommodation_Candidates` | `Accommodation_Search_Planning_to_Step2` | All required inputs present |
+
+An independent shortest-path reconstruction from the serialized tool schemas (required inputs, output types, and costs) agrees with the native CostBench solver:
+- Query00188 / SWITCH: optimal continuation value 79.15; the selected incumbent composite action costs 80.45; first-action regret is 1.30. The optimal alternative is `Transportation_Search_Planning_to_Step2` followed by `Select_Final_Transportation`.
+- Query00347 / SWITCH: optimal continuation value 76.38; the selected incumbent first action leads to a continuation value of 77.68; first-action regret is 1.30. The optimal alternative is `Accommodation_Search_Planning_to_Step2` followed by `Select_Final_Accommodation`.
+
+The same reconstruction matches the RETAIN oracle values (79.03 for Query00188 and 77.68 for Query00347). This independently supports the action-regret calculations for these two tasks.
+
+### 2. What the model actually saw
+
+The complete current tool schemas—including each tool's current cost, input requirements, output type, and description—were supplied in all four arms. The B/D localized-fact sentence therefore repeated a current cost already visible in the tool interface; it did not provide previously unavailable cost information. In A/C, the same current costs were still present in the tool definitions.
+
+Exact prompt-diff checks confirm:
+- A to B: only the neutral sentence naming the changed tool's current cost was added.
+- A to C: only the incumbent-plan sentence was removed.
+- B to D: only the incumbent-plan sentence was removed.
+- System prompts and tool interfaces were byte-identical across A/B/C/D within each task and environment checkpoint.
+
+This makes the manipulation more precisely an **attention/localization reminder plus plan-content ablation**, not a contrast between hidden and newly revealed cost information.
+
+### 3. What the result supports—and what it does not
+
+The two SWITCH alternatives were not absent from the interface and were not blocked by missing input types. The model nevertheless selected the same incumbent first action in A/B/C/D.
+
+This rules out a simple explanation that the cheaper first-action alternative was unavailable in the tool list or infeasible from the current typed state. It does **not** establish whether the model internally failed to generate the alternative, generated it but miscompared its value, or applied a strong prior for the familiar action. A single selected tool call does not expose the model's unchosen candidate set or internal comparison.
+
+The unchanged behavior after plan removal also means the smoke result cannot be attributed specifically to the displayed incumbent-plan sentence. The result is consistent with a broader action-selection preference or task/tool-description effect. Distinguishing these explanations requires a controlled candidate-set diagnostic, not a post-hoc interpretation of the model's rationale.
+
+### 4. Revised next-step recommendation
+
+Before spending the 128-request budget, the next diagnostic should be narrowly targeted:
+1. Preserve the same checkpoint and native tool schemas.
+2. Branch an independent diagnostic request from the checkpoint; do not feed its answer back into the original first-action trajectory.
+3. Provide a balanced, randomized list of feasible candidate continuations—including the oracle-best path, the incumbent path, and a feasible but worse alternative—without costs, rankings, or a recommended choice.
+4. Ask for one executable first action, then score it with the same native solver.
+5. Compare this with the original free tool-choice condition on a small, predeclared subset.
+
+This tests whether making alternatives explicit changes action selection. It still does not directly reveal private internal search, and oracle-supplied candidates must be reported as a diagnostic assistance condition rather than a deployable method.
+
+No additional model calls were made during this audit.
+
