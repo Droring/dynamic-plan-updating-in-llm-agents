@@ -1,0 +1,422 @@
+[
+  {
+    "query_id": "<Query00784>",
+    "TimeInfo": "<TimeInfo00878>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "restaurant",
+      "feature_package": "unique_themed_environment",
+      "style": "ambiance_and_setting_priority",
+      "tier": "popular_local_mainstay"
+    },
+    "location_preference": "<LocationPreference00116>",
+    "groundtruth": "<DiningPreference29559>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a dining experience that truly captures the heart of the local scene, where the restaurant is not just a place to eat but a beloved spot among the locals. It should be a place that’s not necessarily on the international radar but is well-loved and frequented by those in the know around here. The setting and atmosphere are crucial for me, as I’m looking for a restaurant where the ambiance is as much a part of the experience as the food. I want to be transported to a different world as soon as I walk through the door, so a uniquely themed environment is a must. In essence, I’m searching",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00878> and to <LocationPreference00116> for me according to the user requirements. User requirements: I'm on the hunt for a dining experience that truly captures the heart of the local scene, where the restaurant is not just a place to eat but a beloved spot among the locals. It should be a place that’s not necessarily on the international radar but is well-loved and frequented by those in the know around here. The setting and atmosphere are crucial for me, as I’m looking for a restaurant where the ambiance is as much a part of the experience as the food. I want to be transported to a different world as soon as I walk through the door, so a uniquely themed environment is a must. In essence, I’m searching. "
+    }
+  },
+  {
+    "query_id": "<Query00757>",
+    "TimeInfo": "<TimeInfo01497>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "coffee_shop",
+      "feature_package": "live_music_or_performance",
+      "style": "ambiance_and_setting_priority",
+      "tier": "nationally_acclaimed"
+    },
+    "location_preference": "<LocationPreference00089>",
+    "groundtruth": "<DiningPreference22534>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a coffee shop that's recognized across the country for its excellence, not just any local favorite. I’m not just looking for a place to grab a quick cup of joe; I want an experience where the atmosphere takes precedence. The kind of spot where the decor and vibe make you want to linger and soak it all in. Ideally, this café would offer more than just coffee — perhaps they have live music or some kind of performance that adds to the charm and makes every visit feel special.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01497> and to <LocationPreference00089> for me according to the user requirements. User requirements: I'm on the hunt for a coffee shop that's recognized across the country for its excellence, not just any local favorite. I’m not just looking for a place to grab a quick cup of joe; I want an experience where the atmosphere takes precedence. The kind of spot where the decor and vibe make you want to linger and soak it all in. Ideally, this café would offer more than just coffee — perhaps they have live music or some kind of performance that adds to the charm and makes every visit feel special.. "
+    }
+  },
+  {
+    "query_id": "<Query00901>",
+    "TimeInfo": "<TimeInfo00323>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "efficiency_and_needs_priority",
+      "tier": "bargain_deals"
+    },
+    "location_preference": "<LocationPreference00067>",
+    "groundtruth": "<ShoppingPreference17120>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a shopping experience that caters to my practical needs without breaking the bank. I'm not interested in the hustle and bustle of big malls or street markets; instead, I’m looking for those charming little boutiques and specialty stores where I can find unique items at great prices. While I'm all about getting the best deals, I also value my time and would appreciate some guidance during my shopping. A place that offers personal shopping or styling services would be perfect, helping me make efficient choices without the usual fuss. In essence, I’m searching for a shopping destination that offers both affordability and personalized service, all wrapped up in a cozy,",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00323> and to <LocationPreference00067> for me according to the user requirements. User requirements: I'm on the hunt for a shopping experience that caters to my practical needs without breaking the bank. I'm not interested in the hustle and bustle of big malls or street markets; instead, I’m looking for those charming little boutiques and specialty stores where I can find unique items at great prices. While I'm all about getting the best deals, I also value my time and would appreciate some guidance during my shopping. A place that offers personal shopping or styling services would be perfect, helping me make efficient choices without the usual fuss. In essence, I’m searching for a shopping destination that offers both affordability and personalized service, all wrapped up in a cozy,. "
+    }
+  },
+  {
+    "query_id": "<Query00896>",
+    "TimeInfo": "<TimeInfo03177>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "uniqueness_and_discovery_priority",
+      "tier": "mid_range_brand"
+    },
+    "location_preference": "<LocationPreference00062>",
+    "groundtruth": "<ShoppingPreference15706>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm in the mood for a shopping adventure where I can stroll along charming streets lined with shops. I’m not looking for the high-end luxury brands, but rather those mid-range labels that offer quality without breaking the bank. What excites me most is the thrill of finding something unique and unexpected, so I’m eager to explore places that promise a bit of discovery. Additionally, having a personal shopping or styling service would be a fantastic bonus, as it would help me curate a truly personalized experience.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo03177> and to <LocationPreference00062> for me according to the user requirements. User requirements: I'm in the mood for a shopping adventure where I can stroll along charming streets lined with shops. I’m not looking for the high-end luxury brands, but rather those mid-range labels that offer quality without breaking the bank. What excites me most is the thrill of finding something unique and unexpected, so I’m eager to explore places that promise a bit of discovery. Additionally, having a personal shopping or styling service would be a fantastic bonus, as it would help me curate a truly personalized experience.. "
+    }
+  },
+  {
+    "query_id": "<Query00835>",
+    "TimeInfo": "<TimeInfo01698>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "duty_free",
+      "style": "brand_and_quality_priority",
+      "tier": "affordable_price"
+    },
+    "location_preference": "<LocationPreference00001>",
+    "groundtruth": "<ShoppingPreference00195>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the lookout for some shopping experiences that won't break the bank but still offer a touch of class and assurance in quality. I'm particularly interested in exploring unique boutiques or specialty stores where I can find items that are both stylish and reliable. It’s important for me to shop smart, so I’m keen on discovering places that offer duty-free options, allowing me to enjoy some savings on my purchases. In essence, I'm searching for charming little shops that combine affordability with a focus on reputable brands and quality products, all while providing the added perk of duty-free shopping.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01698> and to <LocationPreference00001> for me according to the user requirements. User requirements: I'm on the lookout for some shopping experiences that won't break the bank but still offer a touch of class and assurance in quality. I'm particularly interested in exploring unique boutiques or specialty stores where I can find items that are both stylish and reliable. It’s important for me to shop smart, so I’m keen on discovering places that offer duty-free options, allowing me to enjoy some savings on my purchases. In essence, I'm searching for charming little shops that combine affordability with a focus on reputable brands and quality products, all while providing the added perk of duty-free shopping.. "
+    }
+  },
+  {
+    "query_id": "<Query00871>",
+    "TimeInfo": "<TimeInfo02100>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "duty_free",
+      "style": "uniqueness_and_discovery_priority",
+      "tier": "high_end_luxury"
+    },
+    "location_preference": "<LocationPreference00037>",
+    "groundtruth": "<ShoppingPreference09289>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping spree and I'm on the hunt for a vibrant shopping street where I can indulge in some high-end luxury shopping. I'm not just looking for the usual brands; I want to uncover unique and rare finds that make my experience feel like a thrilling discovery. It's important to me that the shopping experience is duty-free, allowing me to enjoy my purchases without worrying about extra costs. Essentially, I'm seeking a place that offers an exclusive and exciting shopping adventure, filled with one-of-a-kind items and a touch of opulence.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02100> and to <LocationPreference00037> for me according to the user requirements. User requirements: I'm planning a shopping spree and I'm on the hunt for a vibrant shopping street where I can indulge in some high-end luxury shopping. I'm not just looking for the usual brands; I want to uncover unique and rare finds that make my experience feel like a thrilling discovery. It's important to me that the shopping experience is duty-free, allowing me to enjoy my purchases without worrying about extra costs. Essentially, I'm seeking a place that offers an exclusive and exciting shopping adventure, filled with one-of-a-kind items and a touch of opulence.. "
+    }
+  },
+  {
+    "query_id": "<Query00986>",
+    "TimeInfo": "<TimeInfo00529>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_center_or_mall",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "price_priority",
+      "tier": "affordable_price"
+    },
+    "location_preference": "<LocationPreference00152>",
+    "groundtruth": "<ShoppingPreference38679>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the lookout for a place to shop that offers a wide variety of options under one roof, like a bustling shopping center or mall. I'm hoping to find a spot where I can make the most of my budget, as I'm particularly interested in scoring some great deals without breaking the bank. My primary focus is on finding the best prices, so a place that caters to budget-conscious shoppers would be ideal. Additionally, it would be fantastic if the location offered personalized shopping or styling services to enhance my shopping experience and help me make the best choices. In essence, I'm seeking a convenient, budget-friendly shopping destination with added personal assistance to guide my",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00529> and to <LocationPreference00152> for me according to the user requirements. User requirements: I'm on the lookout for a place to shop that offers a wide variety of options under one roof, like a bustling shopping center or mall. I'm hoping to find a spot where I can make the most of my budget, as I'm particularly interested in scoring some great deals without breaking the bank. My primary focus is on finding the best prices, so a place that caters to budget-conscious shoppers would be ideal. Additionally, it would be fantastic if the location offered personalized shopping or styling services to enhance my shopping experience and help me make the best choices. In essence, I'm seeking a convenient, budget-friendly shopping destination with added personal assistance to guide my. "
+    }
+  },
+  {
+    "query_id": "<Query00893>",
+    "TimeInfo": "<TimeInfo00885>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_center_or_mall",
+      "feature_package": "duty_free",
+      "style": "uniqueness_and_discovery_priority",
+      "tier": "affordable_price"
+    },
+    "location_preference": "<LocationPreference00059>",
+    "groundtruth": "<ShoppingPreference14859>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping adventure where I can explore a large shopping center or mall, the kind of place with a diverse range of stores all under one roof. My main goal is to find unique items that aren't just the run-of-the-mill things you see everywhere, so I'm really looking forward to discovering some hidden gems and surprises. At the same time, I want to keep my spending in check, so I'm aiming for places where the prices are reasonable and won't break the bank. One more thing that would make this shopping trip perfect is if I could find stores offering duty-free options, adding a bit of extra value to my purchases.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00885> and to <LocationPreference00059> for me according to the user requirements. User requirements: I'm planning a shopping adventure where I can explore a large shopping center or mall, the kind of place with a diverse range of stores all under one roof. My main goal is to find unique items that aren't just the run-of-the-mill things you see everywhere, so I'm really looking forward to discovering some hidden gems and surprises. At the same time, I want to keep my spending in check, so I'm aiming for places where the prices are reasonable and won't break the bank. One more thing that would make this shopping trip perfect is if I could find stores offering duty-free options, adding a bit of extra value to my purchases.. "
+    }
+  },
+  {
+    "query_id": "<Query00849>",
+    "TimeInfo": "<TimeInfo01008>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "uniqueness_and_discovery_priority",
+      "tier": "high_end_luxury"
+    },
+    "location_preference": "<LocationPreference00015>",
+    "groundtruth": "<ShoppingPreference03673>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning an extravagant shopping day out and I'm on the hunt for an upscale shopping street where I can indulge in the finest luxury brands. I'm not just looking for any ordinary shopping experience; I want to explore unique and rare finds that will make my wardrobe stand out. Ideally, I'd love to have a personal shopping or styling service to guide me through this journey, ensuring that every piece I choose is as distinctive as it is high-end. My goal is to discover something extraordinary that speaks to my personal style and satisfies my passion for exclusive fashion.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01008> and to <LocationPreference00015> for me according to the user requirements. User requirements: I'm planning an extravagant shopping day out and I'm on the hunt for an upscale shopping street where I can indulge in the finest luxury brands. I'm not just looking for any ordinary shopping experience; I want to explore unique and rare finds that will make my wardrobe stand out. Ideally, I'd love to have a personal shopping or styling service to guide me through this journey, ensuring that every piece I choose is as distinctive as it is high-end. My goal is to discover something extraordinary that speaks to my personal style and satisfies my passion for exclusive fashion.. "
+    }
+  },
+  {
+    "query_id": "<Query00836>",
+    "TimeInfo": "<TimeInfo02077>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "local_artisan_and_handcraft_specialty",
+      "style": "price_priority",
+      "tier": "affordable_price"
+    },
+    "location_preference": "<LocationPreference00002>",
+    "groundtruth": "<ShoppingPreference00487>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been thinking about refreshing my wardrobe and I want to explore those charming little shops that offer something unique without breaking the bank. I’m on the lookout for quaint boutiques or specialty stores where the prices are reasonable, as I’m more focused on getting the best value for my money. Ideally, these places would have a selection of local artisan goods or handcrafted items, as I love finding pieces that have a personal touch and a story behind them.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02077> and to <LocationPreference00002> for me according to the user requirements. User requirements: I've been thinking about refreshing my wardrobe and I want to explore those charming little shops that offer something unique without breaking the bank. I’m on the lookout for quaint boutiques or specialty stores where the prices are reasonable, as I’m more focused on getting the best value for my money. Ideally, these places would have a selection of local artisan goods or handcrafted items, as I love finding pieces that have a personal touch and a story behind them.. "
+    }
+  },
+  {
+    "query_id": "<Query00853>",
+    "TimeInfo": "<TimeInfo01935>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "brand_and_quality_priority",
+      "tier": "mid_range_brand"
+    },
+    "location_preference": "<LocationPreference00019>",
+    "groundtruth": "<ShoppingPreference04818>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the lookout for a shopping experience that centers around discovering unique boutiques and specialty stores. I want to explore places that offer products with a touch of individuality and distinctiveness, rather than the usual mall experience. While I'm not aiming for the high-end luxury spectrum, I do appreciate the quality and craftsmanship that come with mid-range brands, where the focus is on getting value without breaking the bank. It's important to me that the brands I encounter are known for their quality and reputation, as I prioritize these aspects over simply finding the lowest price. Additionally, I would love if there were options available for personal shopping or styling services, to help me",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01935> and to <LocationPreference00019> for me according to the user requirements. User requirements: I'm on the lookout for a shopping experience that centers around discovering unique boutiques and specialty stores. I want to explore places that offer products with a touch of individuality and distinctiveness, rather than the usual mall experience. While I'm not aiming for the high-end luxury spectrum, I do appreciate the quality and craftsmanship that come with mid-range brands, where the focus is on getting value without breaking the bank. It's important to me that the brands I encounter are known for their quality and reputation, as I prioritize these aspects over simply finding the lowest price. Additionally, I would love if there were options available for personal shopping or styling services, to help me. "
+    }
+  },
+  {
+    "query_id": "<Query00857>",
+    "TimeInfo": "<TimeInfo01001>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_center_or_mall",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "brand_and_quality_priority",
+      "tier": "high_end_luxury"
+    },
+    "location_preference": "<LocationPreference00023>",
+    "groundtruth": "<ShoppingPreference05649>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping spree and I'm looking for a grand shopping center or mall that can provide a lavish experience. Money isn't an issue—I want to indulge in the finest that high-end luxury has to offer. My focus is on finding top-notch brands and ensuring that the quality of what I buy is second to none. Additionally, I would love to have the convenience of personal shopping or styling services to elevate my shopping experience and help me curate the perfect wardrobe.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01001> and to <LocationPreference00023> for me according to the user requirements. User requirements: I'm planning a shopping spree and I'm looking for a grand shopping center or mall that can provide a lavish experience. Money isn't an issue—I want to indulge in the finest that high-end luxury has to offer. My focus is on finding top-notch brands and ensuring that the quality of what I buy is second to none. Additionally, I would love to have the convenience of personal shopping or styling services to elevate my shopping experience and help me curate the perfect wardrobe.. "
+    }
+  },
+  {
+    "query_id": "<Query00843>",
+    "TimeInfo": "<TimeInfo00543>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "local_artisan_and_handcraft_specialty",
+      "style": "uniqueness_and_discovery_priority",
+      "tier": "affordable_price"
+    },
+    "location_preference": "<LocationPreference00009>",
+    "groundtruth": "<ShoppingPreference02155>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping trip and I'm particularly interested in exploring vibrant shopping streets. I'm not looking to break the bank, so I prefer places where I can find great deals without compromising my budget. I’m drawn to the thrill of discovering unique items, so I want to focus on places that offer a sense of adventure and surprise in their selections. Additionally, I have a keen interest in supporting local artisans and finding handcrafted specialties that carry a distinct local flavor. In essence, I'm on the hunt for a shopping experience that combines affordability with the excitement of uncovering one-of-a-kind treasures crafted by local talent.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00543> and to <LocationPreference00009> for me according to the user requirements. User requirements: I'm planning a shopping trip and I'm particularly interested in exploring vibrant shopping streets. I'm not looking to break the bank, so I prefer places where I can find great deals without compromising my budget. I’m drawn to the thrill of discovering unique items, so I want to focus on places that offer a sense of adventure and surprise in their selections. Additionally, I have a keen interest in supporting local artisans and finding handcrafted specialties that carry a distinct local flavor. In essence, I'm on the hunt for a shopping experience that combines affordability with the excitement of uncovering one-of-a-kind treasures crafted by local talent.. "
+    }
+  },
+  {
+    "query_id": "<Query00861>",
+    "TimeInfo": "<TimeInfo01046>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "local_artisan_and_handcraft_specialty",
+      "style": "uniqueness_and_discovery_priority",
+      "tier": "high_end_luxury"
+    },
+    "location_preference": "<LocationPreference00027>",
+    "groundtruth": "<ShoppingPreference06889>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a truly exceptional shopping experience, something far beyond the ordinary. I'm looking to explore those unique boutiques and specialty stores where every item feels like a rare find, crafted with unparalleled attention to detail and artistry. Money is no object in this quest; I'm seeking high-end luxury that promises exclusivity and sophistication. I want to discover pieces that are not only luxurious but also one-of-a-kind, reflecting the creativity and talent of local artisans. My goal is to immerse myself in a world where discovery and uniqueness are paramount, and where each purchase tells a story of craftsmanship and heritage.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01046> and to <LocationPreference00027> for me according to the user requirements. User requirements: I'm on the hunt for a truly exceptional shopping experience, something far beyond the ordinary. I'm looking to explore those unique boutiques and specialty stores where every item feels like a rare find, crafted with unparalleled attention to detail and artistry. Money is no object in this quest; I'm seeking high-end luxury that promises exclusivity and sophistication. I want to discover pieces that are not only luxurious but also one-of-a-kind, reflecting the creativity and talent of local artisans. My goal is to immerse myself in a world where discovery and uniqueness are paramount, and where each purchase tells a story of craftsmanship and heritage.. "
+    }
+  },
+  {
+    "query_id": "<Query00912>",
+    "TimeInfo": "<TimeInfo02466>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "personal_shopping_or_styling_service",
+      "style": "brand_and_quality_priority",
+      "tier": "affordable_price"
+    },
+    "location_preference": "<LocationPreference00078>",
+    "groundtruth": "<ShoppingPreference19923>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a shopping experience that focuses on unique and specialized shops rather than large malls or markets. My budget isn't limitless, so I’m aiming to find places that offer quality without breaking the bank—think affordable yet reliable brands. It’s important for me to prioritize well-known brands and the assurance of good quality, so I’d prefer to avoid anything too obscure or risky. Additionally, having the option of a personal shopping or styling service would be a fantastic bonus, as I could use some expert advice to ensure I’m making the best choices. Overall, I'm looking for an enjoyable shopping trip that balances quality and affordability, with a",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02466> and to <LocationPreference00078> for me according to the user requirements. User requirements: I'm on the hunt for a shopping experience that focuses on unique and specialized shops rather than large malls or markets. My budget isn't limitless, so I’m aiming to find places that offer quality without breaking the bank—think affordable yet reliable brands. It’s important for me to prioritize well-known brands and the assurance of good quality, so I’d prefer to avoid anything too obscure or risky. Additionally, having the option of a personal shopping or styling service would be a fantastic bonus, as I could use some expert advice to ensure I’m making the best choices. Overall, I'm looking for an enjoyable shopping trip that balances quality and affordability, with a. "
+    }
+  },
+  {
+    "query_id": "<Query00991>",
+    "TimeInfo": "<TimeInfo00415>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "duty_free",
+      "style": "efficiency_and_needs_priority",
+      "tier": "mid_range_brand"
+    },
+    "location_preference": "<LocationPreference00157>",
+    "groundtruth": "<ShoppingPreference40014>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping trip and I'm looking for a vibrant shopping street where I can find a variety of well-known brands that won't break the bank. It's important for me to have an efficient shopping experience, where I can quickly find what I need without a lot of fuss. Additionally, I'd love the convenience of being able to shop duty-free, so I can take advantage of some tax savings while I'm at it. In essence, I'm searching for a place that offers a straightforward and practical shopping experience, with the added benefit of duty-free options.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00415> and to <LocationPreference00157> for me according to the user requirements. User requirements: I'm planning a shopping trip and I'm looking for a vibrant shopping street where I can find a variety of well-known brands that won't break the bank. It's important for me to have an efficient shopping experience, where I can quickly find what I need without a lot of fuss. Additionally, I'd love the convenience of being able to shop duty-free, so I can take advantage of some tax savings while I'm at it. In essence, I'm searching for a place that offers a straightforward and practical shopping experience, with the added benefit of duty-free options.. "
+    }
+  },
+  {
+    "query_id": "<Query00994>",
+    "TimeInfo": "<TimeInfo02844>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "duty_free",
+      "style": "brand_and_quality_priority",
+      "tier": "high_end_luxury"
+    },
+    "location_preference": "<LocationPreference00160>",
+    "groundtruth": "<ShoppingPreference40769>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When it comes to shopping, I’m looking for a place where elegance and sophistication are woven into every storefront. I envision myself strolling down a bustling street lined with chic and exclusive boutiques, the kind where luxury is the norm and each store is a testament to superior craftsmanship and renowned brands. Money is no object in this shopping experience; I want to indulge in the finest things life has to offer, where quality and brand prestige are the top priorities. Additionally, it would be perfect if I could enjoy the added benefit of purchasing items duty-free, making this shopping trip not only a journey of opulence but also a smart choice for my wallet.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02844> and to <LocationPreference00160> for me according to the user requirements. User requirements: When it comes to shopping, I’m looking for a place where elegance and sophistication are woven into every storefront. I envision myself strolling down a bustling street lined with chic and exclusive boutiques, the kind where luxury is the norm and each store is a testament to superior craftsmanship and renowned brands. Money is no object in this shopping experience; I want to indulge in the finest things life has to offer, where quality and brand prestige are the top priorities. Additionally, it would be perfect if I could enjoy the added benefit of purchasing items duty-free, making this shopping trip not only a journey of opulence but also a smart choice for my wallet.. "
+    }
+  },
+  {
+    "query_id": "<Query00978>",
+    "TimeInfo": "<TimeInfo01602>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "duty_free",
+      "style": "brand_and_quality_priority",
+      "tier": "mid_range_brand"
+    },
+    "location_preference": "<LocationPreference00144>",
+    "groundtruth": "<ShoppingPreference36802>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping trip and I'm aiming to explore those charming boutiques and specialty stores that offer unique selections you can't find just anywhere. I'm particularly interested in discovering mid-range brands that strike a perfect balance between quality and price, ensuring I get the best bang for my buck without compromising on style. It's important to me that the items are crafted with care and have a brand reputation I can trust, so quality is definitely a priority over just finding the lowest price. Additionally, I'd love to shop in a place where I can enjoy the perk of duty-free shopping, allowing me to indulge a bit more without the extra costs. Overall, I'm seeking a",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01602> and to <LocationPreference00144> for me according to the user requirements. User requirements: I'm planning a shopping trip and I'm aiming to explore those charming boutiques and specialty stores that offer unique selections you can't find just anywhere. I'm particularly interested in discovering mid-range brands that strike a perfect balance between quality and price, ensuring I get the best bang for my buck without compromising on style. It's important to me that the items are crafted with care and have a brand reputation I can trust, so quality is definitely a priority over just finding the lowest price. Additionally, I'd love to shop in a place where I can enjoy the perk of duty-free shopping, allowing me to indulge a bit more without the extra costs. Overall, I'm seeking a. "
+    }
+  },
+  {
+    "query_id": "<Query00913>",
+    "TimeInfo": "<TimeInfo02320>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "boutiques_and_specialty_stores",
+      "feature_package": "vintage_and_second_hand_specialty",
+      "style": "efficiency_and_needs_priority",
+      "tier": "mid_range_brand"
+    },
+    "location_preference": "<LocationPreference00079>",
+    "groundtruth": "<ShoppingPreference20222>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping trip and I'm looking for places that have a unique charm, specifically those quaint little boutiques and specialty stores that offer something different from the usual chain stores. I'm aiming for a balance between quality and price, so mid-range brands are what I'm after – not the super high-end, but definitely not bargain basement either. My shopping style is very much about getting exactly what I need without any fuss, so efficiency is key for me. Additionally, I have a strong interest in vintage and second-hand items, as I love finding pieces that have a story or history behind them. So, I'm on the lookout for shops that specialize in",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02320> and to <LocationPreference00079> for me according to the user requirements. User requirements: I'm planning a shopping trip and I'm looking for places that have a unique charm, specifically those quaint little boutiques and specialty stores that offer something different from the usual chain stores. I'm aiming for a balance between quality and price, so mid-range brands are what I'm after – not the super high-end, but definitely not bargain basement either. My shopping style is very much about getting exactly what I need without any fuss, so efficiency is key for me. Additionally, I have a strong interest in vintage and second-hand items, as I love finding pieces that have a story or history behind them. So, I'm on the lookout for shops that specialize in. "
+    }
+  },
+  {
+    "query_id": "<Query00963>",
+    "TimeInfo": "<TimeInfo02080>",
+    "task": "shopping",
+    "is_location": 0,
+    "goal_type": "TravelShopping",
+    "preferences": {
+      "category": "shopping_street",
+      "feature_package": "duty_free",
+      "style": "price_priority",
+      "tier": "mid_range_brand"
+    },
+    "location_preference": "<LocationPreference00129>",
+    "groundtruth": "<ShoppingPreference32838>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a shopping trip and I'm in the mood for a lively shopping street where I can stroll and explore a variety of stores. I'm particularly interested in finding well-known brands that offer good value for money, so I'm not looking for anything too extravagant, nor am I searching for bargain basement deals. Price is an important factor for me, so I want to make sure that what I find is worth every penny. Additionally, I would love the convenience of duty-free shopping to make my purchases even more worthwhile. Overall, I'm looking for a shopping experience that is both enjoyable and cost-effective.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02080> and to <LocationPreference00129> for me according to the user requirements. User requirements: I'm planning a shopping trip and I'm in the mood for a lively shopping street where I can stroll and explore a variety of stores. I'm particularly interested in finding well-known brands that offer good value for money, so I'm not looking for anything too extravagant, nor am I searching for bargain basement deals. Price is an important factor for me, so I want to make sure that what I find is worth every penny. Additionally, I would love the convenience of duty-free shopping to make my purchases even more worthwhile. Overall, I'm looking for a shopping experience that is both enjoyable and cost-effective.. "
+    }
+  }
+]

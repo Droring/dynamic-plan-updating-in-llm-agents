@@ -1,0 +1,8 @@
+# Never publish API keys or live model responses automatically
+.env
+.env.*
+!*.env.example
+__pycache__/
+*.pyc
+expansion_30/live_results/
+expansion_30/online_results/

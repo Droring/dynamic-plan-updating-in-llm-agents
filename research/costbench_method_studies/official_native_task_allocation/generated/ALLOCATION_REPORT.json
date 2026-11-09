@@ -1,0 +1,72 @@
+{
+  "allocated_registry_canonical_sha256": "24024275703c2585ed2e3b364a87c4b0acd893331415297e2acf7716180faf49",
+  "category_split_quotas": {
+    "accommodation": {
+      "development": 11,
+      "locked_test": 11,
+      "validation": 5
+    },
+    "attraction": {
+      "development": 12,
+      "locked_test": 11,
+      "validation": 6
+    },
+    "dining": {
+      "development": 15,
+      "locked_test": 15,
+      "validation": 7
+    },
+    "shopping": {
+      "development": 18,
+      "locked_test": 19,
+      "validation": 10
+    },
+    "transportation": {
+      "development": 24,
+      "locked_test": 24,
+      "validation": 12
+    }
+  },
+  "disjoint_query_and_preference_signatures": true,
+  "distinct_base_tasks": 200,
+  "model_or_native_calls": 0,
+  "previously_screened_dev_ids_preserved": true,
+  "reason": "more development capacity for method design; retained independent final evaluation",
+  "retained_previously_screened_development_tasks": 25,
+  "schema": "costbench-candidate-allocation-80-40-80",
+  "scientific_limitations": [
+    "The previously screened 25 development cases remain in development.",
+    "Reassigned tasks are candidates, not completed model or native simulation trials.",
+    "The original source-selection manifest and experiment evidence remain unchanged.",
+    "Task metadata-based separation does not guarantee semantic independence.",
+    "New development graph/event checking must never be treated as confirmation of final test performance."
+  ],
+  "seed": "phase2-v2-80-40-80-stratified-transition",
+  "selection_inputs": "sealed source query IDs, task category, normalized preference SHA only",
+  "source_queries_sha256": "2d15f439a22d55077d58b3d211129d403a8dcba55cbf4f7971f9de17b27253bb",
+  "source_registry_canonical_sha256": "115f05debc6fcc6a7e6c5929220f0ca65dfaef5bb0efeaa7498cce675daaf11b",
+  "source_registry_raw_sha256": "4259462643b08bfab046e2c31d8c9617aad626eed66efe6f1dfa2d2c5d379dc1",
+  "source_screening_report_raw_sha256": "177ed92a4aa753b1af43b59754e9123a4eadbd7e18e1c8fe79705db38a5c647a",
+  "source_to_allocation_transition_counts": {
+    "development": {
+      "development": 25
+    },
+    "locked_test": {
+      "development": 45,
+      "locked_test": 80
+    },
+    "validation": {
+      "development": 10,
+      "validation": 40
+    }
+  },
+  "status": "candidate_membership_only_not_validated_native_agent_results",
+  "target_split_counts": {
+    "development": 80,
+    "locked_test": 80,
+    "validation": 40
+  },
+  "task_source_or_gold_read": false,
+  "upstream_commit": "6424069f3f773ade076bcedbed302ed47cfb1837",
+  "validation_test_graph_read": false
+}

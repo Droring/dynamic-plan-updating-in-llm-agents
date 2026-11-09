@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "attempted": 60,
+  "remaining": 0,
+  "charged_tokens": 67942,
+  "token_cap": 400000,
+  "halt_reason": null,
+  "model_requested": "deepseek-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "max_output_tokens": 96,
+  "dataset_request_sha256": "d5264e2d35a68219c012c07c5c9c13a389a74bd6e764c8ae0eed230ca336786a",
+  "dataset_manifest_sha256": "6b99f95bb2f3851896fe0d7caae0416f7197c0788fdfc966aec1c63b8323ba8e",
+  "no_retries": true,
+  "api_key_stored": false
+}

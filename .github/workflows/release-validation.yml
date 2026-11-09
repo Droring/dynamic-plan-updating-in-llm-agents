@@ -1,0 +1,54 @@
+name: Release validation
+
+on:
+  push:
+    branches: [main, "release/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-validation-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild release manifest for validation
+        run: python scripts/build_release_manifest.py
+      - name: Commit refreshed release manifest on branch pushes
+        if: github.event_name != 'pull_request'
+        run: |
+          if ! git diff --quiet -- provenance/RELEASE_MANIFEST_FINAL.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add provenance/RELEASE_MANIFEST_FINAL.json
+            git commit -m "Rebuild final release SHA-256 manifest"
+            git push
+          fi
+      - name: Verify committed SHA-256 release manifest
+        run: python scripts/build_release_manifest.py --check
+      - name: Verify release integrity
+        run: python scripts/check_release.py
+      - name: Check Markdown links
+        run: python scripts/check_markdown_links.py
+      - name: Checkout pinned official CostBench for integration tests
+        run: |
+          git clone --filter=blob:none https://github.com/JiayuJeff/CostBench.git ../CostBench
+          git -C ../CostBench checkout 6424069f3f773ade076bcedbed302ed47cfb1837
+          test "$(git -C ../CostBench rev-parse HEAD)" = 6424069f3f773ade076bcedbed302ed47cfb1837
+          python -m pip install -r ../CostBench/requirements.txt numpy sympy
+      - name: Run complete test suite with CostBench integration enabled
+        env:
+          COSTBENCH_ROOT: ../CostBench
+        run: python -m unittest discover -s scripts -v

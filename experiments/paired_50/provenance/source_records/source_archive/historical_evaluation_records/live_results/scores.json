@@ -1,0 +1,16 @@
+{
+  "status": "completed_paid_model_decisions",
+  "base_tasks": 15,
+  "valid_conditions": 30,
+  "valid_pairs": 15,
+  "retain_correct": 14,
+  "switch_correct": 0,
+  "pair_correct": 0,
+  "balanced_accuracy": 0.4666666666666667,
+  "pair_accuracy": 0,
+  "total_tokens": 33965,
+  "model": "deepseek-flash",
+  "temperature": 0,
+  "thinking": "disabled",
+  "protocol": "standalone CostBench type-graph decision prompt; distinct from historical 3-pair post-hoc protocol"
+}

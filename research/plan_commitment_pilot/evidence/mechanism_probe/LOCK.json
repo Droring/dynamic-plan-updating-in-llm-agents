@@ -1,0 +1,41 @@
+{
+  "base_task_ids": [
+    "Query00312",
+    "Query00347",
+    "Query00610",
+    "Query00685",
+    "Query00916"
+  ],
+  "base_tasks": 5,
+  "calls_per_task": {
+    "generated_candidate_decision": 2,
+    "masked_price_candidate_generation": 1,
+    "original_decision_control": 2
+  },
+  "candidate_same_across_retain_switch": true,
+  "matched_conditions": 10,
+  "max_calls": 25,
+  "max_total_provider_tokens": 70000,
+  "no_gold_or_oracle_witness": true,
+  "primary_metrics": [
+    "alternative_feasible",
+    "alternative_improves_switch",
+    "original_correct_RETAIN",
+    "original_correct_SWITCH",
+    "candidate_correct_RETAIN",
+    "candidate_correct_SWITCH",
+    "evidence_to_label_consistency",
+    "task_pair_correct"
+  ],
+  "schema": "retention-mechanism-five-dev-task-frozen-v1",
+  "source": "merged source archive, third task per category, disjoint from earlier first-two-per-category mechanism samples",
+  "temperature": 0,
+  "thinking": "disabled",
+  "warnings": [
+    "5 reused merged source archive development tasks, not independent validation",
+    "A non-improving sampled candidate cannot demonstrate a better plan exists",
+    "The candidate presentation and explicit arithmetic also change prompt scaffolding",
+    "This is structured graph decision only, not real Agent tool execution",
+    "No original plan self-commitment intervention performed"
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "arm_metrics": {
+    "generated_candidate": {
+      "RETAIN_attempts": 4,
+      "RETAIN_correct": 0,
+      "SWITCH_attempts": 4,
+      "SWITCH_correct": 4,
+      "pair_correct": 0
+    },
+    "original_control": {
+      "RETAIN_attempts": 5,
+      "RETAIN_correct": 5,
+      "SWITCH_attempts": 5,
+      "SWITCH_correct": 0,
+      "pair_correct": 0
+    }
+  },
+  "calls_attempted": 23,
+  "candidate_generated": [
+    {
+      "candidate": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "candidate_cost_retain": null,
+      "candidate_cost_switch": null,
+      "candidate_price_hidden_from_generator": true,
+      "candidate_valid": false,
+      "query_id": "Query00312",
+      "reason_invalid": "missing_precondition"
+    },
+    {
+      "candidate": [
+        "Accommodation_Search_to_Final_4Steps"
+      ],
+      "candidate_cost_retain": "78.31",
+      "candidate_cost_switch": "78.31",
+      "candidate_price_hidden_from_generator": true,
+      "candidate_valid": true,
+      "query_id": "Query00347",
+      "reason_invalid": null
+    },
+    {
+      "candidate": [
+        "Attraction_Search_to_Final_4Steps"
+      ],
+      "candidate_cost_retain": "79.96",
+      "candidate_cost_switch": "79.96",
+      "candidate_price_hidden_from_generator": true,
+      "candidate_valid": true,
+      "query_id": "Query00610",
+      "reason_invalid": null
+    },
+    {
+      "candidate": [
+        "Dining_Full_Planning_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "candidate_cost_retain": "99.21",
+      "candidate_cost_switch": "99.21",
+      "candidate_price_hidden_from_generator": true,
+      "candidate_valid": true,
+      "query_id": "Query00685",
+      "reason_invalid": null
+    },
+    {
+      "candidate": [
+        "Shopping_Full_Planning_to_Step2",
+        "Select_Final_Shopping"
+      ],
+      "candidate_cost_retain": "102.90",
+      "candidate_cost_switch": "102.90",
+      "candidate_price_hidden_from_generator": true,
+      "candidate_valid": true,
+      "query_id": "Query00916",
+      "reason_invalid": null
+    }
+  ],
+  "candidate_improves_any": 0,
+  "candidate_two_option_correct": 0,
+  "candidate_two_option_trials": 8,
+  "candidate_valid_count": 4,
+  "cases": [
+    {
+      "arm": "original_control",
+      "candidate_valid": false,
+      "condition": "RETAIN",
+      "label": "RETAIN",
+      "label_correct": true,
+      "provider_error": null,
+      "query_id": "Query00312"
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": false,
+      "condition": "SWITCH",
+      "label": "RETAIN",
+      "label_correct": false,
+      "provider_error": null,
+      "query_id": "Query00312"
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "RETAIN",
+      "label_correct": true,
+      "provider_error": null,
+      "query_id": "Query00347"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "SWITCH",
+      "label_correct": false,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00347",
+      "reported_candidate": "78.31",
+      "reported_comparison_consistent": false,
+      "reported_old": "58.74",
+      "true_candidate": "78.31",
+      "true_old": "77.68",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "RETAIN",
+      "label_correct": false,
+      "provider_error": null,
+      "query_id": "Query00347"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "SWITCH",
+      "label_correct": true,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00347",
+      "reported_candidate": "78.31",
+      "reported_comparison_consistent": false,
+      "reported_old": "77.72",
+      "true_candidate": "78.31",
+      "true_old": "77.68",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "RETAIN",
+      "label_correct": true,
+      "provider_error": null,
+      "query_id": "Query00610"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "SWITCH",
+      "label_correct": false,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00610",
+      "reported_candidate": "79.96",
+      "reported_comparison_consistent": true,
+      "reported_old": "100.57",
+      "true_candidate": "79.96",
+      "true_old": "79.57",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "RETAIN",
+      "label_correct": false,
+      "provider_error": null,
+      "query_id": "Query00610"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "SWITCH",
+      "label_correct": true,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00610",
+      "reported_candidate": "79.96",
+      "reported_comparison_consistent": true,
+      "reported_old": "99.57",
+      "true_candidate": "79.96",
+      "true_old": "79.57",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "RETAIN",
+      "label_correct": true,
+      "provider_error": null,
+      "query_id": "Query00685"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "SWITCH",
+      "label_correct": false,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00685",
+      "reported_candidate": "99.21",
+      "reported_comparison_consistent": false,
+      "reported_old": "61.04",
+      "true_candidate": "99.21",
+      "true_old": "60.72",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "RETAIN",
+      "label_correct": false,
+      "provider_error": null,
+      "query_id": "Query00685"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "SWITCH",
+      "label_correct": true,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00685",
+      "reported_candidate": "99.21",
+      "reported_comparison_consistent": false,
+      "reported_old": "61.04",
+      "true_candidate": "99.21",
+      "true_old": "60.72",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "RETAIN",
+      "label_correct": true,
+      "provider_error": null,
+      "query_id": "Query00916"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "RETAIN",
+      "label": "SWITCH",
+      "label_correct": false,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00916",
+      "reported_candidate": "102.9",
+      "reported_comparison_consistent": false,
+      "reported_old": "83.02",
+      "true_candidate": "102.90",
+      "true_old": "62.06",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    },
+    {
+      "arm": "original_control",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "RETAIN",
+      "label_correct": false,
+      "provider_error": null,
+      "query_id": "Query00916"
+    },
+    {
+      "arm": "generated_candidate",
+      "candidate_correct": true,
+      "candidate_improves": false,
+      "candidate_only_gold": "RETAIN",
+      "candidate_valid": true,
+      "condition": "SWITCH",
+      "label": "SWITCH",
+      "label_correct": true,
+      "old_correct": false,
+      "provider_error": null,
+      "query_id": "Query00916",
+      "reported_candidate": "102.9",
+      "reported_comparison_consistent": false,
+      "reported_old": "83.66",
+      "true_candidate": "102.90",
+      "true_old": "62.06",
+      "two_candidate_decision_correct": false,
+      "two_candidate_decision_valid": true
+    }
+  ],
+  "independent_base_tasks": 5,
+  "interpretation_boundary": [
+    "The original ground-truth SWITCH label is NOT the gold decision when comparing only incumbent against one generated candidate; the latter may be worse than incumbent even when another superior path exists.",
+    "Candidate generator is price-blind and not instructed to find the actual better path.",
+    "Candidate experiment measures accessible alternatives and decision consistency, not the ability to identify the optimum.",
+    "Generated candidate might be valid but not improve SWITCH; no gain is not evidence of plan anchoring.",
+    "Mechanisms cannot be inferred from internal reasoning or model labels alone.",
+    "Five previously studied development tasks, never report heldout performance.",
+    "No native execution or self-authored incumbent in this batch."
+  ],
+  "reported_evidence_label_contradictions": 6,
+  "schema": "retention-mechanism-5-task-scored-v1",
+  "status": "partial"
+}

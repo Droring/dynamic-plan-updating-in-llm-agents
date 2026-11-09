@@ -1,0 +1,65 @@
+{
+  "schema": "witness-price-evidence-ladder-v1",
+  "base_tasks": 5,
+  "correlated_conditions": 2,
+  "arms": [
+    "path_only",
+    "path_plus_verified_totals"
+  ],
+  "max_provider_calls": 20,
+  "max_charged_tokens": 60000,
+  "model": "deepseek-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "candidate_selection": "experimenter selects first <=2-step feasible competitor strictly better in SWITCH scenario; SAME candidate on matched RETAIN side",
+  "limitations": [
+    "EXPERIMENTER-ASSISTED: chosen witness depends on SWITCH-side true price advantage, although chosen path is fixed across both conditions",
+    "Aggregated values make correct binary label straightforward; numeric arm diagnoses integration, not alternative discovery",
+    "The path-only versus numeric arm changes available evidence; not a deployable method",
+    "Synthetic graph decisions are not autonomous Agent tool execution"
+  ],
+  "selection": [
+    {
+      "qid": "Query00236",
+      "selected_path": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "selection_is_experimenter_witness_using_switch_prices": true,
+      "same_candidate_on_both_conditions": true
+    },
+    {
+      "qid": "Query00489",
+      "selected_path": [
+        "Accommodation_Refine_to_Step2",
+        "Select_Final_Accommodation"
+      ],
+      "selection_is_experimenter_witness_using_switch_prices": true,
+      "same_candidate_on_both_conditions": true
+    },
+    {
+      "qid": "Query00662",
+      "selected_path": [
+        "Attraction_Refine_to_Step2",
+        "Select_Final_Attraction"
+      ],
+      "selection_is_experimenter_witness_using_switch_prices": true,
+      "same_candidate_on_both_conditions": true
+    },
+    {
+      "qid": "Query00766",
+      "selected_path": [
+        "Dining_Finish_from_Step1_3Steps"
+      ],
+      "selection_is_experimenter_witness_using_switch_prices": true,
+      "same_candidate_on_both_conditions": true
+    },
+    {
+      "qid": "Query00944",
+      "selected_path": [
+        "Shopping_Search_to_Final_4Steps"
+      ],
+      "selection_is_experimenter_witness_using_switch_prices": true,
+      "same_candidate_on_both_conditions": true
+    }
+  ]
+}

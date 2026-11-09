@@ -1,0 +1,382 @@
+{
+  "dataset_id": "costbench_paired_retain_switch_50",
+  "title": "Unified 50-task CostBench RETAIN/SWITCH paired dataset",
+  "upstream_revision": "6424069f3f773ade076bcedbed302ed47cfb1837",
+  "base_task_count": 50,
+  "condition_count": 100,
+  "unique_task_ids": 50,
+  "condition_balance": {
+    "RETAIN": 50,
+    "SWITCH": 50
+  },
+  "categories": {
+    "transportation": 10,
+    "accommodation": 10,
+    "attraction": 10,
+    "dining": 10,
+    "shopping": 10
+  },
+  "selection": {
+    "task_ids": [
+      {
+        "task_id": "Query00238",
+        "task_index": 1,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "571c3f1df33b14a6c18faca56dd14fb93335ce5a58224e3174ba72fd62dc0974"
+      },
+      {
+        "task_id": "Query00329",
+        "task_index": 2,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "779b36b9a2c02c978da0fd2728f6fd45fa80dacfc669959171b78981305c2aed"
+      },
+      {
+        "task_id": "Query00312",
+        "task_index": 3,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "9e8817972fa1b7af42a6cdb15417f98c82d6e74d64bc4e4ce1ef1e6b429c87ae"
+      },
+      {
+        "task_id": "Query00236",
+        "task_index": 4,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "8ce618ea9ea7211bf46c87535a463f49b872e3e18d9acb44ac624e77b46594d8"
+      },
+      {
+        "task_id": "Query00240",
+        "task_index": 5,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "633d7719e29a586e0e7861dac7a76422cffa8fe1bfc50dfdcca5b7f7f03f0c16"
+      },
+      {
+        "task_id": "Query00227",
+        "task_index": 6,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "5cf5f31c8fa12cd12addadbe0f85d69eec383300321840557021a521ccb2ebac"
+      },
+      {
+        "task_id": "Query00466",
+        "task_index": 7,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "176aba6634f0fb9289ad52743b6b6e89d15ceb09db9eea59454f745fcf962dd6"
+      },
+      {
+        "task_id": "Query00440",
+        "task_index": 8,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "b2c20ef976842731e92220bd93c1d2bf257ed40c18ef685cf17bc017387b9607"
+      },
+      {
+        "task_id": "Query00347",
+        "task_index": 9,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "60ab73aa742aab363ba6b8d2e49d3668d0d0065736981b8333b023a2a635d782"
+      },
+      {
+        "task_id": "Query00489",
+        "task_index": 10,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "2343d6640ff48dba2bf4a37666c130819ba15918db9a14c1e0c2a310fdc6f62c"
+      },
+      {
+        "task_id": "Query00351",
+        "task_index": 11,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "28529461ece1b67d2e619e2969207add12d8be2f6e13cfea824694ef50453d76"
+      },
+      {
+        "task_id": "Query00494",
+        "task_index": 12,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "e00b836570417570a458d92ab651f21d01f9c9ca1e17f830b1c59626f2f39eaa"
+      },
+      {
+        "task_id": "Query00590",
+        "task_index": 13,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "4c244b71eddc23f3c6a6fa9cee1d82e8b12d8b19be636cf4cc21c4f0911b6dbd"
+      },
+      {
+        "task_id": "Query00624",
+        "task_index": 14,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "072abac8cc5a4733cbe119e4a80408ce8f64dc00cb3d1a7c8005b5e59245764c"
+      },
+      {
+        "task_id": "Query00610",
+        "task_index": 15,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "df97b877a78cd4fa49d03900c182ff2f4ffbcb5c06426f41012c11ff85d15906"
+      },
+      {
+        "task_id": "Query00662",
+        "task_index": 16,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "dc9c3a9bcc11f9165f61a4b6757c2767a7210b0924ed54a81f46470a7dbf8093"
+      },
+      {
+        "task_id": "Query00518",
+        "task_index": 17,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "8faeb9f5b889ea85809a50a19dfb7195c2cf79a71bde9ed43f5c8bb8faee5055"
+      },
+      {
+        "task_id": "Query00598",
+        "task_index": 18,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "a34422f4251f8d9608c5b955d9f3617c671cfffcf4fee81b05c8f085bdc9beaa"
+      },
+      {
+        "task_id": "Query00689",
+        "task_index": 19,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "4230e59fe7f10b0b8291a2a6506e264822765a1bd83acc5d07e7ccc8fda6558b"
+      },
+      {
+        "task_id": "Query00706",
+        "task_index": 20,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "87b62031fb87f0cf956c8452d2350f117ad83a68dd1d7337f8e0786312d92431"
+      },
+      {
+        "task_id": "Query00685",
+        "task_index": 21,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "db4dee52d91819e767cf49818f879b56692ce81e8131c8d189a298829a9ba917"
+      },
+      {
+        "task_id": "Query00766",
+        "task_index": 22,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "6d77e8bb071c14a416f9c61d51f18e179014124c251429201888cc1517bd355f"
+      },
+      {
+        "task_id": "Query00761",
+        "task_index": 23,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "229681d22e55101e094b44c808c3018584b589e0eed9fe652becf828c7e77109"
+      },
+      {
+        "task_id": "Query00798",
+        "task_index": 24,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "ceb089341f67e8952a1d17f2f1f77fdbbdf051e1cee5a2f6c140168c680c6586"
+      },
+      {
+        "task_id": "Query00867",
+        "task_index": 25,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "41e0dc0dea66cbec316122f0cbb813692ca4db9a1dc61a9f6538e1fae01d1cb6"
+      },
+      {
+        "task_id": "Query00851",
+        "task_index": 26,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "4877644647decf1b6aee0168997a6d8c8105832cf88801cd8422474d57a501ba"
+      },
+      {
+        "task_id": "Query00916",
+        "task_index": 27,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "80489bec2b1545fd3002280d160afa8496646bd254b6c057da8fa93dc398182e"
+      },
+      {
+        "task_id": "Query00944",
+        "task_index": 28,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "5ce069815e795252daed9fab2971d3a1c9d23f62d4ff18389bd30cb5aad7a3df"
+      },
+      {
+        "task_id": "Query00858",
+        "task_index": 29,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "1008d724f413e8d3e7330a4c9eb9dab18aaf2c82750abf298d6baef9c4003572"
+      },
+      {
+        "task_id": "Query00941",
+        "task_index": 30,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "51862d5959e5d7ebdeb3c04b1d9620a41af89e329dbcf33472373ebbbeb86999"
+      },
+      {
+        "task_id": "Query00178",
+        "task_index": 31,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "2195a89ef47ac5e39ec87dd3171f15a8a05f00964b565752f12f3826bf90c883"
+      },
+      {
+        "task_id": "Query00229",
+        "task_index": 32,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "2e950f9a7cecd8d9b6b1433966b5cfc03023ea0852d21419c76d28692ed3fe7e"
+      },
+      {
+        "task_id": "Query00188",
+        "task_index": 33,
+        "category": "transportation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "ef60dbb9b69ff7672e908699070f6b67fe3457fc9526cd8273171828d7633418"
+      },
+      {
+        "task_id": "Query00477",
+        "task_index": 34,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "8e99ac2a518832cdd843ba398d2e53a5bea16ba8e342d625d378bfb06703472f"
+      },
+      {
+        "task_id": "Query00403",
+        "task_index": 35,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "fc31e3fdbd330339a7404a11ca7d868b545759de8af6194ce498d45e86415f52"
+      },
+      {
+        "task_id": "Query00425",
+        "task_index": 36,
+        "category": "accommodation",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "98923a07d051dd0f6dff23fd387d485ae7e8d951dea924486427652e4b90ac1f"
+      },
+      {
+        "task_id": "Query00549",
+        "task_index": 37,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "fca013818e233b48e8ecce02b17055764479f8c3bf9d32d190c903ad4e6b61f0"
+      },
+      {
+        "task_id": "Query00576",
+        "task_index": 38,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "98a8186e78ccbf713879ec109fc1e6453aa3cadba6d176953d7620e258eca810"
+      },
+      {
+        "task_id": "Query00658",
+        "task_index": 39,
+        "category": "attraction",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "b9a0770df700ebeb901f1281bb2c5318b5a52aaf2b1cb3b3925c0bfb1152e8bd"
+      },
+      {
+        "task_id": "Query00790",
+        "task_index": 40,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "e1c750022354d934ceecb8c6b684fef28bcea42526793df3b1555ca697ab1d47"
+      },
+      {
+        "task_id": "Query00740",
+        "task_index": 41,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "4452c4e9334311611fdfadbc100d11c9a7487b3f043bf00db5b79a3bdb14e081"
+      },
+      {
+        "task_id": "Query00705",
+        "task_index": 42,
+        "category": "dining",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "c05db60d13d94975aef975e00d5a1312a30d5b6db64c0f4635dec2100b349251"
+      },
+      {
+        "task_id": "Query00967",
+        "task_index": 43,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "c0e79222edec1f1b23151563500fcd95106d5396ae57000d4a02ec6eda9756ea"
+      },
+      {
+        "task_id": "Query00933",
+        "task_index": 44,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "8bf2696b73742fe815d904b45a38e52271d4ecfee34b977754217e827f7a4a73"
+      },
+      {
+        "task_id": "Query00898",
+        "task_index": 45,
+        "category": "shopping",
+        "source_record": "source_archive",
+        "checkpoint_sha256": "70ccbd8c51b14530f656bba6e8b33b97f0f15a5e02a5f084cbde033423d68cfd"
+      },
+      {
+        "task_id": "Query00260",
+        "task_index": 46,
+        "category": "transportation",
+        "source_record": "new_extension",
+        "checkpoint_sha256": "da4a87fde7f74d7a05e69ef7bd4c134034229f4d332d5414c939817a567bb20f"
+      },
+      {
+        "task_id": "Query00499",
+        "task_index": 47,
+        "category": "accommodation",
+        "source_record": "new_extension",
+        "checkpoint_sha256": "c94dd80ff2a2b1e8298f42e766a7544ee341ec768fb3bb4475fc96253c8932a4"
+      },
+      {
+        "task_id": "Query00550",
+        "task_index": 48,
+        "category": "attraction",
+        "source_record": "new_extension",
+        "checkpoint_sha256": "45b6f14d90557f6988a81c7802ed4140c4f383d7d7c1692d954ad32e1c4f32e3"
+      },
+      {
+        "task_id": "Query00738",
+        "task_index": 49,
+        "category": "dining",
+        "source_record": "new_extension",
+        "checkpoint_sha256": "a9e78592a19da39aea3ae272a45258aeaa19e50a1603bb0e8caf93da487a7539"
+      },
+      {
+        "task_id": "Query00865",
+        "task_index": 50,
+        "category": "shopping",
+        "source_record": "new_extension",
+        "checkpoint_sha256": "910c818ca8ccccf877a3368b5b5631d452c8327ba09876818e8e523215ca06b5"
+      }
+    ],
+    "disjoint_extension_verified": true,
+    "each_task_has_one_retain_and_one_switch": true
+  },
+  "model_protocol": {
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "thinking": "disabled",
+    "prompt_template": "experiments/paired_50/generate_extension.py::SYSTEM",
+    "protocol_version": "unified-50-v1"
+  }
+}

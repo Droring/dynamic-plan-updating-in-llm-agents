@@ -1,0 +1,51 @@
+{
+  "status": "offline_validated_no_model_calls",
+  "base_tasks": 5,
+  "conditions": 10,
+  "category_counts": {
+    "transportation": 1,
+    "accommodation": 1,
+    "attraction": 1,
+    "dining": 1,
+    "shopping": 1
+  },
+  "direction_counts": {
+    "up": 3,
+    "down": 2
+  },
+  "first_condition_counts": {
+    "SWITCH": 2,
+    "RETAIN": 3
+  },
+  "queries": [
+    "Query00260",
+    "Query00499",
+    "Query00550",
+    "Query00738",
+    "Query00865"
+  ],
+  "attempts": {
+    "transportation": 1,
+    "accommodation": 4,
+    "attraction": 7,
+    "dining": 1,
+    "shopping": 1
+  },
+  "rejected_candidates": {
+    "no_down_pair": 9,
+    "no_up_pair": 9,
+    "no_admissible_orientation": 9
+  },
+  "minimum_switch_margin": 1.3,
+  "all_retain_regrets": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "precommitted_llm_plans": 0,
+  "model_calls": 0,
+  "budget_charged": 0,
+  "limitations": "Synthetic oracle-derived initial/prefix checkpoints; no LLM precommit, no complete business-state match, no online adaptation; two-sided same-sign cost perturbations reduce but do not remove price-magnitude shortcuts. Pairs are not full real-world tasks."
+}

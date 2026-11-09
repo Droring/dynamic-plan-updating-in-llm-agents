@@ -1,0 +1,22 @@
+{
+  "schema": "four-task-native-minimal-fact-ownership-control-v1",
+  "base_task_ids": [
+    "Query00271",
+    "Query00261",
+    "Query00249",
+    "Query00306"
+  ],
+  "tasks": 4,
+  "correlated_arms": 16,
+  "interventions": [
+    "retain",
+    "switch"
+  ],
+  "plan_history": [
+    "committed",
+    "neutralized"
+  ],
+  "note": "old user request and tool prefix frozen, factual update is a minimal current style statement; no alternative or explicit old-result invalidation supplied",
+  "warning": "neutralization changes authorial wording, not removing the old plan or its native tool history",
+  "provider_call_cap_per_arm": 5
+}

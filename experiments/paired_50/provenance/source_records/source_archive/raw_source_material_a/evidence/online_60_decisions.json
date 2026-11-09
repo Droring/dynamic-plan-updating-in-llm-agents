@@ -1,0 +1,168 @@
+{
+  "schema": "online_60_derived_decision_labels_v1",
+  "status": "derived_from_saved_scoring_output_not_raw_provider_verification",
+  "source_score_sha256": "52133ce758017f102b8cdf5cbd64a4d0ba4d77391a11b8b9532777fe46c72e84",
+  "source_ledger_sha256": "7c1e8ceaf43abfd6d9acbd6233af7dc921c9e395ad20e90700ade938bb3b2c6f",
+  "model": "deepseek-flash",
+  "base_tasks": 30,
+  "conditions": 60,
+  "valid_conditions": 60,
+  "valid_pairs": 30,
+  "retain_correct": 30,
+  "switch_correct": 4,
+  "pair_correct": 4,
+  "charged_tokens": 67942,
+  "note": "Transcribed from the user-supplied saved score summary and ledger; task IDs cross-checked against the repository's frozen 60-trial manifest. Not an independently reconstructed score from original provider responses.",
+  "predictions": [
+    {
+      "query_id": "Query00227",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00236",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00238",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00240",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00312",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00329",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00347",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "SWITCH"
+    },
+    {
+      "query_id": "Query00351",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00440",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "SWITCH"
+    },
+    {
+      "query_id": "Query00466",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00489",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00494",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00518",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00590",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00598",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00610",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00624",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00662",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "SWITCH"
+    },
+    {
+      "query_id": "Query00685",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00689",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00706",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "SWITCH"
+    },
+    {
+      "query_id": "Query00761",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00766",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00798",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00851",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00858",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00867",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00916",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00941",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    },
+    {
+      "query_id": "Query00944",
+      "retain_prediction": "RETAIN",
+      "switch_prediction": "RETAIN"
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+[
+  {
+    "query_id": "<Query00326>",
+    "TimeInfo": "<TimeInfo02481>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "full_meal_and_beverage_service",
+      "style": "schedule_flexibility_priority",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00159>",
+    "groundtruth": "<TransportationPreference40479>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and need to book a flight. While I'm not looking to splurge on a first-class ticket, I do want a comfortable journey that's a notch above the basic economy, so a standard class seat would be ideal. My schedule is pretty fluid, so having the flexibility to choose from various flight times would be a big plus. Additionally, I’d like to enjoy a full meal and beverage service during the flight to make the journey more pleasant. It's important to me that the airline offers these amenities to ensure a satisfying travel experience.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02481> and to <LocationPreference00159> for me according to the user requirements. User requirements: I'm planning a trip and need to book a flight. While I'm not looking to splurge on a first-class ticket, I do want a comfortable journey that's a notch above the basic economy, so a standard class seat would be ideal. My schedule is pretty fluid, so having the flexibility to choose from various flight times would be a big plus. Additionally, I’d like to enjoy a full meal and beverage service during the flight to make the journey more pleasant. It's important to me that the airline offers these amenities to ensure a satisfying travel experience.. "
+    }
+  },
+  {
+    "query_id": "<Query00233>",
+    "TimeInfo": "<TimeInfo00916>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "bus",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "scenic_route",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00066>",
+    "groundtruth": "<TransportationPreference16779>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I’m planning a trip and I'm interested in taking a bus for this journey. I’m not looking for anything too extravagant, just a comfortable and reliable option that’s reasonably priced. What really draws me in is the idea of enjoying the views along the way, so I’d love a route that takes me through picturesque landscapes and scenic spots. Additionally, it’s important for me to stay connected during the trip, so having access to Wi-Fi and power outlets onboard would be a huge plus.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00916> and to <LocationPreference00066> for me according to the user requirements. User requirements: I’m planning a trip and I'm interested in taking a bus for this journey. I’m not looking for anything too extravagant, just a comfortable and reliable option that’s reasonably priced. What really draws me in is the idea of enjoying the views along the way, so I’d love a route that takes me through picturesque landscapes and scenic spots. Additionally, it’s important for me to stay connected during the trip, so having access to Wi-Fi and power outlets onboard would be a huge plus.. "
+    }
+  },
+  {
+    "query_id": "<Query00263>",
+    "TimeInfo": "<TimeInfo02621>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "schedule_flexibility_priority",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00096>",
+    "groundtruth": "<TransportationPreference24399>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I'm looking for a train service that doesn’t break the bank but still offers decent comfort and reliability. My schedule is pretty unpredictable, so I need the kind of train that gives me the flexibility to change my plans without much hassle. Additionally, it's important for me to stay connected while traveling, so having Wi-Fi and power outlets onboard is a must.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02621> and to <LocationPreference00096> for me according to the user requirements. User requirements: I'm planning a trip and I'm looking for a train service that doesn’t break the bank but still offers decent comfort and reliability. My schedule is pretty unpredictable, so I need the kind of train that gives me the flexibility to change my plans without much hassle. Additionally, it's important for me to stay connected while traveling, so having Wi-Fi and power outlets onboard is a must.. "
+    }
+  },
+  {
+    "query_id": "<Query00292>",
+    "TimeInfo": "<TimeInfo01847>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "scenic_route",
+      "tier": "business_class"
+    },
+    "location_preference": "<LocationPreference00125>",
+    "groundtruth": "<TransportationPreference31754>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When planning my upcoming trip, I’m really leaning towards taking to the skies. I’m looking for an airline option that offers a bit more than the basics—something that balances comfort and practicality without going overboard. My ideal flight would not only offer a smooth and pleasant journey with a touch of class, but it should also provide an inspiring view from above, perhaps flying over breathtaking landscapes or coastlines. Moreover, staying connected is crucial for me, so having access to Wi-Fi and power outlets during the flight is a must. I want to ensure I can work or stay in touch as needed while enjoying the journey.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01847> and to <LocationPreference00125> for me according to the user requirements. User requirements: When planning my upcoming trip, I’m really leaning towards taking to the skies. I’m looking for an airline option that offers a bit more than the basics—something that balances comfort and practicality without going overboard. My ideal flight would not only offer a smooth and pleasant journey with a touch of class, but it should also provide an inspiring view from above, perhaps flying over breathtaking landscapes or coastlines. Moreover, staying connected is crucial for me, so having access to Wi-Fi and power outlets during the flight is a must. I want to ensure I can work or stay in touch as needed while enjoying the journey.. "
+    }
+  },
+  {
+    "query_id": "<Query00368>",
+    "TimeInfo": "<TimeInfo02545>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "specialized_pet_friendly_services",
+      "style": "convenience_priority",
+      "tier": "business_four_star"
+    },
+    "location_preference": "<LocationPreference00034>",
+    "groundtruth": "<AccommodationPreference08474>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and need a place to stay that matches my specific needs. I'm looking for a hotel that strikes a perfect balance between comfort and practicality, ideally one that caters well to business travelers without being overly extravagant. Convenience is key for me, so I need a spot that's strategically located with easy access to transport links and essential amenities. Additionally, it's crucial that the place accommodates my furry companion with specialized services that make traveling with a pet hassle-free. In essence, I'm seeking a reliable and pet-friendly hotel that offers all the practicalities a business traveler might need.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02545> and to <LocationPreference00034> for me according to the user requirements. User requirements: I'm planning a trip and need a place to stay that matches my specific needs. I'm looking for a hotel that strikes a perfect balance between comfort and practicality, ideally one that caters well to business travelers without being overly extravagant. Convenience is key for me, so I need a spot that's strategically located with easy access to transport links and essential amenities. Additionally, it's crucial that the place accommodates my furry companion with specialized services that make traveling with a pet hassle-free. In essence, I'm seeking a reliable and pet-friendly hotel that offers all the practicalities a business traveler might need.. "
+    }
+  },
+  {
+    "query_id": "<Query00410>",
+    "TimeInfo": "<TimeInfo00027>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hostel",
+      "feature_package": "specialized_pet_friendly_services",
+      "style": "scenery_priority",
+      "tier": "standard_three_star"
+    },
+    "location_preference": "<LocationPreference00076>",
+    "groundtruth": "<AccommodationPreference19415>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I'm on the hunt for a place to stay that perfectly matches my needs. I'm not looking for the usual hotel experience; instead, I want to stay in a hostel where I can meet fellow travelers and enjoy a more communal vibe. While I'm not aiming for the height of luxury, I do want something a bit nicer than the most basic options, so a mid-range place with decent amenities would be ideal. The main draw for me is the setting; I want to be surrounded by beautiful landscapes or stunning views, as I find that really enhances my travel experience. Additionally, it's important that the place is welcoming to pets",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00027> and to <LocationPreference00076> for me according to the user requirements. User requirements: I'm planning a trip and I'm on the hunt for a place to stay that perfectly matches my needs. I'm not looking for the usual hotel experience; instead, I want to stay in a hostel where I can meet fellow travelers and enjoy a more communal vibe. While I'm not aiming for the height of luxury, I do want something a bit nicer than the most basic options, so a mid-range place with decent amenities would be ideal. The main draw for me is the setting; I want to be surrounded by beautiful landscapes or stunning views, as I find that really enhances my travel experience. Additionally, it's important that the place is welcoming to pets. "
+    }
+  },
+  {
+    "query_id": "<Query00467>",
+    "TimeInfo": "<TimeInfo00143>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "self_catering_and_laundry",
+      "style": "convenience_priority",
+      "tier": "business_four_star"
+    },
+    "location_preference": "<LocationPreference00133>",
+    "groundtruth": "<AccommodationPreference33850>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip soon and need a place to stay that truly meets my needs. I'm looking for a comfortable hotel that offers a good balance of quality and affordability, perhaps something that caters well to business travelers with four-star service. It's important that convenience is a top priority, so I need the location to be easily accessible with straightforward transport links to get around without hassle. Additionally, having the option to cook my own meals and do laundry on-site would be a huge plus, as it gives me the flexibility I need during my stay. In essence, I'm searching for a hotel that combines practical amenities with a touch of class, making my travel",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00143> and to <LocationPreference00133> for me according to the user requirements. User requirements: I'm planning a trip soon and need a place to stay that truly meets my needs. I'm looking for a comfortable hotel that offers a good balance of quality and affordability, perhaps something that caters well to business travelers with four-star service. It's important that convenience is a top priority, so I need the location to be easily accessible with straightforward transport links to get around without hassle. Additionally, having the option to cook my own meals and do laundry on-site would be a huge plus, as it gives me the flexibility I need during my stay. In essence, I'm searching for a hotel that combines practical amenities with a touch of class, making my travel. "
+    }
+  },
+  {
+    "query_id": "<Query00499>",
+    "TimeInfo": "<TimeInfo00132>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "specialized_pet_friendly_services",
+      "style": "centrality_priority",
+      "tier": "budget_basic"
+    },
+    "location_preference": "<LocationPreference00165>",
+    "groundtruth": "<AccommodationPreference42004>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and need a place to stay that won't break the bank, so I'm looking for a hotel that's easy on the wallet. It's important that this place is smack dab in the middle of everything, making it super convenient to get around without any fuss. I also want to bring along my furry friend, so the accommodation needs to offer some special amenities that cater to pets. Overall, I'm aiming for an affordable yet central spot that welcomes both me and my pet.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00132> and to <LocationPreference00165> for me according to the user requirements. User requirements: I'm planning a trip and need a place to stay that won't break the bank, so I'm looking for a hotel that's easy on the wallet. It's important that this place is smack dab in the middle of everything, making it super convenient to get around without any fuss. I also want to bring along my furry friend, so the accommodation needs to offer some special amenities that cater to pets. Overall, I'm aiming for an affordable yet central spot that welcomes both me and my pet.. "
+    }
+  },
+  {
+    "query_id": "<Query00454>",
+    "TimeInfo": "<TimeInfo00033>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "specialized_pet_friendly_services",
+      "style": "convenience_priority",
+      "tier": "standard_three_star"
+    },
+    "location_preference": "<LocationPreference00120>",
+    "groundtruth": "<AccommodationPreference30491>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I'm in search of a place to stay that fits my specific needs. I'm thinking of a hotel, not something too extravagant, but definitely a step above the basic level. A comfortable, mid-range option where I can relax without breaking the bank. It's important that this place makes getting around easy and hassle-free, as convenience is key for me. Plus, since I'm traveling with my furry friend, I need somewhere that goes above and beyond to accommodate pets, offering specialized services for them. I'm aiming for a spot that balances practicality and pet-friendliness perfectly.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00033> and to <LocationPreference00120> for me according to the user requirements. User requirements: I'm planning a trip and I'm in search of a place to stay that fits my specific needs. I'm thinking of a hotel, not something too extravagant, but definitely a step above the basic level. A comfortable, mid-range option where I can relax without breaking the bank. It's important that this place makes getting around easy and hassle-free, as convenience is key for me. Plus, since I'm traveling with my furry friend, I need somewhere that goes above and beyond to accommodate pets, offering specialized services for them. I'm aiming for a spot that balances practicality and pet-friendliness perfectly.. "
+    }
+  },
+  {
+    "query_id": "<Query00452>",
+    "TimeInfo": "<TimeInfo01737>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hostel",
+      "feature_package": "self_catering_and_laundry",
+      "style": "convenience_priority",
+      "tier": "standard_three_star"
+    },
+    "location_preference": "<LocationPreference00118>",
+    "groundtruth": "<AccommodationPreference30203>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I’m looking for a place to stay that doesn’t break the bank but still offers a decent level of comfort and amenities. I’m thinking of a hostel where I can enjoy a social atmosphere without compromising on basic comforts. It’s important that the place is conveniently located, perhaps near public transport or key attractions, so getting around is hassle-free. Also, it would be great if the accommodation has facilities like a kitchen and laundry services, as I prefer to cook some of my meals and handle my own laundry during my stay. Overall, I’m after a practical and comfortable base for my travels that offers the essentials for",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01737> and to <LocationPreference00118> for me according to the user requirements. User requirements: I'm planning a trip and I’m looking for a place to stay that doesn’t break the bank but still offers a decent level of comfort and amenities. I’m thinking of a hostel where I can enjoy a social atmosphere without compromising on basic comforts. It’s important that the place is conveniently located, perhaps near public transport or key attractions, so getting around is hassle-free. Also, it would be great if the accommodation has facilities like a kitchen and laundry services, as I prefer to cook some of my meals and handle my own laundry during my stay. Overall, I’m after a practical and comfortable base for my travels that offers the essentials for. "
+    }
+  },
+  {
+    "query_id": "<Query00444>",
+    "TimeInfo": "<TimeInfo00461>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "self_catering_and_laundry",
+      "style": "scenery_priority",
+      "tier": "standard_three_star"
+    },
+    "location_preference": "<LocationPreference00110>",
+    "groundtruth": "<AccommodationPreference27959>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a getaway and I'm looking for a place to stay that fits my needs perfectly. I'm not interested in camping or staying in a homestay or hostel; I’m specifically looking for a hotel. While I'm not seeking anything overly extravagant, I do want a place that offers good quality and comfort, more like a three-star accommodation. I’d love to be somewhere that offers breathtaking views, perhaps nestled in a picturesque area that lets me soak in natural beauty. Additionally, it’s important for me to have the option to cook my meals and do laundry, so having access to facilities like a kitchenette and laundry services would be ideal.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00461> and to <LocationPreference00110> for me according to the user requirements. User requirements: I'm planning a getaway and I'm looking for a place to stay that fits my needs perfectly. I'm not interested in camping or staying in a homestay or hostel; I’m specifically looking for a hotel. While I'm not seeking anything overly extravagant, I do want a place that offers good quality and comfort, more like a three-star accommodation. I’d love to be somewhere that offers breathtaking views, perhaps nestled in a picturesque area that lets me soak in natural beauty. Additionally, it’s important for me to have the option to cook my meals and do laundry, so having access to facilities like a kitchenette and laundry services would be ideal.. "
+    }
+  },
+  {
+    "query_id": "<Query00354>",
+    "TimeInfo": "<TimeInfo03471>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "self_catering_and_laundry",
+      "style": "scenery_priority",
+      "tier": "budget_basic"
+    },
+    "location_preference": "<LocationPreference00020>",
+    "groundtruth": "<AccommodationPreference04920>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been planning a trip and I'm on the lookout for a place to stay. I’m particularly interested in finding a hotel that doesn’t break the bank, something easy on the wallet yet still comfortable. While I'm not looking for anything too extravagant, I do have a soft spot for places with beautiful views, maybe somewhere close to nature or with a picturesque landscape. It’s important to me that the location offers a chance to unwind and take in the scenery. Additionally, I’d love the convenience of having facilities where I can prepare my own meals and take care of laundry if needed, making my stay more self-sufficient and hassle-free. Overall",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo03471> and to <LocationPreference00020> for me according to the user requirements. User requirements: I've been planning a trip and I'm on the lookout for a place to stay. I’m particularly interested in finding a hotel that doesn’t break the bank, something easy on the wallet yet still comfortable. While I'm not looking for anything too extravagant, I do have a soft spot for places with beautiful views, maybe somewhere close to nature or with a picturesque landscape. It’s important to me that the location offers a chance to unwind and take in the scenery. Additionally, I’d love the convenience of having facilities where I can prepare my own meals and take care of laundry if needed, making my stay more self-sufficient and hassle-free. Overall. "
+    }
+  },
+  {
+    "query_id": "<Query00470>",
+    "TimeInfo": "<TimeInfo00136>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "specialized_pet_friendly_services",
+      "style": "centrality_priority",
+      "tier": "standard_three_star"
+    },
+    "location_preference": "<LocationPreference00136>",
+    "groundtruth": "<AccommodationPreference34579>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When I consider my upcoming trip, I'm looking for a place to stay that offers the best balance between comfort and location. Specifically, I'm searching for a hotel, as I appreciate the consistency and amenities that come with it, but I don't need anything overly lavish or extravagant. A solid, mid-range option that is reliable and comfortable would be perfect. It's important to me that this hotel is right in the heart of the city, where I can easily access all the main attractions and feel like I'm in the middle of everything. Additionally, I wouldn't dream of leaving my furry friend behind, so it's essential that the hotel offers specialized services that cater to",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00136> and to <LocationPreference00136> for me according to the user requirements. User requirements: When I consider my upcoming trip, I'm looking for a place to stay that offers the best balance between comfort and location. Specifically, I'm searching for a hotel, as I appreciate the consistency and amenities that come with it, but I don't need anything overly lavish or extravagant. A solid, mid-range option that is reliable and comfortable would be perfect. It's important to me that this hotel is right in the heart of the city, where I can easily access all the main attractions and feel like I'm in the middle of everything. Additionally, I wouldn't dream of leaving my furry friend behind, so it's essential that the hotel offers specialized services that cater to. "
+    }
+  },
+  {
+    "query_id": "<Query00342>",
+    "TimeInfo": "<TimeInfo02678>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "self_catering_and_laundry",
+      "style": "centrality_priority",
+      "tier": "luxury_five_star"
+    },
+    "location_preference": "<LocationPreference00008>",
+    "groundtruth": "<AccommodationPreference01841>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When planning my upcoming getaway, I’m envisioning a stay that’s nothing short of opulent, where indulgence and comfort are paramount. I’m looking for a top-tier hotel that stands out with its five-star elegance, offering an experience where luxury is the norm. It’s essential that this hotel is situated right in the heart of the action, allowing me to step outside and immediately feel the vibrant pulse of the city around me. Additionally, I appreciate the flexibility of having facilities that let me handle some of my own meals and laundry, so a place that offers self-catering and laundry options would be perfect. In essence, I’m",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02678> and to <LocationPreference00008> for me according to the user requirements. User requirements: When planning my upcoming getaway, I’m envisioning a stay that’s nothing short of opulent, where indulgence and comfort are paramount. I’m looking for a top-tier hotel that stands out with its five-star elegance, offering an experience where luxury is the norm. It’s essential that this hotel is situated right in the heart of the action, allowing me to step outside and immediately feel the vibrant pulse of the city around me. Additionally, I appreciate the flexibility of having facilities that let me handle some of my own meals and laundry, so a place that offers self-catering and laundry options would be perfect. In essence, I’m. "
+    }
+  },
+  {
+    "query_id": "<Query00458>",
+    "TimeInfo": "<TimeInfo00529>",
+    "task": "accommodation",
+    "is_location": 0,
+    "goal_type": "TravelAccommodation",
+    "preferences": {
+      "category": "hotel",
+      "feature_package": "specialized_pet_friendly_services",
+      "style": "scenery_priority",
+      "tier": "standard_three_star"
+    },
+    "location_preference": "<LocationPreference00124>",
+    "groundtruth": "<AccommodationPreference31511>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a getaway and I'm on the hunt for a place to stay that's just right for me and my furry friend. I'm thinking of booking a hotel — not a campsite or homestay, but a classic hotel experience. I'm not looking for anything too extravagant or too basic, just something comfortable and cozy, like a three-star standard. What really matters to me is waking up to breathtaking views, so a location with stunning scenery is a must. And, of course, since I'm bringing my pet along, I need a place that offers specialized services to make sure they feel just as welcome and pampered as I do.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00529> and to <LocationPreference00124> for me according to the user requirements. User requirements: I'm planning a getaway and I'm on the hunt for a place to stay that's just right for me and my furry friend. I'm thinking of booking a hotel — not a campsite or homestay, but a classic hotel experience. I'm not looking for anything too extravagant or too basic, just something comfortable and cozy, like a three-star standard. What really matters to me is waking up to breathtaking views, so a location with stunning scenery is a must. And, of course, since I'm bringing my pet along, I need a place that offers specialized services to make sure they feel just as welcome and pampered as I do.. "
+    }
+  },
+  {
+    "query_id": "<Query00635>",
+    "TimeInfo": "<TimeInfo02101>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "historic_site",
+      "feature_package": "live_performances",
+      "style": "social_and_community_priority",
+      "tier": "local_spot"
+    },
+    "location_preference": "<LocationPreference00134>",
+    "groundtruth": "<AttractionPreference34080>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been on the lookout for a quaint historical site right in the local area, somewhere that's not a major tourist trap but still carries a rich sense of history. I'm drawn to places where the community vibe is strong, where you can feel the connection among visitors and locals alike, perhaps through engaging conversations or shared experiences. What would really make this spot stand out for me is if it offers live performances, something that breathes life into the past with a touch of present-day creativity. In essence, I'm seeking a charming, community-centered historic site that offers a unique blend of history and live entertainment.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02101> and to <LocationPreference00134> for me according to the user requirements. User requirements: I've been on the lookout for a quaint historical site right in the local area, somewhere that's not a major tourist trap but still carries a rich sense of history. I'm drawn to places where the community vibe is strong, where you can feel the connection among visitors and locals alike, perhaps through engaging conversations or shared experiences. What would really make this spot stand out for me is if it offers live performances, something that breathes life into the past with a touch of present-day creativity. In essence, I'm seeking a charming, community-centered historic site that offers a unique blend of history and live entertainment.. "
+    }
+  },
+  {
+    "query_id": "<Query00528>",
+    "TimeInfo": "<TimeInfo00989>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "amusement_or_entertainment",
+      "feature_package": "live_performances",
+      "style": "social_and_community_priority",
+      "tier": "local_spot"
+    },
+    "location_preference": "<LocationPreference00027>",
+    "groundtruth": "<AttractionPreference06880>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been craving a place where I can unwind and have some fun without venturing too far from home. I'm on the lookout for a local hangout spot that's all about amusement and entertainment, somewhere that’s not on the national or international radar, but still promises a good time. I’m particularly interested in a venue where social connections and community vibes take center stage, offering a lively and engaging atmosphere. It would be fantastic if this place also features live performances, like local bands or theater shows, to keep the energy high and the experience memorable.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00989> and to <LocationPreference00027> for me according to the user requirements. User requirements: Lately, I've been craving a place where I can unwind and have some fun without venturing too far from home. I'm on the lookout for a local hangout spot that's all about amusement and entertainment, somewhere that’s not on the national or international radar, but still promises a good time. I’m particularly interested in a venue where social connections and community vibes take center stage, offering a lively and engaging atmosphere. It would be fantastic if this place also features live performances, like local bands or theater shows, to keep the energy high and the experience memorable.. "
+    }
+  },
+  {
+    "query_id": "<Query00535>",
+    "TimeInfo": "<TimeInfo01196>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "historic_site",
+      "feature_package": "in_depth_expert_guidance",
+      "style": "learning_and_knowledge_priority",
+      "tier": "global_landmark"
+    },
+    "location_preference": "<LocationPreference00034>",
+    "groundtruth": "<AttractionPreference08449>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on a quest to explore a place steeped in history, somewhere that stands out as a true icon on the world stage. I'm not looking for just any historic site; I want to visit one of those rare landmarks that people from all over the globe recognize and admire. My goal is to delve deep into the past, so I'm particularly interested in destinations where I can learn extensively about their significance and stories. Ideally, there would be an opportunity for expert-led tours, where knowledgeable guides can provide detailed insights and answer all my curious questions. In essence, I'm seeking a historical adventure that combines global recognition with a profound educational experience.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01196> and to <LocationPreference00034> for me according to the user requirements. User requirements: I'm on a quest to explore a place steeped in history, somewhere that stands out as a true icon on the world stage. I'm not looking for just any historic site; I want to visit one of those rare landmarks that people from all over the globe recognize and admire. My goal is to delve deep into the past, so I'm particularly interested in destinations where I can learn extensively about their significance and stories. Ideally, there would be an opportunity for expert-led tours, where knowledgeable guides can provide detailed insights and answer all my curious questions. In essence, I'm seeking a historical adventure that combines global recognition with a profound educational experience.. "
+    }
+  },
+  {
+    "query_id": "<Query00532>",
+    "TimeInfo": "<TimeInfo01773>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "natural_wonder",
+      "feature_package": "in_depth_expert_guidance",
+      "style": "learning_and_knowledge_priority",
+      "tier": "regional_highlight"
+    },
+    "location_preference": "<LocationPreference00031>",
+    "groundtruth": "<AttractionPreference07811>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a place that truly showcases the natural beauty of the region, something that stands out as a must-see but isn't necessarily known worldwide. I'm not looking for a typical tourist trap, but rather a gem that locals cherish and that offers a remarkable experience filled with learning opportunities. Ideally, this destination would offer the chance to delve deep into its wonders with the help of expert guides who can provide detailed insights and enrich my understanding. I'm eager to explore a natural marvel that combines awe-inspiring sights with educational value, making my visit both enlightening and memorable.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01773> and to <LocationPreference00031> for me according to the user requirements. User requirements: I'm on the hunt for a place that truly showcases the natural beauty of the region, something that stands out as a must-see but isn't necessarily known worldwide. I'm not looking for a typical tourist trap, but rather a gem that locals cherish and that offers a remarkable experience filled with learning opportunities. Ideally, this destination would offer the chance to delve deep into its wonders with the help of expert guides who can provide detailed insights and enrich my understanding. I'm eager to explore a natural marvel that combines awe-inspiring sights with educational value, making my visit both enlightening and memorable.. "
+    }
+  },
+  {
+    "query_id": "<Query00571>",
+    "TimeInfo": "<TimeInfo01252>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "historic_site",
+      "feature_package": "hands_on_creation_experience",
+      "style": "social_and_community_priority",
+      "tier": "local_spot"
+    },
+    "location_preference": "<LocationPreference00070>",
+    "groundtruth": "<AttractionPreference17712>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been wanting to discover a place that holds historical significance but is more of a hidden gem rather than a famous landmark, something cherished by the locals. I’m interested in a spot where I can genuinely connect with others and feel the community spirit. I’d love it if the experience involves some interactive activities, where I can roll up my sleeves and perhaps create something with my own hands, making the visit both memorable and engaging.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01252> and to <LocationPreference00070> for me according to the user requirements. User requirements: I've been wanting to discover a place that holds historical significance but is more of a hidden gem rather than a famous landmark, something cherished by the locals. I’m interested in a spot where I can genuinely connect with others and feel the community spirit. I’d love it if the experience involves some interactive activities, where I can roll up my sleeves and perhaps create something with my own hands, making the visit both memorable and engaging.. "
+    }
+  }
+]

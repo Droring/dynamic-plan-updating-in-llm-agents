@@ -1,0 +1,13 @@
+{
+  "independent_development_tasks": 3,
+  "tasks": [
+    "Query00261",
+    "Query00249",
+    "Query00306"
+  ],
+  "four_correlated_arms_per_task": true,
+  "preflight": true,
+  "max_provider_calls_per_arm": 5,
+  "upstream": "official-native-CostBench-6424069f3f773ade076bcedbed302ed47cfb1837",
+  "warning": "Exploratory development task action-choice sensitivity, not heldout generalization or cost optimization."
+}

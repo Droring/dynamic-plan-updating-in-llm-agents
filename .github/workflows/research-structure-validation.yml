@@ -1,0 +1,43 @@
+name: Research repository structure validation
+
+on:
+  push:
+    branches: [main, "release/**"]
+    paths:
+      - "README.md"
+      - "README_zh.md"
+      - "docs/**"
+      - "research/**"
+      - "experiments/**"
+      - "provenance/**"
+      - "paper/**"
+      - "scripts/**"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "README.md"
+      - "README_zh.md"
+      - "docs/**"
+      - "research/**"
+      - "experiments/**"
+      - "provenance/**"
+      - "paper/**"
+      - "scripts/**"
+      - ".github/workflows/**"
+
+jobs:
+  repository-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate local Markdown links
+        run: python scripts/check_markdown_links.py
+      - name: Reject references to retired experiment paths
+        run: python scripts/check_stale_research_paths.py
+      - name: Verify canonical 50-task repository layout
+        run: python scripts/audit_directory_migration.py
+      - name: Run plan-memory primitive tests
+        run: python -m unittest scripts.test_plan_commitment_memory -v

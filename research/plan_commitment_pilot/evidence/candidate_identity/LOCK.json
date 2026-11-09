@@ -1,0 +1,18 @@
+{
+  "schema": "nonoracle-candidate-identity-4task-v1",
+  "independent_development_tasks": 4,
+  "conditions": 2,
+  "identities": [
+    "same_as_incumbent",
+    "different_feasible"
+  ],
+  "max_calls": 16,
+  "max_total_tokens": 42000,
+  "model": "deepseek-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "source": "4 previously generated feasible candidate routes with no oracle best path",
+  "design": "same prompt except candidate path; compare presence of identical candidate with novel but worse candidate",
+  "correct_two_option_label_all_arms": "RETAIN",
+  "warning": "Do not equate original global SWITCH truth with correctness of two-option comparison; original graph may contain third, improving path."
+}

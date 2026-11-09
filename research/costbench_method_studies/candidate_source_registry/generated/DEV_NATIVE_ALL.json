@@ -1,0 +1,473 @@
+{
+  "cases": [
+    {
+      "checkpoint_observation_sha256": "ea92542a0c05b61f59cf7dcd0d3ce82697352160f9fbaf07797510e973e1112c",
+      "checkpoint_output_type": "TransportationCandidate_L1_Available",
+      "executed_first_tool": "Transportation_Full_Planning_to_Step1",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TimeInfo",
+        "TransportationCategory",
+        "TransportationFeaturePackage",
+        "TransportationStyle",
+        "TransportationTier"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00249",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "4823ec0d68cfd2107c545b7d797d8a26581e8ebc5a6cabd98153b195e5ac2bf8",
+      "checkpoint_output_type": "TransportationCandidate_L1_Available",
+      "executed_first_tool": "Transportation_Full_Planning_to_Step1",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TimeInfo",
+        "TransportationCategory",
+        "TransportationFeaturePackage",
+        "TransportationStyle",
+        "TransportationTier"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00268",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "7f0efd21461738d1ccaf07b78cf8bdd1699ef505780d46c6140d94c0cd61f7de",
+      "checkpoint_output_type": "TransportationPreference",
+      "executed_first_tool": "Decide_Transportation_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TransportationCategory",
+        "TransportationTier",
+        "TransportationStyle",
+        "TransportationFeaturePackage"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00269",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "0581f1013f7fba1b8b763dd2239ddf0334581c409d1d7524526e08e0bc50997e",
+      "checkpoint_output_type": "TransportationCandidate_L2_Located",
+      "executed_first_tool": "Transportation_Full_Planning_to_Step2",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TimeInfo",
+        "TransportationCategory",
+        "TransportationFeaturePackage",
+        "TransportationStyle",
+        "TransportationTier"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00183",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "8aaf72f21585c459110b0f2add6fd05c147579ef31f7670021180770f0ddcc3d",
+      "checkpoint_output_type": "TransportationCandidate_Raw",
+      "executed_first_tool": "Transportation_Preference_and_Search",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TimeInfo",
+        "TransportationCategory",
+        "TransportationFeaturePackage",
+        "TransportationStyle",
+        "TransportationTier"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00243",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "d9e9426ea46fb89eb08ef3a8310ae1fdeea6164b75e7e01e43f2a503efff4a8d",
+      "checkpoint_output_type": "TransportationPreference",
+      "executed_first_tool": "Decide_Transportation_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TransportationCategory",
+        "TransportationTier",
+        "TransportationStyle",
+        "TransportationFeaturePackage"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00271",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "a509172d68f07ac4fab061c3c0387086c0279bdfe8cb12904939e8c1c50eab90",
+      "checkpoint_output_type": "TransportationCandidate_Raw",
+      "executed_first_tool": "Transportation_Preference_and_Search",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "TimeInfo",
+        "TransportationCategory",
+        "TransportationFeaturePackage",
+        "TransportationStyle",
+        "TransportationTier"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00175",
+      "task": "transportation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "d22a8aa9c687bfe98c2b07f9987fd298a0139b79a4136420767f81d09825a37e",
+      "checkpoint_output_type": "AccommodationCandidate_L2_Located",
+      "executed_first_tool": "Accommodation_Full_Planning_to_Step2",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "AccommodationCategory",
+        "AccommodationFeaturePackage",
+        "AccommodationStyle",
+        "AccommodationTier",
+        "LocationPreference",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00368",
+      "task": "accommodation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "a1486597cf55a95e09bf6bf31ded145fcf23f7ba5898e32cd7e26f2f9da702a1",
+      "checkpoint_output_type": "AccommodationPreference",
+      "executed_first_tool": "Decide_Accommodation_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "AccommodationCategory",
+        "AccommodationTier",
+        "AccommodationStyle",
+        "AccommodationFeaturePackage"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00410",
+      "task": "accommodation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "b838ae71f91edc962f6f038fe26e8bbef712fd7ed28d834be1e9fd6006db8043",
+      "checkpoint_output_type": "AccommodationPreference",
+      "executed_first_tool": "Decide_Accommodation_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "AccommodationCategory",
+        "AccommodationTier",
+        "AccommodationStyle",
+        "AccommodationFeaturePackage"
+      ],
+      "initial_plan_length": 4,
+      "native_success": true,
+      "query_id": "Query00467",
+      "task": "accommodation",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "35e52d94d916a9db0ff78c32739dd49fb2c4325436a939d3338edc5b67e4ec09",
+      "checkpoint_output_type": "AttractionCandidate_L1_Available",
+      "executed_first_tool": "Attraction_Full_Planning_to_Step1",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "AttractionCategory",
+        "AttractionFeaturePackage",
+        "AttractionStyle",
+        "AttractionTier",
+        "LocationPreference",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00635",
+      "task": "attraction",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "8a3f34f0a85a8b52094c62585cc7f3db24e97c5a9738a86d1a1efe1fd2497e72",
+      "checkpoint_output_type": "AttractionPreference",
+      "executed_first_tool": "Decide_Attraction_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "AttractionCategory",
+        "AttractionTier",
+        "AttractionStyle",
+        "AttractionFeaturePackage"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00528",
+      "task": "attraction",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "82c4664d968d89cf3cc29344ec6233d99e13722f2bf37753e9cd3bdb2821dd80",
+      "checkpoint_output_type": "AttractionCandidate_Raw",
+      "executed_first_tool": "Attraction_Preference_and_Search",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "AttractionCategory",
+        "AttractionFeaturePackage",
+        "AttractionStyle",
+        "AttractionTier",
+        "LocationPreference",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00535",
+      "task": "attraction",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "6dc6c9d6501c519aec8d76496f99963e292274f4895ec9fe53f6be2e0fb530d3",
+      "checkpoint_output_type": "DiningCandidate_Raw",
+      "executed_first_tool": "Dining_Preference_and_Search",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "DiningCategory",
+        "DiningFeaturePackage",
+        "DiningStyle",
+        "DiningTier",
+        "LocationPreference",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00833",
+      "task": "dining",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "eac8a120dd5665d0e4649419cbfd8bc7cdaee974526d5330d4be0158aa316dfe",
+      "checkpoint_output_type": "DiningCandidate_L1_Available",
+      "executed_first_tool": "Dining_Full_Planning_to_Step1",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "DiningCategory",
+        "DiningFeaturePackage",
+        "DiningStyle",
+        "DiningTier",
+        "LocationPreference",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00822",
+      "task": "dining",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "95bf5b5db18a19c1dd8acce149cec37d125428d8153815967150f0f871c0f060",
+      "checkpoint_output_type": "DiningPreference",
+      "executed_first_tool": "Decide_Dining_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "DiningCategory",
+        "DiningTier",
+        "DiningStyle",
+        "DiningFeaturePackage"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00827",
+      "task": "dining",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "dbb5cd37d5df5e9d584d385fb1f9cd63b9d36f39f9c8d39db88f7cd18e279bc8",
+      "checkpoint_output_type": "DiningPreference",
+      "executed_first_tool": "Decide_Dining_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "DiningCategory",
+        "DiningTier",
+        "DiningStyle",
+        "DiningFeaturePackage"
+      ],
+      "initial_plan_length": 4,
+      "native_success": true,
+      "query_id": "Query00764",
+      "task": "dining",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "fe8513902bf18d6dacef2306a79b309454ebb1b14a3b62292d71124492b6c9f9",
+      "checkpoint_output_type": "DiningCandidate_L1_Available",
+      "executed_first_tool": "Dining_Full_Planning_to_Step1",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "DiningCategory",
+        "DiningFeaturePackage",
+        "DiningStyle",
+        "DiningTier",
+        "LocationPreference",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00687",
+      "task": "dining",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "34443eabf93b9b58f5e2ec0655c08abf00bab767ac06d8b0028714c011083c2e",
+      "checkpoint_output_type": "ShoppingPreference",
+      "executed_first_tool": "Decide_Shopping_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingTier",
+        "ShoppingStyle",
+        "ShoppingFeaturePackage"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00901",
+      "task": "shopping",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "cfdcf03ae37154b49a4a2d0ba7cea36e649d7e6a731bc0e6df3ae06b0d4dd531",
+      "checkpoint_output_type": "ShoppingPreference",
+      "executed_first_tool": "Decide_Shopping_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingTier",
+        "ShoppingStyle",
+        "ShoppingFeaturePackage"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00896",
+      "task": "shopping",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "f656ede6112b7693fcbf0e50359e32be7de30afdcec1c95c2512fd4f782ad63a",
+      "checkpoint_output_type": "ShoppingCandidate_L2_Located",
+      "executed_first_tool": "Shopping_Full_Planning_to_Step2",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingFeaturePackage",
+        "ShoppingStyle",
+        "ShoppingTier",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00835",
+      "task": "shopping",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "b2a4c79ce3c2641d7af9fdfe3bf253b0a98760b2984c0f4b2fc204640a41e5cb",
+      "checkpoint_output_type": "ShoppingCandidate_Raw",
+      "executed_first_tool": "Shopping_Preference_and_Search",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingFeaturePackage",
+        "ShoppingStyle",
+        "ShoppingTier",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00871",
+      "task": "shopping",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "28c73e0a0e855058f600c02f9daa95042339e03fb074bb689965adcbd68ca62f",
+      "checkpoint_output_type": "ShoppingPreference",
+      "executed_first_tool": "Decide_Shopping_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingTier",
+        "ShoppingStyle",
+        "ShoppingFeaturePackage"
+      ],
+      "initial_plan_length": 3,
+      "native_success": true,
+      "query_id": "Query00986",
+      "task": "shopping",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "bd20356c6f88453f18e0849e8b8b6b0da517a3f74cddc944935d76f4b53daa8e",
+      "checkpoint_output_type": "ShoppingCandidate_Raw",
+      "executed_first_tool": "Shopping_Preference_and_Search",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingFeaturePackage",
+        "ShoppingStyle",
+        "ShoppingTier",
+        "TimeInfo"
+      ],
+      "initial_plan_length": 2,
+      "native_success": true,
+      "query_id": "Query00893",
+      "task": "shopping",
+      "tool_count": 14
+    },
+    {
+      "checkpoint_observation_sha256": "0a48cad88bc7166110d6451a0a53831bcb613e5435963eba30b5b081aebdbafd",
+      "checkpoint_output_type": "ShoppingPreference",
+      "executed_first_tool": "Decide_Shopping_Preference",
+      "failure_reason": null,
+      "first_tool_input_types": [
+        "LocationPreference",
+        "ShoppingCategory",
+        "ShoppingTier",
+        "ShoppingStyle",
+        "ShoppingFeaturePackage"
+      ],
+      "initial_plan_length": 4,
+      "native_success": true,
+      "query_id": "Query00849",
+      "task": "shopping",
+      "tool_count": 14
+    }
+  ],
+  "development_tasks": 25,
+  "native_prefix_success": 25,
+  "provider_calls": 0,
+  "status": "native_first_tool_development_smoke_not_model_trajectory",
+  "validation_and_test_tasks_executed": 0
+}

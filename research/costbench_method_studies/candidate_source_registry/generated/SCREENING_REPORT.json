@@ -1,0 +1,54 @@
+{
+  "all_source_queries": 381,
+  "candidate_registry_sha256": "115f05debc6fcc6a7e6c5929220f0ca65dfaef5bb0efeaa7498cce675daaf11b",
+  "candidate_tasks": 200,
+  "counts": {
+    "eligible_preference_signatures": {
+      "accommodation": 29,
+      "attraction": 31,
+      "dining": 40,
+      "shopping": 51,
+      "transportation": 64
+    },
+    "reserve_signatures": {
+      "accommodation": 2,
+      "attraction": 2,
+      "dining": 3,
+      "shopping": 4,
+      "transportation": 4
+    },
+    "selected_by_category": {
+      "accommodation": 27,
+      "attraction": 29,
+      "dining": 37,
+      "shopping": 47,
+      "transportation": 60
+    },
+    "selected_by_split": {
+      "development": 25,
+      "locked_test": 125,
+      "validation": 50
+    }
+  },
+  "eligibility_rule": "valid upstream five-category query; exclude 45 pilot tasks, historical probes and their preference configurations",
+  "historic_excluded_query_ids": 61,
+  "historic_original_base_tasks": 45,
+  "limitations": [
+    "Query IDs and preference structures are a stronger anti-duplication check, not proof of statistically independent real-world problems.",
+    "Preference templates are still generated within one CostBench domain.",
+    "Test IDs are committed for provenance, but their scenario labels and online outcomes have not been created or inspected.",
+    "Task IDs that fail graph or native-tool gates require a preregistered replacement procedure; do not silently reuse validation/test results."
+  ],
+  "no_gold_labels_created": true,
+  "no_graph_feasibility_claimed": true,
+  "no_model_calls": true,
+  "protocol": "phase2-unified-candidate-screen-v1",
+  "selection_seed": "phase2-unified-v1-20261106",
+  "source_five_category_queries": 352,
+  "source_path": "env/data/runtime/queries/queries.json",
+  "source_sha256": "2d15f439a22d55077d58b3d211129d403a8dcba55cbf4f7971f9de17b27253bb",
+  "split_rule": "category-stratified deterministic SHA ranking; one ID per distinct preference configuration",
+  "status": "candidate_registry_only_graph_and_native_execution_not_yet_qualified",
+  "upstream_commit": "6424069f3f773ade076bcedbed302ed47cfb1837",
+  "upstream_repo": "JiayuJeff/CostBench"
+}

@@ -1,0 +1,142 @@
+paths:
+  tool_output_dir: env/data/runtime/tools
+  changed_tool_output_dir: env/data/runtime/changed_tools
+  query_path: env/data/runtime/queries/queries.json
+  output_dir: results
+  search_space_path: env/data/static/search_spaces/test_search_space.json
+random:
+  tool_creation_seed: 42
+  seed_range_start: 1
+  seed_range_end: 10000
+  random_seed_interval: 100
+tool_defaults:
+  tool_mode: memory
+  min_atomic_cost: 15
+  max_atomic_cost: 25
+  noise_std: 0.1
+  control_tool_length: false
+  max_tool_length: 8
+  ban_longest_tool: true
+  refinement_level: null
+  use_example: true
+  provide_composite_concept: true
+  provide_atomic_tool_sequence: true
+runtime:
+  max_tool_steps: 20
+  require_goal_state: false
+  num_threads: 4
+  use_stimulation: true
+  stimulation_num: 1
+  greedy: true
+  print_tool_interface: false
+  id_length: 5
+  vis_stimulation: false
+  vis_agent: false
+  vis_gt: false
+blocker:
+  use_blocker: false
+  block_mode: cost_change
+  block_num: 1
+  block_types:
+  - ban_tool
+  - preference_change
+  - steplen_change
+  - cost_change
+  min_tool_length: 3
+  max_tools_length: 8
+model:
+  model_name: deepseek-flash
+  temperature: 0.0
+  max_tokens: 8192
+  client_timeout: 1800
+  endpoints:
+    Qwen/Qwen3-32B:
+      base_url: <your_base_url>
+      api_key: EMPTY
+    Qwen/Qwen3-14B:
+      base_url: <your_base_url>
+      api_key: EMPTY
+    Qwen/Qwen3-8B:
+      base_url: <your_base_url>
+      api_key: EMPTY
+    meta-llama/Llama-3.1-8B-Instruct:
+      base_url: <your_base_url>
+      api_key: EMPTY
+    gpt-4o:
+      base_url: <your_base_url>
+      api_key_env: <your_api_key_env>
+    gpt-5:
+      base_url: <your_base_url>
+      api_key_env: <your_api_key_env>
+    gemini-2.5-pro:
+      base_url: <your_base_url>
+      api_key_env: <your_api_key_env>
+    claude-sonnet-4-20250514:
+      base_url: <your_base_url>
+      api_key_env: <your_api_key_env>
+    z-ai/glm-4.5:
+      base_url: <your_base_url>
+      api_key_env: <your_api_key_env>
+    deepseek-flash:
+      base_url: https://api.deepseek.com
+      api_key_env: DEEPSEEK_API_KEY
+metadata:
+  num_tool_types: 4
+  base_tool_types:
+  - Decide
+  - Search
+  - Refine
+  - Select
+messages:
+  ban_tool_return_sentences:
+  - '[ERROR] Apologies, this tool is temporarily unavailable due to a technical issue.
+    Please try an alternative tool.'
+  - '[ERROR] This tool is currently undergoing emergency maintenance. Please select
+    another available tool for now.'
+  - '[ERROR] The system has detected that this tool is temporarily offline. We recommend
+    switching to another tool to proceed.'
+  - '[ERROR] Due to a server error, the current tool cannot be loaded. Please use
+    a backup tool.'
+  - '[ERROR] We are working to resolve an issue with this tool. In the meantime, please
+    try using other similar functions.'
+  - '[ERROR] Unfortunately, this tool is currently malfunctioning. Please select a
+    different one from the tool list.'
+  - '[ERROR] For a better experience, this tool is currently being upgraded. Please
+    proceed with another tool for now.'
+  - '[ERROR] The selected tool is unavailable at this time. Please try another solution
+    to complete your task.'
+  - '[ERROR] This feature is currently inaccessible. Please explore and use other
+    viable tools.'
+  - '[ERROR] A service interruption has been detected. Please refrain from using this
+    tool and try other options.'
+  preference_change_user_message_templates:
+  - 'I just wanna change my requirements: {new_user_message}'
+  - "I think I\u2019ll go with different requirements: {new_user_message}"
+  - 'Let me switch up my requirements: {new_user_message}'
+  - 'I feel like changing my requirements: {new_user_message}'
+  - "You know what, I\u2019ll update my requirements: {new_user_message}"
+  - "I\u2019m gonna change my requirements a bit: {new_user_message}"
+  - "Actually, I\u2019d like different requirements: {new_user_message}"
+  - 'Hold on, I wanna tweak my requirements: {new_user_message}'
+  - 'Kinda wanna change my requirements to: {new_user_message}'
+  - "I\u2019d rather go with these requirements instead: {new_user_message}"
+prompts:
+  composite_concept_content: '**Atomic vs Composite Tools**. The tools available could
+    categorized into atomic tools and composite tools, which is specified in the tool
+    description. An atomic tool performs a single and unseparable operation. A composite
+    tool chains multiple atomic tools in sequence and lists its component atomic tools
+    in its description. The cost of a composite tool is specified in its description.
+    Inputs/outputs of a composite tool follow the component chain. Despite being multi-step
+    internally, it still counts as ONE tool call and must obey the one-tool-per-step
+    rule. The cost of a composite tool might be higher or lower than the sum of its
+    component atomic tools.'
+  task_atomic_tool_sequence_template: '**Sample Atomic Tool Sequence**. For this task,
+    the basic atomic tool calling sequence is: {atomic_tool_sequence}. You should
+    replace some atomic tools with composite tools if that reduces cost. You must
+    then compare all possible equivalent tool-calling paths and pick the one with
+    the lowest total cost.'
+  refinement_content_template: 'In the refinement stage, you should take charge of
+    filtering the {task} candidates. You should refine the possible candidate set
+    from these {num_dimensions} dimensions: {refinement_dimensions_str}. Note that
+    the order of the refinement steps is fixed as specified above, and using other
+    order will result in incorrect behavior.'

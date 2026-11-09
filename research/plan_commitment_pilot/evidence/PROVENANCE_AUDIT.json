@@ -1,0 +1,388 @@
+{
+  "correct_retain_first_action": 8,
+  "correct_switch_first_action": 8,
+  "independent_tasks": 4,
+  "limitations": [
+    "Numeric identifier lineage is an observable dataflow proxy, not a semantic truth predicate.",
+    "The original task oracle is stale for changed user preferences.",
+    "A first-action update alone cannot prove fully correct re-planning.",
+    "This is an exploratory reused development cohort, not independent validation."
+  ],
+  "new_provider_calls": 0,
+  "real_native_continuations": 16,
+  "records": [
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet26374>",
+        "<TransportationPreference26374>"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Search_Planning_to_Step2",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00271",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet26374>",
+        "<TransportationPreference26374>"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Search_Planning_to_Step2",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00271",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet26378>",
+        "<TransportationPreference26378>"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Decide_Transportation_Preference",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Decide_Transportation_Preference",
+      "fresh_pref_output_ids": [
+        "<TransportationPreference26378>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00271",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet26378>",
+        "<TransportationPreference26378>"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Decide_Transportation_Preference",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Decide_Transportation_Preference",
+      "fresh_pref_output_ids": [
+        "<TransportationPreference26378>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00271",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet23833>"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Refine_to_Step2",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Transportation_Preference_and_Search",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00261",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet23833>"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Refine_to_Step2",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Transportation_Preference_and_Search",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00261",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet23829>"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Preference_and_Search",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Transportation_Preference_and_Search",
+      "fresh_pref_output_ids": [
+        "<TransportationCandidateSet23829>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Transportation_Preference_and_Search",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00261",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "<TransportationCandidateSet23829>"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Preference_and_Search",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Transportation_Preference_and_Search",
+      "fresh_pref_output_ids": [
+        "<TransportationCandidateSet23829>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Transportation_Preference_and_Search",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00261",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "TransportationCandidateSet20810",
+        "TransportationPreference20810"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": false,
+      "first_post_event_tool": "Search_Transportation_Candidates",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00249",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "TransportationPreference20810"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": false,
+      "first_post_event_tool": "Transportation_Search_to_Final_4Steps",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00249",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "TransportationCandidateSet20806",
+        "TransportationPreference20806"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": false,
+      "first_post_event_tool": "Decide_Transportation_Preference",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Decide_Transportation_Preference",
+      "fresh_pref_output_ids": [
+        "<TransportationPreference20806>"
+      ],
+      "goal_type_reached": false,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": true,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00249",
+      "tool_errors": [
+        {
+          "output": "[ERROR] Missing required input types for tool 'Transportation_Finish_from_Step1_3Steps'. Required: ['TimeInfo', 'TransportationCandidate_Raw'], Current: ['LocationPreference', 'TimeInfo', 'TransportationCategory', 'TransportationFeaturePackage', 'TransportationPreference', 'TransportationStyle', 'TransportationTier'] Cost: 58.68.",
+          "tool": "Transportation_Finish_from_Step1_3Steps"
+        }
+      ]
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "TransportationCandidateSet20806",
+        "TransportationPreference20806"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Decide_Transportation_Preference",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Decide_Transportation_Preference",
+      "fresh_pref_output_ids": [
+        "<TransportationPreference20806>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00249",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "TransportationCandidateSet35413",
+        "TransportationPreference35413"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Search_Planning_to_Step2",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00306",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "TransportationCandidateSet35413",
+        "TransportationPreference35413"
+      ],
+      "event": "retain",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Transportation_Search_Planning_to_Step2",
+      "first_update_correct": true,
+      "first_updated_pref_tool": null,
+      "fresh_pref_output_ids": [],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": false,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "comfort_priority",
+      "task": "Query00306",
+      "tool_errors": []
+    },
+    {
+      "context": "committed",
+      "downstream_input_ids": [
+        "TransportationCandidateSet35417",
+        "TransportationPreference35417"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Decide_Transportation_Preference",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Decide_Transportation_Preference",
+      "fresh_pref_output_ids": [
+        "<TransportationPreference35417>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00306",
+      "tool_errors": []
+    },
+    {
+      "context": "neutralized",
+      "downstream_input_ids": [
+        "TransportationCandidateSet35417",
+        "TransportationPreference35417"
+      ],
+      "event": "switch",
+      "final_selection_tool_called": true,
+      "first_post_event_tool": "Decide_Transportation_Preference",
+      "first_update_correct": true,
+      "first_updated_pref_tool": "Decide_Transportation_Preference",
+      "fresh_pref_output_ids": [
+        "<TransportationPreference35417>"
+      ],
+      "goal_type_reached": true,
+      "observed_id_lineage_overlap": true,
+      "original_pref_tool": "Decide_Transportation_Preference",
+      "provider_cap_or_error": false,
+      "semantic_goal_status": "NOT_VERIFIABLE_WITH_ORIGINAL_COSTBENCH_ORACLE",
+      "semantic_goal_verified": false,
+      "target_style": "scenic_route",
+      "task": "Query00306",
+      "tool_errors": []
+    }
+  ],
+  "schema": "native-fact-revision-execution-provenance-audit-v1",
+  "semantic_success_claims": 0,
+  "switch_final_select_tool_called": 7,
+  "switch_lineage_overlap": 8,
+  "switch_tool_errors": 1
+}

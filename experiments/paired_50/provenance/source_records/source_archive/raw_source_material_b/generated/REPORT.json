@@ -1,0 +1,71 @@
+{
+  "status": "offline_validated_no_model_calls",
+  "base_tasks": 15,
+  "conditions": 30,
+  "category_counts": {
+    "transportation": 3,
+    "accommodation": 3,
+    "attraction": 3,
+    "dining": 3,
+    "shopping": 3
+  },
+  "direction_counts": {
+    "down": 7,
+    "up": 8
+  },
+  "first_condition_counts": {
+    "RETAIN": 8,
+    "SWITCH": 7
+  },
+  "queries": [
+    "Query00178",
+    "Query00229",
+    "Query00188",
+    "Query00477",
+    "Query00403",
+    "Query00425",
+    "Query00549",
+    "Query00576",
+    "Query00658",
+    "Query00790",
+    "Query00740",
+    "Query00705",
+    "Query00967",
+    "Query00933",
+    "Query00898"
+  ],
+  "attempts": {
+    "transportation": 9,
+    "accommodation": 9,
+    "attraction": 5,
+    "dining": 7,
+    "shopping": 8
+  },
+  "rejected_candidates": {
+    "no_up_pair": 18,
+    "no_admissible_orientation": 23,
+    "no_down_pair": 11
+  },
+  "minimum_switch_margin": 1.3,
+  "all_retain_regrets": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1e-14,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "precommitted_llm_plans": 0,
+  "model_calls": 0,
+  "budget_charged": 0,
+  "limitations": "Synthetic oracle-derived initial/prefix checkpoints; no LLM precommit, no complete business-state match, no online adaptation; two-sided same-sign cost perturbations reduce but do not remove price-magnitude shortcuts. Pairs are not full real-world tasks."
+}

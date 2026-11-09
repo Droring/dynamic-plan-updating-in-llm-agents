@@ -1,0 +1,25 @@
+{
+  "status": "all_original_provider_http_bytes_verified",
+  "verified_on": "2026-11-05",
+  "method": "original uploaded ZIP provider .bin bytes independently compared with pre-existing original per-trial raw_sha256 records; checked JSON model/content/usage/finish fields",
+  "original_uploaded_archive": "online_60_raw.zip",
+  "original_archive_sha256": "6e1fb8112b25e7fe9f18d43a6d1f7276315c4cf2345de31e9fe1549ab1b87d41",
+  "original_archive_size_bytes": 25884,
+  "original_provider_byte_entries": 60,
+  "original_provider_uncompressed_total_bytes": 29295,
+  "all_raw_sha256_matched": 60,
+  "all_parsed_body_content_usage_model_finish_matched": 60,
+  "original_saved_responses_jsonl_sha256": "d199de4903b682760353f617acfaa3585c64cde8e4ddcc7acf61a83c2f9958c6",
+  "original_saved_ledger_sha256": "7c1e8ceaf43abfd6d9acbd6233af7dc921c9e395ad20e90700ade938bb3b2c6f",
+  "charged_tokens": 67942,
+  "base_tasks": 30,
+  "valid_responses": 60,
+  "scoring": {
+    "retain": "30/30",
+    "switch": "4/30",
+    "pair": "4/30",
+    "baa": 0.5666666666666667
+  },
+  "evidence_location": "The original ZIP is attached to the ChatGPT conversation where the audit was performed, not yet committed to GitHub. This report references that immutable ZIP's SHA-256.",
+  "verification_scope": "Existing saved response body bytes and historic response records were cross-checked. No new provider calls and no provider-signed authenticity attestation."
+}

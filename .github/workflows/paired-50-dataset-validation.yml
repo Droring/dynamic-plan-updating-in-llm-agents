@@ -1,0 +1,38 @@
+name: Unified 50-task dataset validation
+
+on:
+  push:
+    branches: [main, "release/**"]
+    paths:
+      - "experiments/paired_50/**"
+      - "scripts/test_unified_paired_dataset.py"
+      - "scripts/test_source_fixture_integrity.py"
+      - ".github/workflows/paired-50-dataset-validation.yml"
+  pull_request:
+    paths:
+      - "experiments/paired_50/**"
+      - "scripts/test_unified_paired_dataset.py"
+      - "scripts/test_source_fixture_integrity.py"
+      - ".github/workflows/paired-50-dataset-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify canonical dataset can be rebuilt exactly
+        run: python experiments/paired_50/build_unified_dataset.py --check
+      - name: Verify 50-task registry, matched requests and frozen scores
+        run: python -m unittest scripts.test_unified_paired_dataset -v
+      - name: Verify source fixture provenance and disjointness
+        run: python -m unittest scripts.test_source_fixture_integrity -v
+      - name: Verify native execution protocol
+        run: python -m unittest discover -s experiments/paired_50/native_execution -p "test_*.py" -v

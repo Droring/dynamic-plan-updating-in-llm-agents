@@ -1,0 +1,84 @@
+{
+  "schema": "all-feasible-alternatives-causal-comparison-v1",
+  "selected_task_ids": [
+    "Query00236",
+    "Query00489",
+    "Query00662",
+    "Query00766",
+    "Query00944"
+  ],
+  "base_tasks": 5,
+  "matched_conditions": 10,
+  "max_provider_calls": 30,
+  "max_charged_tokens": 75000,
+  "model": "deepseek-flash",
+  "temperature": 0,
+  "thinking": "disabled",
+  "arms": [
+    "original_label_only",
+    "matched_old_only",
+    "full_feasible_set"
+  ],
+  "candidate_generation": "dependency-only DFS, all goal-reaching suffixes <=2 actions plus the original incumbent, even if incumbent is longer; no costs or labels used",
+  "same_candidate_identity_across_retain_switch": true,
+  "primary_metrics": [
+    "original_switch_accuracy",
+    "matched_old_only_switch_accuracy",
+    "full_feasible_set_switch_accuracy",
+    "balanced_accuracy",
+    "correct_matched_pairs",
+    "model_reported_value_consistency"
+  ],
+  "limitations": [
+    "5 selected development tasks, original graphs not live Agent actions",
+    "Full-list length and number of candidate tokens are not matched to old-only list",
+    "Providing all feasible up-to-two-step paths reduces search burden but also changes presentation",
+    "No plan authored by this model in original historical task"
+  ],
+  "offline_candidate_set_checks": [
+    {
+      "query_id": "Query00236",
+      "n_feasible": 13,
+      "old_path": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "max_length": 2
+    },
+    {
+      "query_id": "Query00489",
+      "n_feasible": 11,
+      "old_path": [
+        "Accommodation_Finish_from_Step1_3Steps"
+      ],
+      "max_length": 2
+    },
+    {
+      "query_id": "Query00662",
+      "n_feasible": 11,
+      "old_path": [
+        "Attraction_Finish_from_Step1_3Steps"
+      ],
+      "max_length": 2
+    },
+    {
+      "query_id": "Query00766",
+      "n_feasible": 11,
+      "old_path": [
+        "Dining_Refinement_Step1",
+        "Dining_Finalize_from_Step2"
+      ],
+      "max_length": 2
+    },
+    {
+      "query_id": "Query00944",
+      "n_feasible": 14,
+      "old_path": [
+        "Shopping_Search_to_Step1",
+        "Shopping_Refinement_Step2",
+        "Select_Final_Shopping"
+      ],
+      "max_length": 2
+    }
+  ]
+}

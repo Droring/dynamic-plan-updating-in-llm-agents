@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    "Query00261",
+    "Query00249",
+    "Query00306"
+  ],
+  "independent_tasks": 3,
+  "correlated_arms_per_task": 4,
+  "max_calls_per_arm": 5,
+  "scope": "native Agent factual preference correction: executable historical plan, semantically obsolete preference"
+}

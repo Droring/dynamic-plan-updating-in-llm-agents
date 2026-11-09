@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "attempted": 100,
+  "total_conditions": 100,
+  "base_tasks": 50,
+  "retain": {
+    "total": 50,
+    "valid": 50,
+    "correct": 48
+  },
+  "switch": {
+    "total": 50,
+    "valid": 50,
+    "correct": 3
+  },
+  "pair_correct": 1,
+  "pair_accuracy": 0.02,
+  "balanced_accuracy": 0.51,
+  "provider_total_tokens": 113209,
+  "invalid_predictions_count": 0,
+  "halt_reason": null,
+  "reserved_full_run_tokens": 522531,
+  "token_cap": 800000,
+  "accounted_tokens": 113209,
+  "input_sha256": "a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7",
+  "manifest_sha256": "ef1470f06191ce2d8792da8034dc6e1225d6ddda4f6bb5c29cae6a642579a8c8",
+  "no_retries": true
+}

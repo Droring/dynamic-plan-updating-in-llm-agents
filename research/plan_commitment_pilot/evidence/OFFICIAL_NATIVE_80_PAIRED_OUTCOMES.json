@@ -1,0 +1,848 @@
+{
+  "by_category": {
+    "accommodation": {
+      "correct__correct": 10,
+      "incorrect__incorrect": 1
+    },
+    "attraction": {
+      "correct__correct": 8,
+      "correct__incorrect": 2,
+      "incorrect__correct": 1,
+      "incorrect__incorrect": 1
+    },
+    "dining": {
+      "correct__correct": 11,
+      "correct__incorrect": 4
+    },
+    "shopping": {
+      "correct__correct": 7,
+      "correct__incorrect": 7,
+      "incorrect__correct": 1,
+      "incorrect__incorrect": 3
+    },
+    "transportation": {
+      "correct__correct": 21,
+      "incorrect__correct": 1,
+      "incorrect__incorrect": 2
+    }
+  },
+  "counters": {
+    "correct__correct": 57,
+    "correct__incorrect": 13,
+    "dynamic_correct": 60,
+    "incorrect__correct": 3,
+    "incorrect__incorrect": 7,
+    "observed_dynamic_event": 67,
+    "static_correct": 70
+  },
+  "independent_base_tasks": 80,
+  "limitations": [
+    "All 80 tasks share a dev80 selection and original official native runner, not prospective heldout 20 task replication.",
+    "Original static/dynamic evaluations are not a controlled RETAIN-versus-SWITCH action intervention.",
+    "Official final-answer correctness does NOT mean the model correctly decided whether to preserve its plan.",
+    "No new paid API calls were needed to audit this evidence."
+  ],
+  "records": [
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00169",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00174",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00175",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00183",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00206",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00207",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00220",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00233",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00235",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00243",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00248",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00249",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00261",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00263",
+      "static_official_answer_correct": false,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00268",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00269",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00271",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__correct",
+      "query_id": "Query00292",
+      "static_official_answer_correct": false,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00298",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00306",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00310",
+      "static_official_answer_correct": false,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00315",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00321",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00326",
+      "static_official_answer_correct": true,
+      "task": "transportation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00342",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00354",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00368",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00410",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00444",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00452",
+      "static_official_answer_correct": false,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00454",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00458",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00467",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00470",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00499",
+      "static_official_answer_correct": true,
+      "task": "accommodation"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00508",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00528",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00532",
+      "static_official_answer_correct": false,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00535",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00538",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__correct",
+      "query_id": "Query00562",
+      "static_official_answer_correct": false,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00571",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00583",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00597",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00627",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00635",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00641",
+      "static_official_answer_correct": true,
+      "task": "attraction"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00687",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00690",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00695",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00757",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00764",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00769",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00770",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00784",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00789",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00791",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00802",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00815",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00822",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00827",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00833",
+      "static_official_answer_correct": true,
+      "task": "dining"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00835",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00836",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00843",
+      "static_official_answer_correct": false,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00849",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00853",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00857",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00861",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00871",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00893",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00896",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00901",
+      "static_official_answer_correct": false,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00912",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00913",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": false,
+      "native_dynamic_event_observed": false,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__incorrect",
+      "query_id": "Query00963",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00978",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": false,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__incorrect",
+      "query_id": "Query00986",
+      "static_official_answer_correct": false,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "incorrect__correct",
+      "query_id": "Query00991",
+      "static_official_answer_correct": false,
+      "task": "shopping"
+    },
+    {
+      "dynamic_official_answer_correct": true,
+      "native_checkpoint_replicated": true,
+      "native_dynamic_event_observed": true,
+      "not_a_plan_retain_switch_label": true,
+      "outcome_transition": "correct__correct",
+      "query_id": "Query00994",
+      "static_official_answer_correct": true,
+      "task": "shopping"
+    }
+  ],
+  "schema": "native-dev80-static-dynamic-paired-original-evaluator-v1"
+}

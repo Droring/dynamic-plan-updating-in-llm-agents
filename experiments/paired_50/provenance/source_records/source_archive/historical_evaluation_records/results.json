@@ -1,0 +1,860 @@
+{
+  "status": "offline_and_model_evaluation_completed",
+  "base_tasks": 15,
+  "conditions": 30,
+  "source": "experiments/paired_50/provenance/source_records/source_archive/raw_source_material_b/generated",
+  "overlap_with_original_30": 0,
+  "experiments": {
+    "exploratory_15": {
+      "always_keep": {
+        "retain_correct": 15,
+        "switch_correct": 0,
+        "pair_correct": 0
+      },
+      "always_full_decision": {
+        "retain_correct": 0,
+        "switch_correct": 15,
+        "pair_correct": 0
+      },
+      "exact_visible_graph": {
+        "retain_correct": 15,
+        "switch_correct": 15,
+        "pair_correct": 15,
+        "expanded_states": 257,
+        "tool_checks": 3178
+      },
+      "bounded_2_step": {
+        "certified_switch": 14,
+        "retain_false_switch": 0,
+        "abstain": 16,
+        "tool_checks": 1228,
+        "expanded_states": 139
+      },
+      "historical_existing_cost_policy_rerun": false,
+      "note": "Deterministic controls; not a rerun of the archived existing_cost_policy implementation."
+    },
+    "synthetic_15": {
+      "base_tasks": 15,
+      "conditions": 30,
+      "matched_checkpoints": 15,
+      "label_agreement": 30,
+      "switch_regret_at_least_one": 15,
+      "price_up": 8,
+      "price_down": 7,
+      "oracle_derived_incumbents": 15
+    },
+    "structured_probe_15": {
+      "status": "completed_paid_model_decisions",
+      "base_tasks": 15,
+      "frozen_requests": 30,
+      "valid_model_responses": 30,
+      "retain_correct": 14,
+      "switch_correct": 0,
+      "pair_correct": 0,
+      "balanced_accuracy": 0.4666666666666667,
+      "pair_accuracy": 0,
+      "total_tokens": 33965,
+      "model": "deepseek-flash",
+      "temperature": 0,
+      "thinking": "disabled",
+      "historical_3_pair_protocol_identical": false,
+      "raw_evidence": "GitHub Actions run 42011869052 artifact 13407626465"
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "a38443072d603e2e6f6b",
+      "query_id": "Query00178",
+      "condition": "RETAIN",
+      "task": "transportation",
+      "checkpoint_sha256": "2195a89ef47ac5e39ec87dd3171f15a8a05f00964b565752f12f3826bf90c883",
+      "request_sha256": "e124ff6218e6c1fe41af3c063917f38e1a44ab73b3c9474db7b5ee4bba9c0ebe",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "77.35",
+        "incumbent_cost": "77.35",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "77.35",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "a0915f7c7a1c4300035e",
+      "query_id": "Query00178",
+      "condition": "SWITCH",
+      "task": "transportation",
+      "checkpoint_sha256": "2195a89ef47ac5e39ec87dd3171f15a8a05f00964b565752f12f3826bf90c883",
+      "request_sha256": "1c35fae76d5ebdcdf953339c481f909e46fd3dd48d525714ee062e4b9bba7270",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "76.05",
+        "incumbent_cost": "77.35",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Search_Transportation_Candidates",
+          "Transportation_Finish_from_Step1_3Steps"
+        ],
+        "witness_cost": "76.05",
+        "incumbent_cost": "77.35",
+        "verified_gain": "1.30",
+        "tool_checks": 19,
+        "expanded_states": 2,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "a170b9cfe2b69bcc500e",
+      "query_id": "Query00229",
+      "condition": "SWITCH",
+      "task": "transportation",
+      "checkpoint_sha256": "2e950f9a7cecd8d9b6b1433966b5cfc03023ea0852d21419c76d28692ed3fe7e",
+      "request_sha256": "a6cd38cc53a5e34687c82189ce0654907a5e0ab9a5d39504687cee4825691142",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "41.19",
+        "incumbent_cost": "42.49",
+        "expanded_states": 7,
+        "tool_checks": 84
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Transportation_Refinement_Step2",
+          "Select_Final_Transportation"
+        ],
+        "witness_cost": "41.19",
+        "incumbent_cost": "42.49",
+        "verified_gain": "1.30",
+        "tool_checks": 45,
+        "expanded_states": 4,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "ea92c560d425c13e2c2e",
+      "query_id": "Query00229",
+      "condition": "RETAIN",
+      "task": "transportation",
+      "checkpoint_sha256": "2e950f9a7cecd8d9b6b1433966b5cfc03023ea0852d21419c76d28692ed3fe7e",
+      "request_sha256": "a7fe08290a4cfe68a39710e3e06f57df20aa7c6721ed55dcebc372f5362aeffd",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "41.0",
+        "incumbent_cost": "41.0",
+        "expanded_states": 6,
+        "tool_checks": 70
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "41.0",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 5,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "d53d5741ab495c9029b8",
+      "query_id": "Query00188",
+      "condition": "SWITCH",
+      "task": "transportation",
+      "checkpoint_sha256": "ef60dbb9b69ff7672e908699070f6b67fe3457fc9526cd8273171828d7633418",
+      "request_sha256": "266604ab6eae4292abbd529886ec41d17101408e549ddd47ec9e1113a57c48f3",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "79.15",
+        "incumbent_cost": "80.45",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Search_Transportation_Candidates",
+          "Transportation_Finish_from_Step1_3Steps"
+        ],
+        "witness_cost": "79.36",
+        "incumbent_cost": "80.45",
+        "verified_gain": "1.09",
+        "tool_checks": 19,
+        "expanded_states": 2,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "d596d7f72165233d8bf9",
+      "query_id": "Query00188",
+      "condition": "RETAIN",
+      "task": "transportation",
+      "checkpoint_sha256": "ef60dbb9b69ff7672e908699070f6b67fe3457fc9526cd8273171828d7633418",
+      "request_sha256": "430aba0bddbeec1fca112224d5a224a39beeb1c2042cb6d18bdee2bf2e446a89",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "79.03",
+        "incumbent_cost": "79.03",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "79.03",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "b3dfab9dd3318e8c0f8b",
+      "query_id": "Query00477",
+      "condition": "RETAIN",
+      "task": "accommodation",
+      "checkpoint_sha256": "8e99ac2a518832cdd843ba398d2e53a5bea16ba8e342d625d378bfb06703472f",
+      "request_sha256": "fa1bd8bfdc81d90edec377d142b60430a645da8466c581d6c09fedfa6dbae7c4",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "78.87",
+        "incumbent_cost": "78.87",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "78.87",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "fb1e929efe656322972e",
+      "query_id": "Query00477",
+      "condition": "SWITCH",
+      "task": "accommodation",
+      "checkpoint_sha256": "8e99ac2a518832cdd843ba398d2e53a5bea16ba8e342d625d378bfb06703472f",
+      "request_sha256": "68baabc089cdf6ed3b51d67fdce158370eb145314cf59206831d20a9faf14067",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "77.57",
+        "incumbent_cost": "78.87",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Accommodation_Search_to_Step1",
+          "Accommodation_Finalize_from_Step2"
+        ],
+        "witness_cost": "77.58",
+        "incumbent_cost": "78.87",
+        "verified_gain": "1.29",
+        "tool_checks": 29,
+        "expanded_states": 3,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "3b984dfffccdbcf0e5d1",
+      "query_id": "Query00403",
+      "condition": "RETAIN",
+      "task": "accommodation",
+      "checkpoint_sha256": "fc31e3fdbd330339a7404a11ca7d868b545759de8af6194ce498d45e86415f52",
+      "request_sha256": "b50824eed842456698fe011676cad128ea80f2b54bcac32945a9573481e85225",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "80.20",
+        "incumbent_cost": "80.20",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "80.20",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "2de767ebc42d980ea1e0",
+      "query_id": "Query00403",
+      "condition": "SWITCH",
+      "task": "accommodation",
+      "checkpoint_sha256": "fc31e3fdbd330339a7404a11ca7d868b545759de8af6194ce498d45e86415f52",
+      "request_sha256": "776e5107722b908c4a34ccbeddcabd35b79bb917d7b65351561fd7a58ecfe77b",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "80.27",
+        "incumbent_cost": "81.57",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Accommodation_Search_to_Final_4Steps"
+        ],
+        "witness_cost": "80.32",
+        "incumbent_cost": "81.57",
+        "verified_gain": "1.25",
+        "tool_checks": 10,
+        "expanded_states": 1,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "1497492ce5e835e5f463",
+      "query_id": "Query00425",
+      "condition": "RETAIN",
+      "task": "accommodation",
+      "checkpoint_sha256": "98923a07d051dd0f6dff23fd387d485ae7e8d951dea924486427652e4b90ac1f",
+      "request_sha256": "6dbc1ac7cedb5207ea57c31392f6083e31703fce2e5282189239cefdb41588c7",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "79.92",
+        "incumbent_cost": "79.92",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "79.92",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "4a6475df685ad09490f5",
+      "query_id": "Query00425",
+      "condition": "SWITCH",
+      "task": "accommodation",
+      "checkpoint_sha256": "98923a07d051dd0f6dff23fd387d485ae7e8d951dea924486427652e4b90ac1f",
+      "request_sha256": "0448ba5c464f37b52d013b5cee12f7229e0f32d9faa861650e93a40f599cc99e",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "78.62",
+        "incumbent_cost": "79.92",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Accommodation_Search_to_Step1",
+          "Accommodation_Finalize_from_Step2"
+        ],
+        "witness_cost": "78.72",
+        "incumbent_cost": "79.92",
+        "verified_gain": "1.20",
+        "tool_checks": 29,
+        "expanded_states": 3,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "96f55fca06eb05785e36",
+      "query_id": "Query00549",
+      "condition": "SWITCH",
+      "task": "attraction",
+      "checkpoint_sha256": "fca013818e233b48e8ecce02b17055764479f8c3bf9d32d190c903ad4e6b61f0",
+      "request_sha256": "ef6877b29988c79ea97638b25ebd23add9658ced08999f803bcfaa1a1065f727",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "77.79",
+        "incumbent_cost": "79.09",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Attraction_Search_to_Step1",
+          "Attraction_Finalize_from_Step2"
+        ],
+        "witness_cost": "77.79",
+        "incumbent_cost": "79.09",
+        "verified_gain": "1.30",
+        "tool_checks": 29,
+        "expanded_states": 3,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "f44b48a2abfa92736b69",
+      "query_id": "Query00549",
+      "condition": "RETAIN",
+      "task": "attraction",
+      "checkpoint_sha256": "fca013818e233b48e8ecce02b17055764479f8c3bf9d32d190c903ad4e6b61f0",
+      "request_sha256": "0f535331d8c0353d4b39e7e8cedd1b5e0289b84d3539559a6dca6fe6b8e85741",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "79.09",
+        "incumbent_cost": "79.09",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "79.09",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "00213104444647e8c536",
+      "query_id": "Query00576",
+      "condition": "RETAIN",
+      "task": "attraction",
+      "checkpoint_sha256": "98a8186e78ccbf713879ec109fc1e6453aa3cadba6d176953d7620e258eca810",
+      "request_sha256": "7d1582750241fbcb91f6f74d1caa4804f30f3848b665aa8aa1bd7fd18b1cd22f",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "77.17",
+        "incumbent_cost": "77.17",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "77.17",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "f279f5f44aab95d667fd",
+      "query_id": "Query00576",
+      "condition": "SWITCH",
+      "task": "attraction",
+      "checkpoint_sha256": "98a8186e78ccbf713879ec109fc1e6453aa3cadba6d176953d7620e258eca810",
+      "request_sha256": "229876decc0fb364dc7cdb17492aa807acfbdd39bcc53bd92d0e8d767237fb5c",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "77.28",
+        "incumbent_cost": "78.58",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Attraction_Search_to_Final_4Steps"
+        ],
+        "witness_cost": "77.28",
+        "incumbent_cost": "78.58",
+        "verified_gain": "1.30",
+        "tool_checks": 10,
+        "expanded_states": 1,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "e60bbef0119b32ac882a",
+      "query_id": "Query00658",
+      "condition": "RETAIN",
+      "task": "attraction",
+      "checkpoint_sha256": "b9a0770df700ebeb901f1281bb2c5318b5a52aaf2b1cb3b3925c0bfb1152e8bd",
+      "request_sha256": "96865931ab1b62ceed62e5e7d361bf5609b90ca22237b7367a000db1ddf9e632",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "80.68",
+        "incumbent_cost": "80.68",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "80.68",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "89b0ade5f62c86df618d",
+      "query_id": "Query00658",
+      "condition": "SWITCH",
+      "task": "attraction",
+      "checkpoint_sha256": "b9a0770df700ebeb901f1281bb2c5318b5a52aaf2b1cb3b3925c0bfb1152e8bd",
+      "request_sha256": "a680a9684384185f768b9645967c3d52399c10911b241d395464cd7252c60272",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "80.78",
+        "incumbent_cost": "82.08",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Attraction_Search_to_Final_4Steps"
+        ],
+        "witness_cost": "81.09",
+        "incumbent_cost": "82.08",
+        "verified_gain": "0.99",
+        "tool_checks": 10,
+        "expanded_states": 1,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "4a45b3078889b9cb3296",
+      "query_id": "Query00790",
+      "condition": "SWITCH",
+      "task": "dining",
+      "checkpoint_sha256": "e1c750022354d934ceecb8c6b684fef28bcea42526793df3b1555ca697ab1d47",
+      "request_sha256": "40aa4d40e0b2c46a17cb1ce4b5f0df7387194a189ce42f3f0804d85e795ee0e5",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "77.65",
+        "incumbent_cost": "78.95",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "78.95",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "cc85107b1805d4a8b1db",
+      "query_id": "Query00790",
+      "condition": "RETAIN",
+      "task": "dining",
+      "checkpoint_sha256": "e1c750022354d934ceecb8c6b684fef28bcea42526793df3b1555ca697ab1d47",
+      "request_sha256": "4218edc2087b22b33fb0c8e34be1b4ba76b83cee7f98b33f172c61c704519816",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "78.95",
+        "incumbent_cost": "78.95",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "78.95",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "642289e8de0140e4cd7a",
+      "query_id": "Query00740",
+      "condition": "SWITCH",
+      "task": "dining",
+      "checkpoint_sha256": "4452c4e9334311611fdfadbc100d11c9a7487b3f043bf00db5b79a3bdb14e081",
+      "request_sha256": "142cfc7bb09570b6c806424a331840973ec7c6dca70e6f39561d897c25f8c3c2",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "41.5",
+        "incumbent_cost": "42.8",
+        "expanded_states": 7,
+        "tool_checks": 84
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Dining_Refinement_Step2",
+          "Select_Final_Dining"
+        ],
+        "witness_cost": "41.5",
+        "incumbent_cost": "42.8",
+        "verified_gain": "1.3",
+        "tool_checks": 56,
+        "expanded_states": 4,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "2f48ea650ba8516b3768",
+      "query_id": "Query00740",
+      "condition": "RETAIN",
+      "task": "dining",
+      "checkpoint_sha256": "4452c4e9334311611fdfadbc100d11c9a7487b3f043bf00db5b79a3bdb14e081",
+      "request_sha256": "6b33c2dd15d8161a6529ec06dc341f185b2a5f5221e63b23a913c4d4c0b681b1",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "41.39",
+        "incumbent_cost": "41.39",
+        "expanded_states": 7,
+        "tool_checks": 84
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "41.39",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 6,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "e97f65985892c7f44913",
+      "query_id": "Query00705",
+      "condition": "RETAIN",
+      "task": "dining",
+      "checkpoint_sha256": "c05db60d13d94975aef975e00d5a1312a30d5b6db64c0f4635dec2100b349251",
+      "request_sha256": "b4eda49709501255d51fa2dcf69ab279cb6fd5c60bcf9ea05769ab299a3dc62b",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "79.05",
+        "incumbent_cost": "79.05",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "79.05",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "a186b143ec0fe16d5a1f",
+      "query_id": "Query00705",
+      "condition": "SWITCH",
+      "task": "dining",
+      "checkpoint_sha256": "c05db60d13d94975aef975e00d5a1312a30d5b6db64c0f4635dec2100b349251",
+      "request_sha256": "3174cb7473ff484530028c54695f2605d47fcacadf5ec3c40e43f76905d47d72",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "77.75",
+        "incumbent_cost": "79.05",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Search_Dining_Candidates",
+          "Dining_Finish_from_Step1_3Steps"
+        ],
+        "witness_cost": "77.75",
+        "incumbent_cost": "79.05",
+        "verified_gain": "1.30",
+        "tool_checks": 45,
+        "expanded_states": 4,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "aab258aaec73db70a278",
+      "query_id": "Query00967",
+      "condition": "SWITCH",
+      "task": "shopping",
+      "checkpoint_sha256": "c0e79222edec1f1b23151563500fcd95106d5396ae57000d4a02ec6eda9756ea",
+      "request_sha256": "9c0425c759a92cafbca7796b49325c8913ee41ab5f3262b4560899ef50759fea",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "78.52",
+        "incumbent_cost": "79.82",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Shopping_Search_to_Final_4Steps"
+        ],
+        "witness_cost": "78.52",
+        "incumbent_cost": "79.82",
+        "verified_gain": "1.30",
+        "tool_checks": 13,
+        "expanded_states": 1,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "165c6ea1026a430acea3",
+      "query_id": "Query00967",
+      "condition": "RETAIN",
+      "task": "shopping",
+      "checkpoint_sha256": "c0e79222edec1f1b23151563500fcd95106d5396ae57000d4a02ec6eda9756ea",
+      "request_sha256": "fdf8d12417d72e0a36b8ee7a4fcd646427f2e5b2adb98e27dc6d387a24bf3ac5",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "79.82",
+        "incumbent_cost": "79.82",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "79.82",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "5788d03d13db4c7f10e5",
+      "query_id": "Query00933",
+      "condition": "RETAIN",
+      "task": "shopping",
+      "checkpoint_sha256": "8bf2696b73742fe815d904b45a38e52271d4ecfee34b977754217e827f7a4a73",
+      "request_sha256": "2ce9c6b5dc78070986606c9737452f43b2ea1a12daab442c27bad077f54dfd07",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "80.33",
+        "incumbent_cost": "80.33",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "80.33",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 7,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "eae3562ccc4d77e6497a",
+      "query_id": "Query00933",
+      "condition": "SWITCH",
+      "task": "shopping",
+      "checkpoint_sha256": "8bf2696b73742fe815d904b45a38e52271d4ecfee34b977754217e827f7a4a73",
+      "request_sha256": "8b3a493a78e28d7d95e5d834f382cdfecd6cd03f6a12dfd85b55cfa9f94716b7",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "80.43",
+        "incumbent_cost": "81.73",
+        "expanded_states": 9,
+        "tool_checks": 112
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Shopping_Search_to_Final_4Steps"
+        ],
+        "witness_cost": "80.55",
+        "incumbent_cost": "81.73",
+        "verified_gain": "1.18",
+        "tool_checks": 13,
+        "expanded_states": 1,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "51638caf774610f558fa",
+      "query_id": "Query00898",
+      "condition": "SWITCH",
+      "task": "shopping",
+      "checkpoint_sha256": "70ccbd8c51b14530f656bba6e8b33b97f0f15a5e02a5f084cbde033423d68cfd",
+      "request_sha256": "e8947d53d964faf393c018b30ae4590ef0724e3d091cf052d3fd31b7a79195eb",
+      "oracle_free_exact": {
+        "decision": "SWITCH",
+        "best_cost": "58.99",
+        "incumbent_cost": "60.29",
+        "expanded_states": 7,
+        "tool_checks": 84
+      },
+      "bounded_2": {
+        "decision": "CERTIFIED_SWITCH",
+        "witness_suffix": [
+          "Shopping_Finish_from_Step1_3Steps"
+        ],
+        "witness_cost": "59.23",
+        "incumbent_cost": "60.29",
+        "verified_gain": "1.06",
+        "tool_checks": 5,
+        "expanded_states": 1,
+        "max_steps": 2
+      }
+    },
+    {
+      "trial_id": "630f93ebb884a32705b3",
+      "query_id": "Query00898",
+      "condition": "RETAIN",
+      "task": "shopping",
+      "checkpoint_sha256": "70ccbd8c51b14530f656bba6e8b33b97f0f15a5e02a5f084cbde033423d68cfd",
+      "request_sha256": "14d0f718d9a526620cd9f8e92195d5766a13d88840e58012123a6de3646f8d18",
+      "oracle_free_exact": {
+        "decision": "RETAIN",
+        "best_cost": "58.86",
+        "incumbent_cost": "58.86",
+        "expanded_states": 7,
+        "tool_checks": 84
+      },
+      "bounded_2": {
+        "decision": "ABSTAIN",
+        "witness_suffix": null,
+        "witness_cost": null,
+        "incumbent_cost": "58.86",
+        "verified_gain": null,
+        "tool_checks": 56,
+        "expanded_states": 6,
+        "max_steps": 2
+      }
+    }
+  ],
+  "model_calls": 0,
+  "new_model_results": false,
+  "caveats": [
+    "All three analyses reuse the same 15 new synthetic tasks.",
+    "The fixed-label and search comparisons are offline algorithms, not autonomous agent outcomes.",
+    "The historical five/five/three records remain frozen and distinct.",
+    "The structured probe accuracy cannot be computed until genuine provider responses are present."
+  ]
+}

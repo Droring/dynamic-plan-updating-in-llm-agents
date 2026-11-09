@@ -1,0 +1,422 @@
+[
+  {
+    "query_id": "<Query00249>",
+    "TimeInfo": "<TimeInfo00232>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "scenic_route",
+      "tier": "business_class"
+    },
+    "location_preference": "<LocationPreference00082>",
+    "groundtruth": "<TransportationPreference20810>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I’m planning a journey and I’m really drawn to the idea of traveling by train. I’m not looking for the most basic ride; instead, I’m interested in a more refined experience that offers a touch of sophistication and comfort without going overboard, so business class is what I have in mind. As I travel, I’d love to gaze out the window and be treated to breathtaking landscapes and picturesque views, making the journey itself as memorable as the destination. Additionally, staying connected is important to me, so having reliable internet and power outlets on board is a must. In short, I’m looking for a train journey that combines a",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00232> and to <LocationPreference00082> for me according to the user requirements. User requirements: I’m planning a journey and I’m really drawn to the idea of traveling by train. I’m not looking for the most basic ride; instead, I’m interested in a more refined experience that offers a touch of sophistication and comfort without going overboard, so business class is what I have in mind. As I travel, I’d love to gaze out the window and be treated to breathtaking landscapes and picturesque views, making the journey itself as memorable as the destination. Additionally, staying connected is important to me, so having reliable internet and power outlets on board is a must. In short, I’m looking for a train journey that combines a. "
+    }
+  },
+  {
+    "query_id": "<Query00268>",
+    "TimeInfo": "<TimeInfo00687>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "car_rental",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "speed_priority",
+      "tier": "budget_class"
+    },
+    "location_preference": "<LocationPreference00101>",
+    "groundtruth": "<TransportationPreference25796>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and need a practical way to get around once I arrive. I'm looking for a rental car option, but I don't want to break the bank; the more affordable, the better. My main concern is getting from point A to point B as quickly as possible, so a car that can help me zip around efficiently is ideal. It would be great if the vehicle comes equipped with features that allow me to stay connected on the go, like Wi-Fi or USB ports for charging my devices. This way, I can keep everything running smoothly while I’m on the move.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00687> and to <LocationPreference00101> for me according to the user requirements. User requirements: I'm planning a trip and need a practical way to get around once I arrive. I'm looking for a rental car option, but I don't want to break the bank; the more affordable, the better. My main concern is getting from point A to point B as quickly as possible, so a car that can help me zip around efficiently is ideal. It would be great if the vehicle comes equipped with features that allow me to stay connected on the go, like Wi-Fi or USB ports for charging my devices. This way, I can keep everything running smoothly while I’m on the move.. "
+    }
+  },
+  {
+    "query_id": "<Query00269>",
+    "TimeInfo": "<TimeInfo00328>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "car_rental",
+      "feature_package": "special_luggage_allowance",
+      "style": "schedule_flexibility_priority",
+      "tier": "budget_class"
+    },
+    "location_preference": "<LocationPreference00102>",
+    "groundtruth": "<TransportationPreference26096>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I need to sort out my transportation options. What I'm really looking for is a rental car, as I prefer the freedom to set my own schedule and not be tied down to fixed departure times or routes. It’s important for me to keep costs in check, so finding an affordable option is a top priority. I don’t need anything too fancy, just something reliable and easy on the wallet. Additionally, I’ll be carrying some extra baggage, so I need a service that can accommodate this without any hassle. Overall, I’m looking for a car rental solution that offers both flexibility and practicality, without breaking the bank",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00328> and to <LocationPreference00102> for me according to the user requirements. User requirements: I'm planning a trip and I need to sort out my transportation options. What I'm really looking for is a rental car, as I prefer the freedom to set my own schedule and not be tied down to fixed departure times or routes. It’s important for me to keep costs in check, so finding an affordable option is a top priority. I don’t need anything too fancy, just something reliable and easy on the wallet. Additionally, I’ll be carrying some extra baggage, so I need a service that can accommodate this without any hassle. Overall, I’m looking for a car rental solution that offers both flexibility and practicality, without breaking the bank. "
+    }
+  },
+  {
+    "query_id": "<Query00183>",
+    "TimeInfo": "<TimeInfo02864>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "special_luggage_allowance",
+      "style": "comfort_priority",
+      "tier": "business_class"
+    },
+    "location_preference": "<LocationPreference00016>",
+    "groundtruth": "<TransportationPreference03942>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a journey and I'm leaning towards traveling by rail. I'm not looking for the most basic option but something that offers a bit more in terms of quality and service—perhaps a step above the standard, like a business-class ticket. My main focus is on comfort; I want to be able to relax and enjoy the journey without any hassle. Additionally, since I'll be carrying a bit more baggage than usual, having the flexibility to bring along extra luggage without worrying about restrictions is important to me.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02864> and to <LocationPreference00016> for me according to the user requirements. User requirements: I'm planning a journey and I'm leaning towards traveling by rail. I'm not looking for the most basic option but something that offers a bit more in terms of quality and service—perhaps a step above the standard, like a business-class ticket. My main focus is on comfort; I want to be able to relax and enjoy the journey without any hassle. Additionally, since I'll be carrying a bit more baggage than usual, having the flexibility to bring along extra luggage without worrying about restrictions is important to me.. "
+    }
+  },
+  {
+    "query_id": "<Query00243>",
+    "TimeInfo": "<TimeInfo00025>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "special_luggage_allowance",
+      "style": "schedule_flexibility_priority",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00076>",
+    "groundtruth": "<TransportationPreference19309>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "For my upcoming trip, I am looking for a travel experience that involves taking a train. I want to indulge myself in the finest way possible, so cost is not an issue. I’m seeking a train service that offers the utmost in luxury, providing an exquisite and opulent journey. Additionally, I need the flexibility in my travel schedule, allowing me to make changes as needed without any hassle. Furthermore, I have specific luggage needs, so it’s important that the service can accommodate extra baggage or special items. Overall, I desire a train journey that combines luxury, flexibility, and the capability to handle my unique luggage requirements.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00025> and to <LocationPreference00076> for me according to the user requirements. User requirements: For my upcoming trip, I am looking for a travel experience that involves taking a train. I want to indulge myself in the finest way possible, so cost is not an issue. I’m seeking a train service that offers the utmost in luxury, providing an exquisite and opulent journey. Additionally, I need the flexibility in my travel schedule, allowing me to make changes as needed without any hassle. Furthermore, I have specific luggage needs, so it’s important that the service can accommodate extra baggage or special items. Overall, I desire a train journey that combines luxury, flexibility, and the capability to handle my unique luggage requirements.. "
+    }
+  },
+  {
+    "query_id": "<Query00271>",
+    "TimeInfo": "<TimeInfo03302>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "comfort_priority",
+      "tier": "business_class"
+    },
+    "location_preference": "<LocationPreference00104>",
+    "groundtruth": "<TransportationPreference26374>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When planning my upcoming trip, I'm really leaning towards flying as my mode of travel. I want to make sure that I’m not just crammed into a seat, so I’m thinking something a bit more refined than the usual economy class – business class should suit my needs perfectly. Comfort is a big deal for me, so I want to ensure that I have enough space to relax and enjoy the journey. Additionally, staying connected is essential, so having access to Wi-Fi and power outlets during the flight would be ideal. In essence, I'm seeking a flight experience that balances comfort and connectivity seamlessly.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo03302> and to <LocationPreference00104> for me according to the user requirements. User requirements: When planning my upcoming trip, I'm really leaning towards flying as my mode of travel. I want to make sure that I’m not just crammed into a seat, so I’m thinking something a bit more refined than the usual economy class – business class should suit my needs perfectly. Comfort is a big deal for me, so I want to ensure that I have enough space to relax and enjoy the journey. Additionally, staying connected is essential, so having access to Wi-Fi and power outlets during the flight would be ideal. In essence, I'm seeking a flight experience that balances comfort and connectivity seamlessly.. "
+    }
+  },
+  {
+    "query_id": "<Query00175>",
+    "TimeInfo": "<TimeInfo02137>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "special_luggage_allowance",
+      "style": "schedule_flexibility_priority",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00008>",
+    "groundtruth": "<TransportationPreference01837>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When planning my next journey, I’m looking for something that takes to the skies. I want to travel in a way where comfort and opulence are paramount, so I’m considering an option that offers a first-class experience. It’s important to me that I have the flexibility to adjust my travel plans without any hassle, as my schedule can be quite unpredictable. Additionally, I need the convenience of bringing along extra baggage, without worrying about restrictions. Essentially, I’m seeking an air travel option that combines the luxury of premium service with the freedom to adapt my itinerary and the ease of accommodating my luggage needs.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02137> and to <LocationPreference00008> for me according to the user requirements. User requirements: When planning my next journey, I’m looking for something that takes to the skies. I want to travel in a way where comfort and opulence are paramount, so I’m considering an option that offers a first-class experience. It’s important to me that I have the flexibility to adjust my travel plans without any hassle, as my schedule can be quite unpredictable. Additionally, I need the convenience of bringing along extra baggage, without worrying about restrictions. Essentially, I’m seeking an air travel option that combines the luxury of premium service with the freedom to adapt my itinerary and the ease of accommodating my luggage needs.. "
+    }
+  },
+  {
+    "query_id": "<Query00261>",
+    "TimeInfo": "<TimeInfo04150>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "full_meal_and_beverage_service",
+      "style": "scenic_route",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00094>",
+    "groundtruth": "<TransportationPreference23833>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When planning my next journey, I want to ensure that my travel experience is nothing short of extraordinary. I'm looking to fly, as it's the most convenient and efficient way to reach my destination. But I’m not just seeking any ordinary flight; I desire the utmost in luxury, where comfort and exclusivity are paramount, and no expense is spared for an unforgettable experience. As I gaze out of the window, I want to be captivated by the breathtaking views below, so a route that offers stunning scenery is a must. Additionally, I expect to be pampered with a gourmet dining experience onboard, complete with an exquisite selection of meals and beverages to",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo04150> and to <LocationPreference00094> for me according to the user requirements. User requirements: When planning my next journey, I want to ensure that my travel experience is nothing short of extraordinary. I'm looking to fly, as it's the most convenient and efficient way to reach my destination. But I’m not just seeking any ordinary flight; I desire the utmost in luxury, where comfort and exclusivity are paramount, and no expense is spared for an unforgettable experience. As I gaze out of the window, I want to be captivated by the breathtaking views below, so a route that offers stunning scenery is a must. Additionally, I expect to be pampered with a gourmet dining experience onboard, complete with an exquisite selection of meals and beverages to. "
+    }
+  },
+  {
+    "query_id": "<Query00207>",
+    "TimeInfo": "<TimeInfo02332>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "special_luggage_allowance",
+      "style": "scenic_route",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00040>",
+    "groundtruth": "<TransportationPreference10025>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When planning my upcoming trip, I want to take to the skies in the most opulent way imaginable, so flying is the only mode of transportation I’m considering. My priority is to indulge in a luxurious travel experience, where comfort and elegance are unmatched, and the journey itself feels like a treat. I’m particularly keen on flights that offer breathtaking views, as I find the beauty of the world from above to be an integral part of the travel experience. Additionally, it's important for me to have the flexibility to bring along extra luggage without any hassle, ensuring I have everything I need for my journey.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02332> and to <LocationPreference00040> for me according to the user requirements. User requirements: When planning my upcoming trip, I want to take to the skies in the most opulent way imaginable, so flying is the only mode of transportation I’m considering. My priority is to indulge in a luxurious travel experience, where comfort and elegance are unmatched, and the journey itself feels like a treat. I’m particularly keen on flights that offer breathtaking views, as I find the beauty of the world from above to be an integral part of the travel experience. Additionally, it's important for me to have the flexibility to bring along extra luggage without any hassle, ensuring I have everything I need for my journey.. "
+    }
+  },
+  {
+    "query_id": "<Query00306>",
+    "TimeInfo": "<TimeInfo00050>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "full_meal_and_beverage_service",
+      "style": "comfort_priority",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00139>",
+    "groundtruth": "<TransportationPreference35413>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a journey where the mode of transport is just as important as the destination itself. I have my heart set on traveling by train, not just any train, but one that offers a truly opulent experience. I'm looking for a ride where comfort is the top priority, ensuring that every moment is relaxing and serene. As I glide through the landscape, I want to be pampered with a comprehensive dining service that includes exquisite meals and a variety of beverages to suit my tastes. In essence, I'm on the hunt for a train journey that promises luxury and comfort, making the travel experience an indulgent part of my adventure.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00050> and to <LocationPreference00139> for me according to the user requirements. User requirements: I'm planning a journey where the mode of transport is just as important as the destination itself. I have my heart set on traveling by train, not just any train, but one that offers a truly opulent experience. I'm looking for a ride where comfort is the top priority, ensuring that every moment is relaxing and serene. As I glide through the landscape, I want to be pampered with a comprehensive dining service that includes exquisite meals and a variety of beverages to suit my tastes. In essence, I'm on the hunt for a train journey that promises luxury and comfort, making the travel experience an indulgent part of my adventure.. "
+    }
+  },
+  {
+    "query_id": "<Query00220>",
+    "TimeInfo": "<TimeInfo04291>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "car_rental",
+      "feature_package": "special_luggage_allowance",
+      "style": "scenic_route",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00053>",
+    "groundtruth": "<TransportationPreference13545>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When it comes to planning my next trip, I'm envisioning a journey where I can fully immerse myself in the beauty of the landscapes around me. To make this happen, I'm considering renting a car for my travels. However, I’m not looking for just any vehicle; I want something that offers a top-notch, extravagant experience, where luxury takes the front seat and comfort is paramount. As I drive, I want to take routes that offer breathtaking views, allowing me to savor every moment of the scenic beauty around me. Additionally, I need to ensure that my luggage, especially any extra or oversized items, is well accommodated without any hassle.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo04291> and to <LocationPreference00053> for me according to the user requirements. User requirements: When it comes to planning my next trip, I'm envisioning a journey where I can fully immerse myself in the beauty of the landscapes around me. To make this happen, I'm considering renting a car for my travels. However, I’m not looking for just any vehicle; I want something that offers a top-notch, extravagant experience, where luxury takes the front seat and comfort is paramount. As I drive, I want to take routes that offer breathtaking views, allowing me to savor every moment of the scenic beauty around me. Additionally, I need to ensure that my luggage, especially any extra or oversized items, is well accommodated without any hassle.. "
+    }
+  },
+  {
+    "query_id": "<Query00206>",
+    "TimeInfo": "<TimeInfo00238>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "car_rental",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "speed_priority",
+      "tier": "business_class"
+    },
+    "location_preference": "<LocationPreference00039>",
+    "groundtruth": "<TransportationPreference09922>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "When it comes to getting around, I'm looking for a rental car that fits my professional lifestyle. I need a vehicle that doesn't just get the job done but does so with a touch of class and efficiency. Speed is of the essence for me, so I’m all about finding a car that prioritizes performance and quickness on the road, rather than just leisurely cruising. Moreover, staying connected is crucial, so the car must offer features like onboard connectivity and power outlets to keep my devices charged and ready. In essence, I’m seeking a car rental that aligns with a business-class experience, where efficiency meets sophistication, and I can keep up",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00238> and to <LocationPreference00039> for me according to the user requirements. User requirements: When it comes to getting around, I'm looking for a rental car that fits my professional lifestyle. I need a vehicle that doesn't just get the job done but does so with a touch of class and efficiency. Speed is of the essence for me, so I’m all about finding a car that prioritizes performance and quickness on the road, rather than just leisurely cruising. Moreover, staying connected is crucial, so the car must offer features like onboard connectivity and power outlets to keep my devices charged and ready. In essence, I’m seeking a car rental that aligns with a business-class experience, where efficiency meets sophistication, and I can keep up. "
+    }
+  },
+  {
+    "query_id": "<Query00321>",
+    "TimeInfo": "<TimeInfo01881>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "scenic_route",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00154>",
+    "groundtruth": "<TransportationPreference39179>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a journey and I'm leaning towards taking to the skies. I'm looking for a flight that fits the bill perfectly—not too opulent, but definitely not bare-bones either—just a comfortable seat in the middle ground. What really excites me is the idea of gazing out the window at breathtaking landscapes below, so a route that offers stunning views is a must. Additionally, staying connected is crucial for me, so I need to have access to Wi-Fi and power outlets during the flight. This way, I can keep my devices charged and stay online throughout the trip. In essence, I want a flight experience that balances comfort,",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01881> and to <LocationPreference00154> for me according to the user requirements. User requirements: I'm planning a journey and I'm leaning towards taking to the skies. I'm looking for a flight that fits the bill perfectly—not too opulent, but definitely not bare-bones either—just a comfortable seat in the middle ground. What really excites me is the idea of gazing out the window at breathtaking landscapes below, so a route that offers stunning views is a must. Additionally, staying connected is crucial for me, so I need to have access to Wi-Fi and power outlets during the flight. This way, I can keep my devices charged and stay online throughout the trip. In essence, I want a flight experience that balances comfort,. "
+    }
+  },
+  {
+    "query_id": "<Query00315>",
+    "TimeInfo": "<TimeInfo00201>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "car_rental",
+      "feature_package": "special_luggage_allowance",
+      "style": "comfort_priority",
+      "tier": "budget_class"
+    },
+    "location_preference": "<LocationPreference00148>",
+    "groundtruth": "<TransportationPreference37864>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I'm in need of a ride that won't break the bank, so I'm definitely leaning towards renting a car. It's important for me to find a rental that's easy on the wallet, as I'm looking to keep my travel costs low. However, I don't want to compromise on comfort; I want to enjoy a smooth and pleasant drive, focusing on a cozy and relaxing experience. Additionally, I have quite a bit of luggage to bring along, so I need a vehicle that can accommodate extra baggage without any hassle.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00201> and to <LocationPreference00148> for me according to the user requirements. User requirements: I'm planning a trip and I'm in need of a ride that won't break the bank, so I'm definitely leaning towards renting a car. It's important for me to find a rental that's easy on the wallet, as I'm looking to keep my travel costs low. However, I don't want to compromise on comfort; I want to enjoy a smooth and pleasant drive, focusing on a cozy and relaxing experience. Additionally, I have quite a bit of luggage to bring along, so I need a vehicle that can accommodate extra baggage without any hassle.. "
+    }
+  },
+  {
+    "query_id": "<Query00310>",
+    "TimeInfo": "<TimeInfo01630>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "special_luggage_allowance",
+      "style": "comfort_priority",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00143>",
+    "groundtruth": "<TransportationPreference36455>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been planning a journey and am leaning towards traveling by rail. I’m not looking for anything too extravagant, but I do value a comfortable experience that isn't too basic. I’d like to ensure there's enough space for my luggage, especially for items that might need a bit more room than usual. Comfort is key for me, so I would like to enjoy a pleasant ride without any unnecessary frills.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01630> and to <LocationPreference00143> for me according to the user requirements. User requirements: I've been planning a journey and am leaning towards traveling by rail. I’m not looking for anything too extravagant, but I do value a comfortable experience that isn't too basic. I’d like to ensure there's enough space for my luggage, especially for items that might need a bit more room than usual. Comfort is key for me, so I would like to enjoy a pleasant ride without any unnecessary frills.. "
+    }
+  },
+  {
+    "query_id": "<Query00248>",
+    "TimeInfo": "<TimeInfo00839>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "car_rental",
+      "feature_package": "special_luggage_allowance",
+      "style": "scenic_route",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00081>",
+    "groundtruth": "<TransportationPreference20715>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been thinking about hitting the road for a while now, and I'm in search of a car rental that perfectly suits my plans. I'm not looking for anything over-the-top or luxurious, just a reliable and comfortable vehicle that fits well within the standard range. What I'm really excited about is taking the scenic route, where I can enjoy picturesque landscapes and maybe discover some hidden gems along the way. It's important that the car has the capacity to accommodate some extra luggage, as I tend to pack a bit more when venturing out on such exploratory journeys. So, a rental that offers a bit more space for my bags would be ideal.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00839> and to <LocationPreference00081> for me according to the user requirements. User requirements: I've been thinking about hitting the road for a while now, and I'm in search of a car rental that perfectly suits my plans. I'm not looking for anything over-the-top or luxurious, just a reliable and comfortable vehicle that fits well within the standard range. What I'm really excited about is taking the scenic route, where I can enjoy picturesque landscapes and maybe discover some hidden gems along the way. It's important that the car has the capacity to accommodate some extra luggage, as I tend to pack a bit more when venturing out on such exploratory journeys. So, a rental that offers a bit more space for my bags would be ideal.. "
+    }
+  },
+  {
+    "query_id": "<Query00235>",
+    "TimeInfo": "<TimeInfo00220>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "bus",
+      "feature_package": "special_luggage_allowance",
+      "style": "comfort_priority",
+      "tier": "standard_class"
+    },
+    "location_preference": "<LocationPreference00068>",
+    "groundtruth": "<TransportationPreference17319>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and need to find a travel option that suits my needs perfectly. I'm thinking about taking the bus, as it strikes a perfect balance between affordability and convenience without the high cost of luxury options. It's important that my journey is comfortable, so I'm looking for a service where I can relax and enjoy a smooth ride, maybe with spacious seating and a pleasant cabin atmosphere. Additionally, I will be carrying extra luggage, so I absolutely need a service that won't charge me extra for a few more bags. In essence, I'm searching for a bus service that offers a standard class experience with a focus on comfort and a generous luggage policy.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00220> and to <LocationPreference00068> for me according to the user requirements. User requirements: I'm planning a trip and need to find a travel option that suits my needs perfectly. I'm thinking about taking the bus, as it strikes a perfect balance between affordability and convenience without the high cost of luxury options. It's important that my journey is comfortable, so I'm looking for a service where I can relax and enjoy a smooth ride, maybe with spacious seating and a pleasant cabin atmosphere. Additionally, I will be carrying extra luggage, so I absolutely need a service that won't charge me extra for a few more bags. In essence, I'm searching for a bus service that offers a standard class experience with a focus on comfort and a generous luggage policy.. "
+    }
+  },
+  {
+    "query_id": "<Query00169>",
+    "TimeInfo": "<TimeInfo00563>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "onboard_connectivity_and_power",
+      "style": "schedule_flexibility_priority",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00002>",
+    "groundtruth": "<TransportationPreference00269>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and I'm looking to fly in style, where budget isn't a concern because I'm aiming for the pinnacle of luxury travel. I need an option that offers the ultimate flexibility in scheduling. I don't want to be tied down by rigid flight times, so I'm looking for something that allows me to adjust my plans on the fly. Additionally, staying connected is crucial for me, so having access to Wi-Fi and power outlets during the flight is a must. In essence, I'm searching for a high-end flying experience that combines comfort, convenience, and connectivity seamlessly.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00563> and to <LocationPreference00002> for me according to the user requirements. User requirements: I'm planning a trip and I'm looking to fly in style, where budget isn't a concern because I'm aiming for the pinnacle of luxury travel. I need an option that offers the ultimate flexibility in scheduling. I don't want to be tied down by rigid flight times, so I'm looking for something that allows me to adjust my plans on the fly. Additionally, staying connected is crucial for me, so having access to Wi-Fi and power outlets during the flight is a must. In essence, I'm searching for a high-end flying experience that combines comfort, convenience, and connectivity seamlessly.. "
+    }
+  },
+  {
+    "query_id": "<Query00298>",
+    "TimeInfo": "<TimeInfo00924>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "train",
+      "feature_package": "lie_flat_or_sleeper_facility",
+      "style": "scenic_route",
+      "tier": "budget_class"
+    },
+    "location_preference": "<LocationPreference00131>",
+    "groundtruth": "<TransportationPreference33404>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I’m planning a journey and what I’m really looking for is a train ride that doesn’t break the bank. I’m not interested in anything fancy or costly; just something that’s easy on the wallet. The journey itself matters to me, as I want to enjoy beautiful landscapes and stunning views along the way, so it’s all about the scenery for me. Additionally, comfort during the trip is a priority, so having the option to stretch out and maybe even catch some sleep with a lie-flat or sleeper facility would be perfect. This combination of affordability, breathtaking vistas, and relaxation is exactly what I need for my travels.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00924> and to <LocationPreference00131> for me according to the user requirements. User requirements: I’m planning a journey and what I’m really looking for is a train ride that doesn’t break the bank. I’m not interested in anything fancy or costly; just something that’s easy on the wallet. The journey itself matters to me, as I want to enjoy beautiful landscapes and stunning views along the way, so it’s all about the scenery for me. Additionally, comfort during the trip is a priority, so having the option to stretch out and maybe even catch some sleep with a lie-flat or sleeper facility would be perfect. This combination of affordability, breathtaking vistas, and relaxation is exactly what I need for my travels.. "
+    }
+  },
+  {
+    "query_id": "<Query00174>",
+    "TimeInfo": "<TimeInfo00980>",
+    "task": "transportation",
+    "is_location": 0,
+    "goal_type": "TravelTransportation",
+    "preferences": {
+      "category": "flight",
+      "feature_package": "lie_flat_or_sleeper_facility",
+      "style": "comfort_priority",
+      "tier": "luxury_class"
+    },
+    "location_preference": "<LocationPreference00007>",
+    "groundtruth": "<TransportationPreference01589>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm planning a trip and when it comes to getting there, I'm all about flying. But not just any flight will do—I’m looking for an experience where comfort takes center stage. Money is no object for this journey, and I want to indulge in the finest that air travel has to offer. A luxurious flight experience is what I’m after, with all the bells and whistles that make traveling feel more like a lavish retreat than just getting from point A to point B. For me, that means having the ability to stretch out and truly relax, so a seat that can transform into a lie-flat bed is an absolute must. This way,",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00980> and to <LocationPreference00007> for me according to the user requirements. User requirements: I'm planning a trip and when it comes to getting there, I'm all about flying. But not just any flight will do—I’m looking for an experience where comfort takes center stage. Money is no object for this journey, and I want to indulge in the finest that air travel has to offer. A luxurious flight experience is what I’m after, with all the bells and whistles that make traveling feel more like a lavish retreat than just getting from point A to point B. For me, that means having the ability to stretch out and truly relax, so a seat that can transform into a lie-flat bed is an absolute must. This way,. "
+    }
+  }
+]

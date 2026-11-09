@@ -1,0 +1,3097 @@
+{
+  "counts": {
+    "not_observed_pre_event": 13,
+    "replay_matched_checkpoint": 67
+  },
+  "limitations": [
+    "A successful replay verifies archived prefix tool messages and event-tool interface; it does not demonstrate policy superiority.",
+    "Independent strategy arms must replay the exact same cached conversation and verify digest equality before evaluating outcomes."
+  ],
+  "official_commit": "6424069f3f773ade076bcedbed302ed47cfb1837",
+  "provider_calls": 0,
+  "schema": "phase2b-official-native-replay-gate-v1",
+  "scope": "existing 80 dev tasks, observed dynamic prefix replay only",
+  "tasks": [
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9133,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "d7b4c84bff7674359480ae5b93ea28d45d97428251707b0772e5a8906efa8bdd",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00169",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9133,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "c493cba8bbb927dae2dd2f5f6521c35f3ac1636dbd2260447fce7e4377936aa7"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6596,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "310eb10a4b62f25185fc33f696a2d77a3ebb3fd8d927d4bd509584291786924c",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00174",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6596,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "d0b02994a539187eae61fbde2afa0202a7e20739cafb230273e68def1eb0669e"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4605,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "ae3b4981e105d606bb2641dca0c9d7a2d00c88c8ceffe7a4292ea7866ee0e077",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00175",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4605,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "feeb16bed8bc08afe890207487c768fdc497aa2a433c65291a7e7884cfd70443"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3569,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "c985cbad83372e809fcf8d2f7c307f6e37dafdbd8664e1ee226f75b018e4e78c",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00183",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3569,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "fe739e267326b1f432e96fd2191fe1a7081199c2fe0b7d2dcf395b79d410d127"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5408,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "55527edd0f292a26d46c3bf0869f25d97a9b28f440139a3834859ccd64e1416f",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00206",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5408,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "3601062e52f8781ac24764c1ea5ab8cfd6ea1c1cbc02e02b9542aa5ee06c91e2"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6408,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "initial_public_tools_sha256": "e7bfcfd1c41e75e6954af76273caa8d32b866243ad9267688c75a3610af9a78a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00207",
+      "replayed_calls": 2,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6408,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 2,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "beae10978739b6a1d086dd5f85cf3955f7c17de29d14e115a4793043040ab588"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3797,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "c9933cc7d67ee60ed362ec013ebc5fd12d9ef594330040b5d9393931cb1a8851",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00220",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3797,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "cb0a0a8ebd749c5357d404a716e78463206caaf00102c3b0e060b786225681b9"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2711,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "cd3503ee7d912c3c5f3ec5c69ee96c377d557281a6a8445b920db54a3ba5722b",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00233",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2711,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "c197654d11bc9148d7da43a869734c12c3c53a8f5df6def296706c2feaa7b828"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3148,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "29ff655526800c4a22049a951b82bd7f4c784718b56f0e96b8aae3470b5c2bfc",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00235",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3148,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "bd7cbb5c9734bc624ef57207a83bef35b22cc0b8ce803a646e35b7d2b8574f1c"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1386,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "72b88597ce83a5c2455036bb22a3af7d3fa1e7babe77428f5e4f5afc572dd786",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00243",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1386,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "39c357df80da0b920f98a04c244d4eacc944434b703487f7f288f49b23d631ed"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4804,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "initial_public_tools_sha256": "b1524e76c59c76effc1d0d09ea8b24dd5a7fe784ab6f000b128662ead982505a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00248",
+      "replayed_calls": 2,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4804,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 2,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "cf30f8697fbfaea2aa8cd1c0c9823997d2067c678a65929fb478baccfcbf10fa"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9378,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "20dce04a2424c403a8f62ea6a57a7c38a968833cf02601b3be0c35d2528b18e0",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00249",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9378,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "4a1dbbe7c7aa5b7e830174b97dd9f84f1504a15e5bac869afdbb15a244091586"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 978,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "5df8cf74118c767f11a51273c1770e539a5bcfe04372f7062f5842544b4e5ae9",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00261",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 978,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "d529b9bf56d9c5accd97ddb8ecc90c5394c6107494b52e37068749185629d8e5"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 498,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "9641e14e2224dace91504018e9b86a82e4febc6fe0833b28e449b83714cee965",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00263",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 498,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "814c8097b1ce00875312195f61f11510bc1ca1bd2f2f44bbb2d91030c084baeb"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5480,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "2cbd918c7e7e6eac085195daffdf41b343c4c46efa2a29d427410ee727cf83e7",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00268",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5480,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "819d4b9a29b4e4cdc973a8d8636093ae9f7f337e9e4d4b7455d1e6a6fa97085e"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8465,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "e4ebb20e95ec37861dba4bdeece112555502965792ebc9096b7f83c8ba3b6278",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00269",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8465,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "ff33fe9f0491e60f5615ca0bc43be30a3d6e07e0e0c8ce3d051afb3833eb0b46"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3759,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "4ba3c4bd3e59e658990560f57d9b539229230c1379319965e713c0e245ae7f7d",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00271",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3759,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "bec02de9772b5cc34415fd64de887565dea1de668c6fc1dba68aac22db78a730"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8847,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "c0216a205cbe2ce833fe68d8586004fed1953a53a80b8aee3e1324fe1441193a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00292",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8847,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "ae91b3b342f2fd5708107061c6ca28bbc085acf4d715bae6551a3feb498acf75"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4707,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "149a0adfc13037dafa0482929a1e3788a8f4caca16f43417403309ce290db66e",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00298",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4707,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "aa5fce2fb530946617dde40bbf5f534b0e6029eeec67047444750f196eef428b"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5053,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "7a8644ee49f2144b0ad26478928479452d8303b415bdb7ad6ae837745b98f146",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00306",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5053,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "966da9923ecf090378fefe7a863a592b30553b0b573f5b897cd07b3ae325ed74"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 7936,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "b273dd8ff38ef0e32facb462f32f792bcb4c89982e9738aa7cc24b0a7ec563e3",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00310",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 7936,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "101a4a59a0656d1ec2f7041e82298e675f05937e5ae5690f15c2510bd3c84743"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9599,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "490b429c0449690d6239e8868dbef7bfdee2e1dbb9385f319a91ae252bcf0b12",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00315",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9599,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "4569ebd5c1d2fe7f61a2648244d88e0c9b1ab7cc118cc8ca7737c511c95f8159"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 7005,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "ea8dc6bea514fbb93cfb08cb4c3090687a2a4aff181606a30b444299f34bcf5b",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00321",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 7005,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "e8d339b118e812d018ecca7a988d50d0fc41dea7634013c8982eb2f4eb29d54a"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6725,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "8f734773778002acde3bcba063dfeb26f5643427ff65b05d0a205595a068995d",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00326",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6725,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "22e62db0eaf605851bd89846682b98d1c591bc0763f11dc03e9b5797be352139"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6986,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "6d81ba7267db1921a573c5c75d66375b2e39c473ea899f80baa6e87c4604ed94",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00342",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6986,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "ba5c4310fb17d58188af3c90451474b252ac1a98c916049091315c5566320afc"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9073,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "66385cf04b726f37ef42610b6bb772370dbffdb11f1714138c35df6336f14ab3",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00354",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9073,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "ce1f348ef253c0582d9ea6d774bc9d8d72ef35d048db1621deb14286bb712930"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6096,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "initial_public_tools_sha256": "62b1535a5ef3a960fc6230d8bffa197b985b6094357a75fa4953d6f2bbf3362a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00368",
+      "replayed_calls": 2,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6096,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 2,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "5e5dbe1e434d1d9b85cc8e2d4047f41e6a34b99723f9fc50c9e402ee55286886"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 488,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "06c7b1b96ed117e53f7556befb3fe94de257c23bfbcbd21a42a9403ce3688562",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00410",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 488,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "166c14ee366e9bcc35f47094622a2428a8be25162a0fab7737c2045dfb423aa0"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4153,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "ee6139f08e90e5f6c9c4dbd8f074006e8992f071fc9e3021029dc3b1e80bce92",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00444",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4153,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "79ad18929f4865c3a932371328cb90f0d73de47f4a97c0b49c70c4c57bf6b191"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9888,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "82cd6d5c5f2dd41886bb9194af0fecf42d9770de896cdad21a7100fb225ba546",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00452",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9888,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "eb0b89a051bdd85f5e78fc9621f005dc19cf9ee280170c1a89eacbcffa100f41"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9213,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "a70098dd73a21d71727849671f97294c36bdc21f0050fbc29a847d005c870f0e",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00454",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9213,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "b35f72e70e2ff4bae5c7f93e5708c25619391cff33c1d591eb0c769c2e13f962"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3246,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "392f2513c2914eb12efff0b5cedb5f541aa7f75c68314d0982df70924aa06e82",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00458",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3246,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "261479e068ecedb161c1f0d079f7fb0d2669bef686b4ace9a182138e76049f71"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4460,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "initial_public_tools_sha256": "0a4f9c83dbe65f4514cb7fb891a78b8386983d6e5f327bc673f7ff454326beb3",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00467",
+      "replayed_calls": 2,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4460,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 2,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "b30ba2b0f0150b3ade9bb30ae14ec5c6651ace57c8acde40be7f7437069da2b2"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3529,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "3e3503203b46d05dcb362c97a31ac889187e67323aa4d10443c7015bf8dd309f",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00470",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3529,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "57b88834005b55d33b8af6839aaff797e7b82dddc74c5765d8607b4b83a7f0c4"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9255,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "834c9e7713b03465bab5bed6e920f21cd7da545c6c54defc1772f8bbcbc22783",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00499",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9255,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "cbe76aade2b868d4f849166cd5e85f03a84ff00bff47dfb6b93fa2bec17177c5"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8972,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "d8af37d62c77e79c26bfe107adbf6eeffbaf638fe8f00850c82ea8f899e453de",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00508",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8972,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "28a18a1b5ec77e4ac04c88b3400b273d0521a9ea85388de6d5b05564ce2d2c1e"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3731,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "12779a9305a4203cad2152939fcf61d9f329d98b77e3fe70b1285a48a785adda",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00528",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3731,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "567130d1ba100dfee2093c3cd80117a88b76417985e48b8903c9f12d618a67c0"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3674,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "7d0104178d61d088be405d6f7009f3b22c00a673a6c32592d6bbf2752e268861",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00532",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3674,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "f6237009a566e4bfbc4ab3750610275dbad1fafefcba7fad2eacc7fad32d544b"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1452,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "e37502ad529c534c303d9aa758778639ce2ab10f78dca027e87d4edaa097cabc",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00535",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1452,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "4fd2615283eaaac4144050db9e62b8e8f57e8893de18348a9f3474fb3110cbaa"
+    },
+    {
+      "query_id": "Query00538",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2657,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "1468ddc82a5f10903850f2cf098921286d09a7980cef14644f8e08f5e847a553",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00562",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2657,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "005b1f675bb56235ac25e9f8bbed2fb63484fa157868af58108455e647be4731"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9330,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "15018a9de6e27f03dab05f6f91ef383ceaac01514b354cde723231be0a6778f8",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00571",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 9330,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "4990c6ed73f19ca3594aebe95f10eebcf299a2869159c5c9c27afb4ad72c2ad5"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8593,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "0d70f29e06ba5bef2b930882ef5196890b34ddb2e18f481159e073c26552d38a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00583",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8593,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "aac35e29848b615f74a48ed33de024f84926592696061ebfdef041961af1b656"
+    },
+    {
+      "query_id": "Query00597",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6193,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "6941f56866985e70769588ee1a47d36f045c15c9b83cb7165007788ad0dcb148",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00627",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6193,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "1fd3b303b6382d3cc0bb7fc67887ab799c327f172e383f8e85f233a4c2698262"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2200,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "a158a9292cff3baba251ea65b6e7bdcf7ebf3c1c2513d876972ce3cdc915f162",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00635",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2200,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "82937e9e427993f4192d5fd711c970b0ef367671c7c7e755974430e120ecea8e"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8285,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "initial_public_tools_sha256": "13433db5f84f32ae2f16a248b4edefa20cd5201ee867885f6e87e29e38018d1a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00641",
+      "replayed_calls": 2,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8285,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 2,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "38ee033d2457702854920ceb675d330ba056f6948b0b489226e7a3c14819035c"
+    },
+    {
+      "query_id": "Query00687",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3967,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "f816f9baafa8c8310560982862a70f312285572065fb08986b9008d1f159b32d",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00690",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3967,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "0815f81d809cd1f352898513e350a024e8f353d3e06e86376daadae88310f358"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 411,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "8239996d6637cec59e40d3a86d909ef5d5045382449fef983152b86e4d17b96e",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00695",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 411,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "f0a3a54c05fc6715afa5a7692c173c0380848053a518abdbe4a9ac156c48032c"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8621,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "5620f4e0f4a1d2e209244eb25753dbec760e7c253ec940b4f116bcfe0463cf6f",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00757",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 8621,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "1823f43e02a0492708fe293b5167761374fec66491814b6d771704eb9d6437ec"
+    },
+    {
+      "query_id": "Query00764",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4120,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "c9ae1ed3d049f7341e94c4346e7fbd5aede9a6aef051bcc5b4b30e2426edb2a1",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00769",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4120,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "6afec530069717756494c38243900e8ebfc34eeb9038c13641690cce3642daac"
+    },
+    {
+      "query_id": "Query00770",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2000,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "initial_public_tools_sha256": "95659469740a129786021b8d8139c0206b57894ff8e6ce7eecb3eae38ac21010",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00784",
+      "replayed_calls": 2,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2000,
+            "noise_std": 0.1
+          },
+          "trigger_step": 2
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 2,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "54359a5e862756452dc216dde09f33b2f6b7e4dc7a8a3a565f1e19058a2a1aaa"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6223,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "4952f4a7d78d3790d27a03e67e6b6d7b9d3205db62b0466ecdc8a1e8c7c553e3",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00789",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 6223,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "fd82a95e38b032c25417eb9d7fbe8e5827e1156a2795ebe98941544fc0be3f6a"
+    },
+    {
+      "query_id": "Query00791",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5649,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "32cb259b35d1a65e76f25a542f34383fb0fc15669689ab65384c0744635e6a13",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00802",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5649,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "b8bc7d9ff178175e11bc6b600b5f2c4f340390ffab78c31aaae551ff02435533"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 837,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "3b401e4581f9dfd30831f2cd5c4172950b27d2d3c875359ddfe5d2bf2966646d",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00815",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 837,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "7a176537a9a861d6b512c1104b08f1c9275a6e57265df378a469c6b379553c5b"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4282,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "8efab3aa7224c4623ed2f7dad21a8508cca0e6f70ef9305dc63ad7c4ae06d353",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00822",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 4282,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "605d17b9f6f6c84e5dcf37f96b9ab875c3ccc927030237e90926bdaf11b88963"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 7090,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "4e5843eed7f3ca8bca23d235a9cba7a4e7a437a1900cb155e46bd67d8a007f1f",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00827",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 7090,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "ed2674f01b7ba2fcf6f1c660760da2f87fc3a408ec35da312e653d417ef9007e"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3580,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "dcce77da079d802b1085283dc489eb4e17bb99f5c059b30ced9853267504005f",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00833",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3580,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "bd0ff97f21193cf0fa8e3971e0db191197efaf94f21eb025c1ee3f54ec6100b8"
+    },
+    {
+      "query_id": "Query00835",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 659,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "b1f29d96725dfe5246e9af30317c4fdcd632df531270a921da8792539f802f32",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00836",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 659,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "f420bda904cf7027a46c4d461899c4145eaa0b8ad3f7b46a1eea5cc2f938b715"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5900,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "c8ede9abb511c22e64bdfee9ad599e25bc7c1202b4200e818f3278a72ddc99cc",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00843",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 5900,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "d144e1fb8d86625e4051db7daeebd2df3675408f0f5dbe996954635f12e641e4"
+    },
+    {
+      "query_id": "Query00849",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1185,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "987ed01c454217fbc21941cfd18b88eb24f7964d03ed6f603d13838658177c70",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00853",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1185,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "c0fb8f0b9f914f0aa9d761b2b7d9a050c90c981f560716c21088bdae86423d9a"
+    },
+    {
+      "query_id": "Query00857",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1207,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "9b32008126f71f62f540a4e7392863c410551660161bfdc3d62cf626b51218ed",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00861",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 1207,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "ab2e0b22ef6d62460941fb57e2027607bd7233a20fa6d56156a5a8d392e83501"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2530,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "aa1ebea77ea20fbf488740020e9c9dea125200ab2101fe51cbfff5e386c7a4ee",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00871",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2530,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "f2da8a4a9c40cb985e9a463403a4fe767ba53ae568bd70c49d77d3038ba2a686"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3433,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "028df39839f65b2ef3f59f08f2929f211490083717a3cb822fcedf685e6c3f3e",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00893",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 3433,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "7e4281c8eee9754d1b7e7cb1f7d85d657850518a564c88135247a967e5b1075a"
+    },
+    {
+      "query_id": "Query00896",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "query_id": "Query00901",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2290,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "3b3cd6fd6c918f965cc06dc87aa7a517aa23451204a6bd06c7181fbf709c020f",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00912",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2290,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "caacb56f1fec04795d9e25b9acd91df1a18693410c9e72a66b5be9b1cbaa1d40"
+    },
+    {
+      "query_id": "Query00913",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "query_id": "Query00963",
+      "status": "not_observed_pre_event",
+      "tool_state_digest": null
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2526,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "f4e984489f35268973006ee375d8a71d785e0f039f8e8d6d13bbd9a3cdacc53a",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00978",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2526,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "6295ebce28dda0330c27e6e8f0d69138cefaa22daa3ebb718ec8828b4379be3a"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2056,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "759c66fc2a800f56f6ed10c9dacfe1f5b3e5f39ac0a49f0416698648cf2d3668",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00986",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2056,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "f002f84bf231174999a245c4f52a00f7bee578eaf044bbca20b04a937405d9cf"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2418,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "99e8f2f6b72f4fa0f2e0979396aeba8f9c71898bb799b9a3be2543a5c7d3a842",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00991",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2418,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "e8544d29434ebdce69592e7fd45bbd21a1195ab084b4f1c04611f28d94908d1b"
+    },
+    {
+      "archived_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2284,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "initial_public_tools_sha256": "970c1a4761d1a0ff66b94d0002dc10ed556c9d15a4758b5d0dd5eb4092de1a92",
+      "mismatches": [],
+      "public_tools_changed_at_event": true,
+      "query_id": "Query00994",
+      "replayed_calls": 1,
+      "replayed_event_metadata": [
+        {
+          "block_index": 0,
+          "block_type": "cost_change",
+          "parameters": {
+            "ban_longest_tool": true,
+            "control_tool_length": false,
+            "max_atomic_cost": 25,
+            "max_tool_length": 8,
+            "min_atomic_cost": 15,
+            "new_random_seed": 2284,
+            "noise_std": 0.1
+          },
+          "trigger_step": 1
+        }
+      ],
+      "reported_effective_event_count_after_forced_stop": 0,
+      "required_prefix_steps": 1,
+      "runner_status": "completed",
+      "same_dynamic_event": true,
+      "status": "replay_matched_checkpoint",
+      "tool_state_digest": "d4f6d4f57e548f2c342a5acab821e5be98b65e9ab8e40ad909ea6ee59ff3a5ec"
+    }
+  ],
+  "tool_execution": "original env.run.run_single_query"
+}

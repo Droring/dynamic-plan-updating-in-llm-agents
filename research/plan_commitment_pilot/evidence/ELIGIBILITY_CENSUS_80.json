@@ -1,0 +1,1489 @@
+{
+  "counts": {
+    "attempted": 80,
+    "fully_eligible": 0,
+    "native_checkpoint_matched": 67,
+    "pre_event_tool_execution_observed": 67,
+    "prior_method_tasks": 4,
+    "prospective_plan_text_heuristic": 69,
+    "provisional_screen_pass": 63
+  },
+  "current_technical_gate": "NOT_MET",
+  "interpretation": [
+    "A self-authored plan-text regex is a SCREENING HEURISTIC, not full scientific confirmation of meaningful commitment.",
+    "The frozen official event is cost_change; it does not generate paired semantic retain/switch preference updates.",
+    "The original CostBench goal checker cannot certify compliance with a newly corrected user preference.",
+    "No novel 20-task paid run or repeated test is claimed.",
+    "Four previously studied transportation IDs excluded from independent confirmation."
+  ],
+  "minimum_eligible_independent_tasks": 20,
+  "schema": "stage2-all80-archived-native-eligibility-census-v1",
+  "source": "official CostBench dev80 original historical dynamic trajectories; archived checkpoint replay gate",
+  "target_independent_tasks": 30,
+  "tasks": [
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\nLet me map the 5 atomic tools and their costs, then enumerate all valid paths from start (Decide) to end (Select Final).\n\n**Atomic tools:**\n- A = Decide_Transportation_Preference: 20.09\n- B = Search_Transpo",
+      "provisional_screen_pass": true,
+      "query_id": "Query00169"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "Looking at this task, I need to extract the user's requirements and plan the cost-minimal tool path.\n\n**Extracting requirements:**\n- Category: `flight` (all about flying)\n- Tier: `luxury_class` (money no object, finest a",
+      "provisional_screen_pass": true,
+      "query_id": "Query00174"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Step 1 — Reasoning & Cost Analysis\n\n**Preference inference from user requirements:**\n- \"takes to the skies\" / \"air travel\" → **Category: flight**\n- \"comfort and opulence are paramount\", \"first-class experience\", \"luxu",
+      "provisional_screen_pass": true,
+      "query_id": "Query00175"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I’ll use these inferred preferences: `train`, `business_class`, `comfort_priority`, and `special_luggage_allowance`.\n\nUsing shorthand:\n- P = Decide preference: 18.02\n- S = Search candidates: 17.34\n- R1 = availability ref",
+      "provisional_screen_pass": true,
+      "query_id": "Query00183"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I’ll use the fixed refinement order: preference → search → availability/seasonality → transportation convenience → final selection.\n\nInferred requirements:\n- `TransportationCategory`: `car_rental`\n- `TransportationTier`:",
+      "provisional_screen_pass": true,
+      "query_id": "Query00206"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the requirements first, then determine the cost-optimal tool path.\n\n**Requirement analysis:**\n- Category: **flight** (\"take to the skies\", flying is only mode considered)\n- Tier: **luxury_class** (\"most opul",
+      "provisional_screen_pass": true,
+      "query_id": "Query00207"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I infer the preference as:\n\n- `TransportationCategory`: `car_rental`\n- `TransportationTier`: `luxury_class`\n- `TransportationStyle`: `scenic_route`\n- `TransportationFeaturePackage`: `special_luggage_allowance`\n- `Locatio",
+      "provisional_screen_pass": true,
+      "query_id": "Query00220"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Planning Analysis\n\n**Extracting preferences from the user request:**\n- Category: **bus** (\"interested in taking a bus\")\n- Tier: **standard_class** (\"not too extravagant… comfortable and reliable, reasonably priced\")\n-",
+      "provisional_screen_pass": true,
+      "query_id": "Query00233"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Planning & Cost Analysis\n\nLet me first map the user requirements to preference parameters:\n- **TransportationCategory**: `bus` (\"thinking about taking the bus\")\n- **TransportationTier**: `standard_class` (\"standard cl",
+      "provisional_screen_pass": true,
+      "query_id": "Query00235"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\n**Step 1: Extract user requirements**\n- TransportationCategory → `train` (wants a train journey)\n- TransportationTier → `luxury_class` (finest/utmost luxury, cost not an issue)\n- TransportationStyle → `sche",
+      "provisional_screen_pass": true,
+      "query_id": "Query00243"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\nLet me identify the user's requirements and map them to transportation attributes:\n- **Category**: car rental → `car_rental`\n- **Tier**: \"standard range\" → `standard_class`\n- **Style**: \"taking the s",
+      "provisional_screen_pass": true,
+      "query_id": "Query00248"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": true,
+      "exclusion_or_pending_reasons": [
+        "previously_used_for_intervention_design",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "# Reasoning\n\n**User requirements extracted:**\n- TransportationCategory: `train`\n- TransportationTier: `business_class` (\"more refined... without going overboard\")\n- TransportationStyle: `scenic_route` (\"breathtaking land",
+      "provisional_screen_pass": false,
+      "query_id": "Query00249"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": true,
+      "exclusion_or_pending_reasons": [
+        "previously_used_for_intervention_design",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "The inferred transportation preference is:\n\n- Category: `flight`\n- Tier: `luxury_class`\n- Style: `scenic_route`\n- Feature package: `full_meal_and_beverage_service`\n- Location: `<LocationPreference00094>`\n- Time: `<TimeIn",
+      "provisional_screen_pass": false,
+      "query_id": "Query00261"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Cost Analysis\n\n**User requirements → preference inference:**\n- Category: **train**\n- Tier: \"doesn't break the bank\" → **budget_class**\n- Style: \"flexibility to change my plans\" → **schedule_flexibility_pri",
+      "provisional_screen_pass": true,
+      "query_id": "Query00263"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\nLet me first infer the required parameters from the user requirements:\n\n- **TransportationCategory**: `car_rental` (\"rental car option\")\n- **TransportationTier**: `budget_class` (\"don't want to break the ba",
+      "provisional_screen_pass": true,
+      "query_id": "Query00268"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\nFirst, let me extract the user's transportation preferences from the requirements:\n\n- **TransportationCategory**: `car_rental` (they explicitly want a rental car)\n- **TransportationStyle**: `schedule",
+      "provisional_screen_pass": true,
+      "query_id": "Query00269"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": true,
+      "exclusion_or_pending_reasons": [
+        "previously_used_for_intervention_design",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I’ll use the atomic preference decision first, then the cheapest composite covering search plus both refinement steps, followed by the final selection.\n\nThe inferred preferences are:\n- Category: `flight`\n- Tier: `busines",
+      "provisional_screen_pass": false,
+      "query_id": "Query00271"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\n**Inferring preferences from the user query:**\n- \"leaning towards taking to the skies\" → **Category: flight**\n- \"a bit more than the basics… balances comfort and practicality without going overboard…",
+      "provisional_screen_pass": true,
+      "query_id": "Query00292"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the user requirements and plan the most cost-optimal tool path.\n\n## Requirement Extraction\n- **TransportationCategory**: `train` (\"train ride\")\n- **TransportationTier**: `budget_class` (\"doesn't break the ba",
+      "provisional_screen_pass": true,
+      "query_id": "Query00298"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": true,
+      "exclusion_or_pending_reasons": [
+        "previously_used_for_intervention_design",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "Requirements map to train / luxury_class / comfort_priority / full_meal_and_beverage_service, with `<LocationPreference00139>` and `<TimeInfo00050>`.\n\nAtomic costs: A=22.36 (preference), B=22.32 (search), C=19.00 (availa",
+      "provisional_screen_pass": false,
+      "query_id": "Query00306"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Planning My Approach\n\n**User requirements mapping:**\n- Traveling by rail → `TransportationCategory`: **train**\n- \"Not too extravagant, comfortable, isn't too basic\" → `TransportationTier`: **business_class**\n- \"Comfor",
+      "provisional_screen_pass": true,
+      "query_id": "Query00310"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "# Analysis of User Requirements\n\nExtracting the transportation preference from the user's requirements:\n- **Category**: renting a car → `car_rental`\n- **Tier**: \"won't break the bank\", \"easy on the wallet\", \"keep costs l",
+      "provisional_screen_pass": true,
+      "query_id": "Query00315"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I infer:\n- Category: `flight`\n- Tier: `standard_class` (comfortable middle ground)\n- Style: `scenic_route`\n- Feature package: `onboard_connectivity_and_power`\n- Location: `<LocationPreference00154>`\n- Time: `<TimeInfo018",
+      "provisional_screen_pass": true,
+      "query_id": "Query00321"
+    },
+    {
+      "category": "transportation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Planning\n\nFirst, I'll infer the transportation preferences from the user's requirements:\n- **Category**: flight (explicitly stated)\n- **Tier**: standard_class (\"a notch above basic economy\")\n- **Style**: s",
+      "provisional_screen_pass": true,
+      "query_id": "Query00326"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning and Plan\n\n**Inferring preferences from the user requirements:**\n- \"top-tier hotel... five-star elegance\" → `AccommodationCategory: hotel`, `AccommodationTier: luxury_five_star`\n- \"heart of the action... vibr",
+      "provisional_screen_pass": true,
+      "query_id": "Query00342"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I’ll infer the preference as: **hotel**, **budget_basic**, **scenery_priority**, and **self_catering_and_laundry**.\n\nUsing:\n- **D** = Decide_Accommodation_Preference — 24.15\n- **S** = Search_Accommodation_Candidates — 22",
+      "provisional_screen_pass": true,
+      "query_id": "Query00354"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Cost-Optimal Plan\n\n**Inferring preferences from requirements:**\n- \"hotel\" → AccommodationCategory: `hotel`\n- \"comfort and practicality, business travelers without being overly extravagant\" → AccommodationT",
+      "provisional_screen_pass": true,
+      "query_id": "Query00368"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\n**Interpreting user requirements:**\n- \"not looking for the usual hotel experience... want to stay in a hostel\" → `AccommodationCategory = hostel`\n- \"not the height of luxury... a bit nicer than the most bas",
+      "provisional_screen_pass": true,
+      "query_id": "Query00410"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Plan Explanation\n\n**User requirement inference:**\n- Category: `hotel` (explicitly not campsite/homestay/hostel)\n- Tier: `standard_three_star` (three-star, good quality/comfort, not extravagant)\n- Style: `scenery_prior",
+      "provisional_screen_pass": true,
+      "query_id": "Query00444"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "# Plan Analysis\n\nLet me infer the user's preferences from the requirements:\n- **AccommodationCategory**: `hostel` (explicitly requested)\n- **AccommodationTier**: `budget_basic` (\"doesn't break the bank\" but decent comfor",
+      "provisional_screen_pass": true,
+      "query_id": "Query00452"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\n**1. Parse user requirements:**\n- Category: `hotel` (explicitly \"thinking of a hotel\")\n- Tier: \"not too extravagant, but a step above basic... comfortable mid-range\" → `standard_three_star` (above budget, b",
+      "provisional_screen_pass": true,
+      "query_id": "Query00454"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\n**Step 1: Extract user requirements**\n- Category: `hotel` (explicitly \"classic hotel experience\", not campsite/homestay)\n- Tier: `standard_three_star` (\"not too extravagant or too basic, comfortable and coz",
+      "provisional_screen_pass": true,
+      "query_id": "Query00458"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Step 1 — Reasoning & Cost-Optimal Path Planning\n\n**Parsing user requirements:**\n- **Category:** hotel (\"comfortable hotel\")\n- **Tier:** business_four_star (\"four-star service\" + \"good balance of quality and affordabil",
+      "provisional_screen_pass": true,
+      "query_id": "Query00467"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\n**Extracting preferences from user requirements:**\n- \"I'm searching for a hotel\" → `AccommodationCategory: hotel`\n- \"don't need anything overly lavish... a solid, mid-range option that is reliable an",
+      "provisional_screen_pass": true,
+      "query_id": "Query00470"
+    },
+    {
+      "category": "accommodation",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Step 1: Extracting user preferences\n\nFrom the requirements, I infer:\n- **AccommodationCategory**: `hotel` (\"looking for a hotel\")\n- **AccommodationTier**: `budget_basic` (\"won't break the bank\", \"easy on the wallet\", ",
+      "provisional_screen_pass": true,
+      "query_id": "Query00499"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\nFirst, I'll infer the attraction preference from the user requirements:\n- \"testament to human history... historical significance\" → **historic_site**\n- \"recognized not just locally, but around the world... ",
+      "provisional_screen_pass": true,
+      "query_id": "Query00508"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning: Preference Extraction\n\nFrom the user requirements, I extract:\n- **AttractionCategory**: `amusement_or_entertainment` (\"all about amusement and entertainment\")\n- **AttractionTier**: `local_spot` (\"local hang",
+      "provisional_screen_pass": true,
+      "query_id": "Query00528"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning and Plan\n\nLet me analyze the user requirements to determine the attraction preference parameters:\n- **Natural beauty / natural marvel** → `AttractionCategory = natural_wonder`\n- **\"Must-see but isn't necessa",
+      "provisional_screen_pass": true,
+      "query_id": "Query00532"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning and Plan\n\n**Step 1: Infer preferences from user requirements**\n- \"steeped in history... historic site\" → `AttractionCategory = historic_site`\n- \"true icon on the world stage... globally recognize\" → `Attract",
+      "provisional_screen_pass": true,
+      "query_id": "Query00535"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00538"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\n**Step 1 — Decode user requirements into preference parameters:**\n- \"fun and excitement... amusement or entertainment venue\" → `AttractionCategory = amusement_or_entertainment`\n- \"significant attract",
+      "provisional_screen_pass": true,
+      "query_id": "Query00562"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\nFirst, I'll map the user requirements to attraction preference parameters:\n- **\"historical significance... hidden gem rather than famous landmark, cherished by locals\"** → `historic_site` + `local_spot`\n- *",
+      "provisional_screen_pass": true,
+      "query_id": "Query00571"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Plan & Reasoning\n\n**1. Infer the attraction preference from the user requirements:**\n- \"world-renowned\", \"global scale\", \"not local or regional spot\" → **AttractionTier: `global_landmark`**\n- \"excitement and entertain",
+      "provisional_screen_pass": true,
+      "query_id": "Query00583"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00597"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the requirements and plan the cost-optimal tool path.\n\n**Inferring user preferences:**\n- Category: `museum_or_gallery` (specifically a museum or gallery)\n- Tier: `regional_highlight` (significant gem in its ",
+      "provisional_screen_pass": true,
+      "query_id": "Query00627"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the requirements and plan the cost-optimal path.\n\n**Inferring preferences from user requirements:**\n- \"historical site\" → `AttractionCategory`: historic_site\n- \"right in the local area, not a major tourist t",
+      "provisional_screen_pass": true,
+      "query_id": "Query00635"
+    },
+    {
+      "category": "attraction",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Cost Analysis & Plan\n\nLet me map out the tools and their costs:\n- **A** = Decide_Attraction_Preference: 20.65\n- **B** = Search_Attraction_Candidates: 19.27\n- **C** = Attraction_Refinement_Step1: 18.83\n- **D** = Attrac",
+      "provisional_screen_pass": true,
+      "query_id": "Query00641"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00687"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "Preference inference from the request:\n- **DiningCategory:** `restaurant`\n- **DiningTier:** `popular_local_mainstay` — a beloved local staple rather than a trend or high-end venue\n- **DiningStyle:** `ambiance_and_setting",
+      "provisional_screen_pass": true,
+      "query_id": "Query00690"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\nFirst, let me extract the dining preference from the user requirements:\n- **Category**: bakery (\"a bakery would hit the spot\")\n- **Tier**: popular_local_mainstay (\"beloved local spot... known and che",
+      "provisional_screen_pass": true,
+      "query_id": "Query00695"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Cost-Optimal Plan\n\n**Parsing user requirements:**\n- Coffee shop → `DiningCategory = coffee_shop`\n- \"Recognized across the country for its excellence, not just any local favorite\" → `DiningTier = nationally",
+      "provisional_screen_pass": true,
+      "query_id": "Query00757"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Cost-Optimal Path Analysis\n\nFirst, let me extract the dining preferences from the user requirements:\n- **DiningCategory**: `bakery` (\"charming little bakery\", not a restaurant or street food)\n- **DiningTie",
+      "provisional_screen_pass": false,
+      "query_id": "Query00764"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Planning and Cost Analysis\n\nLet me first extract the dining preference parameters from the requirements:\n- \"flavors of the streets\" / \"a street food spot\" → **DiningCategory: street_food_vendor**\n- \"beloved staple in ",
+      "provisional_screen_pass": true,
+      "query_id": "Query00769"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00770"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning\n\n**Inferring preferences from the user query:**\n- **DiningCategory:** `restaurant` (\"the restaurant is not just a place to eat\")\n- **DiningTier:** `popular_local_mainstay` (\"beloved spot among the locals… we",
+      "provisional_screen_pass": true,
+      "query_id": "Query00784"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the requirements and plan the most cost-optimal tool path.\n\n## Step 1: Extract preferences from user requirements\n\n- \"well-loved eatery, cherished by locals, staple in the community rather than high-end/inte",
+      "provisional_screen_pass": true,
+      "query_id": "Query00789"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00791"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Analysis and Plan\n\nLet me define the atomic tools and their costs:\n- **A** = Decide_Dining_Preference (21.88)\n- **B** = Search_Dining_Candidates (23.47)\n- **C** = Dining_Refinement_Step1 (21.12)\n- **D** = Dining_Refin",
+      "provisional_screen_pass": true,
+      "query_id": "Query00802"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "Inferred dining preference:\n- **Category:** `bakery`\n- **Tier:** `nationally_acclaimed`\n- **Style:** `culinary_quality_priority`\n- **Feature package:** `chef_interaction_and_open_kitchen`\n- **Location:** `<LocationPrefer",
+      "provisional_screen_pass": true,
+      "query_id": "Query00815"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Plan and Reasoning\n\nI need to move through the fixed atomic sequence: **Decide_Dining_Preference (A)** → **Search_Dining_Candidates (B)** → **Dining_Refinement_Step1 (C)** → **Dining_Refinement_Step2 (D)** → **Select_",
+      "provisional_screen_pass": true,
+      "query_id": "Query00822"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\n**Inferring preferences from the user requirements:**\n- **DiningCategory** = `restaurant` (\"specifically searching for a restaurant\")\n- **DiningTier** = `nationally_acclaimed` (\"earned recognition ac",
+      "provisional_screen_pass": true,
+      "query_id": "Query00827"
+    },
+    {
+      "category": "dining",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Step 1: Understanding the Requirements\n\nFrom the user query, I infer the following dining attributes:\n- **DiningCategory**: `bakery` (\"visiting a bakery\")\n- **DiningTier**: `nationally_acclaimed` (\"received recognitio",
+      "provisional_screen_pass": true,
+      "query_id": "Query00833"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00835"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the user requirements and plan the cost-optimal tool path.\n\n**Inferring preferences from requirements:**\n- \"charming little shops... quaint boutiques or specialty stores\" → `boutiques_and_specialty_stores`\n-",
+      "provisional_screen_pass": true,
+      "query_id": "Query00836"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "# Reasoning\n\n## Step 1: Infer shopping preferences from user requirements\n- **Category**: \"vibrant shopping streets\" → `shopping_street`\n- **Tier**: \"great deals without compromising my budget\" / \"affordability\" → `barga",
+      "provisional_screen_pass": true,
+      "query_id": "Query00843"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "## Reasoning and Plan\n\n**Inferring preferences from the user query:**\n- \"upscale shopping street\" → `ShoppingCategory` = `shopping_street`\n- \"extravagant\", \"finest luxury brands\", \"high-end\" → `ShoppingTier` = `high_end_",
+      "provisional_screen_pass": false,
+      "query_id": "Query00849"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "# Reasoning & Plan\n\nI'll start by identifying the shopping preference values from the user requirements, then find the cost-minimal tool path.\n\n**Parsing preferences:**\n- Category: \"unique boutiques and specialty stores\"",
+      "provisional_screen_pass": true,
+      "query_id": "Query00853"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00857"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Analysis of User Requirements\n\nFrom the query I infer the shopping preference:\n- **ShoppingCategory**: `boutiques_and_specialty_stores` (unique boutiques & specialty stores)\n- **ShoppingTier**: `high_end_luxury` (mone",
+      "provisional_screen_pass": true,
+      "query_id": "Query00861"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Analysis of the Problem\n\nFirst, let me extract the shopping preferences from the user requirements:\n- **ShoppingCategory**: `shopping_street` (\"vibrant shopping street\")\n- **ShoppingTier**: `high_end_luxury` (\"high-en",
+      "provisional_screen_pass": true,
+      "query_id": "Query00871"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the requirements and find the cost-optimal tool path.\n\n**Extracting preferences from the user query:**\n- ShoppingCategory: `shopping_center_or_mall` (large shopping center/mall)\n- ShoppingTier: `affordable_p",
+      "provisional_screen_pass": true,
+      "query_id": "Query00893"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00896"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "# Analysis and Plan\n\nLet me first infer the shopping preferences from the user requirements:\n\n- **Category**: \"not big malls or street markets... charming little boutiques and specialty stores\" → `boutiques_and_specialty",
+      "provisional_screen_pass": false,
+      "query_id": "Query00901"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\n**1. Parse user requirements → shopping preference:**\n- \"unique and specialized shops rather than large malls or markets\" → `ShoppingCategory = boutiques_and_specialty_stores`\n- \"affordable yet relia",
+      "provisional_screen_pass": true,
+      "query_id": "Query00912"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00913"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "unmatched_original_native_checkpoint",
+        "no_confirmed_pre_event_tool_execution",
+        "no_detectable_self_authored_prospective_text",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": false,
+      "pre_event_tool_execution_observed": false,
+      "prospective_plan_text_heuristic": false,
+      "prospective_text_preview": "",
+      "provisional_screen_pass": false,
+      "query_id": "Query00963"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the user's requirements to determine the shopping preferences, then find the cost-optimal tool path.\n\n**Determining Shopping Preferences:**\n- Category: \"charming boutiques and specialty stores\" → `boutiques_",
+      "provisional_screen_pass": true,
+      "query_id": "Query00978"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the available tools and compute the cost-optimal path first.\n\n## Step 1: Understanding the task\n\nThe required atomic sequence is:\n- **A** = Decide_Shopping_Preference (15.01)\n- **B** = Search_Shopping_Candid",
+      "provisional_screen_pass": true,
+      "query_id": "Query00986"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "I'll analyze the requirements and plan the cost-optimal tool path.\n\n**Inferring preferences:**\n- ShoppingCategory: `shopping_street` (vibrant shopping street)\n- ShoppingTier: `mid_range_brand` (well-known brands that won",
+      "provisional_screen_pass": true,
+      "query_id": "Query00991"
+    },
+    {
+      "category": "shopping",
+      "earlier_method_development_task": false,
+      "exclusion_or_pending_reasons": [
+        "further_manual_plan_authorship_check_required",
+        "independent_post_update_semantic_verifier_unavailable",
+        "no_paired_semantic_retain_switch_event_frozen"
+      ],
+      "full_semantic_retain_switch_pairs_verified": false,
+      "fully_eligible_for_stage2": false,
+      "independent_updated_goal_verifier": false,
+      "native_checkpoint_matched": true,
+      "pre_event_tool_execution_observed": true,
+      "prospective_plan_text_heuristic": true,
+      "prospective_text_preview": "## Reasoning & Plan\n\nLet me first infer the shopping preferences from the user requirements:\n\n- **\"bustling street lined with chic and exclusive boutiques\"** → `ShoppingCategory`: `shopping_street`\n- **\"luxury is the nor",
+      "provisional_screen_pass": true,
+      "query_id": "Query00994"
+    }
+  ]
+}

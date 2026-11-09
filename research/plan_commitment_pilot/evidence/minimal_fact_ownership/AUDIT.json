@@ -1,0 +1,369 @@
+{
+  "correlated_live_trajectories": 16,
+  "paired_task_correct": {
+    "committed": 2,
+    "neutralized": 2
+  },
+  "real_model_calls": 51,
+  "records": [
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "<LocationPreference00104>",
+        "TimeInfo": "<TimeInfo03302>",
+        "TransportationPreference": "<TransportationPreference26374>"
+      },
+      "first_tool": "Transportation_Search_Planning_to_Step2",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet26374> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 51.42",
+      "first_update_decision_correct": true,
+      "history": "committed",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "3f18d171b1a8561c00d1813d207461f67157a8fa4d2f97a36ee9c6bfe2fb0384",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00271",
+      "tool_call_valid": true,
+      "tool_interface_digest": "bec02de9772b5cc34415fd64de887565dea1de668c6fc1dba68aac22db78a730"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "<LocationPreference00104>",
+        "TimeInfo": "<TimeInfo03302>",
+        "TransportationPreference": "<TransportationPreference26374>"
+      },
+      "first_tool": "Transportation_Search_Planning_to_Step2",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet26374> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 51.42",
+      "first_update_decision_correct": true,
+      "history": "neutralized",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "3f18d171b1a8561c00d1813d207461f67157a8fa4d2f97a36ee9c6bfe2fb0384",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00271",
+      "tool_call_valid": true,
+      "tool_interface_digest": "bec02de9772b5cc34415fd64de887565dea1de668c6fc1dba68aac22db78a730"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": false,
+      "first_arguments": {
+        "LocationPreference": "<LocationPreference00104>",
+        "TimeInfo": "<TimeInfo03302>",
+        "TransportationPreference": "<TransportationPreference26374>"
+      },
+      "first_tool": "Transportation_Search_Planning_to_Step2",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet26374> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 51.42",
+      "first_update_decision_correct": false,
+      "history": "committed",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "3f18d171b1a8561c00d1813d207461f67157a8fa4d2f97a36ee9c6bfe2fb0384",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00271",
+      "tool_call_valid": true,
+      "tool_interface_digest": "bec02de9772b5cc34415fd64de887565dea1de668c6fc1dba68aac22db78a730"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": false,
+      "first_arguments": {
+        "LocationPreference": "<LocationPreference00104>",
+        "TimeInfo": "<TimeInfo03302>",
+        "TransportationPreference": "<TransportationPreference26374>"
+      },
+      "first_tool": "Transportation_Search_Planning_to_Step2",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet26374> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 51.42",
+      "first_update_decision_correct": false,
+      "history": "neutralized",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "3f18d171b1a8561c00d1813d207461f67157a8fa4d2f97a36ee9c6bfe2fb0384",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00271",
+      "tool_call_valid": true,
+      "tool_interface_digest": "bec02de9772b5cc34415fd64de887565dea1de668c6fc1dba68aac22db78a730"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00139",
+        "TimeInfo": "TimeInfo00050",
+        "TransportationPreference": "TransportationPreference35413"
+      },
+      "first_tool": "Transportation_Search_Planning_to_Step2",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet35413> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 54.52",
+      "first_update_decision_correct": true,
+      "history": "committed",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "77d0270062cb82af6a32fb1da49a27c41f684f9760b58269116ae4154a4e686a",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00306",
+      "tool_call_valid": true,
+      "tool_interface_digest": "966da9923ecf090378fefe7a863a592b30553b0b573f5b897cd07b3ae325ed74"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00139",
+        "TimeInfo": "TimeInfo00050",
+        "TransportationPreference": "TransportationPreference35413"
+      },
+      "first_tool": "Transportation_Search_Planning_to_Step2",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet35413> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 54.52",
+      "first_update_decision_correct": true,
+      "history": "neutralized",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "77d0270062cb82af6a32fb1da49a27c41f684f9760b58269116ae4154a4e686a",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00306",
+      "tool_call_valid": true,
+      "tool_interface_digest": "966da9923ecf090378fefe7a863a592b30553b0b573f5b897cd07b3ae325ed74"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00139",
+        "TransportationCategory": "train",
+        "TransportationFeaturePackage": "full_meal_and_beverage_service",
+        "TransportationStyle": "scenic_route",
+        "TransportationTier": "luxury_class"
+      },
+      "first_tool": "Decide_Transportation_Preference",
+      "first_tool_response_excerpt": "Get <TransportationPreference35417> (Type: TransportationPreference). This is a unique id for user's transportation Preference package.  Cost: 21.2",
+      "first_update_decision_correct": true,
+      "history": "committed",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "77d0270062cb82af6a32fb1da49a27c41f684f9760b58269116ae4154a4e686a",
+      "provider_calls": 4,
+      "status": "executed",
+      "task": "Query00306",
+      "tool_call_valid": true,
+      "tool_interface_digest": "966da9923ecf090378fefe7a863a592b30553b0b573f5b897cd07b3ae325ed74"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00139",
+        "TransportationCategory": "train",
+        "TransportationFeaturePackage": "full_meal_and_beverage_service",
+        "TransportationStyle": "scenic_route",
+        "TransportationTier": "luxury_class"
+      },
+      "first_tool": "Decide_Transportation_Preference",
+      "first_tool_response_excerpt": "Get <TransportationPreference35417> (Type: TransportationPreference). This is a unique id for user's transportation Preference package.  Cost: 21.2",
+      "first_update_decision_correct": true,
+      "history": "neutralized",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "77d0270062cb82af6a32fb1da49a27c41f684f9760b58269116ae4154a4e686a",
+      "provider_calls": 4,
+      "status": "executed",
+      "task": "Query00306",
+      "tool_call_valid": true,
+      "tool_interface_digest": "966da9923ecf090378fefe7a863a592b30553b0b573f5b897cd07b3ae325ed74"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "TimeInfo": "<TimeInfo04150>",
+        "TransportationCandidate_Raw": "<TransportationCandidateSet23833>"
+      },
+      "first_tool": "Transportation_Refine_to_Step2",
+      "first_tool_response_excerpt": "Process: Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet23833> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 39.4",
+      "first_update_decision_correct": true,
+      "history": "committed",
+      "native_state_digest": "5fc3e56bb4626d53c41eb867a5858deca4711e05d545ae289cf7df740d32e896",
+      "original_checkpoint_hash": "4d498f50a5110b94c11486e0a20aef2e05824263ee0390e6f1a189d7ff8fc952",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00261",
+      "tool_call_valid": true,
+      "tool_interface_digest": "d529b9bf56d9c5accd97ddb8ecc90c5394c6107494b52e37068749185629d8e5"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "TimeInfo": "<TimeInfo04150>",
+        "TransportationCandidate_Raw": "<TransportationCandidateSet23833>"
+      },
+      "first_tool": "Transportation_Refine_to_Step2",
+      "first_tool_response_excerpt": "Process: Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet23833> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 39.4",
+      "first_update_decision_correct": true,
+      "history": "neutralized",
+      "native_state_digest": "5fc3e56bb4626d53c41eb867a5858deca4711e05d545ae289cf7df740d32e896",
+      "original_checkpoint_hash": "4d498f50a5110b94c11486e0a20aef2e05824263ee0390e6f1a189d7ff8fc952",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00261",
+      "tool_call_valid": true,
+      "tool_interface_digest": "d529b9bf56d9c5accd97ddb8ecc90c5394c6107494b52e37068749185629d8e5"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "<LocationPreference00094>",
+        "TimeInfo": "<TimeInfo04150>",
+        "TransportationCategory": "flight",
+        "TransportationFeaturePackage": "full_meal_and_beverage_service",
+        "TransportationStyle": "comfort_priority",
+        "TransportationTier": "luxury_class"
+      },
+      "first_tool": "Transportation_Preference_and_Search",
+      "first_tool_response_excerpt": "Process: Determined Preferences. Get raw candidate set: <TransportationCandidateSet23829> (unfiltered, Type: TransportationCandidate_Raw) Cost: 36.29",
+      "first_update_decision_correct": true,
+      "history": "committed",
+      "native_state_digest": "5fc3e56bb4626d53c41eb867a5858deca4711e05d545ae289cf7df740d32e896",
+      "original_checkpoint_hash": "4d498f50a5110b94c11486e0a20aef2e05824263ee0390e6f1a189d7ff8fc952",
+      "provider_calls": 4,
+      "status": "executed",
+      "task": "Query00261",
+      "tool_call_valid": true,
+      "tool_interface_digest": "d529b9bf56d9c5accd97ddb8ecc90c5394c6107494b52e37068749185629d8e5"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": false,
+      "first_arguments": {
+        "TimeInfo": "<TimeInfo04150>",
+        "TransportationCandidate_Raw": "<TransportationCandidateSet23833>"
+      },
+      "first_tool": "Transportation_Refine_to_Step2",
+      "first_tool_response_excerpt": "Process: Filtered by availability -> Filtered by location. Get final candidate set: <TransportationCandidateSet23833> (Already filtered by availability, location, Type: TransportationCandidate_L2_Located) Cost: 39.4",
+      "first_update_decision_correct": false,
+      "history": "neutralized",
+      "native_state_digest": "5fc3e56bb4626d53c41eb867a5858deca4711e05d545ae289cf7df740d32e896",
+      "original_checkpoint_hash": "4d498f50a5110b94c11486e0a20aef2e05824263ee0390e6f1a189d7ff8fc952",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00261",
+      "tool_call_valid": true,
+      "tool_interface_digest": "d529b9bf56d9c5accd97ddb8ecc90c5394c6107494b52e37068749185629d8e5"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00082",
+        "TimeInfo": "TimeInfo00232",
+        "TransportationPreference": "TransportationPreference20810"
+      },
+      "first_tool": "Transportation_Search_to_Final_4Steps",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location -> Final Selection. Selected final transportation candidate: <TransportationCandidate20810> (Type: TravelTransportation). Cost: 80.27",
+      "first_update_decision_correct": true,
+      "history": "committed",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "b41b820e6d941842fddad78711bef22eed23184bfd33a3f1079d35e12f924d77",
+      "provider_calls": 2,
+      "status": "executed",
+      "task": "Query00249",
+      "tool_call_valid": true,
+      "tool_interface_digest": "4a1dbbe7c7aa5b7e830174b97dd9f84f1504a15e5bac869afdbb15a244091586"
+    },
+    {
+      "fact_condition": "retain",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00082",
+        "TimeInfo": "TimeInfo00232",
+        "TransportationPreference": "TransportationPreference20810"
+      },
+      "first_tool": "Transportation_Search_to_Final_4Steps",
+      "first_tool_response_excerpt": "Process: Initial Search -> Filtered by availability -> Filtered by location -> Final Selection. Selected final transportation candidate: <TransportationCandidate20810> (Type: TravelTransportation). Cost: 80.27",
+      "first_update_decision_correct": true,
+      "history": "neutralized",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "b41b820e6d941842fddad78711bef22eed23184bfd33a3f1079d35e12f924d77",
+      "provider_calls": 2,
+      "status": "executed",
+      "task": "Query00249",
+      "tool_call_valid": true,
+      "tool_interface_digest": "4a1dbbe7c7aa5b7e830174b97dd9f84f1504a15e5bac869afdbb15a244091586"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": false,
+      "first_arguments": {
+        "TimeInfo": "TimeInfo00232",
+        "TransportationCandidate_Raw": "TransportationPreference20810"
+      },
+      "first_tool": "Transportation_Finish_from_Step1_3Steps",
+      "first_tool_response_excerpt": "[ERROR] Missing required input types for tool 'Transportation_Finish_from_Step1_3Steps'. Required: ['TimeInfo', 'TransportationCandidate_Raw'], Current: ['LocationPreference', 'TimeInfo', 'TransportationCategory', 'TransportationFeaturePackage', 'TransportationPreference', 'TransportationStyle', 'Tr",
+      "first_update_decision_correct": false,
+      "history": "committed",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "b41b820e6d941842fddad78711bef22eed23184bfd33a3f1079d35e12f924d77",
+      "provider_calls": 5,
+      "status": "budget_exhausted",
+      "task": "Query00249",
+      "tool_call_valid": false,
+      "tool_interface_digest": "4a1dbbe7c7aa5b7e830174b97dd9f84f1504a15e5bac869afdbb15a244091586"
+    },
+    {
+      "fact_condition": "switch",
+      "first_action_overall_correct": true,
+      "first_arguments": {
+        "LocationPreference": "LocationPreference00082",
+        "TransportationCategory": "train",
+        "TransportationFeaturePackage": "onboard_connectivity_and_power",
+        "TransportationStyle": "comfort_priority",
+        "TransportationTier": "business_class"
+      },
+      "first_tool": "Decide_Transportation_Preference",
+      "first_tool_response_excerpt": "Get <TransportationPreference20806> (Type: TransportationPreference). This is a unique id for user's transportation Preference package.  Cost: 22.28",
+      "first_update_decision_correct": true,
+      "history": "neutralized",
+      "native_state_digest": "5e6dd8d58a997f97aa3e9f574b50804d13896ed954b278a97e2d620aaf245b1f",
+      "original_checkpoint_hash": "b41b820e6d941842fddad78711bef22eed23184bfd33a3f1079d35e12f924d77",
+      "provider_calls": 3,
+      "status": "executed",
+      "task": "Query00249",
+      "tool_call_valid": true,
+      "tool_interface_digest": "4a1dbbe7c7aa5b7e830174b97dd9f84f1504a15e5bac869afdbb15a244091586"
+    }
+  ],
+  "results": {
+    "committed__retain": {
+      "first_action_correct": 4,
+      "first_decision_correct": 4,
+      "n": 4,
+      "valid_first_tool": 4
+    },
+    "committed__switch": {
+      "first_action_correct": 2,
+      "first_decision_correct": 2,
+      "n": 4,
+      "valid_first_tool": 3
+    },
+    "neutralized__retain": {
+      "first_action_correct": 4,
+      "first_decision_correct": 4,
+      "n": 4,
+      "valid_first_tool": 4
+    },
+    "neutralized__switch": {
+      "first_action_correct": 2,
+      "first_decision_correct": 2,
+      "n": 4,
+      "valid_first_tool": 4
+    }
+  },
+  "schema": "native-minimal-fact-ownership-independent-audit-v1",
+  "unique_development_tasks": 4,
+  "warnings": [
+    "Neutralizing prospective authorial words does not erase plan contents or tool history.",
+    "Causal contrast holds native checkpoint and minimal new user message identical within task.",
+    "No model-internal cause can be inferred; use observed next tools and arguments.",
+    "Original CostBench final answer scorer is stale for newly changed user preference."
+  ]
+}

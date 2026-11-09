@@ -1,0 +1,422 @@
+[
+  {
+    "query_id": "<Query00583>",
+    "TimeInfo": "<TimeInfo02916>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "amusement_or_entertainment",
+      "feature_package": "live_performances",
+      "style": "action_and_thrill_priority",
+      "tier": "global_landmark"
+    },
+    "location_preference": "<LocationPreference00082>",
+    "groundtruth": "<AttractionPreference20949>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a world-renowned attraction that perfectly combines excitement and entertainment. I'm not interested in just any local or regional spot, but rather a place that stands out on a global scale as a must-visit destination. Ideally, this location should offer an adrenaline-pumping experience, something that will get my heart racing and provide an unforgettable thrill. To top it all off, I would love for there to be live performances that add to the overall excitement and atmosphere, creating a dynamic and engaging environment.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02916> and to <LocationPreference00082> for me according to the user requirements. User requirements: I'm on the hunt for a world-renowned attraction that perfectly combines excitement and entertainment. I'm not interested in just any local or regional spot, but rather a place that stands out on a global scale as a must-visit destination. Ideally, this location should offer an adrenaline-pumping experience, something that will get my heart racing and provide an unforgettable thrill. To top it all off, I would love for there to be live performances that add to the overall excitement and atmosphere, creating a dynamic and engaging environment.. "
+    }
+  },
+  {
+    "query_id": "<Query00562>",
+    "TimeInfo": "<TimeInfo01197>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "amusement_or_entertainment",
+      "feature_package": "hands_on_creation_experience",
+      "style": "social_and_community_priority",
+      "tier": "regional_highlight"
+    },
+    "location_preference": "<LocationPreference00061>",
+    "groundtruth": "<AttractionPreference15599>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the lookout for a place that really captures the essence of fun and excitement, specifically something that stands out as a significant attraction within its area, but not necessarily known worldwide. I'm thinking of an amusement or entertainment venue that not only offers thrilling experiences but also fosters a sense of community and connection with others. It's important that this place offers interactive opportunities where I can engage in creative activities and maybe even make something with my own hands. I'm seeking an environment where I can share memorable experiences with others while also tapping into my creative side.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01197> and to <LocationPreference00061> for me according to the user requirements. User requirements: I'm on the lookout for a place that really captures the essence of fun and excitement, specifically something that stands out as a significant attraction within its area, but not necessarily known worldwide. I'm thinking of an amusement or entertainment venue that not only offers thrilling experiences but also fosters a sense of community and connection with others. It's important that this place offers interactive opportunities where I can engage in creative activities and maybe even make something with my own hands. I'm seeking an environment where I can share memorable experiences with others while also tapping into my creative side.. "
+    }
+  },
+  {
+    "query_id": "<Query00627>",
+    "TimeInfo": "<TimeInfo01883>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "museum_or_gallery",
+      "feature_package": "in_depth_expert_guidance",
+      "style": "social_and_community_priority",
+      "tier": "regional_highlight"
+    },
+    "location_preference": "<LocationPreference00126>",
+    "groundtruth": "<AttractionPreference32079>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a fascinating attraction that stands out as a significant gem in its area, specifically a museum or gallery that offers a unique cultural experience. I'm not looking for something globally renowned, but rather a place that's cherished locally and regionally for its distinct offerings. The vibe I'm after is one that encourages interaction and a sense of belonging, where visitors can engage with the community and feel part of the experience. Additionally, it’s important that this place offers insightful expert-led tours or talks, providing an enriching and deep understanding of its exhibits. In essence, I'm searching for a spot that combines local charm with an educational edge, fostering both",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01883> and to <LocationPreference00126> for me according to the user requirements. User requirements: I'm on the hunt for a fascinating attraction that stands out as a significant gem in its area, specifically a museum or gallery that offers a unique cultural experience. I'm not looking for something globally renowned, but rather a place that's cherished locally and regionally for its distinct offerings. The vibe I'm after is one that encourages interaction and a sense of belonging, where visitors can engage with the community and feel part of the experience. Additionally, it’s important that this place offers insightful expert-led tours or talks, providing an enriching and deep understanding of its exhibits. In essence, I'm searching for a spot that combines local charm with an educational edge, fostering both. "
+    }
+  },
+  {
+    "query_id": "<Query00597>",
+    "TimeInfo": "<TimeInfo01935>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "museum_or_gallery",
+      "feature_package": "immersive_themed_dining",
+      "style": "social_and_community_priority",
+      "tier": "local_spot"
+    },
+    "location_preference": "<LocationPreference00096>",
+    "groundtruth": "<AttractionPreference24448>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been thinking about spending some time at a place where art and community come together in a relaxed setting. I'm not looking for one of those famous international museums that everyone flocks to, but rather a smaller, local gem that offers a more intimate experience. It should be a spot where people gather, fostering a sense of community and connection through shared appreciation of art. Additionally, I’d love for this place to offer a unique dining experience that ties in with the theme of the exhibits, perhaps with meals inspired by the art itself or the culture it represents. This way, I can enjoy a meal that complements the artistic vibe of the surroundings.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01935> and to <LocationPreference00096> for me according to the user requirements. User requirements: I've been thinking about spending some time at a place where art and community come together in a relaxed setting. I'm not looking for one of those famous international museums that everyone flocks to, but rather a smaller, local gem that offers a more intimate experience. It should be a spot where people gather, fostering a sense of community and connection through shared appreciation of art. Additionally, I’d love for this place to offer a unique dining experience that ties in with the theme of the exhibits, perhaps with meals inspired by the art itself or the culture it represents. This way, I can enjoy a meal that complements the artistic vibe of the surroundings.. "
+    }
+  },
+  {
+    "query_id": "<Query00538>",
+    "TimeInfo": "<TimeInfo02201>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "amusement_or_entertainment",
+      "feature_package": "live_performances",
+      "style": "social_and_community_priority",
+      "tier": "global_landmark"
+    },
+    "location_preference": "<LocationPreference00037>",
+    "groundtruth": "<AttractionPreference09437>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm eager to explore a world-renowned destination that offers plenty of fun and excitement. I'm not just looking for any amusement spot, but rather a place that's recognized globally, one of those must-visit icons where people from all over come together. It's important to me that this destination fosters a sense of community and connection, where I can engage with others and share in the joy together. I’m particularly drawn to attractions that feature vibrant live performances, as I find they bring an extra layer of excitement and energy to the experience. In essence, I'm searching for a celebrated entertainment venue that brings people together in an unforgettable way, filled with lively shows and",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02201> and to <LocationPreference00037> for me according to the user requirements. User requirements: I'm eager to explore a world-renowned destination that offers plenty of fun and excitement. I'm not just looking for any amusement spot, but rather a place that's recognized globally, one of those must-visit icons where people from all over come together. It's important to me that this destination fosters a sense of community and connection, where I can engage with others and share in the joy together. I’m particularly drawn to attractions that feature vibrant live performances, as I find they bring an extra layer of excitement and energy to the experience. In essence, I'm searching for a celebrated entertainment venue that brings people together in an unforgettable way, filled with lively shows and. "
+    }
+  },
+  {
+    "query_id": "<Query00508>",
+    "TimeInfo": "<TimeInfo00081>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "historic_site",
+      "feature_package": "in_depth_expert_guidance",
+      "style": "social_and_community_priority",
+      "tier": "global_landmark"
+    },
+    "location_preference": "<LocationPreference00007>",
+    "groundtruth": "<AttractionPreference01549>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I’m on the lookout for a place that stands as a testament to human history, somewhere that’s recognized not just locally, but around the world for its historical significance. I’m not interested in a small, quaint spot; rather, I’m drawn to a monumental site that has a story to tell on a global scale. My aim is to connect with others who share this appreciation for history, so I’d love a setting that encourages social interaction and community engagement. To truly understand the depths of its historical context, I’m seeking a place where expert guides can provide detailed insights and enrich my experience with their knowledge.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00081> and to <LocationPreference00007> for me according to the user requirements. User requirements: I’m on the lookout for a place that stands as a testament to human history, somewhere that’s recognized not just locally, but around the world for its historical significance. I’m not interested in a small, quaint spot; rather, I’m drawn to a monumental site that has a story to tell on a global scale. My aim is to connect with others who share this appreciation for history, so I’d love a setting that encourages social interaction and community engagement. To truly understand the depths of its historical context, I’m seeking a place where expert guides can provide detailed insights and enrich my experience with their knowledge.. "
+    }
+  },
+  {
+    "query_id": "<Query00641>",
+    "TimeInfo": "<TimeInfo00019>",
+    "task": "attraction",
+    "is_location": 0,
+    "goal_type": "TravelAttraction",
+    "preferences": {
+      "category": "amusement_or_entertainment",
+      "feature_package": "immersive_themed_dining",
+      "style": "action_and_thrill_priority",
+      "tier": "global_landmark"
+    },
+    "location_preference": "<LocationPreference00140>",
+    "groundtruth": "<AttractionPreference35829>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been craving an adventure that offers both excitement and worldwide fame, so I'm on the hunt for a place that’s known across the globe, a destination that stands out as a must-visit on any traveler's list. I'm particularly interested in something that promises heart-pounding thrills and exhilarating experiences, where adrenaline is the main attraction. And while I'm there, I’d love to indulge in a dining experience that's not just about the food but also transports me to another world through its theme and atmosphere. Overall, I'm looking for a world-renowned amusement or entertainment attraction that offers both an adrenaline rush and an unforgettable themed dining experience.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00019> and to <LocationPreference00140> for me according to the user requirements. User requirements: I've been craving an adventure that offers both excitement and worldwide fame, so I'm on the hunt for a place that’s known across the globe, a destination that stands out as a must-visit on any traveler's list. I'm particularly interested in something that promises heart-pounding thrills and exhilarating experiences, where adrenaline is the main attraction. And while I'm there, I’d love to indulge in a dining experience that's not just about the food but also transports me to another world through its theme and atmosphere. Overall, I'm looking for a world-renowned amusement or entertainment attraction that offers both an adrenaline rush and an unforgettable themed dining experience.. "
+    }
+  },
+  {
+    "query_id": "<Query00833>",
+    "TimeInfo": "<TimeInfo01320>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "bakery",
+      "feature_package": "exceptional_view_or_setting",
+      "style": "ambiance_and_setting_priority",
+      "tier": "nationally_acclaimed"
+    },
+    "location_preference": "<LocationPreference00165>",
+    "groundtruth": "<DiningPreference42198>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been yearning for a delightful culinary experience, and I have my heart set on visiting a bakery that’s not just any ordinary place. I'm looking for one that has received recognition across the country, a spot that people from all over would recommend for its excellence. The atmosphere is crucial for me, so I want a place where the setting and surroundings are as inviting as the pastries themselves, offering a charming and picturesque environment. It’s important that this bakery provides more than just delicious treats; it should have a stunning view or an exceptional setting that makes the visit memorable and truly special.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01320> and to <LocationPreference00165> for me according to the user requirements. User requirements: Lately, I've been yearning for a delightful culinary experience, and I have my heart set on visiting a bakery that’s not just any ordinary place. I'm looking for one that has received recognition across the country, a spot that people from all over would recommend for its excellence. The atmosphere is crucial for me, so I want a place where the setting and surroundings are as inviting as the pastries themselves, offering a charming and picturesque environment. It’s important that this bakery provides more than just delicious treats; it should have a stunning view or an exceptional setting that makes the visit memorable and truly special.. "
+    }
+  },
+  {
+    "query_id": "<Query00822>",
+    "TimeInfo": "<TimeInfo00425>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "coffee_shop",
+      "feature_package": "chef_interaction_and_open_kitchen",
+      "style": "culinary_quality_priority",
+      "tier": "nationally_acclaimed"
+    },
+    "location_preference": "<LocationPreference00154>",
+    "groundtruth": "<DiningPreference39202>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been on the hunt for a coffee shop that stands out on a national level, a place that isn't just your average spot but has earned its stripes across the country. I’m particularly interested in finding somewhere that puts a premium on the quality of what they serve, where the focus is on exceptional taste and the art of coffee. It would be a bonus if this place offers a unique experience where I can see the craftsmanship behind the scenes, perhaps with an open kitchen or a chance to interact with the baristas who are passionate about their craft.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00425> and to <LocationPreference00154> for me according to the user requirements. User requirements: I've been on the hunt for a coffee shop that stands out on a national level, a place that isn't just your average spot but has earned its stripes across the country. I’m particularly interested in finding somewhere that puts a premium on the quality of what they serve, where the focus is on exceptional taste and the art of coffee. It would be a bonus if this place offers a unique experience where I can see the craftsmanship behind the scenes, perhaps with an open kitchen or a chance to interact with the baristas who are passionate about their craft.. "
+    }
+  },
+  {
+    "query_id": "<Query00827>",
+    "TimeInfo": "<TimeInfo01741>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "restaurant",
+      "feature_package": "live_music_or_performance",
+      "style": "value_for_money_priority",
+      "tier": "nationally_acclaimed"
+    },
+    "location_preference": "<LocationPreference00159>",
+    "groundtruth": "<DiningPreference40526>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the lookout for a dining experience that strikes the perfect balance between quality and affordability. I’m not interested in just any eatery; I’m specifically searching for a restaurant that has earned recognition across the nation for its excellence. It’s important to me that the meal offers great value, where the prices are reasonable without compromising on the quality of food and service. Additionally, I wish to enjoy an atmosphere that’s enhanced by live music or a performance, adding an extra layer of enjoyment to the dining experience.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01741> and to <LocationPreference00159> for me according to the user requirements. User requirements: I'm on the lookout for a dining experience that strikes the perfect balance between quality and affordability. I’m not interested in just any eatery; I’m specifically searching for a restaurant that has earned recognition across the nation for its excellence. It’s important to me that the meal offers great value, where the prices are reasonable without compromising on the quality of food and service. Additionally, I wish to enjoy an atmosphere that’s enhanced by live music or a performance, adding an extra layer of enjoyment to the dining experience.. "
+    }
+  },
+  {
+    "query_id": "<Query00764>",
+    "TimeInfo": "<TimeInfo01043>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "bakery",
+      "feature_package": "unique_themed_environment",
+      "style": "culinary_quality_priority",
+      "tier": "simple_and_budget_eats"
+    },
+    "location_preference": "<LocationPreference00096>",
+    "groundtruth": "<DiningPreference24564>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the lookout for a charming little bakery that doesn’t break the bank but still delivers on taste. I'm not interested in a fancy restaurant or a quick street food fix; what I crave is something that truly excels in the baking arts without costing a fortune. The quality of the pastries and bread should be top-notch, as I'm a bit of a flavor enthusiast who appreciates well-crafted treats. Additionally, I'm hoping for a place that offers a distinct and memorable atmosphere, perhaps with a quirky or thematic decor that sets it apart from the usual bakeshops.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01043> and to <LocationPreference00096> for me according to the user requirements. User requirements: I'm on the lookout for a charming little bakery that doesn’t break the bank but still delivers on taste. I'm not interested in a fancy restaurant or a quick street food fix; what I crave is something that truly excels in the baking arts without costing a fortune. The quality of the pastries and bread should be top-notch, as I'm a bit of a flavor enthusiast who appreciates well-crafted treats. Additionally, I'm hoping for a place that offers a distinct and memorable atmosphere, perhaps with a quirky or thematic decor that sets it apart from the usual bakeshops.. "
+    }
+  },
+  {
+    "query_id": "<Query00687>",
+    "TimeInfo": "<TimeInfo01295>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "coffee_shop",
+      "feature_package": "exceptional_view_or_setting",
+      "style": "ambiance_and_setting_priority",
+      "tier": "world_renowned_award_winner"
+    },
+    "location_preference": "<LocationPreference00019>",
+    "groundtruth": "<DiningPreference04629>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been dreaming of indulging in a coffee experience that's truly one-of-a-kind, and I'm not just talking about any ordinary café. I'm looking for a coffee shop that has earned global accolades, a place where the baristas are celebrated for their craft on the world stage. Beyond the coffee itself, the environment is crucial—I want to spend my time in a setting that's visually stunning, perhaps with a breathtaking view or an interior that feels like an escape from the ordinary. The ambiance should be so captivating that it complements the exceptional quality of the coffee, making the entire experience unforgettable.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01295> and to <LocationPreference00019> for me according to the user requirements. User requirements: I've been dreaming of indulging in a coffee experience that's truly one-of-a-kind, and I'm not just talking about any ordinary café. I'm looking for a coffee shop that has earned global accolades, a place where the baristas are celebrated for their craft on the world stage. Beyond the coffee itself, the environment is crucial—I want to spend my time in a setting that's visually stunning, perhaps with a breathtaking view or an interior that feels like an escape from the ordinary. The ambiance should be so captivating that it complements the exceptional quality of the coffee, making the entire experience unforgettable.. "
+    }
+  },
+  {
+    "query_id": "<Query00769>",
+    "TimeInfo": "<TimeInfo00066>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "street_food_vendor",
+      "feature_package": "exceptional_view_or_setting",
+      "style": "ambiance_and_setting_priority",
+      "tier": "popular_local_mainstay"
+    },
+    "location_preference": "<LocationPreference00101>",
+    "groundtruth": "<DiningPreference25751>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been craving an experience that combines the flavors of the streets with a setting that truly captures the essence of its surroundings. I'm on the hunt for a street food spot that's not just a fleeting trend but a beloved staple in the local community, a place where the locals themselves often gather. While the food is important, what really matters to me this time is the setting—somewhere with an incredible view or a unique atmosphere that enhances the whole dining experience. I want to enjoy my meal in a place where the ambiance is as memorable as the food itself, perhaps overlooking a beautiful cityscape or nestled in a picturesque location that makes",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00066> and to <LocationPreference00101> for me according to the user requirements. User requirements: Lately, I've been craving an experience that combines the flavors of the streets with a setting that truly captures the essence of its surroundings. I'm on the hunt for a street food spot that's not just a fleeting trend but a beloved staple in the local community, a place where the locals themselves often gather. While the food is important, what really matters to me this time is the setting—somewhere with an incredible view or a unique atmosphere that enhances the whole dining experience. I want to enjoy my meal in a place where the ambiance is as memorable as the food itself, perhaps overlooking a beautiful cityscape or nestled in a picturesque location that makes. "
+    }
+  },
+  {
+    "query_id": "<Query00815>",
+    "TimeInfo": "<TimeInfo03013>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "bakery",
+      "feature_package": "chef_interaction_and_open_kitchen",
+      "style": "culinary_quality_priority",
+      "tier": "nationally_acclaimed"
+    },
+    "location_preference": "<LocationPreference00147>",
+    "groundtruth": "<DiningPreference37602>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been craving a delightful culinary experience that revolves around exceptional baked goods. I'm not just looking for any ordinary spot; I want a bakery that has received national recognition for its outstanding offerings. It's important to me that the focus is on the quality and taste of the pastries, where each bite is a testament to expert craftsmanship. Moreover, I would love to have the opportunity to engage with the artistry behind the scenes, perhaps even with a chance to see the chefs at work in an open kitchen setting. This way, I can truly appreciate the skill and passion that goes into creating each delectable treat.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo03013> and to <LocationPreference00147> for me according to the user requirements. User requirements: Lately, I've been craving a delightful culinary experience that revolves around exceptional baked goods. I'm not just looking for any ordinary spot; I want a bakery that has received national recognition for its outstanding offerings. It's important to me that the focus is on the quality and taste of the pastries, where each bite is a testament to expert craftsmanship. Moreover, I would love to have the opportunity to engage with the artistry behind the scenes, perhaps even with a chance to see the chefs at work in an open kitchen setting. This way, I can truly appreciate the skill and passion that goes into creating each delectable treat.. "
+    }
+  },
+  {
+    "query_id": "<Query00802>",
+    "TimeInfo": "<TimeInfo00377>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "coffee_shop",
+      "feature_package": "live_music_or_performance",
+      "style": "ambiance_and_setting_priority",
+      "tier": "simple_and_budget_eats"
+    },
+    "location_preference": "<LocationPreference00134>",
+    "groundtruth": "<DiningPreference34056>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been craving a cozy spot to unwind without breaking the bank. I'm on the hunt for a charming coffee shop that offers a warm and inviting atmosphere, where the ambiance is just as important as the coffee itself. I’m not looking for anything too fancy or upscale, just a simple place where I can relax and soak in the surroundings. It would be a real bonus if there was some live music or a small performance to enjoy while I sip my drink, adding a nice touch to the overall experience.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00377> and to <LocationPreference00134> for me according to the user requirements. User requirements: Lately, I've been craving a cozy spot to unwind without breaking the bank. I'm on the hunt for a charming coffee shop that offers a warm and inviting atmosphere, where the ambiance is just as important as the coffee itself. I’m not looking for anything too fancy or upscale, just a simple place where I can relax and soak in the surroundings. It would be a real bonus if there was some live music or a small performance to enjoy while I sip my drink, adding a nice touch to the overall experience.. "
+    }
+  },
+  {
+    "query_id": "<Query00690>",
+    "TimeInfo": "<TimeInfo00279>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "restaurant",
+      "feature_package": "chef_interaction_and_open_kitchen",
+      "style": "ambiance_and_setting_priority",
+      "tier": "popular_local_mainstay"
+    },
+    "location_preference": "<LocationPreference00022>",
+    "groundtruth": "<DiningPreference05479>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm on the hunt for a dining experience that captures the essence of the local scene, a place where the community regularly gathers to enjoy a meal. I'm not interested in a fleeting trend or a high-end establishment; instead, I want a beloved restaurant that has stood the test of time and become a staple in the area. What truly matters to me is the atmosphere — I want to dine in a place where the setting is as memorable as the food itself, perhaps with beautifully designed interiors or an inviting layout. Additionally, I'm intrigued by the idea of seeing the chefs in action, so I’m looking for a spot that offers a glimpse into their",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo00279> and to <LocationPreference00022> for me according to the user requirements. User requirements: I'm on the hunt for a dining experience that captures the essence of the local scene, a place where the community regularly gathers to enjoy a meal. I'm not interested in a fleeting trend or a high-end establishment; instead, I want a beloved restaurant that has stood the test of time and become a staple in the area. What truly matters to me is the atmosphere — I want to dine in a place where the setting is as memorable as the food itself, perhaps with beautifully designed interiors or an inviting layout. Additionally, I'm intrigued by the idea of seeing the chefs in action, so I’m looking for a spot that offers a glimpse into their. "
+    }
+  },
+  {
+    "query_id": "<Query00695>",
+    "TimeInfo": "<TimeInfo03692>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "bakery",
+      "feature_package": "unique_themed_environment",
+      "style": "culinary_quality_priority",
+      "tier": "popular_local_mainstay"
+    },
+    "location_preference": "<LocationPreference00027>",
+    "groundtruth": "<DiningPreference06899>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I've been on the hunt for a beloved local spot that really captures the essence of the community, and I'm thinking a bakery would hit the spot. I'm not just looking for any bakery; I want one known and cherished by the locals, a place that's become a staple in the area. It's really important to me that the baked goods are of top-notch quality, where the flavors and textures are crafted with expert precision. Additionally, I'm drawn to places that offer a bit of a twist in their environment—something with a unique theme or atmosphere that makes the experience memorable beyond just the food.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo03692> and to <LocationPreference00027> for me according to the user requirements. User requirements: I've been on the hunt for a beloved local spot that really captures the essence of the community, and I'm thinking a bakery would hit the spot. I'm not just looking for any bakery; I want one known and cherished by the locals, a place that's become a staple in the area. It's really important to me that the baked goods are of top-notch quality, where the flavors and textures are crafted with expert precision. Additionally, I'm drawn to places that offer a bit of a twist in their environment—something with a unique theme or atmosphere that makes the experience memorable beyond just the food.. "
+    }
+  },
+  {
+    "query_id": "<Query00789>",
+    "TimeInfo": "<TimeInfo02536>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "restaurant",
+      "feature_package": "exceptional_view_or_setting",
+      "style": "value_for_money_priority",
+      "tier": "popular_local_mainstay"
+    },
+    "location_preference": "<LocationPreference00121>",
+    "groundtruth": "<DiningPreference30815>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "I'm looking to enjoy a meal at a well-loved eatery, the kind of place that's cherished by the locals and serves as a staple in the community rather than a high-end, international sensation. My focus is on getting the best bang for my buck, so I'm keen on finding a spot that offers great value without compromising on quality or experience. Additionally, I want the setting to be something special — perhaps a restaurant that offers breathtaking views or is nestled in a picturesque location.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02536> and to <LocationPreference00121> for me according to the user requirements. User requirements: I'm looking to enjoy a meal at a well-loved eatery, the kind of place that's cherished by the locals and serves as a staple in the community rather than a high-end, international sensation. My focus is on getting the best bang for my buck, so I'm keen on finding a spot that offers great value without compromising on quality or experience. Additionally, I want the setting to be something special — perhaps a restaurant that offers breathtaking views or is nestled in a picturesque location.. "
+    }
+  },
+  {
+    "query_id": "<Query00791>",
+    "TimeInfo": "<TimeInfo01936>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "restaurant",
+      "feature_package": "chef_interaction_and_open_kitchen",
+      "style": "value_for_money_priority",
+      "tier": "popular_local_mainstay"
+    },
+    "location_preference": "<LocationPreference00123>",
+    "groundtruth": "<DiningPreference31343>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been on the lookout for a place to eat that really captures the spirit of the local scene. I'm not interested in a fancy spot that’s known worldwide or just a small street vendor, but rather a well-loved restaurant that the locals swear by. It's important to me that the dining experience doesn't break the bank, yet still offers great value for the money spent. I’m also intrigued by the idea of seeing the culinary magic happen right in front of me, perhaps with an open kitchen where I can catch a glimpse of the chef at work. This combination of local charm, affordability, and a bit of culinary theater is exactly",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo01936> and to <LocationPreference00123> for me according to the user requirements. User requirements: Lately, I've been on the lookout for a place to eat that really captures the spirit of the local scene. I'm not interested in a fancy spot that’s known worldwide or just a small street vendor, but rather a well-loved restaurant that the locals swear by. It's important to me that the dining experience doesn't break the bank, yet still offers great value for the money spent. I’m also intrigued by the idea of seeing the culinary magic happen right in front of me, perhaps with an open kitchen where I can catch a glimpse of the chef at work. This combination of local charm, affordability, and a bit of culinary theater is exactly. "
+    }
+  },
+  {
+    "query_id": "<Query00770>",
+    "TimeInfo": "<TimeInfo02374>",
+    "task": "dining",
+    "is_location": 0,
+    "goal_type": "TravelDining",
+    "preferences": {
+      "category": "restaurant",
+      "feature_package": "unique_themed_environment",
+      "style": "culinary_quality_priority",
+      "tier": "nationally_acclaimed"
+    },
+    "location_preference": "<LocationPreference00102>",
+    "groundtruth": "<DiningPreference25970>",
+    "validation_raw": "**no conflict**",
+    "is_valid": 1,
+    "user_requirements": "Lately, I've been craving a dining experience that goes beyond just a meal; I'm seeking a nationally recognized restaurant where the focus is all about the artistry and quality of the cuisine. I want to savor dishes that are crafted with precision and passion, ensuring every bite is a testament to culinary excellence. Additionally, I'm looking for a place that offers a distinct and imaginative theme, where the environment itself adds an extra layer of intrigue to the dining experience, making it memorable and unique.",
+    "query": {
+      "input": "Please generate a travel plan during <TimeInfo02374> and to <LocationPreference00102> for me according to the user requirements. User requirements: Lately, I've been craving a dining experience that goes beyond just a meal; I'm seeking a nationally recognized restaurant where the focus is all about the artistry and quality of the cuisine. I want to savor dishes that are crafted with precision and passion, ensuring every bite is a testament to culinary excellence. Additionally, I'm looking for a place that offers a distinct and imaginative theme, where the environment itself adds an extra layer of intrigue to the dining experience, making it memorable and unique.. "
+    }
+  }
+]

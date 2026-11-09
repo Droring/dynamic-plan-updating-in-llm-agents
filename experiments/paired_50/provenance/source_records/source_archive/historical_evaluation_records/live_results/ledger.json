@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "attempted": 30,
+  "charged_tokens": 33965,
+  "requested_cap": 80000,
+  "halt_reason": null,
+  "workflow_run_id": 42011869052,
+  "artifact_id": 13407626465,
+  "artifact_retention_days": 30
+}
