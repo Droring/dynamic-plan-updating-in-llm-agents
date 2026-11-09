@@ -102,6 +102,8 @@ The initial run completed 66 trajectories and stopped during the next one at the
 - Incomplete trajectories in the scored cohort: 0.
 
 - [Committed results summary](RESULTS.md)
+- [Native 100-trajectory path-value audit](NATIVE_PATH_VALUE_AUDIT.md)
+- [Offline audit implementation](native_path_value_audit.py)
 
 ## Paid execution
 
