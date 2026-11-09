@@ -58,7 +58,7 @@ The scored cohort consists of the first run's 66 completed records plus all 34 c
 
 ## Reproducibility
 
-Historical GitHub Actions artifacts were produced under the retired repository, so their links are intentionally omitted here. The raw per-trajectory `scores.json`, `ledger.json`, and `responses.jsonl` are not included in this repository; this document is a result summary rather than a self-contained raw-data release.
+The merged historical artifact was recovered from the retired repository's Actions storage and inspected offline. The raw per-trajectory files are not yet committed in this repository. The recovered ZIP is identified by artifact ID `13646976640` and SHA-256 `6587a6b2c319069d27d07fe9ca21eb3464b38f200f73f6ef4555208b13694630`. It contains `RESULTS.md`, `scores.json`, `ledger.json`, and `responses.jsonl`.
 
 
 Frozen request SHA-256: `a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7`.  
