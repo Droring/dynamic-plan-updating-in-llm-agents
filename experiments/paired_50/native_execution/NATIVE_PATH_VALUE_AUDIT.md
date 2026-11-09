@@ -44,6 +44,23 @@ The dominant failure is not failure to reach the goal. It is failure to change t
 
 The result does not establish the internal cognitive cause or validate an intervention. The next mechanism study should distinguish (1) direct copying/anchoring on the supplied incumbent, (2) failure to recompute the remaining plan after observing the updated tool environment, and (3) later execution drift after an initially appropriate first action.
 
+## Mechanism-relevant prompt audit
+
+The pinned upstream system instruction is not silent about optimization: it explicitly asks the Agent to select the lowest-total-value path, compare candidate paths, and adapt when tool cost or availability changes. The checkpoint message also says the environment has changed and permits either continuing the incumbent or choosing another feasible continuation.
+
+However, the checkpoint message does not identify the changed tool, show its previous and current values, or provide a structured before/after delta. The model receives 14 current tool interfaces per task; each interface description contains that tool's current value. The incumbent suffix is explicitly supplied, while the previous tool-value snapshot is not.
+
+A post-hoc split by the location of the changed tool reveals a useful asymmetry:
+
+| SWITCH fixture type | Tasks | First action still followed incumbent | Value-optimal paths |
+|---|---:|---:|---:|
+| Changed tool is part of incumbent; its value increases | 26 | 24/26 | 2/26 |
+| Changed tool is outside incumbent; an alternative becomes cheaper | 24 | 24/24 | 0/24 |
+
+Both successful SWITCH trajectories occur when the incumbent tool itself becomes more expensive (Query00440 and Query00662). The Agent never switches in the 24 cases where the improvement is confined to a non-incumbent alternative.
+
+This suggests two separable candidate mechanisms: weak detection of degradation to a tool already in the incumbent, and an even stronger failure to discover newly improved alternatives. The pattern is consistent with incumbent anchoring and limited counterfactual search, but the observational split does not establish causality. A controlled prompt probe should separately manipulate explicit change localization and incumbent-plan salience while keeping the current tool graph, checkpoint, objective instruction, and execution budget fixed.
+
 ## Reproduction
 
 The audit script uses only the frozen requests and archived response records. It does not import or call the model provider.
