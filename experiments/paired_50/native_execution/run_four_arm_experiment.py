@@ -459,7 +459,7 @@ def main():
     audit = offline_audit(trials, official_run)
     audit.update({
         "upstream_revision": costbench["revision"],
-        "task_ids": [row["query_id"] for row in task_manifest["tasks"][:args.task_limit]],
+        "task_ids": requested_ids or [row["query_id"] for row in task_manifest["tasks"][:args.task_limit]],
         "repetitions": args.repetitions,
         "prompt_conditions": ["A", "B", "C", "D"],
         "environment_conditions": ["RETAIN", "SWITCH"],
