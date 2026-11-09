@@ -46,14 +46,9 @@ class FourArmPromptTests(unittest.TestCase):
         for arm in "ABCD":
             self.assertEqual(messages[arm].count(common_tail), 1)
             self.assertIn("The tool environment has now changed.", messages[arm])
-        self.assertEqual(
-            messages["A"].replace("Existing remaining plan, selected before the environment update: Old_Tool -> Finish_Tool\\n", ""),
-            messages["C"],
-        )
-        self.assertEqual(
-            messages["B"].replace("Existing remaining plan, selected before the environment update: Old_Tool -> Finish_Tool\\n", ""),
-            messages["D"],
-        )
+        plan_line = "Existing remaining plan, selected before the environment update: " + " -> ".join(self.prepared["incumbent_suffix"]) + "\n"
+        self.assertEqual(messages["A"].replace(plan_line, ""), messages["C"])
+        self.assertEqual(messages["B"].replace(plan_line, ""), messages["D"])
 
 
 if __name__ == "__main__":
