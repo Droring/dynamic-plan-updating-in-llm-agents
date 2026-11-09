@@ -46,7 +46,7 @@
     "experiments/paired_50/live_results/deepseek-flash/responses.jsonl": "1e139210291448944fbcccc0d3fc9794ad394027847d21da86debd4fad3d5afe",
     "experiments/paired_50/live_results/deepseek-flash/scores.json": "3d73cca73ac2bc328e28a1651fc66870758183d16695a5ca7af2f77b8c540067",
     "experiments/paired_50/native_execution/NATIVE_PATH_VALUE_AUDIT.md": "4cd701c0038413aec19eca95b59243a4c5d704b0bbe69f3d380b1d26df2ec62c",
-    "experiments/paired_50/native_execution/README.md": "4b296a5e153dabf8f3526da11f6a29dada4adf215145d79f3faa61fc166f1560",
+    "experiments/paired_50/native_execution/README.md": "3aaf6a1e9c26ac5f0732819d0fd82ad38f4d5274d41dde01ada2fa6c86e0c8a9",
     "experiments/paired_50/native_execution/RESULTS.md": "e01609fb1fe418ab244c8b88153a9e930b6d33b9f153155287cb7208cd2c967d",
     "experiments/paired_50/native_execution/merge_split_run_results.py": "a9d2aa7a07932ab65302ec2d1f3695f33be81e7d9ea4d21888075041945e27a8",
     "experiments/paired_50/native_execution/native_path_value_audit.py": "da837444ffeb53ef24578b9f02027d6293567a80706106e63509e066c5896f8f",
