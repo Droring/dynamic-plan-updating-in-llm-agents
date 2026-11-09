@@ -80,31 +80,45 @@ For the 50 SWITCH conditions, total path regret was 62.40 units:
 
 For the 24 outside-alternative-decrease cases, 29.90 of 31.20 regret units (95.8%) arose at the first action. This points to a failure to select a new continuation at the checkpoint, rather than a failure to execute a newly selected path.
 
+## Cross-protocol evidence from native fact-update probes
+
+The repository also contains small native continuation probes using **Agent-authored pre-event plans** and user-preference changes. These are not the same manipulation as the 50-task tool-value benchmark, so they are supporting mechanism evidence rather than a direct replication.
+
+| Existing probe | Independent tasks | Main result |
+|---|---:|---|
+| Fact-salience re-audit | 4 | On SWITCH cases, first-action correctness rose from 2/4 with a minimal update to 4/4 with an explicit temporal correction. RETAIN preference decisions were 4/4 in both conditions; one explicit-update RETAIN arm made an invalid tool call. |
+| Fact-link control | 4 | Minimal current-value wording: 2/4 correct SWITCH actions. “Changed from old value to new value” wording: 4/4. Adding an extra sentence linking the old preference object to the old value remained 4/4; it did not improve on the simpler correction wording. |
+| EDR policy comparison | 4 | SWITCH first-action correctness was 2/4 for minimal facts, 4/4 for an explicit-delta prompt, and 4/4 for the provenance-derived EDR ledger. EDR did not outperform the simpler prompt baseline. |
+| Action Guard comparison | 4 | SWITCH first-action correctness was 3/4 for minimal facts and 4/4 for both explicit-delta and Action Guard. The guard rejected two actions, but did not improve goal completion over the explicit-delta baseline. |
+| Native candidate-identity control | 2 | The same-vs-different candidate manipulation produced identical outcomes: RETAIN 4/4 correct and SWITCH 0/4. Candidate identity did not change native first actions in this small control. |
+
+The separate five-task candidate-conditioned **label-only** study found that a different but worse candidate could induce SWITCH responses, sometimes contradicting the model's own reported comparison. That result was not reproduced in the two-task native candidate-identity control and should remain exploratory rather than be treated as a stable mechanism.
+
+The native fact-update evidence suggests that explicitly marking a fact as a correction from its previous value can improve the next tool action on a small development sample. It also shows that a provenance ledger or action guard has not demonstrated an advantage over a simple explicit-change prompt. Full records are linked in the [fact-salience audit](../../../research/plan_commitment_pilot/evidence/NATIVE_FACT_SALIENCE_AUDIT.json), [fact-link control](../../../research/plan_commitment_pilot/evidence/NATIVE_FACT_LINK_CONTROL.json), [EDR comparison](../../../research/plan_commitment_pilot/evidence/NATIVE_EDR_POLICY.json), [Action Guard comparison](../../../research/plan_commitment_pilot/evidence/NATIVE_ACTION_GUARD_AUDIT.json), [native candidate-identity control](../../../research/plan_commitment_pilot/evidence/NATIVE_CANDIDATE_IDENTITY.json), and [candidate-conditioned decision report](../../../research/plan_commitment_pilot/MECHANISM_DISCRIMINATION_NEW_RESULTS.md).
+
 ## Mechanism interpretation
 
-The evidence supports the following working explanation:
+Taken together, the evidence does **not** support one invariant “the Agent always clings to its plan” mechanism. It supports a narrower working hypothesis:
 
-**Incumbent-anchored counterfactual path regeneration failure.**
+**Unstable evidence-conditioned plan revision, with incumbent persistence under implicit updates.**
 
-1. The supplied incumbent is a salient, immediately executable continuation.
-2. Although current tool values are visible, the model receives no explicit event diff. It must identify the relevant change and reconstruct alternatives from the current type-dependency graph.
-3. It usually preserves the incumbent, especially when the improvement is in a tool outside that suffix. Direct deterioration of the first and only incumbent action is the only stratum in which any SWITCH-arm deviations appear.
-4. Once a path is selected, native tool execution is reliable. The dominant error is the decision to update the continuation, not tool execution.
+1. In the 50-task tool-value benchmark, a solver-derived incumbent is supplied and the model is only told that the environment changed. It usually continues that incumbent, particularly when a better route must be reconstructed from tools outside the supplied suffix.
+2. In small native preference-update probes, explicitly stating the old-to-new correction improves SWITCH first actions relative to a minimal current-value statement. This suggests the relationship between the new fact and the previous plan state matters.
+3. In candidate-conditioned label-only prompts, a novel alternative can also induce over-switching to a worse candidate. The small native candidate-identity control did not reproduce that effect.
+4. Once a path is selected, the 50-task native tool executions are reliable. The main error occurs in how the Agent maps new evidence to a continuation, not in executing a valid tool call.
 
-This is a behavioral explanation, not a claim about hidden model reasoning. The archived execution records retain tool calls and outcomes, not the model's full intermediate reasoning text. The current evidence cannot separate incumbent anchoring from weak alternative-path enumeration or insufficient salience of the environmental change.
+This is a behavioral synthesis, not a claim about hidden model reasoning. The archived execution records retain tool calls and outcomes, not the model's full intermediate reasoning text. The preference-update probes use a different environmental fact from the tool-value benchmark and contain only four independent tasks each. They do not establish that explicit temporal wording is the cause of the 50-task RETAIN pattern.
 
 ## Next diagnostic probe
 
-Before designing an intervention, the smallest useful follow-up is a controlled prompt ablation on a small, frozen subset of the existing tasks. It should compare:
+The next experiment should replicate the explicit-update effect in a fresh native cohort with **authentic Agent-authored pre-event plans**, rather than add another algorithm now.
 
-- **Baseline:** current checkpoint prompt with the incumbent suffix and no explicit change diff.
-- **Explicit-diff condition:** same prompt, but identify the changed tool and show its previous and current value.
-- **No-incumbent condition:** same current state and current tool definitions, but omit the supplied incumbent suffix.
+- Select 8–10 independent native checkpoints with verified pre-event plans, balanced between RETAIN and SWITCH ground truth.
+- **Baseline:** current minimal update message.
+- **Explicit-update condition:** same checkpoint and current tool graph, but state the exact old-to-new fact or tool-value change. Do not suggest an alternative path.
+- Keep state, tools, incumbent plan, and execution budget identical; randomize condition order and repeat each condition.
+- Score the first native action, its arguments, native execution validity, and goal reach. Do not use the unchanged official final-answer scorer as the sole semantic measure for a changed preference.
 
-Interpretation:
+A consistent improvement would justify implementing a minimal evidence-update mechanism and comparing it against the explicit-prompt baseline. EDR and Action Guard should remain out of the main method until they show an incremental benefit over that simpler baseline. Candidate-suggestion prompts should also remain out of this replication because they may create an over-switching cue.
 
-- Improvement only with the explicit diff points to change-detection or event-salience failure.
-- Improvement only when the incumbent is hidden points to incumbent anchoring.
-- Failure in all three conditions points toward general alternative-path generation or comparison.
-
-This probe is a proposed next experiment, not an executed result. It requires new model calls and is intentionally not launched in this offline analysis.
+This is a proposed next experiment, not an executed result. It requires new model calls and is intentionally not launched in this offline analysis.
