@@ -52,3 +52,27 @@ Factorial contrasts: B-A (localization with plan); D-C (localization without pla
 
 ## Stop and approval gates
 Offline dry-run and exact prompt-diff tests must pass before paid calls. Estimate usage from the two-task debug run and show estimated cost before the formal run. No formal paid run until the user explicitly approves the estimated budget and 128-request run. Stop at the time cap and preserve partial and negative results.
+
+## Executable entry point
+
+The native first-action runner is `run_four_arm_experiment.py`. It reconstructs each frozen checkpoint through the pinned CostBench tool registry, builds the four prompt arms, requests one native tool call, executes that first call with CostBench's native simulation helper, and scores the action against the native optimal continuation value. It does not continue the trajectory in this phase.
+
+Offline validation (no provider calls):
+
+```bash
+python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+  --costbench-root /path/to/CostBench \
+  --task-limit 8
+```
+
+The planned two-task debug cohort deliberately includes one changed tool inside the incumbent and one outside it:
+
+```bash
+python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+  --costbench-root /path/to/CostBench \
+  --task-ids Query00188,Query00347 \
+  --repetitions 1
+```
+
+This prepares 16 debug cells but makes no API calls. Paid execution requires `--live`; the 128-request formal cohort and the 16-request debug cohort are separate invocations. Do not launch either paid invocation until the debug usage is reviewed and the user approves the estimated budget.
+
