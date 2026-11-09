@@ -2,7 +2,7 @@ name: Paired 50 native CostBench execution validation
 
 on:
   push:
-    branches: [main]
+    branches: [main, research/four-arm-mechanism-screen]
     paths:
       - "experiments/paired_50/generated/model_requests_100.jsonl"
       - "experiments/paired_50/native_execution/**"
@@ -57,6 +57,12 @@ jobs:
 
       - name: Reconstruct and audit all 100 frozen checkpoints
         run: python experiments/paired_50/native_execution/run_official_harness.py --costbench-root "$RUNNER_TEMP/CostBench" --limit 100
+
+      - name: Validate the four-arm mechanism screen without provider calls
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --task-limit 8
 
       - name: Verify archived native execution records
         shell: bash
