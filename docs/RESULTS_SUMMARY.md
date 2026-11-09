@@ -4,18 +4,18 @@ This page summarizes the current canonical findings. See the individual evidence
 
 ## Unified 50-task paired study
 
-| Measure | Structured decisions | Native first action |
-|---|---:|---:|
-| Independent base tasks | 50 | 50 |
-| Matched conditions / trajectories | 100 | 100 |
-| RETAIN decision / incumbent-following | 48/50 (96%) | 48/50 incumbent-following (96%) |
-| SWITCH decision / incumbent-following | 3/50 (6%) | 48/50 incumbent-following (96%) |
-| Paired decision / first-action behavior | 1/50 (2%) | 1/50 expected first-action distinction |
-| Goal reached | — | 100/100 |
+| Measure | Structured decision labels | Native first-action behavior | Native path-value audit |
+|---|---:|---:|---:|
+| Independent base tasks | 50 | 50 | 50 |
+| Matched conditions / trajectories | 100 | 100 | 100 |
+| RETAIN condition | 48/50 correct (96%) | 48/50 followed incumbent (96%) | 48/50 value-optimal (96%) |
+| SWITCH condition | 3/50 correct (6%) | 48/50 followed incumbent (96%) | 2/50 value-optimal (4%) |
+| Paired outcome | 1/50 correct (2%) | 1/50 expected first-action distinction | 1/50 optimal in both conditions |
+| Goal reached | — | 100/100 | 100/100 |
 
 The structured protocol evaluates an explicit decision label. The native protocol reports incumbent first-action adherence and goal completion. It does not yet provide a validated path-optimality comparison. These outcomes are not interchangeable.
 
-In native execution, the first-action decision was identical across both matched conditions in 48/50 pairs, despite all 100 trajectories reaching the goal. Goal completion therefore does not establish correct adaptation of the first action.
+The path-value audit independently recomputes shortest-path values for all 100 conditions and matches the pinned native solver's saved optimal-path values in 100/100 cases. Of 62.77 total regret units, 52.53 (83.7%) arise at the first executed action and 10.24 (16.3%) during subsequent actions. The Agent follows the exact incumbent suffix in 48/50 SWITCH conditions. See the [native path-value audit](../experiments/paired_50/native_execution/NATIVE_PATH_VALUE_AUDIT.md).
 
 ## Official native dynamic robustness
 
