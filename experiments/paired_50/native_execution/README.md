@@ -122,7 +122,7 @@ The runner is sequential, records provider token usage, checks a per-call reserv
 Outputs:
 
 - **responses.jsonl** — per-trial tool calls, observations, first-action classification, goal state, and provider usage;
-- **scores.json** — RETAIN/SWITCH first-action results, paired accuracy, trajectory relations, and goal-state completion;
+- **scores.json** — incumbent-following/deviation counts by condition, paired first-action behavior, trajectory relations, and goal-state completion;
 - **ledger.json** — run status, attempted trials, reserved/charged tokens, input hashes, and cap.
 
 The offline-validation workflow runs tests and the full dry-run reconstruction without API calls. The separately named paid-execution workflows call DeepSeek; their jobs are gated to manual dispatch after the initial one-off runs.
