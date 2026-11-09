@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 288,
+  "file_count": 289,
   "sha256": {
     ".github/workflows/paired-50-dataset-validation.yml": "9309c4f4b318b989ae6f21af55e29d93859ed06e420f8f5bc5e3aff798dbff6a",
     ".github/workflows/paired-50-native-execution.yml": "172c31103fc83ef61fc7fbbcb414f3fbe53e3d0876dd1c17a5a4d32bc1de0cb8",
@@ -48,6 +48,7 @@
     "experiments/paired_50/native_execution/README.md": "4b296a5e153dabf8f3526da11f6a29dada4adf215145d79f3faa61fc166f1560",
     "experiments/paired_50/native_execution/RESULTS.md": "61dcb012e69312eae95d73adb42f92d40e4cd936357f550294a88f7f3991d412",
     "experiments/paired_50/native_execution/merge_split_run_results.py": "a9d2aa7a07932ab65302ec2d1f3695f33be81e7d9ea4d21888075041945e27a8",
+    "experiments/paired_50/native_execution/native_path_value_audit.py": "da837444ffeb53ef24578b9f02027d6293567a80706106e63509e066c5896f8f",
     "experiments/paired_50/native_execution/run_official_harness.py": "40ad4ccdaa007f3dcaf6a4d5e2030eb2b718883abab42211c5d0406680c07877",
     "experiments/paired_50/native_execution/test_protocol.py": "20f11c36f17816cefadedb5805a816b8b702ffc5b9eab7f95d60bdd0617ef005",
     "experiments/paired_50/provenance/source_records/README.md": "37229e7bc99ede5953892aa5f364349f3325909ffbc98b24141af79df2e57539",
