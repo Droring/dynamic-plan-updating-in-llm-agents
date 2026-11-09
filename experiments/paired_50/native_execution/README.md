@@ -69,30 +69,39 @@ The search database is regenerated from the pinned travel configuration with the
 
 ## Full-cohort results
 
-The frozen 50-task cohort has now completed all 100 native execution trajectories.
+The frozen 50-task cohort has completed all 100 native execution trajectories. All 100 reached the goal, and the first native tool action succeeded in all 100.
 
-| Measure | Result |
+The first-action label is descriptive: RETAIN means the first executed tool equals the incumbent suffix's first tool; SWITCH means it differs. It is not a path-optimality judgment.
+
+| Descriptive measure | Result |
 |---|---:|
-| RETAIN first-action accuracy | 48/50 (96%) |
-| SWITCH first-action accuracy | 2/50 (4%) |
-| Overall first-action accuracy | 50% |
-| Paired RETAIN/SWITCH accuracy | 1/50 (2%) |
-| Same decision in both paired conditions | 48/50 (96%) |
-| Model predicted RETAIN | 96/100 (96%) |
-| Always-RETAIN baseline accuracy | 50% |
+| RETAIN-condition trials whose first action followed incumbent | 48/50 (96%) |
+| SWITCH-condition trials whose first action followed incumbent | 48/50 (96%) |
+| Total first actions following incumbent | 96/100 (96%) |
+| Total first actions departing from incumbent | 4/100 (4%) |
 | Goal state reached | 100/100 |
+| First native tool action succeeded | 100/100 |
 | Exact incumbent suffix executed | 96/100 |
+| Alternative continuation observed | 4/100 |
 
-The model selected the incumbent first action in **48 of 50 SWITCH conditions (96%)**. It predicted RETAIN in 96/100 trajectories. Its 50% overall accuracy exactly matches an always-RETAIN baseline on this balanced dataset. The first-action prediction was identical across the two conditions in 48/50 pairs. The paired outcomes were: 47 tasks predicted RETAIN in both conditions, one correctly distinguished RETAIN from SWITCH, one predicted SWITCH in both conditions, and one reversed the two decisions. Task completion was 100/100, so completion rate alone would hide the plan-commitment failure.
+The model followed the incumbent first action in 48/50 SWITCH conditions. This is evidence of strong incumbent persistence in this protocol. The four deviations are not counted as successful switches without a separate comparison against the current-condition optimum.
 
-The first-action label is based on the first executed native tool compared with the incumbent suffix's first tool. Full trajectory relation and goal completion are reported separately.
+The paired first-action outcomes were 47 RETAIN/RETAIN, one RETAIN/SWITCH, one SWITCH/RETAIN and one SWITCH/SWITCH. Only one pair showed the expected first-action distinction across conditions. This is a behavioral result, not a path-optimality score.
 
-The initial run completed 66 trajectories and stopped during the next one at the token reservation guard. A continuation completed that same frozen trial from its checkpoint and the remaining 33 trials. The merge script checks both run artifacts against the frozen request and manifest hashes, scores each of the 100 unique trials once, and separately accounts for the superseded partial attempt.
+The archived merged artifact was recovered from the retired repository and inspected offline. Its raw per-trajectory records are not yet committed in this repository. The summary, runner, frozen requests and validation tests are available here; the historical artifact contains `RESULTS.md`, `scores.json`, `ledger.json` and `responses.jsonl`.
+
+The archived execution summary does not include a validated end-to-end comparison of each executed continuation's cumulative cost against the solver's optimal total cost. Raw tool-sequence equality is not a valid substitute unless action granularity and composite-tool representation are shown to be equivalent. Accordingly, this report describes incumbent adherence, observed deviations and goal completion; it does not claim that the deviations are correct switches.
+
+The initial run completed 66 trajectories and stopped during the next one at the token reservation guard. A continuation completed that same frozen trial from its checkpoint and the remaining 33 trials. The merge script validates the two run artifacts against frozen request and manifest hashes, scores each of the 100 unique trials once, and separately accounts for the superseded partial attempt.
+
+- Scored provider usage: **1,191,160 tokens** across 287 model calls.
+- Superseded partial attempt: **5,688 tokens** across one model call.
+- Total provider usage across both runs: **1,196,848 tokens**.
+- API errors: 0.
+- Runner errors: 0.
+- Incomplete trajectories in the scored cohort: 0.
 
 - [Committed results summary](RESULTS.md)
-Historical execution records were produced in the retired repository; links to those runs have been removed. The current repository retains the runner, frozen requests, protocol tests and result summary, but does not contain the historical merged per-trajectory artifact. The offline dry run reconstructs and validates checkpoints without recreating the model responses. Reproduce the 100 live trajectories using the paid-execution commands below.
-
-The original merged run artifact contained `RESULTS.md`, `scores.json`, `ledger.json`, and `responses.jsonl`; those historical raw files are not committed in this repository. When the two source run artifacts are available, `merge_split_run_results.py` can repeat the merge.
 
 ## Paid execution
 
