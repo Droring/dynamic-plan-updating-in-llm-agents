@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 300,
+  "file_count": 302,
   "sha256": {
     ".github/workflows/paired-50-dataset-validation.yml": "9309c4f4b318b989ae6f21af55e29d93859ed06e420f8f5bc5e3aff798dbff6a",
     ".github/workflows/paired-50-native-execution.yml": "ac20b062cefbe941efabb665404d5ba27f0e2a6751e9c6b81ecc06d004f8996b",
@@ -46,6 +46,8 @@
     "experiments/paired_50/live_results/deepseek-flash/responses.jsonl": "1e139210291448944fbcccc0d3fc9794ad394027847d21da86debd4fad3d5afe",
     "experiments/paired_50/live_results/deepseek-flash/scores.json": "3d73cca73ac2bc328e28a1651fc66870758183d16695a5ca7af2f77b8c540067",
     "experiments/paired_50/native_execution/CONTROLLED_MECHANISM_PROTOCOL.md": "ae3c7a387ac202afe80351cb4f5d5829da28383fafdb7b9035e692774acc0acb",
+    "experiments/paired_50/native_execution/FOUR_ARM_INFORMATION_LOCALIZATION_PROTOCOL.md": "67e16949beb88c68a4fb26b82f6c8b9190cdf98bcb941baae62d2da3a5630534",
+    "experiments/paired_50/native_execution/FOUR_ARM_TASK_MANIFEST.json": "eb265e500e6481fe17886866d0e27b52e1c718773d0eedc49e4732c9a663a7a7",
     "experiments/paired_50/native_execution/MECHANISM_ANALYSIS.md": "a281c0c726b57133bc23b51faca6802db0f567e5a795843d8d60b8876f3d3d93",
     "experiments/paired_50/native_execution/NATIVE_PATH_VALUE_AUDIT.md": "53c3dbe08e12e8733a516a0d81a333c8708d06ae4542e5bfc01db0e5a811142e",
     "experiments/paired_50/native_execution/README.md": "7cad4f68fe8f997065f474d4c1ac329958a4d307d05e67b50cca6f9033321b7e",
