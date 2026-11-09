@@ -90,12 +90,9 @@ The first-action label is based on the first executed native tool compared with 
 The initial run completed 66 trajectories and stopped during the next one at the token reservation guard. A continuation completed that same frozen trial from its checkpoint and the remaining 33 trials. The merge script checks both run artifacts against the frozen request and manifest hashes, scores each of the 100 unique trials once, and separately accounts for the superseded partial attempt.
 
 - [Committed results summary](RESULTS.md)
-- [Full merged report and 100 raw traces](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42555294948)
-- [Initial execution run](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42551169346)
-- [Continuation run](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42552119882)
-- [Offline tests and 100-checkpoint reconstruction](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42555277010)
+Historical execution records were produced in the retired repository; links to those runs have been removed. The current repository retains the runner, frozen requests, protocol tests and result summary, but does not contain the historical merged per-trajectory artifact. The offline dry run reconstructs and validates checkpoints without recreating the model responses. Reproduce the 100 live trajectories using the paid-execution commands below.
 
-The merged artifact contains `RESULTS.md`, `scores.json`, `ledger.json`, and `responses.jsonl`. Use `merge_split_run_results.py` to repeat the merge from the two source artifacts.
+The original merged run artifact contained `RESULTS.md`, `scores.json`, `ledger.json`, and `responses.jsonl`; those historical raw files are not committed in this repository. When the two source run artifacts are available, `merge_split_run_results.py` can repeat the merge.
 
 ## Paid execution
 
