@@ -124,7 +124,7 @@
     "research/costbench_method_studies/plan_commitment_evidence_gate/NATIVE_RESULTS.md": "8c0962431c71259d8b9310837e652690989f1d6e5733005e27c8343cff673540",
     "research/costbench_method_studies/plan_commitment_evidence_gate/README.md": "332e908d6c28adef52ec0e812ae36b168f4dd66f46bcdf2e40ada823b1918b7a",
     "research/costbench_method_studies/plan_commitment_evidence_gate/REPLAY_GATE.json": "e5053a2374dee564f144a8399dc0f04c9708aad280c6a4683eb96de62bd5c614",
-    "research/costbench_method_studies/plan_commitment_evidence_gate/audit_original_agent_retention.py": "99f2716d182aab5379b6b27049544120d92e6f176da58710c9d82bc0a054d59c",
+    "research/costbench_method_studies/plan_commitment_evidence_gate/audit_original_agent_retention.py": "737cb250f87dbc591947144acf72b14fe9d832ce9ff91eb4a791f80931c98ba2",
     "research/costbench_method_studies/plan_commitment_evidence_gate/core.py": "85b0016155b1d753abb60a75b23c77d9e61fc79c744a4340e516f57959af4486",
     "research/costbench_method_studies/plan_commitment_evidence_gate/evidence/LIVE_REFERENCE_AUDIT.json": "d2837c4ae58dfdc50b009b44aee8dc8b0babc41222f9947513e919977095af4a",
     "research/costbench_method_studies/plan_commitment_evidence_gate/evidence/NATIVE_AUDIT.json": "0a4418c36500c9d9ad497d8c8d56c46d961fafb01e202fc0187e830c2e50e13c",
