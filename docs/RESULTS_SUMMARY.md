@@ -8,9 +8,9 @@ This page summarizes the current canonical findings. See the individual evidence
 |---|---:|---:|
 | Independent base tasks | 50 | 50 |
 | Matched conditions / trajectories | 100 | 100 |
-| RETAIN accuracy | 48/50 (96%) | 48/50 exact optimal-path match (96%) |
-| SWITCH accuracy | 3/50 (6%) | 2/50 exact optimal-path match (4%) |
-| Paired accuracy | 1/50 (2%) | 1/50 (2%) |
+| RETAIN decision / incumbent-following | 48/50 (96%) | 48/50 incumbent-following (96%) |
+| SWITCH decision / incumbent-following | 3/50 (6%) | 48/50 incumbent-following (96%) |
+| Paired decision / first-action behavior | 1/50 (2%) | 1/50 expected first-action distinction |
 | Goal reached | — | 100/100 |
 
 The structured protocol evaluates an explicit decision label. The native protocol reports incumbent first-action adherence and goal completion. It does not yet provide a validated path-optimality comparison. These outcomes are not interchangeable.
