@@ -13,7 +13,7 @@ This page summarizes the current canonical findings. See the individual evidence
 | Paired outcome | 1/50 correct (2%) | 1/50 expected first-action distinction | 1/50 optimal in both conditions |
 | Goal reached | — | 100/100 | 100/100 |
 
-The structured protocol evaluates an explicit decision label. The native protocol reports incumbent first-action adherence and goal completion. It does not yet provide a validated path-optimality comparison. These outcomes are not interchangeable.
+The structured protocol evaluates an explicit decision label. Native first-action adherence and path-value optimality are separate execution measures; they must not be conflated. The path-value audit validates the executed continuation against the current-condition native optimum.
 
 The path-value audit independently recomputes shortest-path values for all 100 conditions and matches the pinned native solver's saved optimal-path values in 100/100 cases. Of 62.77 total regret units, 52.53 (83.7%) arise at the first executed action and 10.24 (16.3%) during subsequent actions. The Agent follows the exact incumbent suffix in 48/50 SWITCH conditions. See the [native path-value audit](../experiments/paired_50/native_execution/NATIVE_PATH_VALUE_AUDIT.md).
 
