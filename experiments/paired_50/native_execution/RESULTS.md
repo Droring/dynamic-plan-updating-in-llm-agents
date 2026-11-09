@@ -63,10 +63,8 @@ The scored cohort consists of the first run's 66 completed records plus all 34 c
 
 ## Reproducibility
 
-- [Merged report and all 100 scored traces](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42555294948) — artifact ID `13646976640`.
-- [Initial run](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42551169346) — artifact ID `13644809250`.
-- [Continuation run](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42552119882) — artifact ID `13645831744`.
-- [Offline validation](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42555277010).
+Historical GitHub Actions artifacts were produced under the retired repository, so their links are intentionally omitted here. The raw per-trajectory `scores.json`, `ledger.json`, and `responses.jsonl` are not included in this repository; this document is a result summary rather than a self-contained raw-data release.
+
 
 Frozen request SHA-256: `a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7`.  
 Frozen manifest SHA-256: `ef1470f06191ce2d8792da8034dc6e1225d6ddda4f6bb5c29cae6a642579a8c8`.
