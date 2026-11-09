@@ -64,4 +64,4 @@ Historical GitHub Actions artifacts were produced under the retired repository, 
 Frozen request SHA-256: `a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7`.  
 Frozen manifest SHA-256: `ef1470f06191ce2d8792da8034dc6e1225d6ddda4f6bb5c29cae6a642579a8c8`.
 
-The incumbent first-action relation is descriptive only. Primary correctness compares the full executed path with the current-condition optimal path recorded by the pinned native solver. This is a strict path-level criterion; alternative paths with equal optimal value are not credited unless they match the solver-returned path. The measure captures observable execution, not hidden model reasoning.
+The incumbent first-action relation is descriptive only. This report does not yet provide a validated path-level optimality comparison. The measure captures observable execution, not hidden model reasoning.
