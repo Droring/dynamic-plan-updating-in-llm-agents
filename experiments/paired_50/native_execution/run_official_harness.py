@@ -659,7 +659,7 @@ def grade_execution(records, manifest, planned_trials: int = 100):
             continue
         truth = manifest_row["condition"]
         prediction = record.get("first_action_prediction")
-        oracle_match = record.get("first_action_optimal")
+        oracle_match = record.get("oracle_path_match")
         by_condition[truth]["total"] += 1
         if prediction is None:
             by_condition[truth]["no_first_action"] += 1
@@ -727,9 +727,9 @@ def grade_execution(records, manifest, planned_trials: int = 100):
             )
         ),
         "scoring_note": (
-            "Correctness is based on matching the first tool of the pinned native "
-            "solver's current-condition optimal path; incumbent deviation alone "
-            "is not counted as a correct SWITCH."
+            "Primary correctness is exact executed-path equality with the pinned "
+            "native solver's current-condition optimal path. First-action relation "
+            "to the incumbent is descriptive only and is not used as SWITCH correctness."
         ),
         "goal_state_reached": goal_reached,
         "goal_state_rate": goal_reached / len(seen) if seen else None,
@@ -1015,6 +1015,11 @@ async def execute_trial(
         if executed_path and oracle_first_action
         else None
     )
+    oracle_path_match = (
+        executed_path == oracle_path
+        if executed_path and oracle_path
+        else None
+    )
     record = {
         "trial_id": request["trial_id"],
         "query_id": request["query_id"],
@@ -1027,6 +1032,7 @@ async def execute_trial(
         "first_action_prediction": prediction,
         "first_action_optimal": oracle_first_action_match,
         "oracle_first_action": oracle_first_action,
+        "oracle_path_match": oracle_path_match,
         "first_action_success": trace[0]["success"] if trace else None,
         "first_action": executed_path[0] if executed_path else None,
         "incumbent_first_action": prepared["incumbent_suffix"][0],
