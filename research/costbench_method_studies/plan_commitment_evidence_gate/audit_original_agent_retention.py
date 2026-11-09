@@ -200,7 +200,7 @@ def render_csv(data):
         for field in ("incumbent_suffix", "actual_post_event_calls", "current_optimal_suffix"):
             encoded[field] = " -> ".join(encoded[field])
         writer.writerow(encoded)
-    return buffer.getvalue()
+    return buffer.getvalue().replace("\r\n", "\n")
 
 
 def write_outputs(data):
