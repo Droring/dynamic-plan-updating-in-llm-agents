@@ -659,13 +659,18 @@ def grade_execution(records, manifest, planned_trials: int = 100):
             continue
         truth = manifest_row["condition"]
         prediction = record.get("first_action_prediction")
+        oracle_match = record.get("first_action_optimal")
         by_condition[truth]["total"] += 1
         if prediction is None:
             by_condition[truth]["no_first_action"] += 1
         else:
             by_condition[truth]["valid"] += 1
-            by_condition[truth]["correct"] += int(prediction == truth)
-        pairs[manifest_row["query_id"]][truth] = prediction
+        if oracle_match is None:
+            by_condition[truth]["oracle_unscorable"] += 1
+        else:
+            by_condition[truth]["oracle_scored"] += 1
+            by_condition[truth]["correct"] += int(oracle_match)
+        pairs[manifest_row["query_id"]][truth] = oracle_match
         relation_counts[record.get("trajectory_relation", "unknown")] += 1
         goal_reached += int(record.get("goal_state_reached") is True)
 
@@ -714,10 +719,18 @@ def grade_execution(records, manifest, planned_trials: int = 100):
         "switch_accuracy": (
             switch_rows["correct"] / switch_rows["total"] if switch_rows["total"] else None
         ),
-        "switch_condition_followed_incumbent": (
-            switch_rows["valid"] - switch_rows["correct"]
+        "switch_condition_nonincumbent_first_action": (
+            switch_rows["valid"] - sum(
+                int(seen[trial_id].get("first_action_prediction") == "RETAIN")
+                for trial_id, row in manifest.items()
+                if row["condition"] == "SWITCH" and trial_id in seen
+            )
         ),
-        "retain_condition_followed_incumbent": retain_rows["correct"],
+        "scoring_note": (
+            "Correctness is based on matching the first tool of the pinned native "
+            "solver's current-condition optimal path; incumbent deviation alone "
+            "is not counted as a correct SWITCH."
+        ),
         "goal_state_reached": goal_reached,
         "goal_state_rate": goal_reached / len(seen) if seen else None,
         "trajectory_relations": dict(relation_counts),
@@ -995,6 +1008,13 @@ async def execute_trial(
         halt_reason = "max_tool_steps"
 
     prediction = classify_first_action(executed_path, prepared["incumbent_suffix"])
+    oracle_path = prepared["native_optimal_path"]
+    oracle_first_action = oracle_path[0] if oracle_path else None
+    oracle_first_action_match = (
+        executed_path[0] == oracle_first_action
+        if executed_path and oracle_first_action
+        else None
+    )
     record = {
         "trial_id": request["trial_id"],
         "query_id": request["query_id"],
@@ -1005,6 +1025,8 @@ async def execute_trial(
         "model_reported": reported_model,
         "resumed_from_partial": resumed_from_partial,
         "first_action_prediction": prediction,
+        "first_action_optimal": oracle_first_action_match,
+        "oracle_first_action": oracle_first_action,
         "first_action_success": trace[0]["success"] if trace else None,
         "first_action": executed_path[0] if executed_path else None,
         "incumbent_first_action": prepared["incumbent_suffix"][0],
