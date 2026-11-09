@@ -171,25 +171,21 @@ def merge(first_dir: Path, continuation_dir: Path, out_dir: Path, data_dir: Path
     scored_calls = sum(int(row.get("model_calls") or 0) for row in records)
     prediction_counts = Counter(row.get("first_action_prediction") for row in records)
     scores.update({
-        "model_retain_prediction_count": prediction_counts["RETAIN"],
-        "model_switch_prediction_count": prediction_counts["SWITCH"],
-        "model_retain_prediction_rate": prediction_counts["RETAIN"] / 100,
-        "model_switch_prediction_rate": prediction_counts["SWITCH"] / 100,
-        "pair_decision_invariant_count": invariant_pairs,
-        "pair_decision_invariant_rate": invariant_pairs / 50,
-        "pair_prediction_changed_count": 50 - invariant_pairs,
-        "pair_prediction_changed_rate": (50 - invariant_pairs) / 50,
-        "always_retain_baseline_accuracy": condition_counts["RETAIN"] / 100,
-        "balanced_accuracy": (
-            scores["retain_accuracy"] + scores["switch_accuracy"]
-        ) / 2,
+        "model_retain_first_action_count": prediction_counts["RETAIN"],
+        "model_switch_first_action_count": prediction_counts["SWITCH"],
+        "model_retain_first_action_rate": prediction_counts["RETAIN"] / 100,
+        "model_switch_first_action_rate": prediction_counts["SWITCH"] / 100,
+        "pair_first_action_invariant_count": invariant_pairs,
+        "pair_first_action_invariant_rate": invariant_pairs / 50,
+        "pair_first_action_changed_count": 50 - invariant_pairs,
+        "pair_first_action_changed_rate": (50 - invariant_pairs) / 50,
         "source_runs": {
             "initial_run_id": FIRST_RUN_ID,
             "initial_artifact_id": FIRST_ARTIFACT_ID,
             "continuation_run_id": CONTINUATION_RUN_ID,
             "continuation_artifact_id": CONTINUATION_ARTIFACT_ID,
         },
-        "pair_outcomes": {
+        "pair_first_action_outcomes": {
             f"{retain_prediction}/{switch_prediction}": count
             for (retain_prediction, switch_prediction), count in sorted(pair_outcomes.items())
         },
@@ -205,6 +201,10 @@ def merge(first_dir: Path, continuation_dir: Path, out_dir: Path, data_dir: Path
         },
         "actual_model_calls_including_superseded_attempt": scored_calls + superseded_calls,
         "actual_provider_total_tokens_including_superseded_attempt": actual_tokens,
+        "interpretation": (
+            "First-action RETAIN/SWITCH labels describe whether the first executed "
+            "tool follows the incumbent. They are not path-optimality judgments."
+        ),
     })
 
     out_dir = Path(out_dir).resolve()
@@ -262,45 +262,32 @@ def merge(first_dir: Path, continuation_dir: Path, out_dir: Path, data_dir: Path
 
 ## Main results
 
-| Measure | Result |
+| Descriptive measure | Result |
 |---|---:|
-| RETAIN first-action accuracy | {scores["retain"]["correct"]}/50 ({scores["retain_accuracy"]:.1%}) |
-| SWITCH first-action accuracy | {scores["switch"]["correct"]}/50 ({scores["switch_accuracy"]:.1%}) |
-| Overall first-action accuracy | {scores["first_action_accuracy"]:.1%} |
-| Model predicted RETAIN | {scores["model_retain_prediction_count"]}/100 ({scores["model_retain_prediction_rate"]:.1%}) |
-| Model predicted SWITCH | {scores["model_switch_prediction_count"]}/100 ({scores["model_switch_prediction_rate"]:.1%}) |
-| Always-RETAIN baseline accuracy | {scores["always_retain_baseline_accuracy"]:.1%} |
-| Balanced accuracy | {scores["balanced_accuracy"]:.1%} |
-| Paired decision accuracy | {scores["pair_correct"]}/50 ({scores["pair_accuracy"]:.1%}) |
-| Same decision on both paired conditions | {scores["pair_decision_invariant_count"]}/50 ({scores["pair_decision_invariant_rate"]:.1%}) |
+| RETAIN-condition trials whose first action followed incumbent | {scores["retain_condition_first_action_behavior"].get("followed_incumbent", 0)}/50 |
+| SWITCH-condition trials whose first action followed incumbent | {scores["switch_condition_first_action_behavior"].get("followed_incumbent", 0)}/50 |
+| Total first actions following incumbent | {scores["first_action_followed_incumbent"]}/100 |
+| Total first actions departing from incumbent | {scores["first_action_departed_incumbent"]}/100 |
 | Goal state reached | {scores["goal_state_reached"]}/100 |
 | First native tool action succeeded | 100/100 |
 | Exact incumbent suffix executed | {scores["trajectory_relations"].get("exact_incumbent_suffix", 0)}/100 |
-| Alternative continuation executed | {scores["trajectory_relations"].get("alternative_continuation", 0)}/100 |
+| Alternative continuation observed | {scores["trajectory_relations"].get("alternative_continuation", 0)}/100 |
 
-## Paired outcomes
+The first-action label is descriptive: RETAIN means the first executed tool equals the incumbent suffix's first tool; SWITCH means it differs. This does not establish whether the resulting continuation is optimal under the changed environment.
 
-The tuple is (prediction under RETAIN condition, prediction under SWITCH condition).
+## Paired first-action behavior
 
-| Paired outcome | Number of base tasks |
+The tuple is (first-action relation to the incumbent under RETAIN condition, first-action relation under SWITCH condition).
+
+| Paired behavior | Number of base tasks |
 |---|---:|
 {pair_table}
 
-## The four alternative continuations
-
-| Query | RETAIN-condition first tool | SWITCH-condition first tool | Paired prediction |
-|---|---|---|---|
-{deviation_table}
-
-The model selected the incumbent first action in **48/50 SWITCH conditions (96%)**. Across all 100 trajectories, it predicted RETAIN 96 times and SWITCH four times. Its 50% overall accuracy is exactly the same as an always-RETAIN baseline on this balanced dataset; the class-conditional results expose the asymmetry (96% RETAIN accuracy versus 4% SWITCH accuracy). The first-action prediction was identical across the two conditions in {scores["pair_decision_invariant_count"]}/50 pairs (96%); only one pair received the correct RETAIN/SWITCH distinction on both sides.
-
-The model reached the goal in all 100 scored trajectories. Thus task completion alone would conceal the plan-commitment behavior: the main failure is the first action's lack of responsiveness to the paired environment condition.
+The model followed the incumbent first action in {scores["switch_condition_first_action_behavior"].get("followed_incumbent", 0)}/50 SWITCH conditions. This is evidence of incumbent persistence in this protocol. The observed deviations are not counted as successful switches without a separate comparison against the current-condition optimum.
 
 ## Execution and accounting
 
-The initial full-cohort run completed 66 trajectories. Its 67th trajectory executed one successful tool call and then stopped at the token reservation guard. The continuation reran that same frozen trial from its original checkpoint and completed it, then completed the remaining 33 trials.
-
-For scoring, the 66 completed initial records and all 34 completed continuation records form the 100-trial cohort. The partial initial attempt is retained in the accounting but excluded from the scored cohort.
+The initial full-cohort run completed 66 trajectories. Its 67th trajectory executed one successful tool call and then stopped at the token reservation guard. The continuation restarted that same frozen trial from its original checkpoint, completed it, and then completed the remaining 33 trials.
 
 - Scored provider usage: **{scored_tokens:,} tokens** across {scored_calls} model calls.
 - Superseded partial attempt: **{superseded_tokens:,} tokens** across {superseded_calls} model call(s).
@@ -313,11 +300,10 @@ For scoring, the 66 completed initial records and all 34 completed continuation 
 
 - Initial run: [GitHub Actions #{FIRST_RUN_ID}](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/{FIRST_RUN_ID}) — artifact `{FIRST_ARTIFACT_ID}`.
 - Continuation: [GitHub Actions #{CONTINUATION_RUN_ID}](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/{CONTINUATION_RUN_ID}) — artifact `{CONTINUATION_ARTIFACT_ID}`.
-- Offline validation: [GitHub Actions #42553539170](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42553539170).
 - Frozen request SHA-256: `{input_sha}`.
 - Frozen manifest SHA-256: `{manifest_sha}`.
 
-The RETAIN/SWITCH measure is based on the first executed native tool: matching the incumbent suffix's first tool is RETAIN; choosing a different first tool is SWITCH. Full trajectory relation and goal completion are reported separately. This is an observable execution measure, not a claim about hidden model reasoning.
+The archived native execution result describes incumbent adherence and goal completion. It does not yet provide a validated path-optimality comparison. A different first action alone is not sufficient evidence of a correct SWITCH.
 """
     (out_dir / "RESULTS.md").write_text(results_md, encoding="utf-8")
     return scores
