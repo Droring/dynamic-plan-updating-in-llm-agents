@@ -75,6 +75,14 @@ jobs:
             --requests experiments/paired_50/generated/model_requests_100.jsonl \
             --out-dir "$RUNNER_TEMP/native-path-value-audit"
 
+      - name: Stratify SWITCH failures by changed-tool relation
+        run: |
+          python experiments/paired_50/native_execution/analyze_mechanism_strata.py \
+            --responses "$RUNNER_TEMP/native-archive/responses.jsonl" \
+            --requests experiments/paired_50/generated/model_requests_100.jsonl \
+            --trajectory-audit "$RUNNER_TEMP/native-path-value-audit/trajectory_value_audit.csv" \
+            --out-dir "$RUNNER_TEMP/native-path-value-audit/mechanism_strata"
+
       - name: Upload independent audit outputs
         uses: actions/upload-artifact@v4
         with:
