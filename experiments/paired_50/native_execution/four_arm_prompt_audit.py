@@ -26,20 +26,17 @@ def build_user_messages(prepared: dict[str, Any], changed_tool: str, current_cos
         "The tool environment has now changed. Continue the task from the current "
         "checkpoint using the currently available tools. "
     )
-    no_plan_update = (
-        "The tool environment has now changed. Continue the task from the current "
-        "checkpoint using the currently available tools. Choose a feasible continuation. "
-    )
     localized = f"Current cost of {changed_tool}: {current_cost}.\n"
+    choice_line = "Choose a feasible continuation from the current checkpoint. "
     tail = (
         "Make one tool call at a time. Do not merely state a decision; execute the task "
         f"until the goal type {prepared['goal_type']} is reached, then provide the final answer."
     )
     return {
-        "A": common + plan_line + update_line + "You may continue the existing plan or choose a different feasible continuation. " + tail,
-        "B": common + plan_line + localized + update_line + "You may continue the existing plan or choose a different feasible continuation. " + tail,
-        "C": common + no_plan_update + tail,
-        "D": common + localized + no_plan_update + tail,
+        "A": common + plan_line + update_line + choice_line + tail,
+        "B": common + plan_line + localized + update_line + choice_line + tail,
+        "C": common + update_line + choice_line + tail,
+        "D": common + localized + update_line + choice_line + tail,
     }
 
 
