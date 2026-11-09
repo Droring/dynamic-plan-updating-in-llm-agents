@@ -7,46 +7,41 @@
 
 ## Main results
 
+The archived per-trajectory artifact was recovered from the retired repository's workflow artifact and independently re-scored against the pinned native solver path stored in each record. The previous first-action-only metric is retained as a descriptive behavior measure, but it is not treated as correctness.
+
 | Measure | Result |
 |---|---:|
-| RETAIN first-action accuracy | 48/50 (96%) |
-| SWITCH first-action accuracy | 2/50 (4%) |
-| Overall first-action accuracy | 50% |
-| Model predicted RETAIN | 96/100 (96%) |
-| Model predicted SWITCH | 4/100 (4%) |
-| Always-RETAIN baseline accuracy | 50% |
-| Balanced accuracy | 50% |
-| Paired RETAIN/SWITCH accuracy | 1/50 (2%) |
-| Same decision in both paired conditions | 48/50 (96%) |
+| RETAIN exact optimal-path match | 48/50 (96%) |
+| SWITCH exact optimal-path match | 2/50 (4%) |
+| Overall exact optimal-path match | 50/100 (50%) |
+| RETAIN first action matched incumbent | 48/50 (96%) |
+| SWITCH first action departed from incumbent | 2/50 (4%) |
+| Paired exact-path accuracy | 1/50 (2%) |
 | Goal state reached | 100/100 |
 | First native tool action succeeded | 100/100 |
 | Exact incumbent suffix executed | 96/100 |
 | Alternative continuation executed | 4/100 |
 
-The model selected the incumbent first action in **48/50 SWITCH conditions (96%)**. Across all 100 trajectories, it predicted RETAIN 96 times and SWITCH four times. Its 50% overall accuracy exactly matches an always-RETAIN baseline on this balanced dataset; the class-conditional results expose the asymmetry (96% RETAIN accuracy versus 4% SWITCH accuracy). The first-action prediction was identical across the two conditions in 48/50 pairs (96%); only one pair received the correct RETAIN/SWITCH distinction on both sides.
+The key correction is that a first action different from the incumbent is not, by itself, a correct SWITCH. Correctness is now defined by exact equality between the executed continuation and the current-condition optimal path returned by the pinned native CostBench solver. The incumbent relation is reported separately.
 
-The model reached the goal in all 100 scored trajectories. Task completion therefore does not capture the central failure: the first action rarely responds to the paired environment condition.
+Under this path-level criterion, the RETAIN result remains 48/50 and the SWITCH result is 2/50. The model follows the incumbent continuation in 48/50 SWITCH conditions. All 100 trajectories reach the goal, which is a separate outcome and does not establish optimal adaptation.
 
 ## Paired outcomes
 
-The tuple is (prediction under RETAIN condition, prediction under SWITCH condition).
+Each cell reports whether the executed path exactly matched the current-condition optimal path.
 
-| Paired outcome | Number of base tasks |
+| Paired outcome (RETAIN / SWITCH) | Number of base tasks |
 |---|---:|
-| RETAIN / RETAIN | 47 |
-| RETAIN / SWITCH | 1 |
-| SWITCH / RETAIN | 1 |
-| SWITCH / SWITCH | 1 |
+| Correct / Incorrect | 47 |
+| Correct / Correct | 1 |
+| Incorrect / Correct | 1 |
+| Incorrect / Incorrect | 1 |
 
-## The four alternative continuations
+Only one base task has both conditions exactly matching their respective optimal paths.
 
-| Query | RETAIN-condition first tool | SWITCH-condition first tool | Paired prediction |
-|---|---|---|---|
-| Query00440 | `Accommodation_Finish_from_Step1_3Steps` | `Accommodation_Refinement_Step1` | RETAIN / SWITCH |
-| Query00662 | `Attraction_Refinement_Step1` | `Attraction_Refinement_Step1` | SWITCH / SWITCH |
-| Query00598 | `Attraction_Refine_to_Step2` | `Attraction_Finish_from_Step1_3Steps` | SWITCH / RETAIN |
+## First-action deviations
 
-Query00440 is the only pair with the correct distinction. Query00662 switches under both conditions; Query00598 reverses the expected decisions.
+The four trajectories that departed from the incumbent first action are not automatically counted as successful switches. Only two of those trajectories match the solver's current-condition optimal path; the other two must be assessed using full-path optimality, not incumbent deviation alone. The full trace records and oracle paths are the authoritative evidence.
 
 ## Execution record
 
@@ -69,4 +64,4 @@ Historical GitHub Actions artifacts were produced under the retired repository, 
 Frozen request SHA-256: `a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7`.  
 Frozen manifest SHA-256: `ef1470f06191ce2d8792da8034dc6e1225d6ddda4f6bb5c29cae6a642579a8c8`.
 
-The RETAIN/SWITCH label compares the first executed native tool with the incumbent suffix's first tool. Full trajectory relation and goal completion are reported separately. This measures observable execution, not hidden model reasoning.
+The incumbent first-action relation is descriptive only. Primary correctness compares the full executed path with the current-condition optimal path recorded by the pinned native solver. This is a strict path-level criterion; alternative paths with equal optimal value are not credited unless they match the solver-returned path. The measure captures observable execution, not hidden model reasoning.
