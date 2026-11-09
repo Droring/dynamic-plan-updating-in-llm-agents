@@ -20,7 +20,7 @@ The native runner starts a fresh conversation with the original CostBench system
 - the incumbent remaining suffix, explicitly described as selected before the environment update;
 - an instruction that the tool environment has changed and the model may continue or choose another feasible continuation.
 
-The current tool values are exposed in the native function descriptions. At the pinned CostBench revision, `Tool.generate_interface()` appends the current tool value to each tool description ([source](https://github.com/JiayuJeff/CostBench/blob/6424069f3f773ade076bcedbed302ed47cfb1837/env/core/base_types.py#L526-L532)). The system prompt asks the Agent to choose the lowest-total-value path and adapt when tool properties change ([source](https://github.com/JiayuJeff/CostBench/blob/6424069f3f773ade076bcedbed302ed47cfb1837/env/run.py#L1604-L1630)).
+The current tool values are exposed in the native function descriptions. At the pinned CostBench revision, `Tool.generate_interface()` appends the current tool value to each tool description ([source](https://github.com/JiayuJeff/CostBench/blob/6424069f3f773ade076bcedbed302ed47cfb1837/env/core/base_types.py#L526-L532)). The system prompt asks the Agent to choose the lowest-total-cost path and adapt when tool properties change ([source](https://github.com/JiayuJeff/CostBench/blob/6424069f3f773ade076bcedbed302ed47cfb1837/env/run.py#L1604-L1630)).
 
 The model is **not** given a structured old-value/new-value event record or the identity of the changed tool. It must use the current tool descriptions and dependency graph to reconsider the continuation.
 
