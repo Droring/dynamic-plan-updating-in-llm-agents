@@ -8,7 +8,7 @@ Make a tool Agent respond reliably to updated factual evidence after its own pri
 ## Prototype 1: Evidence-Dependency Refresh (EDR)
 - Source: [evidence_dependency_refresh.py](evidence_dependency_refresh.py), with [5 offline tests](test_evidence_dependency_refresh.py).
 - Compare the current user-supplied TransportationStyle to prior **real assistant tool-call argument**. Mark dependent preference object unchanged, changed, or unknown. Use the discovered provenance to construct a factual note, not a gold action.
-- Actual native DeepSeek Flash pilot: [CI #42449416380](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42449416380), independently reaudited [#42449659858](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42449659858).
+- The native EDR pilot outcomes and independent audit records are summarized here; historical Actions links from the retired repository are intentionally omitted. Local JSON evidence and audit scripts remain under `evidence/`.
 - 4 historical development tasks × 2 factual conditions × 3 arms = **24 native trajectories**, 84 provider calls.
 - RETAIN first decision 4/4; SWITCH first decision 4/4. This equals an ordinary explicit-change prompt baseline.
 - Strict complete-without-tool-error: EDR RETAIN **3/4**, SWITCH **2/4**; explicit prompt RETAIN **3/4**, SWITCH **3/4**. Therefore EDR is not an improvement.
@@ -17,10 +17,9 @@ Make a tool Agent respond reliably to updated factual evidence after its own pri
 - Source: [action_evidence_guard.py](action_evidence_guard.py), with [7 guard tests](test_action_evidence_guard.py) (plus 5 EDR tests).
 - Controller intercepts proposed native tool calls before CostBench executes them, checks **observed fact provenance** and **required available input types**, and blocks a stale or invalid proposed action. It requests at most **one** evidence-based correction from the model without executing rejected actions. If another invalid action is proposed, it fails closed. It does not inject a correct tool name, optimal path or target final answer.
 - It is a concrete execution intervention, unlike EDR's evidence note, but remains narrowly implemented for `TransportationStyle` and CostBench's transportation tools.
-- Actual native trial: [CI #42449991199](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42449991199), independently reaudited [CI #42450236273](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42450236273).
+- The native action-guard outcomes and independent audit records are summarized here; historical Actions links from the retired repository are intentionally omitted. Local JSON evidence and audit scripts remain under `evidence/`.
 - Four **previously studied development tasks** × RETAIN/SWITCH × minimal fact/explicit fact/action guard = **24 native trajectories**, 84 DeepSeek provider calls.
 - Guard actually rejected **2 proposed actions in SWITCH**, charged **2 extra feedback calls**, and never rejected a RETAIN proposal.
-- The earlier initially failed workflow [#42449884598](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42449884598) stopped before paid calls because the invocation requested a five-call cap while the argument parser still accepted four; this was repaired before the actual scored experiment.
 
 ### Verified action-guard outcomes
 
