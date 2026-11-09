@@ -241,7 +241,7 @@ def merge(first_dir: Path, continuation_dir: Path, out_dir: Path, data_dir: Path
         encoding="utf-8",
     )
 
-    pair_table = "\\n".join(
+    pair_table = "\n".join(
         f"| `{retain_prediction}/{switch_prediction}` | {count} |"
         for (retain_prediction, switch_prediction), count in sorted(pair_outcomes.items())
     )
