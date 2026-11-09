@@ -4,7 +4,7 @@
 Offline protocol and task manifest frozen. No provider calls have been launched. This is a new intervention on eight reused tasks from the existing paired-50 cohort, not an independent held-out evaluation.
 
 ## Research question
-At the same current CostBench checkpoint, does showing the solver-supplied incumbent plan change the quality of the next native tool action, and does localizing the changed tool's current fact help?
+At the same current CostBench checkpoint, does showing the solver-supplied incumbent plan change the quality of the next native tool action, and does repeating the changed tool's current cost in the user message improve its salience?
 
 ## Naming and provenance decision
 The paired-50 fixtures provide matched RETAIN/SWITCH current environments, a solver-derived incumbent suffix, and current tool costs. They do not provide a verified temporal old-price snapshot for every task. Therefore this experiment is named **information localization**, not an old-to-new event-history intervention. The explicit arm names the changed tool and repeats its current cost exactly as present in the current tool interface. It does not invent an old value or describe the paired counterfactual cost as a historical price.
@@ -17,11 +17,11 @@ Eight tasks are frozen in `FOUR_ARM_TASK_MANIFEST.json`: four where the changed 
 ## Factorial conditions
 A 2 x 2 design:
 - **A — Original:** incumbent shown; original checkpoint update wording.
-- **B — Localized fact:** incumbent shown; add one neutral sentence naming the changed tool and its current cost.
+- **B — Current-cost reminder:** incumbent shown; add one neutral sentence naming the changed tool and its current cost. The same current costs are already visible in all tool descriptions, so this is a salience reminder, not new information.
 - **C — Plan omitted:** remove only the incumbent-plan sentence; retain task, prefix, observation, current state, tools and original update wording.
-- **D — Plan omitted + localized fact:** combine C and B.
+- **D — Plan omitted + current-cost reminder:** combine C and B.
 
-The localization sentence must be factual and non-directive, e.g. `The currently available cost for TOOL_NAME is VALUE.` The current tool interface remains visible in every condition. Do not reveal RETAIN/SWITCH labels, oracle paths, path values, or recommend an action.
+The current-cost reminder must be factual and non-directive, e.g. `The currently available cost for TOOL_NAME is VALUE.` The current tool interface, including current costs for all tools, remains visible in every condition. Do not reveal RETAIN/SWITCH labels, oracle paths, path values, or recommend an action.
 
 ## Fairness checks
 For every task and environment condition:
@@ -75,4 +75,8 @@ python experiments/paired_50/native_execution/run_four_arm_experiment.py \
 ```
 
 This prepares 16 debug cells but makes no API calls. Paid execution requires `--live`; the 128-request formal cohort and the 16-request debug cohort are separate invocations. Do not launch either paid invocation until the debug usage is reviewed and the user approves the estimated budget.
+
+## Post-smoke clarification
+
+The archived payload audit confirmed that all four conditions include complete tool descriptions with current costs for every tool. Consequently, B and D repeat the changed tool's current cost in the user message; they do not expose information absent from A and C. Interpret B-A and D-C as tests of a localized current-cost reminder/salience cue. See `SMOKE_TEST_REPORT.md` and `MECHANISM_AUDIT.md` for the archived evidence and candidate-feasibility audit.
 
