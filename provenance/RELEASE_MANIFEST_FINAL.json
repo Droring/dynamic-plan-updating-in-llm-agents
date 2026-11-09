@@ -48,7 +48,7 @@
     "experiments/paired_50/native_execution/README.md": "a41fa0b0330a640f24b142014bc76b127f988e14c44c47d69001104f9f4d84b3",
     "experiments/paired_50/native_execution/RESULTS.md": "4e807f24d7fc1e31a4c1da1d9b83f1abe9cf7b9dace4a56d4283cc789b616232",
     "experiments/paired_50/native_execution/merge_split_run_results.py": "105a992feca7104ff2979dfcfd6863c071cf56acf587c8157951622daa5a6c0c",
-    "experiments/paired_50/native_execution/run_official_harness.py": "22f4c91e795d9adce12754ee394f250ee64e70019ce029a341af6f4236843e11",
+    "experiments/paired_50/native_execution/run_official_harness.py": "4b138269c627e8484ab75ed98196709678d684041864dd29568d798d9d2c3bcc",
     "experiments/paired_50/native_execution/test_protocol.py": "2e11ec370a15f772a53c5fd087b2297677dd446e38a775e05e7b3d3acc53431b",
     "experiments/paired_50/provenance/source_records/README.md": "37229e7bc99ede5953892aa5f364349f3325909ffbc98b24141af79df2e57539",
     "experiments/paired_50/provenance/source_records/source_archive/README.md": "490ea98cc3cc9c75635f4e2ede650ab6dc3b656b9ed796b2f40c680a21983548",
