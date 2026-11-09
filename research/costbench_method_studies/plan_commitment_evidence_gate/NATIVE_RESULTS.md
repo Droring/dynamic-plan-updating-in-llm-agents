@@ -9,7 +9,7 @@ No old-price planner-synthesized incumbent is labeled an LLM commitment.
 
 - Model-written paths uniquely parsed and validated: **27/67**.
 - Plan-status breakdown: {'NO_VALID_COMMITTED_PATH': 27, 'UNPARSEABLE_OR_AMBIGUOUS': 13, 'VALID_PRE_EVENT_COMMITMENT': 27}.
-- Evidence gate actions: {'NO_VERIFIABLE_PLAN_FULL_GRAPH_FALLBACK': 40, 'RETAIN_OBSERVED_LLM_PLAN': 22, 'SWITCH_FROM_OBSERVED_LLM_PLAN': 5}.
+- Deterministic evidence-gate actions: {'NO_VERIFIABLE_PLAN_FULL_GRAPH_FALLBACK': 40, 'RETAIN_OBSERVED_LLM_PLAN': 22, 'SWITCH_FROM_OBSERVED_LLM_PLAN': 5}. These are symbolic policy outputs, not post-event model choices.
 - Official native tool goal: **67/67**, run complete **67/67**, final answer accepted **61/67**.
 - Same-checkpoint Full answer accepted: **61/67**, discordant success cases **0**.
 - Public tool cost: gate **4082.50** vs exact Full **4081.37**; regret **1.13**.

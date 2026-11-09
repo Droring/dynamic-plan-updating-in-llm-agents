@@ -46,7 +46,7 @@ The subsequent offline audit replays all 100 executed paths against the frozen c
 - Paired value-optimality: 1/50 task pairs are optimal in both conditions.
 - Total path regret: 62.77; 52.53 (83.7%) is introduced by the first action and 10.24 (16.3%) by subsequent actions.
 
-See [NATIVE_PATH_VALUE_AUDIT.md](NATIVE_PATH_VALUE_AUDIT.md) for the complete method, validation and interpretation.
+See [NATIVE_PATH_VALUE_AUDIT.md](NATIVE_PATH_VALUE_AUDIT.md) for the complete method, validation and interpretation. The [mechanism analysis](MECHANISM_ANALYSIS.md) stratifies SWITCH failures by the location and direction of the changed tool value and reports paired first-action consistency.
 
 ## Execution record
 

@@ -2,7 +2,7 @@
 
 **An empirical study of plan retention, environment updates, and replanning failures.**
 
-[中文说明](README_zh.md) · [Research mainline](research/plan_commitment_pilot/RESEARCH_MAINLINE.md) · [Experiment index](experiments/README.md) · [Manuscript workspace](paper/README.md) · [Related work](docs/RELATED_WORK.md) · [Reproducibility](docs/REPRODUCIBILITY.md) · [Algorithm provenance](docs/ALGORITHM_PROVENANCE_AND_CLEANUP.md)
+[中文说明](README_zh.md) · [Research mainline](research/plan_commitment_pilot/RESEARCH_MAINLINE.md) · [Experiment index](experiments/README.md) · [Mechanism analysis](experiments/paired_50/native_execution/MECHANISM_ANALYSIS.md) · [Manuscript workspace](paper/README.md) · [Related work](docs/RELATED_WORK.md) · [Reproducibility](docs/REPRODUCIBILITY.md) · [Algorithm provenance](docs/ALGORITHM_PROVENANCE_AND_CLEANUP.md)
 
 > **Central question:** When an LLM Agent has formed and begun executing a plan, why can it fail to update that plan after new environment facts arrive? How can it correctly decide to RETAIN, REPAIR, or SWITCH based on current evidence?
 

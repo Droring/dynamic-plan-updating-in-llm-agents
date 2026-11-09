@@ -92,6 +92,8 @@ The archived merged artifact was recovered from the retired repository and inspe
 
 The [native path-value audit](NATIVE_PATH_VALUE_AUDIT.md) replays all 100 executed paths, validates every recorded tool value against the frozen tool registry, and compares each path with the current-condition native optimum. An independent Dijkstra implementation matches the pinned solver's optimal path value in all 100 trials. The audit finds 48/50 value-optimal RETAIN paths and 2/50 value-optimal SWITCH paths. First actions account for 83.7% of total path regret; later actions account for 16.3%.
 
+The [mechanism analysis](MECHANISM_ANALYSIS.md) examines whether the changed tool belongs to the incumbent suffix, whether it is the first or a later action, and whether the paired first action changes in the expected direction.
+
 The initial run completed 66 trajectories and stopped during the next one at the token reservation guard. A continuation completed that same frozen trial from its checkpoint and the remaining 33 trials. The merge script validates the two run artifacts against frozen request and manifest hashes, scores each of the 100 unique trials once, and separately accounts for the superseded partial attempt.
 
 - Scored provider usage: **1,191,160 tokens** across 287 model calls.

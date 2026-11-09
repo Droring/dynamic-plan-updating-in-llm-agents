@@ -13,7 +13,8 @@ The audit uses archived model responses and native traces. It does not constitut
 ## Findings
 
 - 27 of 67 event checkpoints contained a uniquely recoverable and executable prospective Agent-authored plan.
-- Of those 27 plans, 22 were retained and 5 were replaced by a different continuation under the audit rule.
+- Of those 27 plans, the deterministic evidence gate retained 22 and selected a different continuation for 5.
+- These 22/5 counts are gate outputs, not new post-event DeepSeek decisions; the audit made zero post-event model calls.
 - The remaining 40 checkpoints used an explicit fallback because no qualifying plan was available.
 - All 67 native continuations completed; 61/67 final answers were accepted, matching the archived full-replanning baseline.
 

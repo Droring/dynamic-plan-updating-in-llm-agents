@@ -36,7 +36,7 @@ The same 50 base tasks completed 100 native tool-execution trajectories using th
 | Same first-action decision in both conditions | 48/50 (96%) |
 | Goal reached | 100/100 |
 
-The structured protocol measures an explicit decision label; native execution measures the first executed tool relative to the incumbent suffix. These are separate outcomes. The agent reached every goal, but its first action rarely changed with the paired environment condition. See [native execution protocol](native_execution/README.md) and [detailed results](native_execution/RESULTS.md).
+The structured protocol measures an explicit decision label; native execution measures the first executed tool relative to the incumbent suffix. These are separate outcomes. The agent reached every goal, but its first action rarely changed with the paired environment condition. See [native execution protocol](native_execution/README.md) and [detailed results](native_execution/RESULTS.md). The [mechanism analysis](native_execution/MECHANISM_ANALYSIS.md) stratifies SWITCH failures by the location of the changed tool value and paired first-action consistency.
 
 ## Reproduction
 

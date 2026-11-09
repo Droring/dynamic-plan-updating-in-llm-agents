@@ -42,6 +42,17 @@ def classify_changed_tool(changed_tool: str, incumbent: list[str], delta: float)
     return "outside_tool_other_change"
 
 
+def locate_changed_tool(changed_tool: str, incumbent: list[str]):
+    """Return the changed tool's position relative to the incumbent suffix."""
+    try:
+        index = incumbent.index(changed_tool)
+    except ValueError:
+        return "outside_incumbent", 0
+    if index == 0:
+        return "first_incumbent_action", 1
+    return "later_incumbent_action", index + 1
+
+
 def summarize(rows):
     groups = defaultdict(list)
     for row in rows:
@@ -55,8 +66,30 @@ def summarize(rows):
             "alternative_continuation": sum(not x["exact_incumbent_suffix"] for x in items),
             "value_optimal": sum(x["value_optimal"] for x in items),
             "nonoptimal": sum(not x["value_optimal"] for x in items),
+            "total_path_regret": round(sum(x["path_regret"] for x in items), 6),
+            "first_action_regret": round(sum(x["first_action_regret"] for x in items), 6),
+            "later_action_regret": round(sum(x["later_action_regret"] for x in items), 6),
             "query_ids": sorted(x["query_id"] for x in items),
             "optimal_query_ids": sorted(x["query_id"] for x in items if x["value_optimal"]),
+        }
+    return out
+
+
+def summarize_positions(rows):
+    groups = defaultdict(list)
+    for row in rows:
+        key = (row["change_pattern"], row["changed_tool_position"], str(row["incumbent_suffix_length"]))
+        groups[key].append(row)
+    out = {}
+    for key, items in sorted(groups.items()):
+        out["|".join(key)] = {
+            "n": len(items),
+            "alternative_continuation": sum(not x["exact_incumbent_suffix"] for x in items),
+            "value_optimal": sum(x["value_optimal"] for x in items),
+            "total_path_regret": round(sum(x["path_regret"] for x in items), 6),
+            "first_action_regret": round(sum(x["first_action_regret"] for x in items), 6),
+            "later_action_regret": round(sum(x["later_action_regret"] for x in items), 6),
+            "query_ids": sorted(x["query_id"] for x in items),
         }
     return out
 
@@ -118,6 +151,7 @@ def run(responses_path: Path, requests_path: Path, trajectory_audit_path: Path, 
             raise ValueError(f"changed tool mismatch: {query_id}")
 
         changed_tool = switch["changed_tool"]
+        changed_position, changed_position_index = locate_changed_tool(changed_tool, incumbent)
         retain_tools = retain_visible["current_tools"]
         switch_tools = switch_visible["current_tools"]
         if set(retain_tools) != set(switch_tools) or changed_tool not in switch_tools:
@@ -144,9 +178,13 @@ def run(responses_path: Path, requests_path: Path, trajectory_audit_path: Path, 
         optimal = as_bool(audit["value_optimal"])
         row = {
             "query_id": query_id,
+            "task_category": switch_visible["task"],
             "changed_tool": changed_tool,
             "change_pattern": pattern,
             "changed_tool_in_incumbent": changed_tool in incumbent,
+            "changed_tool_position": changed_position,
+            "changed_tool_position_index": changed_position_index,
+            "incumbent_suffix_length": len(incumbent),
             "incumbent_suffix": " -> ".join(incumbent),
             "retain_tool_value": float(retain_tools[changed_tool]["cost"]),
             "switch_tool_value": float(switch_tools[changed_tool]["cost"]),
@@ -173,17 +211,30 @@ def run(responses_path: Path, requests_path: Path, trajectory_audit_path: Path, 
     )):
         raise ValueError("paired fixture validation failed")
 
+    pair_behaviors = defaultdict(int)
+    for arms in response_by_pair.values():
+        pair_behaviors[f'{arms["RETAIN"]["first_action_prediction"]}/{arms["SWITCH"]["first_action_prediction"]}'] += 1
+
     summary = {
-        "schema": "paired-50-native-switch-mechanism-strata-v1",
+        "schema": "paired-50-native-switch-mechanism-strata",
         "independent_base_tasks": 50,
         "switch_conditions": 50,
         "pair_validation": pair_validation,
         "strata": summarize(rows),
+        "structural_breakdown": summarize_positions(rows),
+        "paired_first_action_patterns": dict(sorted(pair_behaviors.items())),
+        "pairs_same_first_action": pair_behaviors.get("RETAIN/RETAIN", 0) + pair_behaviors.get("SWITCH/SWITCH", 0),
+        "pairs_expected_direction": pair_behaviors.get("RETAIN/SWITCH", 0),
+        "pairs_reverse_direction": pair_behaviors.get("SWITCH/RETAIN", 0),
         "overall": {
             "first_action_followed_incumbent": sum(x["first_action_followed_incumbent"] for x in rows),
             "exact_incumbent_suffix": sum(x["exact_incumbent_suffix"] for x in rows),
+            "alternative_continuation": sum(not x["exact_incumbent_suffix"] for x in rows),
             "value_optimal": sum(x["value_optimal"] for x in rows),
             "nonoptimal": sum(not x["value_optimal"] for x in rows),
+            "total_path_regret": round(sum(x["path_regret"] for x in rows), 6),
+            "first_action_regret": round(sum(x["first_action_regret"] for x in rows), 6),
+            "later_action_regret": round(sum(x["later_action_regret"] for x in rows), 6),
             "optimal_query_ids": sorted(x["query_id"] for x in rows if x["value_optimal"]),
         },
         "interpretation_boundary": [
