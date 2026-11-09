@@ -1,6 +1,6 @@
 # Mechanism discrimination of historical false-RETAIN behavior — new paid-model results
 
-Date: 2026-11-08. **Completed two newly executed development-stage trials.** Original 45 source tasks were not replaced, and the 3 old post-hoc probes remain excluded.
+**Completed two newly executed development-stage trials.** Original 45 source tasks were not replaced, and the 3 old post-hoc probes remain excluded.
 
 ## Scope and provenance
 

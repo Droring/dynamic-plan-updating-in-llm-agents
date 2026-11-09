@@ -1,6 +1,6 @@
 # First algorithm-development iteration: evidence refresh and pre-action guard
 
-**Date:** 2026-11-08. **Status:** Both prototypes implemented, unit-tested and run against real native CostBench execution. **NO-GO for an empirical improvement claim.** Do not silently delete negative evidence.
+**Status:** Both prototypes implemented, unit-tested and run against real native CostBench execution. **NO-GO for an empirical improvement claim.** Do not silently delete negative evidence.
 
 ## Research target
 Make a tool Agent respond reliably to updated factual evidence after its own prior planning and partial execution. Reward correct selective continuation when a fact stays unchanged, correct fresh tool use when a relevant fact changes, and actual successful/valid tool execution. **This is not a tool-cost optimization project**.

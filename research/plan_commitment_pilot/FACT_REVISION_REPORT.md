@@ -1,6 +1,6 @@
 # Four-Task Native Fact-Revision Pilot: Audited Interim Research Conclusion
 
-Date: 2026-11-08. Branch: `research/plan-commitment-native-gate-20261108`.
+Historical development-pilot record. The original branch reference has been omitted from this current-project copy.
 
 ## Hypothesis and design
 Goal: test whether a DeepSeek Agent that has already committed to and partially executed a plan incorrectly carries it forward after an explicitly corrected user preference, **even though its old future tools remain callable**. This is an exploratory test of observable updating, not an algorithm evaluation.
