@@ -58,4 +58,3 @@ Preserve this study as a rigorous, negative pilot rather than claim a method imp
 - [Reproduce action audit](audit_fact_revision.py)
 - [Primary four-arm real Agent runner](native_fact_revision.py)
 - [Three-task batch runner](native_fact_update_batch.py)
-- [Successful offline audit CI](https://github.com/Droring/state-aligned-selective-replanning/actions/runs/42444793149)
