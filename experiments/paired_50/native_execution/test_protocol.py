@@ -282,7 +282,7 @@ class ActionScoringTests(unittest.TestCase):
         self.assertEqual(result["category_counts"], {"transportation": 50})
         self.assertEqual(result["prefix_tool_count"], 50)
 
-    def test_grade_execution_scores_observable_first_action(self):
+    def test_grade_execution_reports_incumbent_deviation_as_behavior(self):
         manifest = {
             "trial-retain": {
                 "query_id": "Query00001",
@@ -300,7 +300,6 @@ class ActionScoringTests(unittest.TestCase):
                 "trial_id": "trial-retain",
                 "request_sha256": "hash-retain",
                 "first_action_prediction": "RETAIN",
-                "oracle_path_match": True,
                 "trajectory_relation": "exact_incumbent_suffix",
                 "goal_state_reached": True,
                 "provider_total_tokens": 100,
@@ -309,7 +308,6 @@ class ActionScoringTests(unittest.TestCase):
                 "trial_id": "trial-switch",
                 "request_sha256": "hash-switch",
                 "first_action_prediction": "SWITCH",
-                "oracle_path_match": True,
                 "trajectory_relation": "alternative_continuation",
                 "goal_state_reached": True,
                 "provider_total_tokens": 120,
@@ -319,18 +317,15 @@ class ActionScoringTests(unittest.TestCase):
         self.assertEqual(result["status"], "complete")
         self.assertFalse(result["cohort_complete"])
         self.assertEqual(result["cohort_coverage"], 0.02)
-        self.assertEqual(result["api_error_trials"], 0)
-        self.assertEqual(result["pair_correct"], 1)
         self.assertEqual(result["paired_tasks_attempted"], 1)
-        self.assertEqual(result["pair_accuracy"], 1.0)
-        self.assertIsNone(result["full_cohort_pair_accuracy"])
-        self.assertEqual(result["retain"]["correct"], 1)
-        self.assertEqual(result["switch"]["correct"], 1)
-        self.assertEqual(result["first_action_accuracy"], 1.0)
+        self.assertEqual(result["paired_first_action_behavior"], {"RETAIN/SWITCH": 1})
+        self.assertEqual(result["first_action_followed_incumbent"], 1)
+        self.assertEqual(result["first_action_departed_incumbent"], 1)
         self.assertEqual(result["goal_state_reached"], 2)
         self.assertEqual(result["provider_total_tokens"], 220)
+        self.assertIn("Neither label alone establishes", result["interpretation"])
 
-    def test_missing_first_action_counts_against_end_to_end_accuracy(self):
+    def test_missing_first_action_is_reported_without_optimality_claim(self):
         manifest = {
             "trial-retain": {
                 "query_id": "Query00001",
@@ -348,7 +343,6 @@ class ActionScoringTests(unittest.TestCase):
                 "trial_id": "trial-retain",
                 "request_sha256": "hash-retain",
                 "first_action_prediction": None,
-                "oracle_path_match": None,
                 "trajectory_relation": "no_tool_action",
                 "goal_state_reached": False,
                 "provider_total_tokens": 10,
@@ -357,7 +351,6 @@ class ActionScoringTests(unittest.TestCase):
                 "trial_id": "trial-switch",
                 "request_sha256": "hash-switch",
                 "first_action_prediction": "SWITCH",
-                "oracle_path_match": True,
                 "trajectory_relation": "alternative_continuation",
                 "goal_state_reached": True,
                 "provider_total_tokens": 20,
@@ -365,13 +358,12 @@ class ActionScoringTests(unittest.TestCase):
         ]
         result = grade_execution(records, manifest, planned_trials=2)
         self.assertEqual(result["status"], "complete")
-        self.assertEqual(result["pair_correct"], 0)
-        self.assertEqual(result["paired_tasks_attempted"], 1)
-        self.assertEqual(result["pair_accuracy"], 0.0)
-        self.assertEqual(result["first_action_accuracy"], 0.5)
-        self.assertEqual(result["valid_action_accuracy"], 1.0)
-        self.assertEqual(result["retain_accuracy"], 0.0)
-        self.assertEqual(result["switch_accuracy"], 1.0)
+        self.assertEqual(result["paired_first_action_behavior"], {"None/SWITCH": 1})
+        self.assertEqual(result["retain_condition_first_action_behavior"]["no_first_action"], 1)
+        self.assertEqual(result["switch_condition_first_action_behavior"]["departed_incumbent"], 1)
+        self.assertEqual(result["goal_state_reached"], 1)
+        self.assertIn("not establish current-condition optimality", result["interpretation"])
+
 
 
 if __name__ == "__main__":
