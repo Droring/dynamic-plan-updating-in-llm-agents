@@ -38,3 +38,19 @@ they were newly randomized independent model trials.
 | transportation | 10 | 24 |
 
 Full records are in [NATIVE_AUDIT.json](evidence/NATIVE_AUDIT.json).
+
+
+## Original Agent behavior in the raw official dynamic runs
+
+This is a separate action-level extraction from the original 80-task official CostBench dynamic-run JSON. It is not the deterministic evidence-gate continuation reported above.
+
+- The pre-event executed prefix matches the Agent-authored plan in **27/27** recoverable-plan cases.
+- The original model's first post-event tool action follows its own incumbent suffix in **27/27** cases.
+- The first post-event action matches the current graph-optimal first action in **15/27** cases; it differs in **12/27**.
+- The complete post-event tool sequence exactly matches the incumbent suffix in **23/27** cases and the current optimal suffix in **15/27**.
+- In the five cases where the deterministic gate selects SWITCH, the original model still follows the incumbent on its first post-event action in **5/5** cases; **0/5** match the current optimal first action.
+- All 27 original trajectories reach the goal; 24/27 official final answers are accepted.
+
+The gate's 22 RETAIN / 5 SWITCH counts remain deterministic policy outputs. The 27/27 first-action result above is extracted independently from the original model's archived conversation history.
+
+Reproduction: [audit script](audit_original_agent_retention.py), [JSON audit](evidence/ORIGINAL_AGENT_RETENTION_AUDIT.json), and [per-task CSV](evidence/ORIGINAL_AGENT_RETENTION_AUDIT.csv).

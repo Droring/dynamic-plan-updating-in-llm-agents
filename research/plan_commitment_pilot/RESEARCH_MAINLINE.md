@@ -38,15 +38,19 @@ The structured label and native first-action outcome are different measurements 
 
 The incumbent suffix in this benchmark is solver-derived and supplied at a controlled checkpoint. The experiment measures decisions and observable execution relative to that incumbent; it does not establish that the Agent independently authored the original plan.
 
-### Official native dynamic-robustness audit
+### Official native dynamic-robustness and original-plan audit
 
-The official CostBench Agent was evaluated on 80 tasks under static and dynamic conditions: 70/80 static and 60/80 dynamic final answers accepted. One task (`Query00499`) is also present in the 50-task paired cohort, so these evidence packages are not fully task-disjoint. Thirteen tasks changed from static-correct to dynamic-incorrect, while three changed in the opposite direction. This is evidence of a dynamic robustness gap, not proof that every degraded case was caused by incorrect plan retention.
+The official CostBench Agent was evaluated on 80 tasks under static and dynamic conditions: 70/80 static and 60/80 dynamic final answers accepted. One task (`Query00499`) is also present in the 50-task paired cohort, so these evidence packages are not fully task-disjoint. Thirteen tasks changed from static-correct to dynamic-incorrect, while three changed in the opposite direction.
+
+A separate audit of the original raw dynamic runs recovered **27** Agent-authored pre-event plans from the 67 observed event checkpoints. The original pre-event executed prefix matched the written plan in 27/27 cases. The actual first post-event model action followed the incumbent in **27/27** cases; it matched the current graph-optimal first action in 15/27 and differed in 12/27. Under the deterministic evidence gate's 0.25 switch penalty, five cases were classified as SWITCH; the original model still followed the incumbent first action in all five and matched the optimal first action in none. All 27 reached the goal, while 24/27 final answers were accepted.
+
+The gate's 22 RETAIN / 5 SWITCH counts are symbolic gate outputs, not model decisions. The 27/27 result is the separate extraction of actual post-event tool calls from the original official conversation histories. See the [reproducible audit](../costbench_method_studies/plan_commitment_evidence_gate/evidence/ORIGINAL_AGENT_RETENTION_AUDIT.json).
 
 ### Plan-commitment and mechanism audits
 
 The repository also retains the 67-checkpoint native plan-commitment/evidence-gate audit, fact-revision pilots, mechanism probes, and intervention feasibility tests. These are complementary or exploratory studies with their own denominators. They must not be added to the 50-task paired dataset or presented as additional independent tasks in that benchmark.
 
-The four-task native fact-revision pilot found that the Agent could issue the corrected preference in its first post-event native action in all eight SWITCH continuations, while all eight RETAIN continuations preserved the existing preference. EDR and Action Guard prototypes did not demonstrate an end-to-end advantage over a simple explicit fact-delta prompt. These negative findings remain part of the research record.
+The four-task native fact-salience audit found that, on SWITCH cases, first-action correctness increased from 2/4 with a minimal current-value update to 4/4 with an explicit old-to-new correction. RETAIN preference decisions were 4/4 in both conditions; one explicit-update RETAIN arm made an invalid tool call. A separate four-task fact-link control found 2/4 for minimal wording and 4/4 for both simple change wording and an added old-result-dependency statement; the extra dependency statement provided no further gain. EDR and Action Guard did not demonstrate an incremental advantage over the simple explicit-delta prompt. These are small development probes, not confirmatory estimates.
 
 ## Failure analysis
 
@@ -58,7 +62,7 @@ The current evidence motivates examining five observable stages:
 4. **Decision consistency:** whether RETAIN/SWITCH follows from the evidence already available to the Agent.
 5. **Action and recovery:** whether the selected next action is valid, satisfies its prerequisites, and leads to a successful continuation.
 
-The 50-task results establish a strong RETAIN response asymmetry under the tested controlled checkpoint protocol. They do not by themselves identify which of these stages causes the behavior, nor do they establish an Agent-authored commitment effect.
+The 50-task results establish a strong RETAIN response asymmetry under a solver-supplied incumbent protocol. The original native-plan audit independently finds the same first-action persistence when the incumbent was authored by the Agent. Neither result identifies which observable stage causes the behavior.
 
 ## Method-development status
 
@@ -72,9 +76,11 @@ Future method design should follow a replicated action-level failure mechanism. 
 2. [Native execution protocol and detailed results](../../experiments/paired_50/native_execution/README.md)
 3. [Official 80-task native robustness audit](../../experiments/native_80/README.md)
 4. [Mechanism diagnosis](../../experiments/mechanism_diagnosis/README.md)
-5. [First method iteration](FIRST_METHOD_ITERATION.md)
-6. [Supervisor research note](SUPERVISOR_RESEARCH_NOTE.md)
-7. [Native plan-commitment and evidence-gate results](../costbench_method_studies/plan_commitment_evidence_gate/NATIVE_RESULTS.md)
+5. [Original native-agent retention audit](../costbench_method_studies/plan_commitment_evidence_gate/evidence/ORIGINAL_AGENT_RETENTION_AUDIT.json)
+6. [Paired-cohort mechanism analysis](../../experiments/paired_50/native_execution/MECHANISM_ANALYSIS.md)
+7. [First method iteration](FIRST_METHOD_ITERATION.md)
+8. [Supervisor research note](SUPERVISOR_RESEARCH_NOTE.md)
+9. [Native plan-commitment and evidence-gate results](../costbench_method_studies/plan_commitment_evidence_gate/NATIVE_RESULTS.md)
 
 ## Repository and reporting rules
 
@@ -87,4 +93,4 @@ Future method design should follow a replicated action-level failure mechanism. 
 
 ## Current deliverable
 
-A reproducible CostBench study with a unified 50-task paired dataset, a structured RETAIN/SWITCH decision evaluation, a native tool-execution evaluation, an 80-task official dynamic-robustness audit, mechanism diagnostics, and transparent negative intervention results. The strongest current empirical result is that DeepSeek Flash's first native action remained the same across both matched conditions in 48/50 task pairs, despite all 100 native trajectories reaching the goal.
+A reproducible CostBench study with a unified 50-task paired dataset, a structured RETAIN/SWITCH decision evaluation, a native tool-execution evaluation, an 80-task official dynamic-robustness audit, mechanism diagnostics, and transparent negative intervention results. The strongest direct plan-retention result is that, in 27 original native trajectories with recoverable Agent-authored plans, the first post-event model action followed the incumbent in 27/27 cases; in the five cases where the independent gate selected SWITCH, the model still followed the incumbent in 5/5. The separate 50-task paired study reproduces strong incumbent persistence under a solver-supplied plan.

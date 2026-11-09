@@ -8,7 +8,7 @@ The primary cohort contains 50 independent CostBench base tasks, each evaluated 
 
 The incumbent suffix in this benchmark is **solver-derived and supplied to the model at the checkpoint**. It is not a plan independently authored by the model. The result therefore measures incumbent-conditioned behavior under a controlled supplied-plan protocol; it does not by itself establish a self-generated plan-commitment effect.
 
-The separate 67-event native audit has a different role. It recovered 27 authentic pre-event model-written plans from 67 checkpoints. Its 22 RETAIN and 5 SWITCH counts are outputs of a deterministic evidence gate, with zero new post-event model calls. Those counts are not model behavior and are not pooled with the 50-task study.
+The separate 67-event audit recovered 27 authentic pre-event model-written plans from 67 checkpoints. Its 22 RETAIN and 5 SWITCH counts are outputs of a deterministic evidence gate, with zero new post-event model calls; those counts are not model behavior. A separate extraction from the original official dynamic-run JSON shows that the actual model's first post-event action followed its own incumbent in 27/27 cases. That original-action result is reported below and is not derived from the gate replay.
 
 ## What the model receives
 
@@ -71,6 +71,25 @@ The two alternative paths occurred only when the changed tool was the **first an
 
 This is a descriptive, post-hoc split rather than a randomized mechanism test. It suggests that the model is more likely to react to a direct change in its immediate incumbent action than to discover a newly preferable alternative elsewhere in the tool graph.
 
+## Original native-agent behavior with Agent-authored plans
+
+The 80-task official dynamic baseline contains 67 observed environment-change events. Among these, 27 cases have a uniquely recoverable Agent-authored pre-event plan. I extracted the actual post-event tool calls from each original `conversation_history`, using the recorded event step to separate pre-event and post-event calls.
+
+| Measure | Result |
+|---|---:|
+| Pre-event executed prefix matches the Agent-authored plan | 27/27 |
+| Actual first post-event action follows the incumbent | 27/27 |
+| Actual first post-event action matches the current optimal first action | 15/27 |
+| Actual first action differs from the current optimal first action | 12/27 |
+| Complete actual suffix equals the incumbent suffix | 23/27 |
+| Complete actual suffix equals the current optimal suffix | 15/27 |
+| Original trajectories reach the goal | 27/27 |
+| Official final answers accepted | 24/27 |
+
+The deterministic evidence gate labels 22 of these cases RETAIN and 5 SWITCH under its 0.25 switch penalty. In the five gate-SWITCH cases, the original model's first post-event action still follows the incumbent in **5/5** cases and matches the current optimal first action in **0/5**. Three of those five execute the exact old suffix; the other two change later actions but still do not execute the current optimal suffix.
+
+This is direct evidence of incumbent persistence in the original native Agent traces, where the pre-event plan was written by the model itself. The 27 cases are a selected subset of the 67 event checkpoints, not a held-out sample. The 22/5 gate labels remain deterministic comparator outputs, not model-generated labels. See the [reproducible original-agent audit](../../../research/costbench_method_studies/plan_commitment_evidence_gate/evidence/ORIGINAL_AGENT_RETENTION_AUDIT.json).
+
 ## Where path regret enters
 
 For the 50 SWITCH conditions, total path regret was 62.40 units:
@@ -98,24 +117,23 @@ The native fact-update evidence suggests that explicitly marking a fact as a cor
 
 ## Mechanism interpretation
 
-Taken together, the evidence does **not** support one invariant “the Agent always clings to its plan” mechanism. It supports a narrower working hypothesis:
+Taken together, the evidence supports a working hypothesis of **unstable evidence-conditioned plan revision, with strong incumbent persistence when the update is implicit**.
 
-**Unstable evidence-conditioned plan revision, with incumbent persistence under implicit updates.**
+1. The strongest direct native evidence is the original 27-plan subset: the model's first post-event action followed its own pre-event plan in 27/27 cases. In the five cases where the independent gate selected SWITCH, the model still followed the incumbent first action in all five.
+2. The 50-task paired benchmark reproduces the same pattern under a solver-supplied incumbent: 48/50 SWITCH-condition trajectories execute the exact incumbent suffix. The model rarely discovers an alternative outside that suffix.
+3. Small native preference-update probes suggest that explicitly stating an old-to-new correction can improve SWITCH first actions relative to a minimal current-value statement. EDR and Action Guard did not outperform that simpler prompt baseline.
+4. Candidate-conditioned label-only prompts can induce over-switching to a worse candidate, but this was not reproduced in the small native candidate-identity control. It remains exploratory.
+5. Once a path is selected, native tool execution is generally successful. The dominant issue is how new evidence is translated into the next action, not whether a selected tool can execute.
 
-1. In the 50-task tool-value benchmark, a solver-derived incumbent is supplied and the model is only told that the environment changed. It usually continues that incumbent, particularly when a better route must be reconstructed from tools outside the supplied suffix.
-2. In small native preference-update probes, explicitly stating the old-to-new correction improves SWITCH first actions relative to a minimal current-value statement. This suggests the relationship between the new fact and the previous plan state matters.
-3. In candidate-conditioned label-only prompts, a novel alternative can also induce over-switching to a worse candidate. The small native candidate-identity control did not reproduce that effect.
-4. Once a path is selected, the 50-task native tool executions are reliable. The main error occurs in how the Agent maps new evidence to a continuation, not in executing a valid tool call.
-
-This is a behavioral synthesis, not a claim about hidden model reasoning. The archived execution records retain tool calls and outcomes, not the model's full intermediate reasoning text. The preference-update probes use a different environmental fact from the tool-value benchmark and contain only four independent tasks each. They do not establish that explicit temporal wording is the cause of the 50-task RETAIN pattern.
+This is a behavioral synthesis, not a claim about hidden model reasoning. The original 27-plan subset is selected from a development cohort; the 50-task benchmark uses solver-derived incumbents; and the preference-update probes use a different type of environmental fact and only four independent tasks each. Together they identify a reproducible action-level asymmetry, but do not yet isolate a single causal mechanism.
 
 ## Next diagnostic probe
 
 The next experiment should replicate the explicit-update effect in a fresh native cohort with **authentic Agent-authored pre-event plans**, rather than add another algorithm now.
 
-- Select 8–10 independent native checkpoints with verified pre-event plans, balanced between RETAIN and SWITCH ground truth.
-- **Baseline:** current minimal update message.
-- **Explicit-update condition:** same checkpoint and current tool graph, but state the exact old-to-new fact or tool-value change. Do not suggest an alternative path.
+- Select 8–10 independent native checkpoints with verified pre-event plans, balanced between gate-RETAIN and gate-SWITCH cases.
+- **Baseline:** the original minimal environment-update message.
+- **Explicit-update condition:** the same checkpoint and current tool graph, but state the exact old-to-new fact or tool-value change. Do not suggest an alternative path.
 - Keep state, tools, incumbent plan, and execution budget identical; randomize condition order and repeat each condition.
 - Score the first native action, its arguments, native execution validity, and goal reach. Do not use the unchanged official final-answer scorer as the sole semantic measure for a changed preference.
 

@@ -1,0 +1,845 @@
+{
+  "schema": "original-native-agent-retention-audit",
+  "source_files": {
+    "official_dynamic_shards": [
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard00/results_deepseek-flash_blocked-cost_change-1_refinement_2.json",
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard01/results_deepseek-flash_blocked-cost_change-1_refinement_2.json",
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard02/results_deepseek-flash_blocked-cost_change-1_refinement_2.json",
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard03/results_deepseek-flash_blocked-cost_change-1_refinement_2.json"
+    ],
+    "gate_audit": "research/costbench_method_studies/plan_commitment_evidence_gate/evidence/NATIVE_AUDIT.json",
+    "native_event_cohort": "research/costbench_method_studies/plan_commitment_evidence_gate/evidence/native_event_cohort_67/RESULTS.json"
+  },
+  "summary": {
+    "official_development_tasks": 80,
+    "observed_dynamic_event_tasks": 67,
+    "valid_agent_authored_plan_tasks": 27,
+    "gate_action_counts": {
+      "RETAIN_OBSERVED_LLM_PLAN": 22,
+      "SWITCH_FROM_OBSERVED_LLM_PLAN": 5
+    },
+    "original_agent_behavior": {
+      "pre_event_prefix_matches_agent_plan": 27,
+      "first_action_follows_incumbent": 27,
+      "first_action_matches_current_optimum": 15,
+      "first_action_not_current_optimum": 12,
+      "exact_incumbent_suffix": 23,
+      "exact_current_optimal_suffix": 15,
+      "goal_reached": 27,
+      "official_final_answer_accepted": 24
+    },
+    "gate_retain_subset": {
+      "n": 22,
+      "first_action_follows_incumbent": 22,
+      "first_action_matches_current_optimum": 15,
+      "exact_incumbent_suffix": 20,
+      "exact_current_optimal_suffix": 15
+    },
+    "gate_switch_subset": {
+      "n": 5,
+      "first_action_follows_incumbent": 5,
+      "first_action_matches_current_optimum": 0,
+      "exact_incumbent_suffix": 3,
+      "exact_current_optimal_suffix": 0,
+      "false_retain_first_actions": 5
+    }
+  },
+  "interpretation_boundary": [
+    "The 27 cases are the selected subset of 67 observed dynamic events where an Agent-authored pre-event plan was uniquely recoverable.",
+    "Actual post-event actions are extracted from original official CostBench conversation_history, not from deterministic evidence-gate replay.",
+    "The 22/5 RETAIN/SWITCH counts are deterministic gate actions using the recorded 0.25 switch penalty; they are not model labels.",
+    "The current-optimal suffix comes from the independent current-checkpoint graph audit.",
+    "All 27 original trajectories reached the goal, but goal completion does not establish that the first post-event action was the best current continuation.",
+    "This is a selected development subset and does not establish generalization to held-out tasks or reveal hidden model reasoning."
+  ],
+  "rows": [
+    {
+      "query_id": "Query00233",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Refinement_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Refinement_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Refinement_Step1",
+      "incumbent_first_action": "Transportation_Refinement_Step1",
+      "optimal_first_action": "Transportation_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00235",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Refinement_Step2",
+        "Select_Final_Transportation"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Refinement_Step2",
+        "Select_Final_Transportation"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Refinement_Step2",
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Refinement_Step2",
+      "incumbent_first_action": "Transportation_Refinement_Step2",
+      "optimal_first_action": "Transportation_Refinement_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00243",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Select_Final_Transportation"
+      ],
+      "actual_post_event_calls": [
+        "Select_Final_Transportation"
+      ],
+      "current_optimal_suffix": [
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Select_Final_Transportation",
+      "incumbent_first_action": "Select_Final_Transportation",
+      "optimal_first_action": "Select_Final_Transportation",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00248",
+      "category": "transportation",
+      "event_step": 2,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Refine_to_Step2",
+      "incumbent_first_action": "Transportation_Refine_to_Step2",
+      "optimal_first_action": "Transportation_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00249",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "current_optimal_suffix": [
+        "Search_Transportation_Candidates",
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Search_to_Final_4Steps",
+      "incumbent_first_action": "Transportation_Search_to_Final_4Steps",
+      "optimal_first_action": "Search_Transportation_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00269",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "current_optimal_suffix": [
+        "Search_Transportation_Candidates",
+        "Transportation_Finish_from_Step1_3Steps"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Search_to_Final_4Steps",
+      "incumbent_first_action": "Transportation_Search_to_Final_4Steps",
+      "optimal_first_action": "Search_Transportation_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00292",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Search_to_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Search_to_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Search_to_Step1",
+      "incumbent_first_action": "Transportation_Search_to_Step1",
+      "optimal_first_action": "Transportation_Search_Planning_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00298",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Finalize_from_Step2"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Finalize_from_Step2"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Finalize_from_Step2",
+      "incumbent_first_action": "Transportation_Finalize_from_Step2",
+      "optimal_first_action": "Transportation_Finalize_from_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00310",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Finish_from_Step1_3Steps"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Refine_to_Step2",
+      "incumbent_first_action": "Transportation_Refine_to_Step2",
+      "optimal_first_action": "Transportation_Finish_from_Step1_3Steps",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": false,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00321",
+      "category": "transportation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "actual_post_event_calls": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "current_optimal_suffix": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Transportation_Search_Planning_to_Step2",
+      "incumbent_first_action": "Transportation_Search_Planning_to_Step2",
+      "optimal_first_action": "Transportation_Search_Planning_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00342",
+      "category": "accommodation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Select_Final_Accommodation"
+      ],
+      "actual_post_event_calls": [
+        "Select_Final_Accommodation"
+      ],
+      "current_optimal_suffix": [
+        "Select_Final_Accommodation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Select_Final_Accommodation",
+      "incumbent_first_action": "Select_Final_Accommodation",
+      "optimal_first_action": "Select_Final_Accommodation",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00452",
+      "category": "accommodation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Finish_from_Step1_3Steps"
+      ],
+      "actual_post_event_calls": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Refine_to_Step2",
+        "Select_Final_Accommodation"
+      ],
+      "current_optimal_suffix": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Refine_to_Step2",
+        "Select_Final_Accommodation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Search_Accommodation_Candidates",
+      "incumbent_first_action": "Search_Accommodation_Candidates",
+      "optimal_first_action": "Search_Accommodation_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": false,
+      "actual_post_event_call_count": 3
+    },
+    {
+      "query_id": "Query00458",
+      "category": "accommodation",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Select_Final_Accommodation"
+      ],
+      "actual_post_event_calls": [
+        "Select_Final_Accommodation"
+      ],
+      "current_optimal_suffix": [
+        "Select_Final_Accommodation"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Select_Final_Accommodation",
+      "incumbent_first_action": "Select_Final_Accommodation",
+      "optimal_first_action": "Select_Final_Accommodation",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00528",
+      "category": "attraction",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Attraction_Search_to_Final_4Steps"
+      ],
+      "actual_post_event_calls": [
+        "Attraction_Search_to_Final_4Steps"
+      ],
+      "current_optimal_suffix": [
+        "Attraction_Search_to_Step1",
+        "Attraction_Refinement_Step2",
+        "Select_Final_Attraction"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Attraction_Search_to_Final_4Steps",
+      "incumbent_first_action": "Attraction_Search_to_Final_4Steps",
+      "optimal_first_action": "Attraction_Search_to_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00535",
+      "category": "attraction",
+      "event_step": 1,
+      "gate_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Attraction_Refine_to_Step2",
+        "Select_Final_Attraction"
+      ],
+      "actual_post_event_calls": [
+        "Attraction_Refine_to_Step2",
+        "Select_Final_Attraction"
+      ],
+      "current_optimal_suffix": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Attraction_Refine_to_Step2",
+      "incumbent_first_action": "Attraction_Refine_to_Step2",
+      "optimal_first_action": "Attraction_Refinement_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00583",
+      "category": "attraction",
+      "event_step": 1,
+      "gate_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Attraction_Search_to_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Attraction_Search_to_Step1",
+        "Attraction_Refinement_Step2",
+        "Select_Final_Attraction"
+      ],
+      "current_optimal_suffix": [
+        "Search_Attraction_Candidates",
+        "Attraction_Finish_from_Step1_3Steps"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Attraction_Search_to_Step1",
+      "incumbent_first_action": "Attraction_Search_to_Step1",
+      "optimal_first_action": "Search_Attraction_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 3
+    },
+    {
+      "query_id": "Query00641",
+      "category": "attraction",
+      "event_step": 2,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "current_optimal_suffix": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Attraction_Refinement_Step1",
+      "incumbent_first_action": "Attraction_Refinement_Step1",
+      "optimal_first_action": "Attraction_Refinement_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00690",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Select_Final_Dining"
+      ],
+      "actual_post_event_calls": [
+        "Select_Final_Dining"
+      ],
+      "current_optimal_suffix": [
+        "Select_Final_Dining"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Select_Final_Dining",
+      "incumbent_first_action": "Select_Final_Dining",
+      "optimal_first_action": "Select_Final_Dining",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00695",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "actual_post_event_calls": [
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "current_optimal_suffix": [
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Dining_Refinement_Step2",
+      "incumbent_first_action": "Dining_Refinement_Step2",
+      "optimal_first_action": "Dining_Refinement_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00757",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Dining_Search_to_Final_4Steps"
+      ],
+      "actual_post_event_calls": [
+        "Dining_Search_to_Final_4Steps"
+      ],
+      "current_optimal_suffix": [
+        "Dining_Search_Planning_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Dining_Search_to_Final_4Steps",
+      "incumbent_first_action": "Dining_Search_to_Final_4Steps",
+      "optimal_first_action": "Dining_Search_Planning_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00769",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Search_Dining_Candidates",
+        "Dining_Finish_from_Step1_3Steps"
+      ],
+      "actual_post_event_calls": [
+        "Search_Dining_Candidates",
+        "Dining_Refinement_Step1",
+        "Dining_Finalize_from_Step2"
+      ],
+      "current_optimal_suffix": [
+        "Dining_Search_Planning_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Search_Dining_Candidates",
+      "incumbent_first_action": "Search_Dining_Candidates",
+      "optimal_first_action": "Dining_Search_Planning_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 3
+    },
+    {
+      "query_id": "Query00802",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "actual_post_event_calls": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "current_optimal_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Dining_Refine_to_Step2",
+      "incumbent_first_action": "Dining_Refine_to_Step2",
+      "optimal_first_action": "Dining_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00822",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "actual_post_event_calls": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "current_optimal_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Dining_Refine_to_Step2",
+      "incumbent_first_action": "Dining_Refine_to_Step2",
+      "optimal_first_action": "Dining_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00833",
+      "category": "dining",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Dining_Search_to_Step1",
+        "Dining_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Dining_Search_to_Step1",
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "current_optimal_suffix": [
+        "Search_Dining_Candidates",
+        "Dining_Finish_from_Step1_3Steps"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Dining_Search_to_Step1",
+      "incumbent_first_action": "Dining_Search_to_Step1",
+      "optimal_first_action": "Search_Dining_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 3
+    },
+    {
+      "query_id": "Query00843",
+      "category": "shopping",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Shopping_Search_to_Final_4Steps"
+      ],
+      "actual_post_event_calls": [
+        "Shopping_Search_to_Final_4Steps"
+      ],
+      "current_optimal_suffix": [
+        "Shopping_Search_Planning_to_Step2",
+        "Select_Final_Shopping"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Shopping_Search_to_Final_4Steps",
+      "incumbent_first_action": "Shopping_Search_to_Final_4Steps",
+      "optimal_first_action": "Shopping_Search_Planning_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": false,
+      "actual_post_event_call_count": 1
+    },
+    {
+      "query_id": "Query00912",
+      "category": "shopping",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Shopping_Refinement_Step1",
+        "Shopping_Finalize_from_Step2"
+      ],
+      "actual_post_event_calls": [
+        "Shopping_Refinement_Step1",
+        "Shopping_Finalize_from_Step2"
+      ],
+      "current_optimal_suffix": [
+        "Shopping_Refinement_Step1",
+        "Shopping_Finalize_from_Step2"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Shopping_Refinement_Step1",
+      "incumbent_first_action": "Shopping_Refinement_Step1",
+      "optimal_first_action": "Shopping_Refinement_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 2
+    },
+    {
+      "query_id": "Query00978",
+      "category": "shopping",
+      "event_step": 1,
+      "gate_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "switch_penalty": 0.25,
+      "incumbent_suffix": [
+        "Select_Final_Shopping"
+      ],
+      "actual_post_event_calls": [
+        "Select_Final_Shopping"
+      ],
+      "current_optimal_suffix": [
+        "Select_Final_Shopping"
+      ],
+      "pre_event_prefix_matches_agent_plan": true,
+      "first_action": "Select_Final_Shopping",
+      "incumbent_first_action": "Select_Final_Shopping",
+      "optimal_first_action": "Select_Final_Shopping",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true,
+      "actual_post_event_call_count": 1
+    }
+  ]
+}
