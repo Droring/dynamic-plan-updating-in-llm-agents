@@ -6,7 +6,7 @@ This page distinguishes the independent units and claims of the project's active
 
 The canonical paired benchmark contains **50 independent CostBench base tasks**, with 100 matched condition records (50 RETAIN and 50 SWITCH). Each task contributes one matched pair from a shared frozen checkpoint. The five CostBench categories contain ten tasks each.
 
-The structured decision protocol achieved 48/50 RETAIN accuracy, 3/50 SWITCH accuracy and 1/50 paired accuracy. The separate native execution protocol achieved 48/50 RETAIN exact optimal-path matches, 2/50 SWITCH exact optimal-path matches and 1/50 paired exact-path accuracy; all 100 trajectories reached the goal.
+The structured decision protocol achieved 48/50 RETAIN accuracy, 3/50 SWITCH accuracy and 1/50 paired accuracy. The separate native execution protocol achieved 48/50 incumbent-following first actions in each condition; these are descriptive behavior counts; all 100 trajectories reached the goal.
 
 These are distinct outcome measures. The native incumbent suffix is solver-derived and supplied at a controlled checkpoint. This benchmark therefore measures checkpoint decisions and observable execution relative to that incumbent, not autonomous plan authorship or a causal effect of self-commitment.
 
@@ -24,7 +24,7 @@ Conditions, trajectories, policy arms, API calls, tool calls and workflow runs a
 
 The paired benchmark labels are based on a simulated finite CostBench type-graph objective. The benchmark excludes business-level semantic validity, model planning time, verification effort and any general claim about real-world tool environments.
 
-The native execution correctness result measures exact full-path equality with the solver's current-condition optimal path. Incumbent first-action deviation is a separate descriptive measure. This strict solver-path criterion may not credit alternative equal-cost optimal paths. It does not reveal hidden model reasoning. Reaching the final goal is reported separately and must not be used as a substitute for correct first-action adaptation.
+The archived native execution result does not yet establish path-level optimality. Incumbent first-action deviation is descriptive and may not be treated as a correct SWITCH without comparing the executed continuation value with the current-condition native optimum. It does not reveal hidden model reasoning. Reaching the final goal is reported separately and must not be used as a substitute for correct first-action adaptation.
 
 ## Reproducibility
 
