@@ -166,17 +166,26 @@ def make_payload(trial, official_run):
     }
 
 
-def offline_audit(trials, official_run):
+def offline_audit(trials, official_run, max_tokens: int):
     payload_hashes = {}
     summaries = Counter()
+    reservations = []
     for trial in trials:
         payload = make_payload(trial, official_run)
+        payload["max_tokens"] = max_tokens
         key = trial["trial_id"]
         payload_hashes[key] = native.canonical_sha(payload)
+        reservations.append(native.reservation_for_call(
+            payload["messages"], payload["tools"], max_tokens
+        ))
         summaries[(trial["environment_condition"], trial["prompt_condition"])] += 1
     return {
         "status": "validated_no_model_calls",
         "trials_prepared": len(trials),
+        "max_tokens_per_request": max_tokens,
+        "conservative_reserved_token_ceiling": sum(reservations),
+        "max_single_request_reservation": max(reservations, default=0),
+        "mean_request_reservation": (sum(reservations) / len(reservations)) if reservations else 0,
         "factorial_cells": {f"{a}/{b}": n for (a, b), n in sorted(summaries.items())},
         "unique_request_hashes": len(set(payload_hashes.values())),
         "provider_calls": 0,
@@ -456,7 +465,7 @@ def main():
     requested_ids = [value.strip() for value in args.task_ids.split(",") if value.strip()] or None
     trials = build_trials(selected, task_manifest, args.repetitions, args.task_limit, args.seed, requested_ids)
     official_run = costbench["official_run"]
-    audit = offline_audit(trials, official_run)
+    audit = offline_audit(trials, official_run, args.max_tokens)
     audit.update({
         "upstream_revision": costbench["revision"],
         "task_ids": requested_ids or [row["query_id"] for row in task_manifest["tasks"][:args.task_limit]],
