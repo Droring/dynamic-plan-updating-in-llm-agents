@@ -362,7 +362,7 @@ class ActionScoringTests(unittest.TestCase):
         self.assertEqual(result["retain_condition_first_action_behavior"]["no_first_action"], 1)
         self.assertEqual(result["switch_condition_first_action_behavior"]["departed_incumbent"], 1)
         self.assertEqual(result["goal_state_reached"], 1)
-        self.assertIn("not establish current-condition optimality", result["interpretation"])
+        self.assertIn("Neither label alone establishes current-condition optimality", result["interpretation"])
 
 
 
