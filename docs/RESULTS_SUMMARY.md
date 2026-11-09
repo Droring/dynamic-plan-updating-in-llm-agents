@@ -13,7 +13,7 @@ This page summarizes the current canonical findings. See the individual evidence
 | Paired accuracy | 1/50 (2%) | 1/50 (2%) |
 | Goal reached | — | 100/100 |
 
-The structured protocol evaluates an explicit decision label. The native protocol evaluates the full executed path against the solver's current-condition optimal path; incumbent first-action deviation is descriptive only. These outcomes are not interchangeable.
+The structured protocol evaluates an explicit decision label. The native protocol reports incumbent first-action adherence and goal completion. It does not yet provide a validated path-optimality comparison. These outcomes are not interchangeable.
 
 In native execution, the first-action decision was identical across both matched conditions in 48/50 pairs, despite all 100 trajectories reaching the goal. Goal completion therefore does not establish correct adaptation of the first action.
 
