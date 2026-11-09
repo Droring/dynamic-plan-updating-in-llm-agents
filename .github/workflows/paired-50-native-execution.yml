@@ -1,6 +1,12 @@
 name: Paired 50 native CostBench execution validation
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "experiments/paired_50/generated/model_requests_100.jsonl"
+      - "experiments/paired_50/native_execution/**"
+      - ".github/workflows/paired-50-native-execution.yml"
   workflow_dispatch:
 
 permissions:
@@ -9,7 +15,7 @@ permissions:
 jobs:
   offline-validation:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - name: Check out study repository
         uses: actions/checkout@v4
@@ -51,3 +57,28 @@ jobs:
 
       - name: Reconstruct and audit all 100 frozen checkpoints
         run: python experiments/paired_50/native_execution/run_official_harness.py --costbench-root "$RUNNER_TEMP/CostBench" --limit 100
+
+      - name: Verify archived native execution records
+        shell: bash
+        run: |
+          archive="experiments/paired_50/native_execution/archive/native-execution-archive.zip"
+          echo "6587a6b2c319069d27d07fe9ca21eb3464b38f200f73f6ef4555208b13694630  $archive" | sha256sum -c -
+          unzip -t "$archive"
+          mkdir -p "$RUNNER_TEMP/native-archive"
+          unzip -p "$archive" responses.jsonl > "$RUNNER_TEMP/native-archive/responses.jsonl"
+          test "$(wc -l < "$RUNNER_TEMP/native-archive/responses.jsonl")" -eq 100
+
+      - name: Recompute native path-value and action-regret audit
+        run: |
+          python experiments/paired_50/native_execution/native_path_value_audit.py \
+            --responses "$RUNNER_TEMP/native-archive/responses.jsonl" \
+            --requests experiments/paired_50/generated/model_requests_100.jsonl \
+            --out-dir "$RUNNER_TEMP/native-path-value-audit"
+
+      - name: Upload independent audit outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-path-value-audit
+          path: ${{ runner.temp }}/native-path-value-audit/
+          if-no-files-found: error
+          retention-days: 90
