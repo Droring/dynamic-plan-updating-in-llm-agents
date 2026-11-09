@@ -241,17 +241,9 @@ def merge(first_dir: Path, continuation_dir: Path, out_dir: Path, data_dir: Path
         encoding="utf-8",
     )
 
-    pair_table = "\n".join(
-        f"| `{label}` | {count} |"
-        for label, count in sorted(scores["pair_outcomes"].items())
-    )
-    deviation_table = "\n".join(
-        f"| {query_id} | `{pair_records[query_id]['RETAIN']['first_action']}` | "
-        f"`{pair_records[query_id]['SWITCH']['first_action']}` | "
-        f"`{pair_predictions[query_id]['RETAIN']}/{pair_predictions[query_id]['SWITCH']}` |"
-        for query_id in sorted(pair_records)
-        if pair_predictions[query_id]["RETAIN"] != "RETAIN"
-        or pair_predictions[query_id]["SWITCH"] != "RETAIN"
+    pair_table = "\\n".join(
+        f"| `{retain_prediction}/{switch_prediction}` | {count} |"
+        for (retain_prediction, switch_prediction), count in sorted(pair_outcomes.items())
     )
     results_md = f"""# Paired 50 native CostBench execution — DeepSeek Flash
 
