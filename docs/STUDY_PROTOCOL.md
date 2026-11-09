@@ -26,9 +26,9 @@ DeepSeek Flash receives a frozen structured request and returns RETAIN or SWITCH
 
 ### Native tool execution
 
-The same 50 base tasks are evaluated through the pinned native CostBench harness. The first executed tool is compared with the incumbent suffix's first tool. Results are 48/50 RETAIN first-action correct, 2/50 SWITCH first-action correct, and 1/50 fully correct pair; all 100 trajectories reach the goal.
+The same 50 base tasks are evaluated through the pinned native CostBench harness. The full executed path is compared with the pinned native solver's current-condition optimal path. The recovered archived trajectories yield exact path matches on 48/50 RETAIN and 2/50 SWITCH conditions, with 1/50 fully correct pair; all 100 trajectories reach the goal. Incumbent first-action deviation is reported descriptively and is not sufficient to count a correct SWITCH.
 
-The two protocols measure different outcomes and are reported separately.
+The two protocols measure different outcomes and are reported separately. The native correctness criterion is full-path optimality, not merely a first action different from the incumbent.
 
 ## Environment and reproducibility
 
