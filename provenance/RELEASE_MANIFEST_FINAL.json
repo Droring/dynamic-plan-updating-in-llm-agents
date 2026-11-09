@@ -46,7 +46,7 @@
     "experiments/paired_50/live_results/deepseek-flash/responses.jsonl": "1e139210291448944fbcccc0d3fc9794ad394027847d21da86debd4fad3d5afe",
     "experiments/paired_50/live_results/deepseek-flash/scores.json": "3d73cca73ac2bc328e28a1651fc66870758183d16695a5ca7af2f77b8c540067",
     "experiments/paired_50/native_execution/README.md": "a41fa0b0330a640f24b142014bc76b127f988e14c44c47d69001104f9f4d84b3",
-    "experiments/paired_50/native_execution/RESULTS.md": "4e807f24d7fc1e31a4c1da1d9b83f1abe9cf7b9dace4a56d4283cc789b616232",
+    "experiments/paired_50/native_execution/RESULTS.md": "6126b8492121d8db35e487244c35346dafb86bd5eae92d41cc6f8736f53cbe0d",
     "experiments/paired_50/native_execution/merge_split_run_results.py": "105a992feca7104ff2979dfcfd6863c071cf56acf587c8157951622daa5a6c0c",
     "experiments/paired_50/native_execution/run_official_harness.py": "4f7fd49d925199e374d352107712a837293a55c40022daa9d0f5e0551ff70bcb",
     "experiments/paired_50/native_execution/test_protocol.py": "2e11ec370a15f772a53c5fd087b2297677dd446e38a775e05e7b3d3acc53431b",
