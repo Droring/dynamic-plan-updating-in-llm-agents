@@ -1,0 +1,199 @@
+{
+  "schema": "paired-50-four-arm-information-localization-screen-v1",
+  "status": "offline_protocol_and_manifest_frozen_no_provider_calls",
+  "selection_rule": "Lexicographically first task in each predeclared category x changed-tool-in-incumbent stratum; four incumbent-tool tasks and four outside-incumbent tasks; all five CostBench categories represented; no outcome-based selection.",
+  "source": {
+    "requests_blob_sha": "29736482cca9497ce80246cc279980e263b9af04",
+    "registry_blob_sha": "63eaa425c04ba8faf769dbf536194a89fd8d723c",
+    "upstream_costbench_revision": "6424069f3f773ade076bcedbed302ed47cfb1837"
+  },
+  "design": {
+    "base_tasks": 8,
+    "environment_conditions": [
+      "RETAIN",
+      "SWITCH"
+    ],
+    "prompt_conditions": [
+      "A_original",
+      "B_localized_current_fact",
+      "C_plan_omitted",
+      "D_plan_omitted_localized_fact"
+    ],
+    "repetitions_per_cell": 2,
+    "first_action_requests": 128,
+    "debug_requests": 16,
+    "full_continuation_trajectories": 16,
+    "provider_calls_launched": 0
+  },
+  "tasks": [
+    {
+      "query_id": "Query00188",
+      "category": "transportation",
+      "changed_tool": "Transportation_Search_to_Final_4Steps",
+      "changed_tool_in_incumbent": true,
+      "checkpoint_sha256": "ef60dbb9b69ff7672e908699070f6b67fe3457fc9526cd8273171828d7633418",
+      "incumbent_suffix": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "condition_costs": [
+        {
+          "condition": 79.03,
+          "trial_id": "efebf9a98f3b27a6a021"
+        },
+        {
+          "condition": 80.45,
+          "trial_id": "270bc4917c819612e736"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00403",
+      "category": "accommodation",
+      "changed_tool": "Accommodation_Refinement_Step1",
+      "changed_tool_in_incumbent": true,
+      "checkpoint_sha256": "fc31e3fdbd330339a7404a11ca7d868b545759de8af6194ce498d45e86415f52",
+      "incumbent_suffix": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Refinement_Step1",
+        "Accommodation_Refinement_Step2",
+        "Select_Final_Accommodation"
+      ],
+      "condition_costs": [
+        {
+          "condition": 20.85,
+          "trial_id": "734e7ef294089da1f435"
+        },
+        {
+          "condition": 22.22,
+          "trial_id": "1031efb36fdf2b81e0b0"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00550",
+      "category": "attraction",
+      "changed_tool": "Attraction_Search_Planning_to_Step2",
+      "changed_tool_in_incumbent": true,
+      "checkpoint_sha256": "45b6f14d90557f6988a81c7802ed4140c4f383d7d7c1692d954ad32e1c4f32e3",
+      "incumbent_suffix": [
+        "Attraction_Search_Planning_to_Step2",
+        "Select_Final_Attraction"
+      ],
+      "condition_costs": [
+        {
+          "condition": 61.43,
+          "trial_id": "cbee31ac34edea890006"
+        },
+        {
+          "condition": 60.06,
+          "trial_id": "0dcba3709e5e1d00752b"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00706",
+      "category": "dining",
+      "changed_tool": "Dining_Finish_from_Step1_3Steps",
+      "changed_tool_in_incumbent": true,
+      "checkpoint_sha256": "87b62031fb87f0cf956c8452d2350f117ad83a68dd1d7337f8e0786312d92431",
+      "incumbent_suffix": [
+        "Dining_Finish_from_Step1_3Steps"
+      ],
+      "condition_costs": [
+        {
+          "condition": 59.65,
+          "trial_id": "b32dfd02cab436e93faa"
+        },
+        {
+          "condition": 58.26,
+          "trial_id": "5f5aa001a4b32649e3c2"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00347",
+      "category": "accommodation",
+      "changed_tool": "Accommodation_Search_Planning_to_Step2",
+      "changed_tool_in_incumbent": false,
+      "checkpoint_sha256": "60ab73aa742aab363ba6b8d2e49d3668d0d0065736981b8333b023a2a635d782",
+      "incumbent_suffix": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Finish_from_Step1_3Steps"
+      ],
+      "condition_costs": [
+        {
+          "condition": 56.46,
+          "trial_id": "6b89d4f27e118ee89fef"
+        },
+        {
+          "condition": 57.89,
+          "trial_id": "db2ea0963c5e5ec5571b"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00518",
+      "category": "attraction",
+      "changed_tool": "Attraction_Refine_to_Step2",
+      "changed_tool_in_incumbent": false,
+      "checkpoint_sha256": "8faeb9f5b889ea85809a50a19dfb7195c2cf79a71bde9ed43f5c8bb8faee5055",
+      "incumbent_suffix": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "condition_costs": [
+        {
+          "condition": 39.95,
+          "trial_id": "e3f09c145dc69070099c"
+        },
+        {
+          "condition": 38.55,
+          "trial_id": "a2f813ea9cdb46e12997"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00685",
+      "category": "dining",
+      "changed_tool": "Dining_Finalize_from_Step2",
+      "changed_tool_in_incumbent": false,
+      "checkpoint_sha256": "db4dee52d91819e767cf49818f879b56692ce81e8131c8d189a298829a9ba917",
+      "incumbent_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "condition_costs": [
+        {
+          "condition": 39.9,
+          "trial_id": "28ad8571763280e8eb03"
+        },
+        {
+          "condition": 41.32,
+          "trial_id": "e3359dc3ed9f5492c85b"
+        }
+      ]
+    },
+    {
+      "query_id": "Query00858",
+      "category": "shopping",
+      "changed_tool": "Shopping_Search_to_Final_4Steps",
+      "changed_tool_in_incumbent": false,
+      "checkpoint_sha256": "1008d724f413e8d3e7330a4c9eb9dab18aaf2c82750abf298d6baef9c4003572",
+      "incumbent_suffix": [
+        "Search_Shopping_Candidates",
+        "Shopping_Refine_to_Step2",
+        "Select_Final_Shopping"
+      ],
+      "condition_costs": [
+        {
+          "condition": 79.75,
+          "trial_id": "2b2853a65cab2d13638e"
+        },
+        {
+          "condition": 78.3,
+          "trial_id": "bcfe6ed7956ef314ff2e"
+        }
+      ]
+    }
+  ]
+}
