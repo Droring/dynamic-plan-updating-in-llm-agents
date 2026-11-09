@@ -7,41 +7,41 @@
 
 ## Main results
 
-The archived per-trajectory artifact was recovered from the retired repository's workflow artifact and independently re-scored against the pinned native solver path stored in each record. The previous first-action-only metric is retained as a descriptive behavior measure, but it is not treated as correctness.
+The archived cohort contains 100 completed trajectories across 50 paired base tasks. All 100 trajectories reached the goal and the first native tool action succeeded in all 100.
 
-| Measure | Result |
+The first-action label is a descriptive comparison with the incumbent: `RETAIN` means the first executed tool equals the incumbent suffix's first tool; `SWITCH` means it differs. It does **not** establish whether the resulting continuation is optimal under the changed environment. The archived trace does not, by itself, provide a validated path-level optimality score.
+
+| Descriptive measure | Result |
 |---|---:|
-| RETAIN exact optimal-path match | 48/50 (96%) |
-| SWITCH exact optimal-path match | 2/50 (4%) |
-| Overall exact optimal-path match | 50/100 (50%) |
-| RETAIN first action matched incumbent | 48/50 (96%) |
-| SWITCH first action departed from incumbent | 2/50 (4%) |
-| Paired exact-path accuracy | 1/50 (2%) |
+| RETAIN-condition trials whose first action followed incumbent | 48/50 (96%) |
+| SWITCH-condition trials whose first action followed incumbent | 48/50 (96%) |
+| Total first actions following incumbent | 96/100 (96%) |
+| Total first actions departing from incumbent | 4/100 (4%) |
 | Goal state reached | 100/100 |
 | First native tool action succeeded | 100/100 |
 | Exact incumbent suffix executed | 96/100 |
-| Alternative continuation executed | 4/100 |
+| Alternative continuation observed | 4/100 |
 
-The key correction is that a first action different from the incumbent is not, by itself, a correct SWITCH. Correctness is now defined by exact equality between the executed continuation and the current-condition optimal path returned by the pinned native CostBench solver. The incumbent relation is reported separately.
+The key observed behavior is that the model followed the incumbent first action in 48/50 SWITCH conditions. This is evidence of strong incumbent persistence in this protocol. The four deviations are not counted as successful switches without a separate comparison against the current-condition optimum.
 
-Under this path-level criterion, the RETAIN result remains 48/50 and the SWITCH result is 2/50. The model follows the incumbent continuation in 48/50 SWITCH conditions. All 100 trajectories reach the goal, which is a separate outcome and does not establish optimal adaptation.
+## Paired first-action behavior
 
-## Paired outcomes
+Each cell reports the first-action relation to the incumbent in the RETAIN and SWITCH conditions, respectively.
 
-Each cell reports whether the executed path exactly matched the current-condition optimal path.
-
-| Paired outcome (RETAIN / SWITCH) | Number of base tasks |
+| Paired behavior (RETAIN / SWITCH) | Number of base tasks |
 |---|---:|
-| Correct / Incorrect | 47 |
-| Correct / Correct | 1 |
-| Incorrect / Correct | 1 |
-| Incorrect / Incorrect | 1 |
+| RETAIN / RETAIN | 47 |
+| RETAIN / SWITCH | 1 |
+| SWITCH / RETAIN | 1 |
+| SWITCH / SWITCH | 1 |
 
-Only one base task has both conditions exactly matching their respective optimal paths.
+Only one pair showed the expected first-action distinction (RETAIN under RETAIN, SWITCH under SWITCH). This is a behavioral pairing result, not a path-optimality score.
 
-## First-action deviations
+## Interpretation boundary
 
-The four trajectories that departed from the incumbent first action are not automatically counted as successful switches. Only two of those trajectories match the solver's current-condition optimal path; the other two must be assessed using full-path optimality, not incumbent deviation alone. The full trace records and oracle paths are the authoritative evidence.
+The native solver computes an optimal continuation in the current tool-cost graph, while the model executes tool calls from the same visible registry. However, the archived execution summary does not include a verified end-to-end comparison of each executed continuation's cumulative cost against the solver's optimal total cost. A raw tool-sequence equality check is not a valid substitute unless action granularity and composite-tool representation are shown to be equivalent.
+
+Accordingly, this report describes incumbent adherence, observed deviations, and goal completion. It does not claim that all four deviations are correct switches or that the two-condition path-optimality rate is 2%.
 
 ## Execution record
 
