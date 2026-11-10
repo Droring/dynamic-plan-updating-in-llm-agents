@@ -2,15 +2,32 @@ name: Paired 50 native CostBench execution validation
 
 on:
   push:
-    branches: [main]
+    branches: [main, research/four-arm-mechanism-screen]
     paths:
       - "experiments/paired_50/generated/model_requests_100.jsonl"
       - "experiments/paired_50/native_execution/**"
       - ".github/workflows/paired-50-native-execution.yml"
   workflow_dispatch:
+    inputs:
+      run_paid_smoke:
+        description: "Run the approved 16-request DeepSeek four-arm smoke test (500,000-token hard cap)"
+        required: true
+        type: boolean
+        default: false
+      run_paid_continuations:
+        description: "Run 16 archived-first-action full continuations (500,000-token cap)"
+        required: true
+        type: boolean
+        default: false
+      run_paid_formal:
+        description: "Run the approved 128-request DeepSeek four-arm screen (3,443,584-token hard cap)"
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   offline-validation:
@@ -55,8 +72,33 @@ jobs:
       - name: Run protocol unit tests
         run: python -m unittest discover -s experiments/paired_50/native_execution -p 'test_*.py' -v
 
+      - name: Download formal archive for offline continuation preflight
+        uses: actions/download-artifact@v4
+        with:
+          name: four-arm-deepseek-formal
+          run-id: 42665117176
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/four-arm-archive
+      - name: Validate 16 archived-first-action continuations without model calls
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_continuations.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --archive "$RUNNER_TEMP/four-arm-archive"
       - name: Reconstruct and audit all 100 frozen checkpoints
         run: python experiments/paired_50/native_execution/run_official_harness.py --costbench-root "$RUNNER_TEMP/CostBench" --limit 100
+
+      - name: Validate the four-arm mechanism screen without provider calls
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --task-limit 8
+
+      - name: Validate the balanced two-task smoke cohort without provider calls
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --task-ids Query00188,Query00347 \
+            --repetitions 1
 
       - name: Verify archived native execution records
         shell: bash
@@ -89,4 +131,223 @@ jobs:
           name: native-path-value-audit
           path: ${{ runner.temp }}/native-path-value-audit/
           if-no-files-found: error
+          retention-days: 90
+
+  paid-four-arm-formal:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_paid_formal && !inputs.run_paid_smoke && !inputs.run_paid_continuations
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - name: Check out study repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch pinned CostBench source
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+
+      - name: Install pinned harness dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+
+      - name: Generate the pinned CostBench test search database
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          mkdir -p env/data/static/search_spaces
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+          test -s env/data/static/search_spaces/test_search_space.json
+
+      - name: Verify API secret is present without printing it
+        shell: bash
+        run: test -n "$DEEPSEEK_API_KEY"
+
+      - name: Revalidate frozen 128-cell design without provider calls
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --task-limit 8 \
+            --repetitions 2 \
+            --seed 20261110 \
+            --max-tokens 2048 \
+            --cap 3443584 \
+            --out "$RUNNER_TEMP/four-arm-formal-preflight"
+
+      - name: Run approved 128-request native first-action screen
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --task-limit 8 \
+            --repetitions 2 \
+            --seed 20261110 \
+            --max-tokens 2048 \
+            --cap 3443584 \
+            --timeout 120 \
+            --out "$RUNNER_TEMP/four-arm-formal" \
+            --live
+
+      - name: Upload raw formal-screen records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: four-arm-deepseek-formal
+          path: |
+            ${{ runner.temp }}/four-arm-formal/requests.jsonl
+            ${{ runner.temp }}/four-arm-formal/responses.jsonl
+            ${{ runner.temp }}/four-arm-formal/summary.json
+            ${{ runner.temp }}/four-arm-formal/ledger.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  paid-four-arm-smoke:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_paid_smoke && !inputs.run_paid_continuations && !inputs.run_paid_formal
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - name: Check out study repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch pinned CostBench source
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+
+      - name: Install pinned harness dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+
+      - name: Generate the pinned CostBench test search database
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          mkdir -p env/data/static/search_spaces
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+          test -s env/data/static/search_spaces/test_search_space.json
+
+      - name: Verify API secret is present without printing it
+        shell: bash
+        run: |
+          test -n "$DEEPSEEK_API_KEY"
+
+      - name: Run approved 16-request native smoke test
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --task-ids Query00188,Query00347 \
+            --repetitions 1 \
+            --seed 20261110 \
+            --max-tokens 2048 \
+            --cap 500000 \
+            --timeout 120 \
+            --out "$RUNNER_TEMP/four-arm-smoke" \
+            --live
+
+      - name: Upload raw smoke-test records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: four-arm-deepseek-smoke
+          path: |
+            ${{ runner.temp }}/four-arm-smoke/requests.jsonl
+            ${{ runner.temp }}/four-arm-smoke/responses.jsonl
+            ${{ runner.temp }}/four-arm-smoke/summary.json
+            ${{ runner.temp }}/four-arm-smoke/ledger.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  paid-four-arm-continuations:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_paid_continuations && !inputs.run_paid_smoke && !inputs.run_paid_formal
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - name: Check out study repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch pinned CostBench source
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+      - name: Install pinned harness dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+      - name: Generate pinned search database
+        working-directory: ${{ runner.temp }}/CostBench
+        run: |
+          python env/domains/travel/generate_search_space.py --generate_test --test_config_path env/domains/travel/travel_config.yaml --num-times 5000 --num-time-combinations 5000 --seed 42
+          mkdir -p env/data/static/search_spaces
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+      - name: Download formal first-action archive
+        uses: actions/download-artifact@v4
+        with:
+          name: four-arm-deepseek-formal
+          run-id: 42665117176
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/four-arm-archive
+      - name: Verify formal archive and reconstruct continuation cells
+        shell: bash
+        run: |
+          test "$(wc -l < "$RUNNER_TEMP/four-arm-archive/responses.jsonl")" -eq 128
+          test "$(wc -l < "$RUNNER_TEMP/four-arm-archive/requests.jsonl")" -eq 128
+          python experiments/paired_50/native_execution/run_four_arm_continuations.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --archive "$RUNNER_TEMP/four-arm-archive"
+      - name: Verify API key without printing it
+        shell: bash
+        run: test -n "$DEEPSEEK_API_KEY"
+      - name: Run approved 16 native continuations
+        run: |
+          python experiments/paired_50/native_execution/run_four_arm_continuations.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --archive "$RUNNER_TEMP/four-arm-archive" \
+            --cap 500000 --max-tokens 2048 --max-steps 12 \
+            --out "$RUNNER_TEMP/four-arm-continuations" --live
+      - name: Upload continuation records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: four-arm-continuations
+          path: ${{ runner.temp }}/four-arm-continuations/
+          if-no-files-found: warn
           retention-days: 90

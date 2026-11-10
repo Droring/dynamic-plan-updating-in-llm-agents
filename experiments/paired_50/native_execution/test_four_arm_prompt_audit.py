@@ -40,6 +40,16 @@ class FourArmPromptTests(unittest.TestCase):
         self.assertNotIn("Existing remaining plan", messages["D"])
         self.assertNotIn("existing plan", messages["D"])
 
+    def test_shared_instruction_is_identical_across_all_arms(self):
+        messages = build_user_messages(self.prepared, "Alternative_Tool", 12.34)
+        common_tail = "Choose a feasible continuation from the current checkpoint. "
+        for arm in "ABCD":
+            self.assertEqual(messages[arm].count(common_tail), 1)
+            self.assertIn("The tool environment has now changed.", messages[arm])
+        plan_line = "Existing remaining plan, selected before the environment update: " + " -> ".join(self.prepared["incumbent_suffix"]) + "\n"
+        self.assertEqual(messages["A"].replace(plan_line, ""), messages["C"])
+        self.assertEqual(messages["B"].replace(plan_line, ""), messages["D"])
+
 
 if __name__ == "__main__":
     unittest.main()
