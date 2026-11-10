@@ -1,6 +1,6 @@
 # Unified RETAIN/SWITCH Decision and Native Execution Study
 
-<badge color="success">Canonical paired benchmark</badge>
+**Canonical paired benchmark**
 
 **Dataset:** 50 independent CostBench base tasks, 100 matched conditions (50 RETAIN, 50 SWITCH), balanced across five task categories.
 
@@ -37,6 +37,12 @@ The same 50 base tasks completed 100 native tool-execution trajectories using th
 | Goal reached | 100/100 |
 
 The structured protocol measures an explicit decision label; native execution measures the first executed tool relative to the incumbent suffix. These are separate outcomes. The agent reached every goal, but its first action rarely changed with the paired environment condition. See [native execution protocol](native_execution/README.md) and [detailed results](native_execution/RESULTS.md). The [mechanism analysis](native_execution/MECHANISM_ANALYSIS.md) stratifies SWITCH failures by the location of the changed tool value and paired first-action consistency.
+
+## Controlled four-arm mechanism follow-up
+
+A follow-up on **eight reused base tasks** varied whether the incumbent plan was visible and whether the changed tool's current cost was repeated. Across 128 first-action trials, plan-visible A/B achieved RETAIN 16/16 and SWITCH 2/16; plan-omitted C/D achieved RETAIN 8/16 and 6/16, and SWITCH 8/16 and 9/16 respectively. The separate 16-trajectory continuation check on two preselected tasks reached all goals but did not improve completed-path optimality after plan omission.
+
+See the [final mechanism report](native_execution/MECHANISM_STUDY_FINAL_REPORT.md), [formal first-action results](native_execution/FORMAL_SCREEN_REPORT.md) and [continuation results](native_execution/CONTINUATION_RESULTS.md). These reused tasks are **not 8 additional independent benchmark tasks**.
 
 ## Reproduction
 
