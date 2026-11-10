@@ -2,7 +2,7 @@
 
 **An empirical study of plan retention, environment updates, and replanning failures.**
 
-[中文说明](README_zh.md) · [Research mainline](research/plan_commitment_pilot/RESEARCH_MAINLINE.md) · [Experiment index](experiments/README.md) · [Mechanism analysis](experiments/paired_50/native_execution/MECHANISM_ANALYSIS.md) · [Manuscript workspace](paper/README.md) · [Related work](docs/RELATED_WORK.md) · [Reproducibility](docs/REPRODUCIBILITY.md) · [Algorithm provenance](docs/ALGORITHM_PROVENANCE_AND_CLEANUP.md)
+[中文说明](README_zh.md) · [Research mainline](research/plan_commitment_pilot/RESEARCH_MAINLINE.md) · [Experiment index](experiments/README.md) · [Four-arm mechanism study](experiments/paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md) · [Mechanism analysis](experiments/paired_50/native_execution/MECHANISM_ANALYSIS.md) · [Manuscript workspace](paper/README.md) · [Related work](docs/RELATED_WORK.md) · [Reproducibility](docs/REPRODUCIBILITY.md) · [Algorithm provenance](docs/ALGORITHM_PROVENANCE_AND_CLEANUP.md)
 
 > **Central question:** When an LLM Agent has formed and begun executing a plan, why can it fail to update that plan after new environment facts arrive? How can it correctly decide to RETAIN, REPAIR, or SWITCH based on current evidence?
 
@@ -12,6 +12,7 @@ This repository studies how LLM Agents respond to updated environment facts and 
 
 | Evidence package | Result | What it measures |
 |---|---:|---|
+| [Four-arm plan-cue mechanism study](experiments/paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md) | **8 reused tasks, 128 first-action trials; 16 full continuations on 2 tasks** | Controlled plan-presence and current-fact-reminder interventions |
 | [Unified RETAIN/SWITCH study](experiments/paired_50/README.md) | **50 independent base tasks; 100 paired conditions** | Structured decisions and native first-action behavior |
 | [Official native CostBench audit](experiments/native_80/README.md) | 80-task official run; static 70/80, dynamic 60/80; one task shared with the 50-task study | Final-answer robustness under static and dynamic execution |
 | [Native plan-commitment and evidence-gate study](research/costbench_method_studies/plan_commitment_evidence_gate/README.md) | 67 event checkpoints from 80 candidates; 27 authentic prospective plans parsed | Agent-authored plan extraction and evidence-gated continuation |
@@ -32,10 +33,11 @@ After an environment update, an Agent may RETAIN a still-valid plan, REPAIR affe
 
 ## Start here
 
-1. Read the [research mainline](research/plan_commitment_pilot/RESEARCH_MAINLINE.md).
-2. Follow the [experiment index](experiments/README.md), starting with the [unified 50-task study](experiments/paired_50/README.md).
-3. Review [related work](docs/RELATED_WORK.md) and the [manuscript outline](paper/README.md).
-4. Check [reproducibility](docs/REPRODUCIBILITY.md), [limitations](docs/LIMITATIONS.md), and the [claim-evidence matrix](docs/CLAIM_EVIDENCE_MATRIX.md).
+1. Read the [latest four-arm mechanism study](experiments/paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md).
+2. Read the [research mainline](research/plan_commitment_pilot/RESEARCH_MAINLINE.md).
+3. Follow the [experiment index](experiments/README.md), starting with the [unified 50-task study](experiments/paired_50/README.md).
+4. Review [related work](docs/RELATED_WORK.md) and the [manuscript outline](paper/README.md).
+5. Check [reproducibility](docs/REPRODUCIBILITY.md), [limitations](docs/LIMITATIONS.md), and the [claim-evidence matrix](docs/CLAIM_EVIDENCE_MATRIX.md).
 
 ## Repository organization
 
