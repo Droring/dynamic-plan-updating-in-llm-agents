@@ -8,6 +8,12 @@ The repository has one primary paired benchmark and a small set of complementary
 |---|---:|---|
 | [Unified RETAIN/SWITCH Decision and Native Execution Study](paired_50/README.md) | **50 base tasks** | 100 matched structured decisions and a separate 100-trajectory native execution protocol |
 
+## Four-arm plan-cue mechanism screen
+
+[Final report](paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md) · [Formal screen](paired_50/native_execution/FORMAL_SCREEN_REPORT.md) · [Full continuations](paired_50/native_execution/CONTINUATION_RESULTS.md)
+
+This controlled follow-up **reuses eight tasks from the primary 50-task cohort**: 128 first-action trials (two repetitions) and 16 full continuations on two preselected tasks. It is not an additional independent dataset. Showing the incumbent plan favors RETAIN; omitting it improves some SWITCH decisions but harms RETAIN.
+
 ## Complementary CostBench evidence
 
 | Study | Independent unit | Measurement |
