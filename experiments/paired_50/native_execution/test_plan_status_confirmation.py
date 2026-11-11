@@ -5,7 +5,7 @@ import prepare_plan_status_confirmation as study
 
 
 class PlanStatusConfirmationTests(unittest.TestCase):
-    def test_path_value_uses_supplied_post_action_state(self):
+    def test_path_value_uses_supplied_checkpoint_state(self):
         prepared = {
             "goal_type": "Goal",
             "tool_objects": {
@@ -25,26 +25,27 @@ class PlanStatusConfirmationTests(unittest.TestCase):
             study.classify_prior_status(9.0, 10.0)
 
     def test_prompt_has_one_status_label_difference(self):
-        common = ("ToolA", ["ToolB", "ToolC"], ["ToolD"], "Goal")
+        common = (["OldA", "OldB"], ["NewA", "NewB"], "Goal")
         unmarked = study.make_status_message(*common, "UNSET")
         annotated = study.make_status_message(*common, "STALE")
         self.assertEqual(
             unmarked.replace("Prior-plan status: UNSET.", "<STATUS>"),
             annotated.replace("Prior-plan status: STALE.", "<STATUS>"),
         )
+        self.assertIn("VALID means", unmarked)
+        self.assertIn("STALE means", unmarked)
         valid = study.make_status_message(*common, "VALID")
         self.assertTrue(valid.endswith("Prior-plan status: VALID."))
 
     def test_selection_is_lexicographic_and_category_balanced(self):
-        categories = ("transportation", "accommodation", "attraction", "dining", "shopping")
         candidates = [
             {"query_id": f"Query{i:05d}", "category": category, "cells": {}}
-            for category in categories
+            for category in study.CATEGORIES
             for i in (9, 2, 5)
         ]
         selected = study.select_tasks(candidates)
         self.assertEqual(len(selected), 10)
-        for category in categories:
+        for category in study.CATEGORIES:
             ids = [x["query_id"] for x in selected if x["category"] == category]
             self.assertEqual(ids, sorted(ids)[:2])
 
