@@ -245,16 +245,23 @@ async def run_one(request,trial,official_run,client,budget,args,event_sink=None)
                 "charged_tokens_before":budget.charged,
                 "reserved_units_before":budget.reserved,
             })
+        charged_before=budget.charged
         try:
             response=await native.call_model(client,messages,payload["tools"],"required",args.max_tokens,budget)
         except Exception as exc:
             halt="reservation_cap" if "reservation_cap" in str(exc) else "api_error:"+str(exc)
+            charged_delta=max(0,budget.charged-charged_before)
+            if charged_delta:
+                model_calls+=1
+                tokens+=charged_delta
             if event_sink is not None:
                 event_sink({
                     "event":"model_call_error","trial_id":request["trial_id"],
                     "step":step_index,"error_type":type(exc).__name__,
-                    "error":str(exc),"provider_outcome_unknown":halt.startswith("api_error"),
+                    "error":str(exc),"provider_outcome_unknown":halt.startswith("api_error") and charged_delta==0,
+                    "charged_tokens_before":charged_before,
                     "charged_tokens_after":budget.charged,
+                    "provider_tokens_accounted":charged_delta,
                     "reserved_units_after":budget.reserved,
                 })
             break
@@ -396,6 +403,9 @@ async def run_one(request,trial,official_run,client,budget,args,event_sink=None)
         "continuation_bellman_loss_sum":round(bellman_sum,8),
         "full_path_regret":None if full_regret is None else round(max(0.0,full_regret),8),
         "model_calls":model_calls,"provider_tokens":tokens,
+        "provider_outcome_unknown":any(
+            x.get("provider_outcome_unknown") for x in (event_sink.events if hasattr(event_sink,"events") else [])
+        ) if event_sink is not None else False,
         "updated_plan":plan,"updated_plan_steps_matched":plan_cursor if plan is not None else None,
         "incumbent_plan":incumbent,"incumbent_steps_matched":incumbent_cursor,
         "ledger_enabled":ledger is not None,"final_ledger":ledger,
@@ -437,6 +447,7 @@ def summarize(rows,planned,budget):
         "provider_tokens_charged":budget.charged,"reservation_units_requested":budget.reserved,
         "token_cap":budget.cap,"model_calls":sum(r["model_calls"] for r in rows),
         "goal_reached":sum(r["goal_reached"] for r in rows),
+        "unknown_provider_outcomes":sum(bool(r.get("provider_outcome_unknown")) for r in rows),
         "by_environment_and_arm":by_arm,"per_task":per_task,
         "note":"Development-screen results on five previously explored tasks; repeats are nested within task and are not independent samples.",
     }
@@ -508,7 +519,8 @@ async def run_live(requests,lookup,cb,args):
                     "repetition":request["repetition"],"goal_reached":False,
                     "halt_reason":"execution_error:"+str(exc),
                     "model_calls":len(response_events),
-                    "provider_tokens":sum(int(x.get("provider_tokens") or 0) for x in response_events),
+                    "provider_tokens":sum(int(x.get("provider_tokens") or x.get("provider_tokens_accounted") or 0) for x in trial_events if x["event"] in ("model_response","model_call_error")),
+                    "provider_outcome_unknown":any(x.get("provider_outcome_unknown") for x in trial_events),
                     "continuation_regret":None,
                     "partial_call_events":trial_events,
                 }
