@@ -121,7 +121,24 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(result.trace[0]["parameter_response_sha256"])
 
     async def test_local_substitution_switches_and_executes_without_extra_planning_call(self):
-        policy = make_policy(with_history=True)
+        selected_interfaces = [
+            item for item in tools()
+            if item["function"]["name"] in {"Acquire_A", "Finish_A", "Finish_A_Cheap"}
+        ]
+        history = ({
+            "tool_name": "Acquire_A",
+            "arguments": {"Start": "OBS-START"},
+            "observation": "Observed A as OBS-A",
+            "output_type": "A",
+            "output_id": "OBS-A",
+        },)
+        policy = build_policy_input(
+            task="dining", user_request="Complete the requested task.",
+            goal_type="Goal", observed_state_types=["Start", "A"],
+            old_remaining_plan=["Finish_A"],
+            current_tool_interfaces=selected_interfaces,
+            checkpoint_id="runner-checkpoint", observation_history=history,
+        )
         planner_calls = 0
         async def candidate_completion(**kwargs):
             nonlocal planner_calls
