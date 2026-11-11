@@ -41,6 +41,22 @@ If two eligible tasks cannot be found in every category, or any checkpoint/hash/
 
 This is a held-out task cohort for the plan-status intervention, not a new or unseen CostBench dataset. The selected tasks belong to the existing 50-task cohort, and the interpretation must remain within this benchmark and task-selection protocol.
 
+## Frozen cohort and offline preflight
+
+The committed task cohort is:
+
+| Category | Query IDs |
+|---|---|
+| Accommodation | Query00440, Query00466 |
+| Attraction | Query00590, Query00598 |
+| Dining | Query00738, Query00740 |
+| Shopping | Query00867, Query00898 |
+| Transportation | Query00229, Query00236 |
+
+After excluding 18 previously used mechanism tasks, the remaining eligible counts were 6, 6, 6, 7, and 7 respectively. The frozen selection uses the first two eligible IDs in lexicographic order per category. All ten selected pairs have a zero incumbent gap in RETAIN and a 1.3 native graph gap in SWITCH.
+
+The offline preflight passed in GitHub Actions run [43006621052](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43006621052): 80 requests generated, 20 task/environment prompt audits passed, 40 paired arm comparisons confirmed status-only prompt differences, and the native dry-run validated all 80 requests. **Provider calls: 0.** The manifest is committed as `PLAN_STATUS_CONFIRMATION_MANIFEST.json`.
+
 ## Frozen run matrix
 
 - 10 base tasks (2 per category)
