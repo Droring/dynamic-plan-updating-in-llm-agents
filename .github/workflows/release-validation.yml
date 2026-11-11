@@ -64,6 +64,8 @@ jobs:
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
       - name: Run bounded local plan substitution tests
         run: python -m unittest research.complete_candidate_verification.test_local_plan_substitution -v
+      - name: Run retrospective local substitution audit on all development checkpoints
+        run: python -m unittest research.complete_candidate_verification.test_development_screen_local_substitution -v
       - name: Run complete-candidate replanning runner tests
         run: python -m unittest research.complete_candidate_verification.test_runner -v
       - name: Run provider budget and uncertainty tests

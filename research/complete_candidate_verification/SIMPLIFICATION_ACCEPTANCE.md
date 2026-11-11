@@ -103,3 +103,38 @@ Using the four major stages with equal weight:
 | **Overall** | **50%** |
 
 The method-simplification and offline-regression substage is complete at 100%. The independent validation remains unstarted and should stay on hold until a distinct method exists.
+
+
+## Follow-on method development: bounded local substitution
+
+The NO-GO above remains the correct conclusion for the one-call Fresh-only policy
+as a purported new algorithm. A separate intervention was subsequently added:
+fresh_with_local_substitution. It uses one Fresh complete-path proposal and
+bounded type-contract replacements around the incumbent and Fresh paths.
+
+A retrospective audit fixture now tests all 16 RETAIN/SWITCH checkpoints from the
+archived 32-trajectory development cohort with the repository implementation.
+The method retained all eight RETAIN incumbents and selected an audited-optimal
+complete path in all eight SWITCH checkpoints. The Fresh proposal itself was
+already optimal in two SWITCH tasks; local substitution supplied the optimum in
+the other six. These are reused development tasks and do not establish independent
+effectiveness.
+
+The offline release-validation workflow also verifies:
+- six focused local-substitution unit tests;
+- one retrospective test covering all 16 archived development checkpoints;
+- nine end-to-end runner tests;
+- two pinned native CostBench integration tests, including execution of a better
+  SWITCH continuation with zero provider calls;
+- the remaining protocol, provider, schedule, and repository regression suites.
+
+The current independent validation remains 20 entirely new tasks, four per
+CostBench category, with seven comparison arms and 280 trajectories. The new
+method occupies the previously reserved "New Method" arm. The exact archived
+prompt for the "Best Existing Prompt" arm and its hash must be frozen before
+the task manifest is released. The final 60-task test remains sealed until the
+independent validation passes.
+
+No paid DeepSeek calls have been made for this follow-on method development.
+The overall four-stage project remains at 50%: implementation and development
+screen are complete; independent validation and final test have not started.

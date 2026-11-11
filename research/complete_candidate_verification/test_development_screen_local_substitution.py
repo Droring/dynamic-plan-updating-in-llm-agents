@@ -17,7 +17,7 @@ FIXTURE_PATH = Path(__file__).with_name(
 
 
 def load_fixture():
-    compressed = base64.b64decode(FIXTURE_PATH.read_text(encoding="ascii"))
+    compressed = base64.b64decode(FIXTURE_PATH.read_text(encoding="ascii").strip())
     return json.loads(zlib.decompress(compressed).decode("utf-8"))
 
 
@@ -72,10 +72,9 @@ class DevelopmentScreenLocalSubstitutionAuditTests(unittest.TestCase):
                     # Condition labels and oracle scores are scoring-only fixture fields.
                     self.assertFalse(hasattr(policy_input, "condition"))
                     self.assertFalse(hasattr(policy_input, "oracle_optimal_value"))
-                    self.assertNotIn("condition", policy_input.prompt_payload(
-                        include_incumbent=False))
-                    self.assertNotIn("oracle_optimal_value", policy_input.prompt_payload(
-                        include_incumbent=False))
+                    payload = policy_input.prompt_payload(include_incumbent=False)
+                    self.assertNotIn("condition", payload)
+                    self.assertNotIn("oracle_optimal_value", payload)
 
                     fresh_path = tuple(record["fresh_path"])
                     fresh_check = check_policy_path(policy_input, fresh_path)

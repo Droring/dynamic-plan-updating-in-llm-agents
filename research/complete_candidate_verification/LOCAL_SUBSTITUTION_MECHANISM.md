@@ -1,71 +1,98 @@
 # Bounded Type-Contract Local Substitution
 
-**Status: implemented as an experimental strategy; offline CI and one pinned native integration are pending. No independent evaluation has started.**
+**Status: implementation and offline validation PASS; independent evaluation NOT STARTED.**
 
-## Motivation from the frozen development screen
+## Motivation
 
-The 32-trajectory screen produced four incorrect SWITCH decisions. All submitted candidates were complete, feasible, and executed exactly as committed. The strict selector retained the incumbent because none of the model-generated candidates had a lower current path value.
+The frozen 32-trajectory development screen produced four incorrect SWITCH decisions. All submitted candidates were complete and feasible, and the selected plans executed successfully. The selector retained the incumbent because neither historical candidate source supplied a strictly better complete path.
 
-The Fresh prompt did not include the incumbent plan, so these four failures cannot be attributed solely to direct exposure to the old plan. The evidence instead points to incomplete coverage of equivalent tool compositions in the current tool catalogue. This is a development-cohort diagnosis, not a general claim about LLM plan commitment.
+The Fresh prompt did not include the incumbent, so these four failures cannot be attributed solely to direct exposure to the old plan. The archived candidates instead show a candidate-coverage problem: the model often proposed a feasible path but missed a lower-value composition already expressible with the current tool catalogue.
 
-## Retrospective path audit
+## Retrospective development audit
 
-The archived 32-trajectory artifact was analyzed offline. For each of the eight SWITCH checkpoints, the typed tool catalogue was used to reconstruct a shortest feasible path for audit only. The experimental policy does not receive that oracle path or its value.
+The audit uses the archived first Fresh proposal from the fresh_plus_fresh development arm, the corresponding incumbent suffix, and the exact public tool contracts visible at each checkpoint. The current fresh_with_local_substitution operator is then run on the incumbent and Fresh paths. The oracle value is read only after selection to score the result; it is not included in PolicyInput.
 
-| Query | Incumbent value | Fresh candidate value | Audited best value | Local-substitution finding |
-|---|---:|---:|---:|---|
-| Query00178 | 77.35 | 77.65 | 76.05 | Search + three-step finish |
-| Query00351 | 58.66 | 59.08 | 57.36 | Direct three-step finish |
-| Query00440 | 61.51 | 60.21 | 60.21 | Fresh path already best |
-| Query00549 | 79.09 | 79.13 | 77.79 | Search-to-step-1 + finalize |
-| Query00598 | 62.55 | 61.37 | 61.25 | Step-1 refinement + finalize |
-| Query00662 | 62.01 | 60.71 | 60.71 | Fresh path already best |
-| Query00689 | 78.99 | 79.41 | 77.69 | Search + three-step finish |
-| Query00851 | 84.04 | 82.92 | 82.74 | Search-to-step-1 + step-2 refinement + select |
+| Query | Incumbent | Fresh candidate | Best local substitute | Selected value | Audited optimum | Source of optimum |
+|---|---:|---:|---:|---:|---:|---|
+| Query00178 | 77.35 | 77.65 | 76.05 | 76.05 | 76.05 | Local substitution |
+| Query00351 | 58.66 | 59.08 | 57.36 | 57.36 | 57.36 | Local substitution |
+| Query00440 | 61.51 | 60.21 | 60.26 | 60.21 | 60.21 | Fresh candidate |
+| Query00549 | 79.09 | 79.13 | 77.79 | 77.79 | 77.79 | Local substitution |
+| Query00598 | 62.55 | 61.37 | 61.25 | 61.25 | 61.25 | Local substitution |
+| Query00662 | 62.01 | 60.71 | 60.73 | 60.71 | 60.71 | Fresh candidate |
+| Query00689 | 78.99 | 79.41 | 77.69 | 77.69 | 77.69 | Local substitution |
+| Query00851 | 84.04 | 82.92 | 82.74 | 82.74 | 82.74 | Local substitution |
 
-The bounded substitution prototype, with a maximum replaced segment of four tools and a maximum replacement sequence of two tools, recovered a path matching the audited best value in all eight development SWITCH cases. This is a retrospective result on the same eight development tasks used to diagnose and shape the operator. It is not an estimate of independent performance and must not be reported as one.
+Across the 16 RETAIN/SWITCH checkpoints:
+
+- RETAIN: **8/8** retained the incumbent and matched the audited optimum.
+- SWITCH: **8/8** selected a strictly better complete path and matched the audited optimum.
+- The Fresh candidate already matched the audited optimum in **2/8** SWITCH tasks.
+- Local substitution supplied an audited-optimal candidate in the remaining **6/8** SWITCH tasks.
+
+This is a retrospective result on the same eight previously explored tasks used to diagnose and shape the operator. The fixed four-tool/two-tool search bounds were selected during development. The 16/16 result is therefore development evidence, not independent confirmation or a generalization estimate.
+
+The compact fixture development_screen_local_substitution_fixture.zlib.b64 is derived from GitHub Actions run [43050073958](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43050073958), artifact 13868243944 (SHA-256 d5b71f94985c8c7d19bff1a37daf3403af7121989e608295842df3255b4b64bf). It preserves the typed contracts and post-hoc scores needed to reproduce the audit without replaying provider requests.
 
 ## Method definition
 
-The experimental strategy is `fresh_with_local_substitution`:
+The experimental strategy is fresh_with_local_substitution:
 
 1. Reconstruct the current typed state and incumbent suffix from confirmed observations.
-2. Make exactly one Fresh request for a complete candidate path.
-3. Use the incumbent and any syntactically complete Fresh proposal as anchors.
-4. For every contiguous anchor segment of at most four tools, record the segment's start state, cumulative value, and final output type.
+2. Make exactly one Fresh request for a complete candidate path. The incumbent is not exposed in this candidate prompt.
+3. Use the incumbent and the syntactically complete Fresh proposal as the only search anchors.
+4. For every contiguous anchor segment of at most four tools, record its starting state, cumulative value, and final output type.
 5. Enumerate replacement sequences of at most two currently exposed tools. Each replacement tool must have all required input types available at that point. The replacement sequence must produce the original segment's boundary output type.
-6. Splice the replacement into the original path and validate the entire resulting path using the existing submitted-path checker. This rejects missing suffix inputs, invalid ordering, paths that stop short of the goal, and actions after goal completion.
+6. Splice each replacement into its anchor path and validate the entire resulting path using the unchanged submitted-path checker.
 7. Pass the Fresh proposal and all validated local alternatives to the unchanged strict selector. Retain on ties; switch only to a strictly better complete path.
 8. Commit and execute the exact selected path with the existing state-bound executor.
 
-The checker remains verification-only. The local operator is a separate bounded candidate generator, not a hidden path-completion feature in the checker.
+The checker remains verification-only. The local operator is a separate bounded candidate generator. It does not silently repair invalid Fresh paths, add arbitrary missing suffixes, or search from the checkpoint to the goal.
 
 ## Difference from full graph planning
 
-The local operator is anchored to one or two supplied complete paths: the incumbent and one Fresh proposal. It only substitutes a contiguous segment of at most four tools with a sequence of at most two tools that reaches the same typed boundary. It does not enumerate arbitrary paths from the initial checkpoint to the goal.
+The local operator is anchored to at most two supplied complete paths: the incumbent and one Fresh proposal. It substitutes a contiguous segment of at most four tools with a sequence of at most two tools that reaches the same typed boundary. It does not enumerate arbitrary paths from the checkpoint.
 
-The planned full-graph comparator remains a separate method that searches the reachable typed state space from the checkpoint. The two methods must remain separate experimental arms.
+The full-graph comparator remains a separate method that searches the reachable typed state space from the checkpoint. Because CostBench exposes an explicit type/dependency graph and tool values, the local operator is a bounded symbolic planning procedure, not evidence that the LLM independently discovered the optimal route. The independent study must include full graph planning as a strong information-matched baseline.
 
-## Information boundary and budget
+## Information boundary and model-call budget
 
-The operator reads only public current tool contracts: required input types, output type, and current per-tool value. It does not read condition labels, answer keys, reference paths, oracle values, or evaluation scores. It makes no model calls. The complete strategy uses one Fresh planning call plus the existing argument-generation calls for the committed path.
+The operator reads only the current public tool contracts: required input types, output type, and current per-tool value. It does not read condition labels, answer keys, reference paths, oracle values, or evaluation scores. It makes no model calls. The complete method uses one Fresh planning request plus argument-generation calls for the committed path.
 
-The fixed neighborhood bounds are four tools per replaced segment and two tools per replacement sequence. They must not be tuned after inspecting the independent 20-task outcomes.
+The search bounds are fixed at four replaced tools and two replacement tools. They are not to be tuned on the independent validation or final test cohorts.
 
-## Limitations to test
+## Limitations
 
-- The current CostBench typed-state model is monotonic and each tool exposes one output type in its public description. Environments with state deletion, side effects, or argument-dependent output types need a different contract model.
-- A better path may require replacing more than four contiguous tools or more than two tools. The method intentionally will not discover all possible plans.
-- The operator relies on the public type contracts and values being complete and current. Catalogue changes invalidate the existing execution certificate.
-- Retrospective success on eight development tasks may reflect the simple repeated tool-pattern structure of this cohort.
+- The current CostBench typed-state model is monotonic and each tool exposes one output type in its public description. State deletion, side effects, and argument-dependent output types are outside this implementation.
+- A better path may require replacing more than four contiguous tools or using more than two replacement tools.
+- The operator depends on public tool contracts and values being complete and current. A catalogue change invalidates the execution certificate.
+- The retrospective cohort contains repeated tool patterns and was used to design the operator.
+- The method is structurally a limited graph-search procedure; its value must be established against ordinary candidate generation and full graph planning, not inferred from its retrospective 16/16 score.
 
-## Next validation gate
+## Next independent validation
 
-Before the 20-task independent protocol can start, the following must pass:
+The agreed next validation uses **20 entirely new CostBench base tasks**, four from each of the five task categories, excluding all historical and derived tasks. It compares seven methods, for **20 × 2 conditions × 7 methods = 280 native trajectories**:
 
-- unit tests for single-tool and two-tool substitutions, strict-improvement filtering, suffix feasibility, deterministic ordering, and fixed search bounds;
-- end-to-end mocked execution proving the derived path is exactly the committed and executed path;
-- pinned native CostBench integration with zero provider calls;
-- full release validation and repository structure checks.
+1. Original DeepSeek Agent.
+2. Simple RETAIN rule.
+3. Best existing prompt (exact archived prompt and hash must be frozen before task-manifest release).
+4. Existing bounded verifier with complete-plan handoff.
+5. Ordinary Fresh full-candidate generation with the same checker and executor.
+6. **New method: fresh_with_local_substitution.**
+7. Full graph planning with the same executor.
 
-The independent 20-task protocol remains frozen and unstarted. No DeepSeek API calls, new tasks, or 60-task test runs are authorized by this report.
+The original repair_plus_fresh method remains a historical development arm; it is not the new method because it added no unique SWITCH coverage in the 32-trajectory screen.
+
+The model configuration is DeepSeek Flash, temperature 0, thinking disabled. The maximum is three planning calls per trajectory; parameter-generation calls are counted separately and included in total usage. The exact total token ceiling and maximum output settings must be frozen before any paid run.
+
+The hard validation gates are:
+
+- RETAIN accuracy: **20/20**.
+- SWITCH accuracy: **at least 14/20**.
+- Balanced accuracy: **at least 85%**.
+- The new method must not fall below the ordinary complete-candidate control.
+- Goal success and complete-trajectory quality must not regress.
+
+The later frozen test uses **60 entirely new tasks**, 12 per category, for 840 primary trajectories, plus the previously planned 120 stability repeats. It remains sealed unless the independent validation passes.
+
+**No paid DeepSeek calls, independent validation runs, or final-test runs were started in this stage.** The independent cohort remains unstarted.

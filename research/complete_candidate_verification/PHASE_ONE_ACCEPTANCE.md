@@ -78,6 +78,9 @@ The frozen 32-trajectory development screen was completed in GitHub Actions run
 [43050073958](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43050073958).
 Both methods achieved 75.0% execution-grounded BA, RETAIN 8/8 and SWITCH 4/8;
 their selected plans and executed paths matched in all 16 paired cells. The
-repair candidate added no unique strict-better SWITCH coverage. The pre-registered
-stop-and-simplify rule therefore prevents progression to the 12-task independent
-pilot with this version. See [DEVELOPMENT_SCREEN_RESULTS.md](DEVELOPMENT_SCREEN_RESULTS.md).
+repair candidate added no unique strict-better SWITCH coverage, so that version
+did not proceed to its originally proposed 12-task pilot. A distinct bounded
+type-contract local-substitution method was subsequently implemented and audited
+retrospectively on all 16 development checkpoints. The agreed next independent
+study is now 20 entirely new tasks across seven methods, not the superseded
+12-task pilot. See [LOCAL_SUBSTITUTION_MECHANISM.md](LOCAL_SUBSTITUTION_MECHANISM.md).
