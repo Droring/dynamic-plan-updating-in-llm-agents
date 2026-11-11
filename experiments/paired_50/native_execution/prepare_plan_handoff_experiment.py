@@ -169,10 +169,15 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
         if action["environment"]==action["source_environment"] and action["expected_archived_tool_result_sha256"]!=restored["tool_result_sha256"]:
             raise ValueError(f"Archived source result hash differs from restoration: {key}")
         prompt_action={**action,"tool_result":restored["tool_result"]}
+        initial_optimal=graph.shortest_feasible_path(prepared)
         replanning_input={**prepared,"state":post_state}
         new_path=graph.shortest_feasible_path(replanning_input)
-        if new_path is None or not new_path[1]:
+        if initial_optimal is None or new_path is None or not new_path[1]:
             raise ValueError(f"No nonempty continuation remains after common action: {key}")
+        common_prefix_loss=float(tool.cost)+float(new_path[0])-float(initial_optimal[0])
+        if common_prefix_loss < -1e-6:
+            raise ValueError(f"Common prefix has impossible negative Bellman loss: {key}")
+        common_prefix_loss=max(0.0,common_prefix_loss)
         replacement_path=list(new_path[1])
         incumbent=list(prepared["incumbent_suffix"])
         remaining_incumbent=incumbent[1:] if incumbent and incumbent[0]==action["tool"] else incumbent
@@ -231,6 +236,9 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
                     "common_tool_result":restored["tool_result"],
                     "common_tool_result_sha256":restored["tool_result_sha256"],
                     "post_action_state_sha256":post_state_sha,
+                    "common_prefix_loss":round(common_prefix_loss,8),
+                    "initial_optimal_value":round(float(initial_optimal[0]),8),
+                    "post_action_optimal_value":round(float(new_path[0]),8),
                     "tool_schema_sha256":schema_sha,
                     "updated_plan":replacement_path if arm in ("B","D") else None,
                     "incumbent_plan":incumbent,
@@ -257,6 +265,9 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
             "common_action_source_environment":action["source_environment"],
             "common_action_source_policy":action["source_policy"],
             "post_action_state_sha256":post_state_sha,
+            "common_prefix_loss":round(common_prefix_loss,8),
+            "initial_optimal_value":round(float(initial_optimal[0]),8),
+            "post_action_optimal_value":round(float(new_path[0]),8),
             "updated_plan":replacement_path,
             "remaining_incumbent_plan":remaining_incumbent,
             "plan_changed_vs_remaining_incumbent":replacement_path!=remaining_incumbent,
