@@ -93,6 +93,13 @@ jobs:
             --costbench-root "$RUNNER_TEMP/CostBench" \
             --task-limit 8
 
+      - name: Prepare candidate consideration and comparison diagnostics offline
+        run: |
+          python experiments/paired_50/native_execution/prepare_candidate_diagnostic.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --out "$RUNNER_TEMP/candidate-diagnostic.json"
+          python -c "import json,os; d=json.load(open(os.path.join(os.environ['RUNNER_TEMP'],'candidate-diagnostic.json'))); assert d['checkpoint_count']==16 and d['eligible_first_action_checkpoints']==15 and d['prompt_variants']==75 and d['model_calls']==0"
+
       - name: Validate the balanced two-task smoke cohort without provider calls
         run: |
           python experiments/paired_50/native_execution/run_four_arm_experiment.py \
