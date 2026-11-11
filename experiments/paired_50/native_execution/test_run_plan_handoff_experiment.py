@@ -1,7 +1,7 @@
 import unittest
 from types import SimpleNamespace
 
-from run_plan_handoff_experiment import current_value, summarize, append_jsonl, save_json_durable
+from run_plan_handoff_experiment import current_value, summarize, append_jsonl, save_json_durable, load_resume_state
 from preflight_common_action_restoration import TASKS, ENVIRONMENTS, ARMS
 
 
@@ -33,6 +33,61 @@ class PlanHandoffRunnerTests(unittest.TestCase):
             rows=[json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
             self.assertEqual([row["trial_id"] for row in rows],["trial-1","trial-2"])
             self.assertEqual(sum(row["provider_tokens"] for row in rows),30)
+
+    def test_resume_accepts_only_a_durable_completed_prefix(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        requests=[
+            {"trial_id":"trial-1","payload_sha256":"hash-1"},
+            {"trial_id":"trial-2","payload_sha256":"hash-2"},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            (root/"responses.jsonl").write_text(
+                json.dumps({"trial_id":"trial-1","payload_sha256":"hash-1"})+"\\n",
+                encoding="utf-8",
+            )
+            ledger={
+                "status":"incomplete","active_trial_id":None,
+                "completed_trial_ids":["trial-1"],
+                "approved_total_token_cap":3443584,
+                "prior_orphaned_attempt_reserve":1000000,
+                "effective_new_run_token_cap":2443584,
+                "provider_tokens_charged_this_run":1200,
+                "reservation_units_requested_this_run":30000,
+            }
+            (root/"ledger.json").write_text(json.dumps(ledger),encoding="utf-8")
+            records,charged,reserved=load_resume_state(root,requests,2443584,3443584,1000000)
+            self.assertEqual(len(records),1)
+            self.assertEqual(charged,1200)
+            self.assertEqual(reserved,30000)
+
+    def test_resume_refuses_an_uncertain_active_trial(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        requests=[{"trial_id":"trial-1","payload_sha256":"hash-1"}]
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            (root/"responses.jsonl").write_text(
+                json.dumps({"trial_id":"trial-1","payload_sha256":"hash-1"})+"\\n",
+                encoding="utf-8",
+            )
+            ledger={
+                "status":"incomplete","active_trial_id":"trial-1",
+                "completed_trial_ids":["trial-1"],
+                "approved_total_token_cap":3443584,
+                "prior_orphaned_attempt_reserve":1000000,
+                "effective_new_run_token_cap":2443584,
+                "provider_tokens_charged_this_run":1200,
+                "reservation_units_requested_this_run":30000,
+            }
+            (root/"ledger.json").write_text(json.dumps(ledger),encoding="utf-8")
+            with self.assertRaisesRegex(ValueError,"stopped inside a trial"):
+                load_resume_state(root,requests,2443584,3443584,1000000)
 
     def test_summary_counts_unknown_provider_outcomes(self):
         rows=[]
