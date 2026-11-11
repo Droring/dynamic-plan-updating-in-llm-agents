@@ -128,7 +128,7 @@ async def run_live(prep, costbench_root, out, cap, max_tokens, limit):
             # current native schemas as read-only JSON so all endpoints can
             # inspect the same current tool values, names and prerequisites.
             tool_context = (
-                "\\n\\n[Current native tool definitions: read-only context]\\n"
+                "\n\n[Current native tool definitions: read-only context]\n"
                 + json.dumps(row["tools"], sort_keys=True, ensure_ascii=False)
             ) if endpoint != "execution" else ""
             messages = [{"role": "system", "content": system},
