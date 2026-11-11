@@ -2,13 +2,13 @@
 
 ## Status and precondition
 
-**Frozen experimental design; no new model calls authorized by this document.** First run [attribute_execution_loss.py](attribute_execution_loss.py) on the **30 archived native trajectories** and inspect its action-level report. The 2×2 live-model experiment is a separate gate: do not launch it until the completed offline report is reviewed against this protocol.
+**Status: completed five-task development screen.** The 30-trajectory Bellman loss audit passed, the 40-branch common-action restoration passed, and the 2×2 experiment completed **80/80 native continuations**. See [the results report](PLAN_HANDOFF_STATE_TRACKING_RESULTS.md). The separate plan-status annotation follow-up has its own protocol; its offline preflight passed, but its paid run has not started.
 
 This protocol uses **only `main`**. Reuse the same pinned native CostBench revision and original frozen checkpoints. All five diagnostic tasks were previously explored, so these are **development screening tasks, not unseen confirmation samples**.
 
 **Research question:** Under the same post-action execution state and identical common first action, how do full replacement-plan handoff and explicit observed-state support, separately and jointly, affect the correctness of the LLM's subsequent tool execution?
 
-## Stage 0: exact step-loss localization (offline)
+## Stage 0: exact step-loss localization (offline, completed)
 
 On the existing 30 trajectories (5 base tasks × RETAIN/SWITCH × 3 first-action policies), evaluate every actually executed successful step with:
 
@@ -28,7 +28,7 @@ within numeric tolerance; stop on violation. Record first positive-loss step and
 
 **Do not use recorded original action regret alone** as a substitute for recalculating `V*(s_{t+1})`.
 
-## Stage 1: common post-first-action checkpoint
+## Stage 1: common post-first-action checkpoint (restoration passed)
 
 For each selected task and environment:
 
@@ -40,7 +40,7 @@ For each selected task and environment:
 
 Do not claim that four calls with the same tool *name* alone are state-matched. Do not replay model tool calls from one branch as the underlying environment state of another without explicit state reconstruction and observation equality checks.
 
-## Stage 2: fixed factorial prompt manipulations
+## Stage 2: fixed factorial prompt manipulations (80 requests executed)
 
 All four conditions preserve the original user goal, native system instructions, tool interfaces, executed prefix and exact common first-action observation. They differ on precisely two factors:
 
@@ -68,7 +68,9 @@ Do not read simulator hidden state, ground-truth labels, oracle values, shortest
 
 A/C and B/D must use the same tool-response serialization, context-length limits and native tool execution environment. Log the raw history and ledger separately so any observed C effect can be distinguished in later follow-ups from mere summarization or salience.
 
-## Stage 3: control arms and common execution protocol
+## Stage 3: additional controller baselines (specified but not executed)
+
+The 80-trajectory live screen executed A/B/C/D only. The fixed-plan executor and per-step graph-replanner controls below were specified but **not included in this run**; no results or claims are made for them.
 
 In addition to A/B/C/D, evaluate:
 
@@ -88,15 +90,15 @@ Primary descriptive outcome: within-condition per-task **complete-path optimalit
 - For any scalar higher-is-better Y, the additive factorial interaction is `I = Y_D - Y_B - Y_C + Y_A`. Report per-task values and interaction; no causality claim for tiny samples.
 - If D remains suboptimal while fixed-plan controlled execution is optimal, the evidence points toward **action-choice/execution adherence under this interface**, not necessarily a general state-management deficit.
 - If per-step graph replanning or a simple controller already resolves the failures, **stop**: a more complex algorithm is unnecessary on the tested full-information CostBench task family.
-- If B provides gains, only then consider a **separate** contrast holding the updated full plan fixed and varying whether the old plan is explicitly tagged superseded.
+- B provided gains in the completed development screen. The next contrast is frozen separately: hold the complete updated plan fixed and vary only whether the earlier plan receives a VALID/STALE status annotation. See [the plan-status confirmation protocol](PLAN_STATUS_CONFIRMATION_PROTOCOL.md).
 
 No new hidden intervention, ablation or goal may be introduced after inspecting outcomes without labelling it an exploratory follow-up.
 
-## Decision gate before paid models
+## Pre-run gates and execution record
 
-Freeze the common-first-action source IDs, tool arguments, native result hashes, post-action state hashes, each of the four prompt templates, ledger update function, controller rules, task inclusion and per-task scoring ahead of provider calls. Dry-run and unit test the four independent environment restorations to verify exactly matched starting state and identical common observation.
+Before the 2×2 run, the common-action IDs, arguments, result/state hashes, prompt templates, ledger renderer, task inclusion and scoring were frozen. The 30-trajectory loss audit passed; 40/40 independent restorations reproduced the expected arguments/results/states; the 80-request prompt matrix and dry-run passed with zero provider calls. The live run then completed 80/80 trajectories.
 
-**Stop without running the 2×2 if** the 30-trajectory loss audit fails telescoping, post-action source traces cannot be reproduced, current tool interfaces are not equivalent, or the ledger needs hidden oracle values. Keep the entire result in the existing repository `main`; create no branches.
+**Historical stop rule:** the 2×2 would have been stopped if the Bellman audit failed, common post-action traces could not be reproduced, tool interfaces differed, or the ledger required hidden oracle values. None occurred. The protocol and results remain on `main`.
 
 ## Subsequent publication direction
 
@@ -159,3 +161,10 @@ The earlier graph-planner-first-action replay remains a valid reproducibility ch
 The final shared nonterminal-prefix restoration, 80-request factorial prompt construction, and in-process deep-copy branch isolation all passed in GitHub Actions. The live runner reconstructs a fresh native tool registry and typed state for every trajectory; it replays and verifies the common native action before asking the model for the next action. This avoids mutable state leaking between the four arms or repeated trials.
 
 The paid workflow is manually gated by `run_paid_plan_handoff`, uses DeepSeek Flash with the frozen settings, and has a 3,443,584 actual-provider-token hard cap. It repeats the offline gates before making any provider request. **No model calls have been made in this stage.** The five-task 80-trajectory screen remains exploratory and must be followed by a separate held-out confirmation if it produces a stable effect.
+
+
+## Observed result and next diagnostic
+
+B/D achieved 10/10 optimal continuations in both RETAIN and SWITCH, compared with 5–6/10 for A/C. B and D produced identical continuation sequences in all 20 matched task/repetition cells. The observed-state ledger added no incremental benefit once a complete updated continuation was supplied in this cohort. The shared prefix was fixed and its loss remains in the full-path metric.
+
+The next experiment is the separate checkpoint-level plan-status annotation study. Its 10-task manifest and 80-request prompt matrix passed offline preflight in [run 43006621052](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43006621052). That run made zero provider calls; the paid job was skipped.

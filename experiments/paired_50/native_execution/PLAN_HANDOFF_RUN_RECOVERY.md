@@ -20,14 +20,28 @@ The live runner now:
 6. Refuses to resume when the previous run stopped inside a trial, because replaying that trial could duplicate an unrecorded provider charge.
 7. Uploads the response records, event journal, ledger, and summary together.
 
+## Successful retry
+
+- Workflow run: [42997923650](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/42997923650)
+- The repaired `paid-plan-handoff` job completed successfully.
+- All **80/80** frozen trajectories reached the goal; there were zero unknown provider outcomes.
+- The run used 120 model calls and recorded 725,465 provider tokens.
+- The [artifact](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/42997923650/artifacts/13844657416) contains requests, restoration and prompt preflights, responses, call journal, ledger and summary.
+- The retry used a fresh frozen request set and did not replay the uncertain trial from the failed attempt. The failed attempt remains excluded from analysis.
+
 ## Budget treatment for the retry
 
 The originally approved total cap was 3,443,584 tokens. Since the failed run's provider usage was not persisted, the retry reserves 1,000,000 tokens as an operational allowance for that orphaned attempt. The retry's effective cap is therefore 2,443,584 tokens.
 
 This 1,000,000-token allowance is **not a measured usage figure**. The cumulative usage across the failed attempt and retry cannot be certified exactly from GitHub artifacts alone. If exact billing reconciliation is required, check the DeepSeek account usage page for the failed run's time window.
 
-For the immediate retry, leave `resume_plan_handoff_run_id` empty: run 42984367048 has no durable response ledger and is not resumable. Use that input only for a later run whose artifact contains a valid `plan-handoff-live/ledger.json` and `responses.jsonl` checkpoint.
+The successful retry used an empty `resume_plan_handoff_run_id`; the uncertain trial from run 42984367048 was not replayed. Run 42997923650 is complete and is not a pending continuation.
 
 ## Validation status
 
 The repaired runner and its resume tests passed the full offline validation in [run 42987006523](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/42987006523). This validation made zero provider calls. A paid retry has not yet been started.
+
+
+## Current status
+
+The five-task plan-handoff development screen is complete; see [PLAN_HANDOFF_STATE_TRACKING_RESULTS.md](PLAN_HANDOFF_STATE_TRACKING_RESULTS.md). The later plan-status annotation follow-up has passed offline preflight, but its paid job has not been launched.

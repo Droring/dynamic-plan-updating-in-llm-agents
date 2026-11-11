@@ -2,7 +2,7 @@
 
 ## Outcome and next experimental implication
 
-**The actual-point-of-loss audit succeeded on all 30 archived native trajectories, with no new DeepSeek calls.** It distinguishes first-action loss from subsequent execution loss using a Bellman value difference at the **actual resulting type-state after each successful native tool call**, rather than comparing action names to a single ideal path.
+**The actual-point-of-loss audit succeeded on all 30 archived native trajectories, with no new DeepSeek calls.** The subsequent plan-handoff × observed-state 2×2 screen completed 80 native continuations; see [its results](PLAN_HANDOFF_STATE_TRACKING_RESULTS.md). It distinguishes first-action loss from subsequent execution loss using a Bellman value difference at the **actual resulting type-state after each successful native tool call**, rather than comparing action names to a single ideal path.
 
 In the unrestricted graph-planner arm, **0/10 trajectories incurred loss in their first action**, yet **3/10 incurred positive loss beginning at their second action**. This provides a directly measured reason to test *complete plan handoff* and *observed-state presentation* during subsequent execution. It does **not** establish either as the mechanism.
 
@@ -56,12 +56,12 @@ The following contains every **positive-loss trajectory** (RETAIN conditions and
 | Query00851 | SWITCH | Incumbent | 1 | 1.30 | 0.00 | `Shopping_Search_to_Final_4Steps` |
 | Query00851 | SWITCH | Candidate gate | 1 | 0.01 | 0.00 | `Shopping_Search_Planning_to_Step2` |
 
-**The most informative subset for the next 2×2 experiment is Query00178, Query00549 and Query00689 (SWITCH)**: the initial graph-planner action was optimal, but the LLM's second action was not. The paired RETAIN conditions remain necessary to check unnecessary changes.
+**The most informative development subset that motivated the subsequent 2×2 experiment was Query00178, Query00549 and Query00689 (SWITCH)**: the initial graph-planner action was optimal, but the LLM's second action was not. The paired RETAIN conditions remain necessary to check unnecessary changes.
 
 ## Mechanism limits and decision
 
 This audit is **typed-state-level** Bellman attribution. It captures only states represented by the CostBench tool dependency graph and the successful outputs' declared output types; the raw observation strings are preserved for scrutiny, but there is not yet a general semantic state tracker or hidden state comparison. Positive loss at step 2 is an **observable execution decision failure** under this graph, not proof that the LLM had an incorrect private state.
 
-An updated complete graph-planner path was *not* delivered to the model in the previous full-trajectory experiment; only its first action was controlled. Therefore do not claim any failure in following a properly handed-off new plan. The pre-registered next experiment [`PLAN_HANDOFF_STATE_TRACKING_PROTOCOL.md`](PLAN_HANDOFF_STATE_TRACKING_PROTOCOL.md) tests **plan handoff × observed-state ledger** from identical replayed first-action arguments and exact tool result, with independent environment restoration and same-model argument-generation controls.
+An updated complete graph-planner path was *not* delivered to the model in the previous full-trajectory experiment; only its first action was controlled. Therefore do not claim any failure in following a properly handed-off new plan. The pre-registered [plan-handoff × observed-state protocol](PLAN_HANDOFF_STATE_TRACKING_PROTOCOL.md) was subsequently executed on five development tasks. It completed 80/80 trajectories; B/D achieved 10/10 optimal continuations in both RETAIN and SWITCH, and B/D produced identical paths in all 20 matched repetitions. See [the full results](PLAN_HANDOFF_STATE_TRACKING_RESULTS.md).
 
 **Decision: GO for offline matched-checkpoint restoration preflight, but NO authorization yet for new paid model experiments.** If the common action or observation cannot be reproduced identically, stop instead of masking the mismatch with a prompt adjustment.

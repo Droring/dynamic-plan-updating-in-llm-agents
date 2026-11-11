@@ -142,16 +142,20 @@ Taken together, the evidence supports a working hypothesis of **unstable evidenc
 
 This is a behavioral synthesis, not a claim about hidden model reasoning. The original 27-plan subset is selected from a development cohort; the 50-task benchmark uses solver-derived incumbents; and the preference-update probes use a different type of environmental fact and only four independent tasks each. Together they identify a reproducible action-level asymmetry, but do not yet isolate a single causal mechanism.
 
+## Subsequent continuation diagnostic
+
+The 30-trajectory action-loss audit motivated a five-task plan-handoff × observed-state 2×2 development screen. It completed 80/80 native continuations from matched post-prefix checkpoints.
+
+- With the original incumbent only (A/C), optimal continuations were 5–6/10 in RETAIN and 6/10 in SWITCH.
+- With the complete current graph-planner continuation (B/D), optimal continuations were 10/10 in both RETAIN and SWITCH.
+- B and D executed identical continuation action sequences in all 20 matched task/repetition cells. The explicit typed-state ledger did not add an observed benefit once the complete continuation was supplied.
+- The independent unit is five base tasks. The 80 trajectories are paired conditions and repetitions, not 80 independent tasks.
+- The common first action was fixed; the result isolates continuation after that prefix. B/D are externally planner-assisted diagnostic conditions, not LLM-only methods.
+
+The [full report](PLAN_HANDOFF_STATE_TRACKING_RESULTS.md) records task-level contrasts, Bellman checks, timing and limitations. The fixed-plan executor and per-step graph-replanner controllers specified in the broader protocol were not included.
+
 ## Next diagnostic probe
 
-The next experiment should replicate the explicit-update effect in a fresh native cohort with **authentic Agent-authored pre-event plans**, rather than add another algorithm now.
+The next focused contrast is the checkpoint-level plan-status annotation study. Both arms receive the same frozen checkpoint and complete graph-planner continuation; only the prior-plan status changes from UNSET to VALID/STALE. Its 10-task cohort and 80-request matrix passed offline preflight in [run 43006621052](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43006621052), with zero provider calls. The frozen manifest is [PLAN_STATUS_CONFIRMATION_MANIFEST.json](PLAN_STATUS_CONFIRMATION_MANIFEST.json). The paid confirmation job was skipped and has not been launched.
 
-- Select 8–10 independent native checkpoints with verified pre-event plans, balanced between gate-RETAIN and gate-SWITCH cases.
-- **Baseline:** the original minimal environment-update message.
-- **Explicit-update condition:** the same checkpoint and current tool graph, but state the exact old-to-new fact or tool-value change. Do not suggest an alternative path.
-- Keep state, tools, incumbent plan, and execution budget identical; randomize condition order and repeat each condition.
-- Score the first native action, its arguments, native execution validity, and goal reach. Do not use the unchanged official final-answer scorer as the sole semantic measure for a changed preference.
-
-A consistent improvement would justify implementing a minimal evidence-update mechanism and comparing it against the explicit-prompt baseline. EDR and Action Guard should remain out of the main method until they show an incremental benefit over that simpler baseline. Candidate-suggestion prompts should also remain out of this replication because they may create an over-switching cue.
-
-This is a proposed next experiment, not an executed result. It requires new model calls and is intentionally not launched in this offline analysis.
+This follow-up remains an oracle-assisted diagnostic, not a deployable method. No new algorithm is proposed at this stage.
