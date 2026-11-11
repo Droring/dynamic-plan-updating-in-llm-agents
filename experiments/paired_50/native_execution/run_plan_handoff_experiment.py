@@ -25,6 +25,30 @@ from preflight_common_action_restoration import ARMS, ENVIRONMENTS, TASKS
 TOL=1e-5
 
 
+def append_jsonl(path: Path, value: dict):
+    """Durably append one JSONL record; never depend on another runner's private helper."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def save_json_durable(path: Path, value: dict):
+    """Atomically replace a JSON checkpoint after flushing it to disk."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(path.name + ".tmp")
+    with temporary.open("w", encoding="utf-8") as stream:
+        json.dump(value, stream, ensure_ascii=False, sort_keys=True, indent=2)
+        stream.write("\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temporary, path)
+
+
+
 def clone_trial_for_branch(trial):
     """Deep-copy every mutable native tool instance for one isolated branch."""
     cloned=copy.deepcopy(trial)
@@ -173,7 +197,7 @@ def current_value(prepared,state):
     return None if result is None else float(result[0])
 
 
-async def run_one(request,trial,official_run,client,budget,args):
+async def run_one(request,trial,official_run,client,budget,args,event_sink=None):
     prepared=trial["prepared"]
     payload=request["payload"]
     messages=copy.deepcopy(payload["messages"])
@@ -214,15 +238,39 @@ async def run_one(request,trial,official_run,client,budget,args):
             break
         before_state=sorted(state)
         before_value=current_value(prepared,state)
+        if event_sink is not None:
+            event_sink({
+                "event":"model_call_started","trial_id":request["trial_id"],
+                "step":step_index,"messages_sha256":native.canonical_sha(messages),
+                "charged_tokens_before":budget.charged,
+                "reserved_units_before":budget.reserved,
+            })
         try:
             response=await native.call_model(client,messages,payload["tools"],"required",args.max_tokens,budget)
         except Exception as exc:
             halt="reservation_cap" if "reservation_cap" in str(exc) else "api_error:"+str(exc)
+            if event_sink is not None:
+                event_sink({
+                    "event":"model_call_error","trial_id":request["trial_id"],
+                    "step":step_index,"error_type":type(exc).__name__,
+                    "error":str(exc),"provider_outcome_unknown":halt.startswith("api_error"),
+                    "charged_tokens_after":budget.charged,
+                    "reserved_units_after":budget.reserved,
+                })
             break
         model_calls+=1
-        tokens+=int(response.usage.total_tokens)
+        call_tokens=int(response.usage.total_tokens)
+        tokens+=call_tokens
         msg=response.choices[0].message
-        messages.append(native.assistant_message_dict(msg))
+        assistant_record=native.assistant_message_dict(msg)
+        messages.append(assistant_record)
+        if event_sink is not None:
+            event_sink({
+                "event":"model_response","trial_id":request["trial_id"],
+                "step":step_index,"model_reported":getattr(response,"model",None),
+                "provider_tokens":call_tokens,"charged_tokens_after":budget.charged,
+                "assistant_message":assistant_record,
+            })
         calls=msg.tool_calls or []
         if len(calls)!=1:
             halt="no_or_multiple_tool_calls"
@@ -234,6 +282,13 @@ async def run_one(request,trial,official_run,client,budget,args):
         if tool is None or not set(tool.input_types).issubset(state):
             error_text="[ERROR] Invalid or infeasible native tool action at the current observed state."
             messages.append({"role":"tool","tool_call_id":call.id,"name":name,"content":error_text})
+            if event_sink is not None:
+                event_sink({
+                    "event":"tool_execution","trial_id":request["trial_id"],
+                    "step":step_index,"tool":name,"arguments":arguments,
+                    "success":False,"output":error_text,
+                    "state_before":before_state,"state_after":before_state,
+                })
             if ledger is not None:
                 ledger=update_ledger(ledger,f"STEP-{step_index:02d}",name,"unknown",error_text,False)
                 messages.append({"role":"user","content":"[Updated observed-state ledger]\n"+render_ledger(ledger)})
@@ -252,6 +307,14 @@ async def run_one(request,trial,official_run,client,budget,args):
             output=f"[ERROR] {type(exc).__name__}: {exc}"
             success=False
         messages.append({"role":"tool","tool_call_id":call.id,"name":name,"content":output})
+        if event_sink is not None:
+            event_sink({
+                "event":"tool_execution","trial_id":request["trial_id"],
+                "step":step_index,"tool":name,"arguments":arguments,
+                "success":success,"output":output,
+                "state_before":before_state,
+                "state_after":sorted(set(before_state)|({tool.output_type} if success else set())),
+            })
         if not success:
             if ledger is not None:
                 ledger=update_ledger(ledger,f"STEP-{step_index:02d}",name,tool.output_type,output,False)
@@ -387,41 +450,91 @@ async def run_live(requests,lookup,cb,args):
     if args.out.exists() and any(args.out.iterdir()):
         raise FileExistsError("Output directory must be empty; do not overwrite prior run records")
     args.out.mkdir(parents=True,exist_ok=True)
-    budget=native.TokenBudget(args.cap)
+    if args.orphaned_attempt_reserve < 0 or args.orphaned_attempt_reserve >= args.cap:
+        raise ValueError("orphaned_attempt_reserve must be nonnegative and smaller than cap")
+    effective_cap=args.cap-args.orphaned_attempt_reserve
+    budget=native.TokenBudget(effective_cap)
     rows=[]
+    events_path=args.out/"call_events.jsonl"
+    ledger_path=args.out/"ledger.json"
+
+    def persist_ledger(status, active_trial=None, active_call_count=0, active_trial_tokens=0):
+        save_json_durable(ledger_path,{
+            "status":status,"completed_trajectories":len(rows),
+            "planned_trajectories":len(requests),
+            "completed_trial_ids":[r["trial_id"] for r in rows],
+            "active_trial_id":active_trial,
+            "active_trial_model_responses":active_call_count,
+            "active_trial_provider_tokens":active_trial_tokens,
+            "provider_tokens_charged_this_run":budget.charged,
+            "reservation_units_requested_this_run":budget.reserved,
+            "approved_total_token_cap":args.cap,
+            "prior_orphaned_attempt_reserve":args.orphaned_attempt_reserve,
+            "effective_new_run_token_cap":budget.cap,
+            "no_automatic_retries":True,
+        })
+
+    persist_ledger("in_progress")
     async with AsyncOpenAI(base_url="https://api.deepseek.com",api_key=key,timeout=args.timeout) as client:
         for index,request in enumerate(requests,1):
             trial=clone_trial_for_branch(lookup[(request["query_id"],request["environment"])])
             start=time.monotonic()
+            trial_events=[]
+            append_jsonl(events_path,{
+                "event":"trial_started","trial_id":request["trial_id"],
+                "trial_index":index,"planned_trials":len(requests),
+                "request_payload_sha256":request["payload_sha256"],
+            })
+
+            def event_sink(event):
+                trial_events.append(event)
+                append_jsonl(events_path,event)
+                persist_ledger(
+                    "in_progress",request["trial_id"],
+                    sum(x["event"]=="model_response" for x in trial_events),
+                    sum(int(x.get("provider_tokens") or 0) for x in trial_events),
+                )
+
             try:
-                row=await run_one(request,trial,cb["official_run"],client,budget,args)
+                row=await run_one(
+                    request,trial,cb["official_run"],client,budget,args,
+                    event_sink=event_sink,
+                )
             except Exception as exc:
+                response_events=[x for x in trial_events if x["event"]=="model_response"]
                 row={
                     "trial_id":request["trial_id"],"query_id":request["query_id"],
                     "environment":request["environment"],"arm":request["arm"],
                     "repetition":request["repetition"],"goal_reached":False,
-                    "halt_reason":"execution_error:"+str(exc),"model_calls":0,
-                    "provider_tokens":0,"continuation_regret":None,
+                    "halt_reason":"execution_error:"+str(exc),
+                    "model_calls":len(response_events),
+                    "provider_tokens":sum(int(x.get("provider_tokens") or 0) for x in response_events),
+                    "continuation_regret":None,
+                    "partial_call_events":trial_events,
                 }
             row["elapsed_seconds"]=round(time.monotonic()-start,3)
             rows.append(row)
-            native.append_jsonl(args.out/"responses.jsonl",row)
-            native.save_json(args.out/"ledger.json",{
-                "status":"incomplete" if len(rows)<len(requests) else "complete",
-                "completed":len(rows),"planned":len(requests),
-                "provider_tokens_charged":budget.charged,
-                "reservation_units_requested":budget.reserved,"cap":budget.cap,
-            })
+            append_jsonl(args.out/"responses.jsonl",row)
+            persist_ledger(
+                "incomplete" if len(rows)<len(requests) else "complete",
+            )
             print(json.dumps({
                 "completed":len(rows),"planned":len(requests),
                 "trial_id":request["trial_id"],"goal_reached":row.get("goal_reached"),
                 "halt_reason":row.get("halt_reason"),
                 "provider_tokens_charged":budget.charged,
             }),flush=True)
-            if row.get("halt_reason")=="reservation_cap":
+            if row.get("halt_reason")=="reservation_cap" or str(row.get("halt_reason","")).startswith("api_error") or str(row.get("halt_reason","")).startswith("execution_error"):
                 break
     summary=summarize(rows,len(requests),budget)
-    native.save_json(args.out/"summary.json",summary)
+    summary.update({
+        "approved_total_token_cap":args.cap,
+        "prior_orphaned_attempt_reserve":args.orphaned_attempt_reserve,
+        "effective_new_run_token_cap":budget.cap,
+        "call_event_journal":"call_events.jsonl",
+    })
+    save_json_durable(args.out/"summary.json",summary)
+    persist_ledger("complete" if len(rows)==len(requests) else "incomplete")
     return summary
 
 
@@ -435,6 +548,8 @@ def main():
     p.add_argument("--max-tokens",type=int,default=2048)
     p.add_argument("--max-steps",type=int,default=8)
     p.add_argument("--timeout",type=int,default=120)
+    p.add_argument("--orphaned-attempt-reserve",type=int,default=0,
+                   help="Conservatively reserve part of the approved cap for a prior paid attempt whose usage record was lost.")
     args=p.parse_args()
     if args.max_tokens!=2048:
         p.error("The frozen experiment requires max_tokens=2048")
