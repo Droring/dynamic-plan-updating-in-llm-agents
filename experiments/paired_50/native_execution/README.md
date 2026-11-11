@@ -53,7 +53,7 @@ The next controlled follow-up holds the complete planner-computed continuation f
 - [Offline task and prompt preparation](prepare_plan_status_confirmation.py)
 - [Native continuation runner](run_plan_status_confirmation.py)
 
-The confirmation cohort is selected from the existing 50-task dataset, excluding the five tasks used in the preceding plan-handoff intervention and requiring an identical successful first action and exact arguments across the paired environments. It may overlap with other earlier diagnostics and is not a globally unseen CostBench dataset. The annotation is privileged diagnostic information, not a deployable method. The selected task manifest must be committed before any paid run. No model calls are made during preparation or dry-run validation.
+The confirmation cohort is selected from the existing 50-task dataset, excluding tasks used in the four-arm mechanism screen, bounded-verifier confirmation, and the preceding plan-handoff development screen. Each arm starts from the same frozen checkpoint; no common first action is replayed in this checkpoint-level contrast. The cohort is held out from these earlier mechanism interventions, not a new CostBench dataset. The annotation is privileged diagnostic information, not a deployable method. The annotation is privileged diagnostic information, not a deployable method. The selected task manifest must be committed before any paid run. No model calls are made during preparation or dry-run validation.
 
 ## Offline validation
 
