@@ -23,6 +23,7 @@ from .update_controller import UpdateDecision, run_update
 
 DEFAULT_MODEL = "deepseek-flash"
 DEFAULT_MAX_TOKENS = 2048
+DEFAULT_MAX_TOOL_STEPS = 7
 REFINEMENT_LEVEL = 2
 ERROR_PREFIXES = ("[ERROR]", "Tool execution failed", "Error:")
 
@@ -226,8 +227,11 @@ async def run_complete_candidate(
     native_tool_objects: Mapping[str, Any] | None = None,
     max_argument_tokens: int = DEFAULT_MAX_TOKENS,
     candidate_strategy: str = "repair_plus_fresh",
+    max_tool_steps: int = DEFAULT_MAX_TOOL_STEPS,
 ) -> CompleteCandidateRun:
     """Generate two full candidates, select, commit, and execute the exact path."""
+    if max_tool_steps <= 0:
+        raise ValueError("max_tool_steps must be positive")
     decision_start = time.perf_counter()
     decision = await run_update(policy_input, candidate_completion, candidate_strategy)
     decision_latency = time.perf_counter() - decision_start
@@ -238,6 +242,15 @@ async def run_complete_candidate(
             "stopped_without_feasible_plan", decision, (), (), False,
             policy_input.current_state_types, decision.planning_calls, 0,
             planning_tokens, 0, decision_latency, 0.0, decision.reason, None,
+        )
+
+    if len(decision.selected_plan) > max_tool_steps:
+        return CompleteCandidateRun(
+            "plan_exceeds_tool_step_limit", decision, (), (), False,
+            policy_input.current_state_types, decision.planning_calls, 0,
+            planning_tokens, 0, decision_latency, 0.0,
+            f"selected plan has {len(decision.selected_plan)} tools; limit is {max_tool_steps}",
+            None,
         )
 
     executor = CommittedPlanExecutor(policy_input, decision.selected_plan)
@@ -385,6 +398,25 @@ async def run_complete_candidate(
     )
 
 
+def make_observation_history(
+    prepared: Mapping[str, Any], query: Mapping[str, Any], native: Any,
+) -> tuple[Mapping[str, Any], ...]:
+    """Build history only from the exact successfully replayed native prefix."""
+    if not prepared.get("prefix_name"):
+        return ()
+    prefix_tool = prepared["tool_objects"][prepared["prefix_name"]]
+    prefix_arguments = native.build_prefix_arguments(prefix_tool, query, prepared["task"])
+    if not prepared.get("prefix_output_id"):
+        raise ValueError("the completed prefix has no native output identifier")
+    return ({
+        "tool_name": prepared["prefix_name"],
+        "arguments": prefix_arguments,
+        "observation": prepared["prefix_observation"],
+        "output_type": prefix_tool.output_type,
+        "output_id": str(prepared["prefix_output_id"]),
+    },)
+
+
 def make_policy_input_from_prepared(
     prepared: Mapping[str, Any],
     observation_history: tuple[Mapping[str, Any], ...] = (),
@@ -402,22 +434,11 @@ def make_policy_input_from_prepared(
 
 async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[str, Any],
                                    native: Any, costbench: Mapping[str, Any],
-                                   candidate_strategy: str = "repair_plus_fresh") -> CompleteCandidateRun:
+                                   candidate_strategy: str = "repair_plus_fresh",
+                                   max_tool_steps: int = DEFAULT_MAX_TOOL_STEPS) -> CompleteCandidateRun:
     """Execute a complete native trajectory using deterministic mocks and zero API calls."""
-    history: list[Mapping[str, Any]] = []
-    if prepared.get("prefix_name"):
-        prefix_tool = prepared["tool_objects"][prepared["prefix_name"]]
-        prefix_arguments = native.build_prefix_arguments(prefix_tool, query, prepared["task"])
-        if not prepared.get("prefix_output_id"):
-            raise ValueError("the completed prefix has no native output identifier")
-        history.append({
-            "tool_name": prepared["prefix_name"],
-            "arguments": prefix_arguments,
-            "observation": prepared["prefix_observation"],
-            "output_type": prefix_tool.output_type,
-            "output_id": str(prepared["prefix_output_id"]),
-        })
-    policy_input = make_policy_input_from_prepared(prepared, tuple(history))
+    history = make_observation_history(prepared, query, native)
+    policy_input = make_policy_input_from_prepared(prepared, history)
     incumbent = list(policy_input.old_remaining_plan)
 
     class OfflinePlanner:
@@ -483,6 +504,7 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
         policy_input, candidate_completion=planner, argument_completion=arguments,
         native_execute=execute, native_tool_objects=prepared["tool_objects"],
         candidate_strategy=candidate_strategy,
+        max_tool_steps=max_tool_steps,
     )
     if planner.calls != 2:
         raise AssertionError(f"expected two planning calls, got {planner.calls}")
@@ -532,14 +554,20 @@ def main() -> int:
     parser.add_argument("--candidate-strategy",
                         choices=("repair_plus_fresh", "fresh_plus_fresh"),
                         default="repair_plus_fresh")
+    parser.add_argument("--max-tool-steps", type=int, default=DEFAULT_MAX_TOOL_STEPS)
     parser.add_argument("--out", type=Path, default=Path("outputs/complete_candidate_offline_smoke"))
     args = parser.parse_args()
+    args.costbench_root = args.costbench_root.resolve()
+    args.out = args.out.resolve()
+    if args.max_tool_steps <= 0:
+        raise ValueError("--max-tool-steps must be positive")
     minimum_plan_length = 2 if args.query_id is None else 1
     native, costbench, prepared, query = load_native_trial(
         args.costbench_root, args.query_id, args.condition,
         minimum_plan_length=minimum_plan_length)
     result = asyncio.run(run_native_offline_smoke(
-        prepared, query, native, costbench, candidate_strategy=args.candidate_strategy))
+        prepared, query, native, costbench,
+        candidate_strategy=args.candidate_strategy, max_tool_steps=args.max_tool_steps))
     record = result.to_record()
     record.update({
         "query_id": prepared["query_id"],
@@ -554,6 +582,7 @@ def main() -> int:
         "status": result.status, "provider_api_calls": 0,
         "planning_calls": result.planning_calls, "parameter_calls": result.parameter_calls,
         "goal_reached": result.goal_reached, "executed_path": list(result.executed_path),
+        "max_tool_steps": args.max_tool_steps,
     })
     print(json.dumps(record, ensure_ascii=False, indent=2))
     return 0 if result.status == "goal_reached" else 2

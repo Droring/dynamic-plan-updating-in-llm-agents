@@ -149,6 +149,24 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.parameter_calls, 1)
         self.assertFalse(result.goal_reached)
 
+    async def test_selected_plan_over_step_limit_stops_before_native_execution(self):
+        policy = make_policy()
+        async def candidate_completion(**kwargs):
+            return {"choices": [{"message": {"content": json.dumps(
+                {"plan": ["Acquire_A", "Finish_A"]})}}]}
+        async def argument_completion(**kwargs):
+            raise AssertionError("argument generation must not start")
+        def native_execute(**kwargs):
+            raise AssertionError("native execution must not start")
+        result = await run_complete_candidate(
+            policy, candidate_completion=candidate_completion,
+            argument_completion=argument_completion, native_execute=native_execute,
+            max_tool_steps=1,
+        )
+        self.assertEqual(result.status, "plan_exceeds_tool_step_limit")
+        self.assertEqual(result.parameter_calls, 0)
+        self.assertFalse(result.goal_reached)
+
     async def test_native_failure_invalidates_and_does_not_advance(self):
         policy = make_policy()
         calls = 0

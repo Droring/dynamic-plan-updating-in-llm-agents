@@ -64,6 +64,13 @@ jobs:
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
       - name: Run complete-candidate replanning runner tests
         run: python -m unittest research.complete_candidate_verification.test_runner -v
+      - name: Run 32-trajectory development-screen offline preflight
+        run: python -m research.complete_candidate_verification.prepare_development_screen --costbench-root ../CostBench --out outputs/development_screen_preflight
+      - name: Archive development-screen offline preflight
+        uses: actions/upload-artifact@v4
+        with:
+          name: complete-candidate-development-preflight
+          path: outputs/development_screen_preflight/
       - name: Run one pinned native CostBench committed-path execution
         env:
           COSTBENCH_ROOT: ../CostBench
