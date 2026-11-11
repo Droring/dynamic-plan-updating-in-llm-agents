@@ -32,8 +32,8 @@ class FullTrajectoryComparisonTests(unittest.TestCase):
     def test_summary_reports_goal_and_path_quality_separately(self):
         rows = [
             {"policy":"incumbent","reached_goal":True,"path_regret":2.0,"provider_tokens":100,"halt_reason":"goal_reached"},
-            {"policy":"candidate_gate","reached_goal":False,"path_regret":None,"provider_tokens":100},
-            {"policy":"graph_planner","reached_goal":True,"path_regret":0.0,"provider_tokens":100},
+            {"policy":"candidate_gate","reached_goal":False,"path_regret":None,"provider_tokens":100,"halt_reason":"native_tool_error"},
+            {"policy":"graph_planner","reached_goal":True,"path_regret":0.0,"provider_tokens":100,"halt_reason":"goal_reached"},
         ]
         out = summarize(rows,3)
         self.assertEqual(out["per_policy"]["candidate_gate"]["goals_reached"],0)
