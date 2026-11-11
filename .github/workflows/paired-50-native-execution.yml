@@ -2,7 +2,7 @@ name: Paired 50 native CostBench execution validation
 
 on:
   push:
-    branches: [main, research/four-arm-mechanism-screen]
+    branches: [main]
     paths:
       - "experiments/paired_50/generated/model_requests_100.jsonl"
       - "experiments/paired_50/native_execution/**"
