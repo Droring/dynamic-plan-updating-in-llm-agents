@@ -87,6 +87,22 @@ jobs:
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/full-trajectory-archive
 
+      - name: Preflight four isolated restores of the identical archived first action
+        run: |
+          python experiments/paired_50/native_execution/preflight_common_action_restoration.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --trajectories "$RUNNER_TEMP/full-trajectory-archive/full-trajectory-results/trajectories.jsonl" \
+            --out "$RUNNER_TEMP/common-action-restoration"
+          python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"common-action-restoration","common_action_restoration_preflight.json"); r=json.load(open(p)); assert r["status"]=="passed" and r["restored_branch_contexts"]==40 and r["provider_calls"]==0 and r["exact_archived_native_result_matches"]==40'
+
+      - name: Archive common-action restoration preflight
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-action-restoration-preflight
+          path: ${{ runner.temp }}/common-action-restoration/
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Attribute native trajectory loss from actual post-action typed states
         run: |
           python experiments/paired_50/native_execution/attribute_execution_loss.py \
