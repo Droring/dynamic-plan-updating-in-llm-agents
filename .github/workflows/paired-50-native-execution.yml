@@ -92,7 +92,7 @@ jobs:
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/full-trajectory-archive
 
-      - name: Preflight four isolated restores of the identical archived first action
+      - name: Preflight four isolated restores of the shared nonterminal common action
         run: |
           python experiments/paired_50/native_execution/preflight_common_action_restoration.py \
             --costbench-root "$RUNNER_TEMP/CostBench" \
@@ -117,6 +117,13 @@ jobs:
             --repetitions 2 \
             --out "$RUNNER_TEMP/plan-handoff-prompt-preflight"
           python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"plan-handoff-prompt-preflight","summary.json"); r=json.load(open(p)); assert r["status"]=="offline_prompt_preflight_passed" and r["request_count"]==80 and r["provider_calls"]==0 and r["common_history_and_tool_schema_matched"] and r["all_cells_have_four_arms"]'
+
+      - name: Validate all 80 requests and deep-copied native branches without provider calls
+        run: |
+          python experiments/paired_50/native_execution/run_plan_handoff_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --requests "$RUNNER_TEMP/plan-handoff-prompt-preflight/requests.jsonl" \
+            --out "$RUNNER_TEMP/plan-handoff-dry-run"
 
       - name: Archive offline plan-handoff prompt preflight
         uses: actions/upload-artifact@v4
