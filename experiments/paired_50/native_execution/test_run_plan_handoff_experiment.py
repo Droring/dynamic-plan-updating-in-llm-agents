@@ -12,6 +12,15 @@ class PlanHandoffRunnerTests(unittest.TestCase):
         self.assertEqual(current_value(prepared,{"A"}),2.5)
         self.assertEqual(current_value(prepared,{"A","Goal"}),0.0)
 
+    def test_branch_clone_owns_independent_native_tool_objects_and_state(self):
+        from run_plan_handoff_experiment import clone_trial_for_branch
+        tool=SimpleNamespace(input_types={"A"},output_type="B",cost=1.0)
+        trial={"prepared":{"tool_objects":{"step":tool},"state":{"A"}}}
+        cloned=clone_trial_for_branch(trial)
+        self.assertIsNot(cloned["prepared"]["tool_objects"],trial["prepared"]["tool_objects"])
+        self.assertIsNot(cloned["prepared"]["tool_objects"]["step"],tool)
+        self.assertIsNot(cloned["prepared"]["state"],trial["prepared"]["state"])
+
     def test_summary_keeps_base_task_as_statistical_unit(self):
         rows=[]
         for q in TASKS:
