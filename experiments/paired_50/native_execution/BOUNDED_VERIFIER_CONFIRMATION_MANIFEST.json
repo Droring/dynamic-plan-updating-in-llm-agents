@@ -1,0 +1,78 @@
+{
+  "study": "bounded-candidate-verifier-confirmation",
+  "selection_rule": "First two query IDs lexicographically in each CostBench category after excluding the eight pre-studied four-arm tasks; frozen before running new model calls.",
+  "source_dataset": "experiments/paired_50/generated/task_registry_50.json",
+  "upstream_costbench_revision": "6424069f3f773ade076bcedbed302ed47cfb1837",
+  "excluded_development_tasks": [
+    "Query00188",
+    "Query00347",
+    "Query00403",
+    "Query00518",
+    "Query00550",
+    "Query00685",
+    "Query00706",
+    "Query00858"
+  ],
+  "task_count": 10,
+  "environment_conditions": [
+    "RETAIN",
+    "SWITCH"
+  ],
+  "model": "deepseek-flash",
+  "new_first_action_requests": 20,
+  "repetitions": 1,
+  "verification_horizon": 4,
+  "go_condition": "Correct RETAIN >=9/10, correct SWITCH >=5/10, balanced accuracy > 56.25%, no invalid accepted candidates; report all failures and compare with incumbent-only and raw C candidates.",
+  "tasks": [
+    {
+      "query_id": "Query00351",
+      "category": "accommodation",
+      "checkpoint_sha256": "28529461ece1b67d2e619e2969207add12d8be2f6e13cfea824694ef50453d76"
+    },
+    {
+      "query_id": "Query00425",
+      "category": "accommodation",
+      "checkpoint_sha256": "98923a07d051dd0f6dff23fd387d485ae7e8d951dea924486427652e4b90ac1f"
+    },
+    {
+      "query_id": "Query00549",
+      "category": "attraction",
+      "checkpoint_sha256": "fca013818e233b48e8ecce02b17055764479f8c3bf9d32d190c903ad4e6b61f0"
+    },
+    {
+      "query_id": "Query00576",
+      "category": "attraction",
+      "checkpoint_sha256": "98a8186e78ccbf713879ec109fc1e6453aa3cadba6d176953d7620e258eca810"
+    },
+    {
+      "query_id": "Query00689",
+      "category": "dining",
+      "checkpoint_sha256": "4230e59fe7f10b0b8291a2a6506e264822765a1bd83acc5d07e7ccc8fda6558b"
+    },
+    {
+      "query_id": "Query00705",
+      "category": "dining",
+      "checkpoint_sha256": "c05db60d13d94975aef975e00d5a1312a30d5b6db64c0f4635dec2100b349251"
+    },
+    {
+      "query_id": "Query00851",
+      "category": "shopping",
+      "checkpoint_sha256": "4877644647decf1b6aee0168997a6d8c8105832cf88801cd8422474d57a501ba"
+    },
+    {
+      "query_id": "Query00865",
+      "category": "shopping",
+      "checkpoint_sha256": "910c818ca8ccccf877a3368b5b5631d452c8327ba09876818e8e523215ca06b5"
+    },
+    {
+      "query_id": "Query00178",
+      "category": "transportation",
+      "checkpoint_sha256": "2195a89ef47ac5e39ec87dd3171f15a8a05f00964b565752f12f3826bf90c883"
+    },
+    {
+      "query_id": "Query00227",
+      "category": "transportation",
+      "checkpoint_sha256": "5cf5f31c8fa12cd12addadbe0f85d69eec383300321840557021a521ccb2ebac"
+    }
+  ]
+}
