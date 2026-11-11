@@ -79,7 +79,7 @@ class CommonActionRestorationTests(unittest.TestCase):
         lookup={}
         for q in TASKS:
             for env in ENVIRONMENTS:
-                tools={"shared_action":SimpleNamespace(input_types={"Start"},output_type="Intermediate",cost=1.0)}
+                tools={f"{q}_shared_action":SimpleNamespace(input_types={"Start"},output_type="Intermediate",cost=1.0)}
                 if q==TASKS[0] and env=="SWITCH":
                     tools["not_available_in_retain"]=SimpleNamespace(input_types={"Start"},output_type="Intermediate",cost=1.0)
                 lookup[(q,env)]={
@@ -87,7 +87,7 @@ class CommonActionRestorationTests(unittest.TestCase):
                 }
         actions=select_common_actions(rows,lookup)
         selected=[a for a in actions if a["query_id"]==TASKS[0]]
-        self.assertTrue(all(a["tool"]=="shared_action" for a in selected))
+        self.assertTrue(all(a["tool"]==f"{TASKS[0]}_shared_action" for a in selected))
         self.assertTrue(all(a["source_policy"]=="candidate_gate" for a in selected))
 
     def test_rejects_missing_or_duplicate_trajectory(self):
