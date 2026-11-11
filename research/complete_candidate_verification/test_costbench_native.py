@@ -32,7 +32,8 @@ class PinnedCostBenchNativeTests(unittest.TestCase):
         self.assertEqual(result.parameter_calls, len(result.executed_path))
         self.assertEqual(result.planning_tokens, 0)
         self.assertEqual(result.parameter_tokens, 0)
-        self.assertGreaterEqual(len(result.trace), 2)
+        self.assertGreater(len(result.trace), 0)
+        self.assertEqual(len(result.trace), len(prepared["incumbent_suffix"]))
         self.assertTrue(all(row["success"] for row in result.trace))
         self.assertTrue(all(row["output_id"] for row in result.trace))
 
