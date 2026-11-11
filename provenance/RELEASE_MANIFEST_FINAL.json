@@ -5,7 +5,7 @@
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/candidate-decision-diagnostic.yml": "01731273ac188edab15a65ebcfa517a4f0e55f7c4e0d7dbb5d2f914f85dbbd63",
-    ".github/workflows/counterfactual-gate.yml": "19dac62820b04027456c1f2703001b308f2f4470304a3a0e7880131f38e080fb",
+    ".github/workflows/counterfactual-gate.yml": "79a58074b34208cebe7f4ab5b72899dfd724d25ec1ab4df968563b365e79f3ff",
     ".github/workflows/paired-50-dataset-validation.yml": "9309c4f4b318b989ae6f21af55e29d93859ed06e420f8f5bc5e3aff798dbff6a",
     ".github/workflows/paired-50-native-execution.yml": "279f3f785c7b7baa2cff580a3bd82eadb2bde7ef9eb80c0babb188476068a64b",
     ".github/workflows/release-validation.yml": "1c85d8d5d56869dae4565083cee084c6029464889b1bd897ef8878b53711ccb4",
