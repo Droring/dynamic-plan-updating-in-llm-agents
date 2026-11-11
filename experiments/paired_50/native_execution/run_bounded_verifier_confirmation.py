@@ -79,6 +79,8 @@ def score(trials, recorded):
     by_id = {r["trial_id"]:r for r in recorded}
     if len(by_id) != 20:
         raise ValueError("Duplicate model trial identifier")
+    if set(by_id) != {trial["trial_id"] for trial in trials}:
+        raise ValueError("Model trial IDs differ from the frozen confirmation manifest")
     rows = []
     for trial in trials:
         p = trial["prepared"]
