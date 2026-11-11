@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 346,
+  "file_count": 347,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -74,6 +74,7 @@
     "experiments/paired_50/native_execution/README.md": "97c9cb3ada482aec23c0870915a848a0e59115202d1b4209e8d9cdf985ed06e5",
     "experiments/paired_50/native_execution/RESULTS.md": "d436f35a796634aa6f33401e9e6e5e2c2d6bea55376e0cb3533b99440beb6ca4",
     "experiments/paired_50/native_execution/SMOKE_TEST_REPORT.md": "69271c199e91e64815e861dc6a88ecd4b52c1ee0cb9c958423fffe3d20972f97",
+    "experiments/paired_50/native_execution/STEPWISE_EXECUTION_LOSS_REPORT.md": "d9b73184206d289b2247907706c0ab17174db3644cc2a9c6733d3d68a5c05dcc",
     "experiments/paired_50/native_execution/analyze_mechanism_strata.py": "ff955d4744911ccf4ff9300af9bf110bcb17d1e1916fd43652a31a5b961f34be",
     "experiments/paired_50/native_execution/archive/native-execution-archive.zip": "6587a6b2c319069d27d07fe9ca21eb3464b38f200f73f6ef4555208b13694630",
     "experiments/paired_50/native_execution/attribute_execution_loss.py": "11bf09281ce64df47ee8353703ff6280c3f7e64ed3a36083772de8e1f2d45d5b",
