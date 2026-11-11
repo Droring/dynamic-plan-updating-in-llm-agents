@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 335,
+  "file_count": 336,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -52,6 +52,7 @@
     "experiments/paired_50/native_execution/BALANCED_REPLANNING_PROTOCOL.md": "77c8f864405a1ff6c4ceea42eb16b5743a0b3be6ba28117dbc5029fad0dfb11f",
     "experiments/paired_50/native_execution/BALANCED_REPLANNING_RESULTS.md": "4826861ff17ef1761e43edc04243066d992341ddeb8f73df0d05cda4bfdad107",
     "experiments/paired_50/native_execution/BOUNDED_VERIFIER_CONFIRMATION_MANIFEST.json": "8bcbd02ce976639fbdc6ded5d18682fee08041d11aabe78ff0806be6f681be7a",
+    "experiments/paired_50/native_execution/BOUNDED_VERIFIER_RESULTS.md": "0ec64c1ef8e4613a347375a1751f527e4bb883f08a741d5c7f9918ae0bf391c1",
     "experiments/paired_50/native_execution/CANDIDATE_DECISION_DIAGNOSTIC.md": "1606ae7bda89ca69796d7f156c00af94fbeb3948ddafa45a20a5950a088c4f89",
     "experiments/paired_50/native_execution/CANDIDATE_DECISION_RESULTS.md": "7ebe2a316355890f2708de79425e1816b2f27d165fae9f675fab64014762e050",
     "experiments/paired_50/native_execution/CONTINUATION_PROTOCOL.md": "eb91686d40d93da07aa9c0c22e269325caa61607007ff025a60d5ba016b9c234",
