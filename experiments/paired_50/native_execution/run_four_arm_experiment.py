@@ -258,7 +258,7 @@ async def run_live(trials, official_run, args, payload_builder=None):
 
     try:
         for index, trial in enumerate(trials, 1):
-                payload = (payload_builder or make_payload)(trial, official_run)
+            payload = (payload_builder or make_payload)(trial, official_run)
             payload["max_tokens"] = args.max_tokens
             request_record = {
                 "trial_id": trial["trial_id"],
