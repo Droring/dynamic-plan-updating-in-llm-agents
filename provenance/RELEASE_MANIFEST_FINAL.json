@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 354,
+  "file_count": 355,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -71,8 +71,9 @@
     "experiments/paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md": "903897bad4934f9ac7204e64a02227a86dd0f85535508ef5f19b1b984a2971b2",
     "experiments/paired_50/native_execution/NATIVE_PATH_VALUE_AUDIT.md": "53c3dbe08e12e8733a516a0d81a333c8708d06ae4542e5bfc01db0e5a811142e",
     "experiments/paired_50/native_execution/PLAN_HANDOFF_PROMPT_PREFLIGHT_REPORT.md": "6e98e1afa8dc41e93b8eba73befb4788bc5321c02d0d12dbe0133cc18f746e6d",
+    "experiments/paired_50/native_execution/PLAN_HANDOFF_RUN_RECOVERY.md": "3f6a0fea8a6ea1d190b60888f17cc6358e7bd7e7fbb71380f2cf27ac218275c7",
     "experiments/paired_50/native_execution/PLAN_HANDOFF_STATE_TRACKING_PROTOCOL.md": "cf728b94afd2fc9a062b57722bac8d4826326ca04a39136c7025875ce34a30ee",
-    "experiments/paired_50/native_execution/README.md": "870c3c7ebe48037d8896bfeb4fde093a0fc6aec6d1f5467b5f078b3ba7ff418c",
+    "experiments/paired_50/native_execution/README.md": "bd54e63b7f29b31f11bcda75892a199dbbea18e1566647fa2aa323e3d57ca9f3",
     "experiments/paired_50/native_execution/RESULTS.md": "d436f35a796634aa6f33401e9e6e5e2c2d6bea55376e0cb3533b99440beb6ca4",
     "experiments/paired_50/native_execution/SMOKE_TEST_REPORT.md": "69271c199e91e64815e861dc6a88ecd4b52c1ee0cb9c958423fffe3d20972f97",
     "experiments/paired_50/native_execution/STEPWISE_EXECUTION_LOSS_REPORT.md": "d9b73184206d289b2247907706c0ab17174db3644cc2a9c6733d3d68a5c05dcc",
