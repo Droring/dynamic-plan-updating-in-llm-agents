@@ -1,10 +1,6 @@
 name: Counterfactual proposal verification gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/counterfactual-gate.yml"
   workflow_dispatch:
     inputs:
       run_paid_gate:
@@ -19,9 +15,7 @@ permissions:
 
 jobs:
   counterfactual-gate:
-    if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.run_paid_gate) ||
-      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved counterfactual verification gate once')
+    if: inputs.run_paid_gate
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
