@@ -91,3 +91,5 @@ jobs:
           retention-days: 90
 
 # Rerun after correcting the frozen protocol test fixture.
+
+# Retry once after successful regression tests.
