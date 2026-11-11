@@ -1,0 +1,300 @@
+{
+  "schema": "costbench-independent-validation-task-selection",
+  "status": "selected_not_executed",
+  "protocol_status": "task cohort selected; checkpoint construction and all method implementations still require final freeze",
+  "source": {
+    "upstream_repository": "JiayuJeff/CostBench",
+    "upstream_revision": "6424069f3f773ade076bcedbed302ed47cfb1837",
+    "source_query_sha256": "2d15f439a22d55077d58b3d211129d403a8dcba55cbf4f7971f9de17b27253bb",
+    "allocation_schema": "costbench-candidate-allocation-80-40-80",
+    "allocation_seed": "phase2-v2-80-40-80-stratified-transition",
+    "allocated_registry_canonical_sha256": "24024275703c2585ed2e3b364a87c4b0acd893331415297e2acf7716180faf49",
+    "source_registry_canonical_sha256": "115f05debc6fcc6a7e6c5929220f0ca65dfaef5bb0efeaa7498cce675daaf11b",
+    "source_registry_raw_sha256": "4259462643b08bfab046e2c31d8c9617aad626eed66efe6f1dfa2d2c5d379dc1"
+  },
+  "selection": {
+    "source_split": "validation",
+    "source_pool_size": 40,
+    "source_category_counts": {
+      "transportation": 12,
+      "accommodation": 5,
+      "attraction": 6,
+      "dining": 7,
+      "shopping": 10
+    },
+    "selected_base_tasks": 20,
+    "selected_category_counts": {
+      "transportation": 4,
+      "accommodation": 4,
+      "attraction": 4,
+      "dining": 4,
+      "shopping": 4
+    },
+    "rule": "Take the first four entries per category in the already frozen candidate_registry.jsonl validation-split order. The allocation itself uses the pre-existing stratified seed; no outcomes or gold fields are read.",
+    "tasks": [
+      {
+        "query_id": "Query00199",
+        "category": "transportation",
+        "category_position": 1,
+        "allocation_registry_position": 8,
+        "source_query_sha256": "f078bfbb0b6b14bada14843484f64e1435af204c77941292edaf00ffb2fc6937",
+        "preference_sha256": "247f1377a345100a7fa719be4ca2883a00df9aac8a6a0e4c9e6e831612e4519e",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00247",
+        "category": "transportation",
+        "category_position": 2,
+        "allocation_registry_position": 9,
+        "source_query_sha256": "9711abea3cc83c729ea08be4ff1c9b9a9b0cfc86eb51ba9dad4055f7f60897d9",
+        "preference_sha256": "52d7ecc827435c5fe412779e86ea16d75716aa7294f27f8771b1edc4361370fa",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00187",
+        "category": "transportation",
+        "category_position": 3,
+        "allocation_registry_position": 10,
+        "source_query_sha256": "8d9f861f94e0c23a400747ab2209018ccbc166728c6fea2c50e2cd08ab891a3b",
+        "preference_sha256": "dcff7b8e7b2f1823df601c27f696d5c098dbcf58388709b7ac73e68c51330cdf",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00203",
+        "category": "transportation",
+        "category_position": 4,
+        "allocation_registry_position": 11,
+        "source_query_sha256": "3452c478d94878f4eb6f97fb733e94aa7117f8e3ffd17dfe7313b62dc68ae2ee",
+        "preference_sha256": "8d2a33bbb0b6f75543e06b1322663a650701e711a82d820955232a5bf21bcca4",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00349",
+        "category": "accommodation",
+        "category_position": 1,
+        "allocation_registry_position": 64,
+        "source_query_sha256": "5e2ea7c65a1ee8c95e6f689b85d5d699ba6c7874fb18ce4f89d1b2a5a38a75f2",
+        "preference_sha256": "80b0e2ff8af031b1b51099b46d0eb5fb2700cc0689e009ec37bbf4fb233f704c",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00408",
+        "category": "accommodation",
+        "category_position": 2,
+        "allocation_registry_position": 65,
+        "source_query_sha256": "7108b1e07d1999c9f176ecef40f156bcbfec26bd286c81a0abfac9c6e988ecc3",
+        "preference_sha256": "1b1ea7bbf6bfd77180334f69ffc6eb2829e0f20d2188150f0127f90a61c31cb8",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00443",
+        "category": "accommodation",
+        "category_position": 3,
+        "allocation_registry_position": 66,
+        "source_query_sha256": "254a473db01c9cd14d1e4f6ac7bd932bc7165491491f0502ce854daecca998b8",
+        "preference_sha256": "b9000f9899e1beadfc33de4b3cdd6b155cb4134947a444f4c94b956e3d8c63bf",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00350",
+        "category": "accommodation",
+        "category_position": 4,
+        "allocation_registry_position": 67,
+        "source_query_sha256": "e36d85dce913b004bf442e6921df09b3043a658cdf83054fbce18465b645a709",
+        "preference_sha256": "61cd33c01b0f44738be2518ecf2cd297c6185838aa83ff47ed8d96846c72ebfc",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00603",
+        "category": "attraction",
+        "category_position": 1,
+        "allocation_registry_position": 91,
+        "source_query_sha256": "969e8f98b68ecc9e6b4abd0fa3833696506cd7e0a715e3e3fc799d4270231e6e",
+        "preference_sha256": "99ba346488fd3a200bb50ad02fd7cde7d5371359929aac05273cf0f16c6fe70d",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00637",
+        "category": "attraction",
+        "category_position": 2,
+        "allocation_registry_position": 93,
+        "source_query_sha256": "2d3e7953860a6af14fcd7b532ac320946afd725ebfffaced439d7aab46c3fc78",
+        "preference_sha256": "31e864f5e744e22b101ccf030f34eaffe8261c04d0f513c09c6e8bfe6a397fe7",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00555",
+        "category": "attraction",
+        "category_position": 3,
+        "allocation_registry_position": 94,
+        "source_query_sha256": "38de772ed6300e0253aaa80e20c39c1c0b7e706eca9d44fd2aa5ea42fd749404",
+        "preference_sha256": "625e667b4eeb0c236e73575dcdfd7a6c0361e0f1488b4a0ba6593c224c18793d",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00585",
+        "category": "attraction",
+        "category_position": 4,
+        "allocation_registry_position": 95,
+        "source_query_sha256": "18666b798d3aa7425e989b92327878396e098ee8260f042d52094092b6d5949a",
+        "preference_sha256": "c9648d278abfd1ce21c2a84181dd1d90098591b122e2eaed04445fde88273e09",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00749",
+        "category": "dining",
+        "category_position": 1,
+        "allocation_registry_position": 122,
+        "source_query_sha256": "dc62c9dd42da2b39100cc4a34eab2d3e9ee4dba644223832983610266160577d",
+        "preference_sha256": "89714365770cc68a0e95e6fe99515c16f38e230c83c7b5134194831197c44e77",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00725",
+        "category": "dining",
+        "category_position": 2,
+        "allocation_registry_position": 123,
+        "source_query_sha256": "48225c1c4cebeb7f7bd5d438f50dc4b9aaf600f85a0b18c8f9c5a96954623161",
+        "preference_sha256": "0e973446e5f7ff4ad2644bdb811ecd1664ceebe41c9a123e2bb05382829494f5",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00747",
+        "category": "dining",
+        "category_position": 3,
+        "allocation_registry_position": 124,
+        "source_query_sha256": "6c90390bc7257b90c7c09e79f5d144a8d4d5953b8d628a1ca5d34f0cab39aa7a",
+        "preference_sha256": "6ef8d50757fbe48ad221cd00676a5fec5a1eff350f085e16f6840d1cfd620a2a",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00715",
+        "category": "dining",
+        "category_position": 4,
+        "allocation_registry_position": 125,
+        "source_query_sha256": "fef108baa82a1ecb3736fd5f8dcd3758f060ddab76adbbc760f6fb3fcb7b021e",
+        "preference_sha256": "8f6e4586551602a7d58b365920ba606796f3ef523ca76790b3ac631c6cecbafc",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00959",
+        "category": "shopping",
+        "category_position": 1,
+        "allocation_registry_position": 162,
+        "source_query_sha256": "2e8f1c3ef05c1b677532ea108b8fe90c72fa27f6f765c1bbc0f8230c80920623",
+        "preference_sha256": "6d43253a6db5ab7fe244db023a22419aa2417263728ecc4a9f4512c29bf37ea1",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00942",
+        "category": "shopping",
+        "category_position": 2,
+        "allocation_registry_position": 163,
+        "source_query_sha256": "d648bdc3cc12c236ee986318a35bcfc1256580cc91a0f60a166b731b89dcf41c",
+        "preference_sha256": "496ce191c18aaaae34e63be591743e23234452fe46633aa6fdfbeab3bcb6b988",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00892",
+        "category": "shopping",
+        "category_position": 3,
+        "allocation_registry_position": 164,
+        "source_query_sha256": "f08f6f9c4c77241ea62adbe656d96a61bb60cfa44bfc638a0c7a36b05b28dfda",
+        "preference_sha256": "8182ae244662efc6eb793f738a12e414a79b6bb300bf4a17d1c58a208cb2b846",
+        "allocation_split": "validation"
+      },
+      {
+        "query_id": "Query00910",
+        "category": "shopping",
+        "category_position": 4,
+        "allocation_registry_position": 165,
+        "source_query_sha256": "5e58c63abf9cd8e08a5099507aac165388a00e7a3c324ce8bba7b8b44afd6e79",
+        "preference_sha256": "e2aaab4e5e1ab0f14fd476a7298f388e5ed6019697c5c8c29961ef18a9514bd0",
+        "allocation_split": "validation"
+      }
+    ]
+  },
+  "independence_audit": {
+    "prior_50_task_paired_cohort_count": 50,
+    "prior_80_task_official_development_cohort_count": 80,
+    "prior_8_task_development_screen_count": 8,
+    "prior_4_arm_prompt_screen_count": 8,
+    "selected_overlap_with_50_task_cohort": [],
+    "selected_overlap_with_80_task_cohort": [],
+    "selected_overlap_with_8_task_development_screen": [],
+    "selected_overlap_with_4_arm_prompt_screen": [],
+    "unique_query_ids": 20,
+    "unique_source_query_hashes": 20,
+    "unique_preference_hashes": 20,
+    "provider_calls_during_selection": 0
+  },
+  "experiment": {
+    "conditions": [
+      "RETAIN",
+      "SWITCH"
+    ],
+    "methods": [
+      {
+        "id": "original_deepseek_agent",
+        "label": "Original DeepSeek Agent"
+      },
+      {
+        "id": "simple_retain_rule",
+        "label": "Simple RETAIN Rule"
+      },
+      {
+        "id": "best_existing_prompt_A_original",
+        "label": "Best Existing Prompt (A_original)"
+      },
+      {
+        "id": "bounded_verifier_complete_plan_handoff",
+        "label": "Existing Bounded Verifier + Complete-Plan Handoff"
+      },
+      {
+        "id": "fresh_full_candidate",
+        "label": "Ordinary Fresh Full-Candidate + Same Checker/Executor"
+      },
+      {
+        "id": "fresh_with_local_substitution",
+        "label": "New Method: Bounded Local Substitution"
+      },
+      {
+        "id": "full_graph_planner",
+        "label": "Full Graph Planning + Same Executor"
+      }
+    ],
+    "repetitions_per_task_condition_method": 1,
+    "planned_native_trajectories": 280,
+    "maximum_planning_calls_per_trajectory": 3,
+    "parameter_generation_calls": "counted separately and included in total provider usage",
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "thinking": "disabled",
+    "maximum_output_tokens_per_call": null,
+    "total_provider_token_ceiling": null,
+    "execution_status": "not_started"
+  },
+  "go_no_go": {
+    "retain_accuracy": "20/20",
+    "switch_accuracy": "at least 14/20",
+    "balanced_accuracy": "at least 85%",
+    "comparison": "new method must not fall below the ordinary complete-candidate control",
+    "quality": "goal success and complete-trajectory quality must not regress"
+  },
+  "future_test": {
+    "status": "sealed_not_selected",
+    "preallocated_locked_test_pool_size": 80,
+    "locked_test_category_counts": {
+      "transportation": 24,
+      "accommodation": 11,
+      "attraction": 11,
+      "dining": 15,
+      "shopping": 19
+    },
+    "note": "The 80-task locked-test pool remains untouched. Its category counts are not exactly balanced, so any later 60-task composition and any 12-per-category top-up must be decided before unsealing; no final-test IDs are included here."
+  },
+  "checkpoint_construction": {
+    "status": "pending_protocol_freeze",
+    "requirement": "Define one reproducible checkpoint construction procedure and ensure every method receives the same state, observation history, current native tool catalogue, and incumbent suffix. Do not substitute solver-derived plans for agent-authored plans without explicitly labelling that construct."
+  }
+}
