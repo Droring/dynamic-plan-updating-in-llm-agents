@@ -29,6 +29,11 @@ on:
         required: true
         type: boolean
         default: false
+      resume_plan_handoff_run_id:
+        description: "Optional prior incomplete plan-handoff run ID; resumes only a durable completed-trial prefix"
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: read
@@ -259,6 +264,14 @@ jobs:
           test -s env/data/static/search_spaces/test_search_space.json
       - name: Verify API secret is present without printing it
         run: test -n "$DEEPSEEK_API_KEY"
+      - name: Download prior plan-handoff checkpoint for safe resume
+        if: inputs.resume_plan_handoff_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: plan-handoff-state-tracking-experiment
+          run-id: ${{ inputs.resume_plan_handoff_run_id }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/plan-handoff-resume
       - name: Download archived native full trajectories
         uses: actions/download-artifact@v4
         with:
@@ -288,7 +301,12 @@ jobs:
             --requests "$RUNNER_TEMP/plan-handoff-prompt-preflight/requests.jsonl" \
             --out "$RUNNER_TEMP/plan-handoff-dry-run"
       - name: Run the approved full-trajectory 2x2 screen
+        shell: bash
         run: |
+          RESUME_ARGS=()
+          if [[ -n "${{ inputs.resume_plan_handoff_run_id }}" ]]; then
+            RESUME_ARGS+=(--resume-from "$RUNNER_TEMP/plan-handoff-resume/plan-handoff-live")
+          fi
           python experiments/paired_50/native_execution/run_plan_handoff_experiment.py \
             --costbench-root "$RUNNER_TEMP/CostBench" \
             --requests "$RUNNER_TEMP/plan-handoff-prompt-preflight/requests.jsonl" \
@@ -298,6 +316,7 @@ jobs:
             --max-steps 8 \
             --timeout 120 \
             --orphaned-attempt-reserve 1000000 \
+            "${RESUME_ARGS[@]}" \
             --live
       - name: Upload plan-handoff experiment evidence
         if: always()
