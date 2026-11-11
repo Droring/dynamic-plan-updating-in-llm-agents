@@ -127,14 +127,14 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
         raise ValueError("A passed provider-free common-action restoration report is required")
     if restoration.get("restored_branch_contexts") != 40:
         raise ValueError("Restoration report does not certify all 40 independent contexts")
-    actions = select_common_actions(trajectories)
-    restore_rows = {(r["query_id"],r["environment"]):r for r in restoration.get("rows",[])}
-    if len(restore_rows) != 10:
-        raise ValueError("Restoration report must contain ten matched task/environment rows")
     trials, cb = confirmation.load_checkpoints(costbench_root.resolve())
     lookup = {(t["query_id"],t["environment_condition"]):t for t in trials}
     if len(lookup) != 20:
         raise ValueError("Expected 20 reconstructed paired checkpoints")
+    actions = select_common_actions(trajectories, lookup)
+    restore_rows = {(r["query_id"],r["environment"]):r for r in restoration.get("rows",[])}
+    if len(restore_rows) != 10:
+        raise ValueError("Restoration report must contain ten matched task/environment rows")
     requests = []
     cell_summaries = []
     for action in actions:
@@ -146,13 +146,13 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
         prepared = trial["prepared"]
         if prepared["checkpoint_sha256"] != action["checkpoint_sha256"]:
             raise ValueError(f"Checkpoint hash mismatch: {key}")
-        if trial["source_trial_id"] != action["source_trial_id"]:
-            raise ValueError(f"Source trial mismatch: {key}")
+        if trial["source_trial_id"] != action["paired_source_trial_id"]:
+            raise ValueError(f"Paired checkpoint source trial mismatch: {key}")
         tool = prepared["tool_objects"].get(action["tool"])
         if tool is None or not set(tool.input_types).issubset(set(prepared["state"])):
             raise ValueError(f"Common first action is not feasible at checkpoint: {key}")
-        if abs(float(tool.cost)-action["recorded_cost"])>1e-6:
-            raise ValueError(f"Native action value mismatch: {key}")
+        if action["environment"]==action["source_environment"] and abs(float(tool.cost)-action["recorded_cost"])>1e-6:
+            raise ValueError(f"Source-environment native action value mismatch: {key}")
         schema_rows = [x for x in prepared["tool_interfaces"] if x["function"]["name"]==action["tool"]]
         if len(schema_rows)!=1:
             raise ValueError(f"Native action schema missing or ambiguous: {key}")
@@ -164,8 +164,11 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
             raise ValueError(f"Post-action state differs from isolated restoration: {key}")
         if registry_sha!=restored["tool_registry_sha256"]:
             raise ValueError(f"Tool schema registry differs from isolated restoration: {key}")
-        if action["arguments_sha256"]!=restored["arguments_sha256"] or action["tool_result_sha256"]!=restored["tool_result_sha256"]:
-            raise ValueError(f"Action evidence hashes differ from restoration: {key}")
+        if action["arguments_sha256"]!=restored["arguments_sha256"]:
+            raise ValueError(f"Common argument hash differs from restoration: {key}")
+        if action["environment"]==action["source_environment"] and action["expected_archived_tool_result_sha256"]!=restored["tool_result_sha256"]:
+            raise ValueError(f"Archived source result hash differs from restoration: {key}")
+        prompt_action={**action,"tool_result":restored["tool_result"]}
         replanning_input={**prepared,"state":post_state}
         new_path=graph.shortest_feasible_path(replanning_input)
         if new_path is None or not new_path[1]:
@@ -173,7 +176,7 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
         replacement_path=list(new_path[1])
         incumbent=list(prepared["incumbent_suffix"])
         remaining_incumbent=incumbent[1:] if incumbent and incumbent[0]==action["tool"] else incumbent
-        ledger=build_initial_ledger(prepared,action,tool)
+        ledger=build_initial_ledger(prepared,prompt_action,tool)
         base_messages=[
             {"role":"system","content":native.make_official_system_prompt(cb["official_run"],prepared["task"])},
             {"role":"user","content":native.make_checkpoint_user_message(prepared)
@@ -190,7 +193,7 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
                 "id":"call_common_first_action","type":"function",
                 "function":{"name":action["tool"],"arguments":action["arguments"]}}]},
             {"role":"tool","tool_call_id":"call_common_first_action",
-             "name":action["tool"],"content":action["tool_result"]},
+             "name":action["tool"],"content":restored["tool_result"]},
         ]
         base_sha=native.canonical_sha(base_messages)
         schema_sha=native.canonical_sha(prepared["tool_interfaces"])
@@ -219,11 +222,14 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
                     "query_id":action["query_id"],"environment":action["environment"],
                     "arm":arm,"repetition":repetition,
                     "checkpoint_sha256":action["checkpoint_sha256"],
-                    "source_trial_id":action["source_trial_id"],
+                    "source_trial_id":action["paired_source_trial_id"],
+                    "source_action_trial_id":action["source_action_trial_id"],
+                    "common_action_source_environment":action["source_environment"],
+                    "common_action_source_policy":action["source_policy"],
                     "common_first_action":action["tool"],
                     "common_arguments":action["arguments"],
-                    "common_tool_result":action["tool_result"],
-                    "common_tool_result_sha256":action["tool_result_sha256"],
+                    "common_tool_result":restored["tool_result"],
+                    "common_tool_result_sha256":restored["tool_result_sha256"],
                     "post_action_state_sha256":post_state_sha,
                     "tool_schema_sha256":schema_sha,
                     "updated_plan":replacement_path if arm in ("B","D") else None,
@@ -247,7 +253,9 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
             "query_id":key[0],"environment":key[1],
             "common_first_action":action["tool"],
             "common_arguments_sha256":action["arguments_sha256"],
-            "common_result_sha256":action["tool_result_sha256"],
+            "common_result_sha256":restored["tool_result_sha256"],
+            "common_action_source_environment":action["source_environment"],
+            "common_action_source_policy":action["source_policy"],
             "post_action_state_sha256":post_state_sha,
             "updated_plan":replacement_path,
             "remaining_incumbent_plan":remaining_incumbent,
