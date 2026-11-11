@@ -79,6 +79,13 @@ jobs:
           run-id: 42665117176
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/four-arm-archive
+      - name: Compare all-action graph planning with bounded candidate verification
+        run: |
+          python experiments/paired_50/native_execution/graph_planning_baseline.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --out "$RUNNER_TEMP/graph-planning-baseline.json"
+          python -c 'import json,os; j=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"graph-planning-baseline.json"))); assert j["checkpoint_count"]==20 and j["policy_oracle_calls"]==0'
+
       - name: Evaluate bounded candidate verification without provider calls
         run: |
           python experiments/paired_50/native_execution/bounded_candidate_verifier.py \
