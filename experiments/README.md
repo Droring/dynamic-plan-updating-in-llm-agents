@@ -14,6 +14,12 @@ The repository has one primary paired benchmark and a small set of complementary
 
 This controlled follow-up **reuses eight tasks from the primary 50-task cohort**: 128 first-action trials (two repetitions) and 16 full continuations on two preselected tasks. It is not an additional independent dataset. Showing the incumbent plan favors RETAIN; omitting it improves some SWITCH decisions but harms RETAIN.
 
+## Plan-status annotation confirmation
+
+[Protocol](paired_50/native_execution/PLAN_STATUS_CONFIRMATION_PROTOCOL.md) · [Frozen task manifest](paired_50/native_execution/PLAN_STATUS_CONFIRMATION_MANIFEST.json) · [Preparation](paired_50/native_execution/prepare_plan_status_confirmation.py) · [Native runner](paired_50/native_execution/run_plan_status_confirmation.py)
+
+This checkpoint-level follow-up uses **10 tasks selected from the existing 50-task cohort** (two per CostBench category), excluding tasks used in earlier mechanism interventions. It freezes 80 full continuation trajectories across RETAIN/SWITCH, UNMARKED/ANNOTATED, and two repetitions. Both arms receive the same checkpoint and graph-planner continuation; only the oracle-derived VALID/STALE annotation differs. The ten tasks are paired observations, not a new independent dataset.
+
 ## Complementary CostBench evidence
 
 | Study | Independent unit | Measurement |
