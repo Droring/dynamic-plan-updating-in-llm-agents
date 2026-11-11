@@ -25,7 +25,7 @@ on:
         type: boolean
         default: false
       run_paid_plan_handoff:
-        description: "Run the 80-trajectory full-continuation plan-handoff × state-ledger screen (3,443,584-token hard cap)"
+        description: "Run the 80-trajectory plan-handoff × state-ledger screen (3,443,584 approved cap; reserve 1,000,000 for the prior unrecorded attempt)"
         required: true
         type: boolean
         default: false
@@ -297,6 +297,7 @@ jobs:
             --max-tokens 2048 \
             --max-steps 8 \
             --timeout 120 \
+            --orphaned-attempt-reserve 1000000 \
             --live
       - name: Upload plan-handoff experiment evidence
         if: always()
@@ -307,6 +308,10 @@ jobs:
             ${{ runner.temp }}/common-action-restoration/
             ${{ runner.temp }}/plan-handoff-prompt-preflight/
             ${{ runner.temp }}/plan-handoff-live/
+            ${{ runner.temp }}/plan-handoff-live/call_events.jsonl
+            ${{ runner.temp }}/plan-handoff-live/responses.jsonl
+            ${{ runner.temp }}/plan-handoff-live/ledger.json
+            ${{ runner.temp }}/plan-handoff-live/summary.json
           if-no-files-found: warn
           retention-days: 90
 
