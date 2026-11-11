@@ -159,7 +159,7 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
             argument_completion=argument_completion, native_execute=native_execute,
             candidate_strategy="fresh_with_local_substitution",
         )
-        self.assertEqual(result.status, "goal_reached")
+        self.assertEqual(result.status, "goal_reached", msg=result.error or repr(result.trace))
         self.assertEqual(result.decision.action, "SWITCH")
         self.assertEqual(result.decision.selected_plan, ("Finish_A_Cheap",))
         self.assertEqual(result.executed_path, ("Finish_A_Cheap",))
