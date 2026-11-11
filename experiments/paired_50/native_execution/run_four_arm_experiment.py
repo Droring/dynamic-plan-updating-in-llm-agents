@@ -209,12 +209,12 @@ def candidate_availability_audit(trials):
     return [checkpoints[key] for key in sorted(checkpoints)]
 
 
-def offline_audit(trials, official_run, max_tokens: int):
+def offline_audit(trials, official_run, max_tokens: int, payload_builder=None):
     payload_hashes = {}
     summaries = Counter()
     reservations = []
     for trial in trials:
-        payload = make_payload(trial, official_run)
+        payload = (payload_builder or make_payload)(trial, official_run)
         payload["max_tokens"] = max_tokens
         key = trial["trial_id"]
         payload_hashes[key] = native.canonical_sha(payload)
@@ -237,7 +237,7 @@ def offline_audit(trials, official_run, max_tokens: int):
     }
 
 
-async def run_live(trials, official_run, args):
+async def run_live(trials, official_run, args, payload_builder=None):
     key = os.getenv("DEEPSEEK_API_KEY")
     if not key:
         raise RuntimeError("DEEPSEEK_API_KEY is unavailable; no API call was made.")
@@ -258,7 +258,7 @@ async def run_live(trials, official_run, args):
 
     try:
         for index, trial in enumerate(trials, 1):
-            payload = make_payload(trial, official_run)
+                payload = (payload_builder or make_payload)(trial, official_run)
             payload["max_tokens"] = args.max_tokens
             request_record = {
                 "trial_id": trial["trial_id"],
