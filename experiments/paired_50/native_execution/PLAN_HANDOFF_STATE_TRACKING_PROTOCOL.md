@@ -135,3 +135,20 @@ The builder reports the harness's conservative `reservation_units` (serialized r
 The 2×2 prompt preflight must pass all of the following for every task/environment cell: identical common-history hash across A/B/C/D; identical tool-schema hash; four distinct prompt hashes; balanced plan-handoff and ledger treatment flags; matching restoration, argument, result and post-action state hashes. Any mismatch blocks the live experiment.
 
 **Current gate:** native common-action restoration passed. Prompt construction and ledger-renderer tests are the next offline gate. No paid model experiment is authorized by this addendum.
+
+
+### Nonterminal common-prefix correction
+
+The first successful 40/40 restoration replay used each condition's unrestricted graph-planner first action. Prompt construction then exposed a design defect: **four of the ten task/environment cells reached the goal on that first action**, leaving no subsequent action for the intended continuation comparison. Those four cells must not be padded with artificial calls or counted as continuation observations.
+
+The final selection rule therefore uses a **shared, feasible, nonterminal prefix action for each paired base task**:
+
+1. In a fixed order (SWITCH before RETAIN; graph planner, candidate gate, then incumbent), find the first archived trajectory with at least two successfully executed actions.
+2. Check that its first tool exists, is type-feasible, and does not itself produce the goal type in **both** paired RETAIN and SWITCH checkpoints.
+3. Freeze that exact tool and argument string for both environment conditions. If it is not feasible in either state, move to the next archived candidate. If no candidate works, stop and exclude the pair before any model call.
+4. Reconstruct each environment-specific native result independently. In the source environment, it must match the archived native result exactly. In the paired environment, the newly replayed result becomes the common observation for all four arms.
+5. Restore each environment/arm in an independent process and require exact argument equality, environment-specific result equality across A/B/C/D, and identical post-action state within each four-arm cell.
+
+This common prefix is a **controlled checkpoint intervention**, not a claim that the selected action is optimal in both environments. Its immediate action loss is held fixed within each A/B/C/D comparison and must be recorded separately from continuation regret. The resulting study estimates post-prefix continuation quality, not end-to-end performance from the original pre-action checkpoint.
+
+The earlier graph-planner-first-action replay remains a valid reproducibility check, but it is **superseded as the source of the final 2×2 continuation checkpoints**. The final nonterminal common-action restoration must pass its own 40-replay gate before prompt generation can pass.
