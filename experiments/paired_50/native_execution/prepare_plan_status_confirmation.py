@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import os
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -81,6 +82,7 @@ def previous_task_exclusions():
 
 
 def reconstruct_all(costbench_root: Path):
+    os.chdir(costbench_root)
     requests, source_manifest, registry = native.load_frozen_inputs(DATA_DIR)
     request_by_id = {row["trial_id"]: row for row in requests}
     registry_by_query = {row["task_id"]: row for row in registry["selection"]["task_ids"]}
