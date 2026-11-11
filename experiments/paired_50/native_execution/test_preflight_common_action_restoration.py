@@ -80,7 +80,6 @@ class CommonActionRestorationTests(unittest.TestCase):
     def test_rejects_reused_process(self):
         actions=select_common_actions(archive_fixture())
         outputs=branch_fixture(actions)
-        outputs["D"]["process_id"]=outputs["C"]["process_id"]
         for row in outputs["D"]["rows"]:
             row["process_id"]=outputs["C"]["process_id"]
         with self.assertRaises(ValueError):
