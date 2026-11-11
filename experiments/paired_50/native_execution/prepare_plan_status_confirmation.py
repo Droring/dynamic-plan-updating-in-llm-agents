@@ -77,12 +77,10 @@ def make_status_message(common_action, remaining_incumbent, replacement_path, go
 
 
 def previous_task_exclusions():
-    four_arm = json.loads((HERE / "FOUR_ARM_TASK_MANIFEST.json").read_text(encoding="utf-8"))
-    bounded = json.loads((HERE / "BOUNDED_VERIFIER_CONFIRMATION_MANIFEST.json").read_text(encoding="utf-8"))
-    excluded = set(PREVIOUS_HANDOFF_TASKS)
-    excluded.update(row["query_id"] for row in four_arm["tasks"])
-    excluded.update(row["query_id"] for row in bounded["tasks"])
-    return excluded
+    # Hold out only tasks already used in the preceding plan-handoff × state-ledger
+    # experiment. Other diagnostic cohorts may overlap; the report states this
+    # explicitly and does not call the selected tasks globally unseen.
+    return set(PREVIOUS_HANDOFF_TASKS)
 
 
 def reconstruct_all(costbench_root: Path):
@@ -389,13 +387,13 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
         frozen = json.loads(Path(frozen_manifest).read_text(encoding="utf-8"))
         if frozen.get("selected_task_ids") != selected_ids:
             raise ValueError("Deterministic eligible task selection differs from committed frozen manifest")
-        if frozen.get("selection_rule") != "First two eligible task IDs in lexicographic order per CostBench category after excluding all prior mechanism cohorts; eligibility requires the archived paired first action to be identical, incumbent-first, successful and nonterminal, and requires post-action incumbent status VALID in RETAIN and STALE in SWITCH.":
+        if frozen.get("selection_rule") != "First two eligible task IDs in lexicographic order per CostBench category after excluding the five tasks used in the preceding plan-handoff × state-ledger screen; eligibility requires the archived paired first action to be identical, incumbent-first, successful and nonterminal, and requires post-action incumbent status VALID in RETAIN and STALE in SWITCH.":
             raise ValueError("Frozen selection rule does not match the implemented rule")
 
     manifest = {
         "schema": "paired-50-plan-status-annotation-confirmation",
         "status": "offline_frozen_no_provider_calls",
-        "selection_rule": "First two eligible task IDs in lexicographic order per CostBench category after excluding all prior mechanism cohorts; eligibility requires the archived paired first action to be identical, incumbent-first, successful and nonterminal, and requires post-action incumbent status VALID in RETAIN and STALE in SWITCH.",
+        "selection_rule": "First two eligible task IDs in lexicographic order per CostBench category after excluding the five tasks used in the preceding plan-handoff × state-ledger screen; eligibility requires the archived paired first action to be identical, incumbent-first, successful and nonterminal, and requires post-action incumbent status VALID in RETAIN and STALE in SWITCH.",
         "source": {
             "upstream_costbench_revision": native.UPSTREAM_SHA,
             "requests_sha256": native.sha_bytes((DATA_DIR / "model_requests_100.jsonl").read_bytes()),
@@ -432,7 +430,7 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
             for row in selected
         ],
         "interpretation_boundary": [
-            "This is a held-out confirmation within the plan-handoff mechanism study, not a new or unseen CostBench dataset; all tasks belong to the existing 50-task cohort.",
+            "This is held out from the preceding plan-handoff × state-ledger intervention, not from every earlier CostBench diagnostic; all tasks belong to the existing 50-task cohort.",
             "The selection is conditioned on the archived baseline having executed the same incumbent first action with the same arguments in both paired environments, so conclusions apply to this controlled post-action continuation cohort.",
             "The graph planner supplies the same complete minimum-cost continuation to both arms. The annotated arm additionally receives an oracle-derived VALID or STALE status for the remaining incumbent plan; this is a privileged diagnostic intervention, not a deployable method.",
             "The independent statistical unit is the base task. Repetitions and RETAIN/SWITCH conditions are paired within task.",
