@@ -240,7 +240,7 @@ def select_tasks(candidates):
     return selected
 
 
-def build_requests(selected, prepared, repetitions=REPETITIONS):
+def build_requests(selected, prepared, official_run, repetitions=REPETITIONS):
     requests = []
     prompt_audit = []
     for task in selected:
@@ -251,9 +251,7 @@ def build_requests(selected, prepared, repetitions=REPETITIONS):
             common_action = cell["common_first_action"]
             common_id = f"common_{qid}_{env}"
             base_messages = [
-                {"role": "system", "content": native.make_official_system_prompt(
-                    prepared[(qid, env)]["prepared"].get("_official_run"), p["task"]
-                )},
+                {"role": "system", "content": native.make_official_system_prompt(official_run, p["task"])},
             ]
             # The official system prompt is rebuilt below from the loaded native
             # CostBench module; this placeholder is replaced by the caller.
@@ -408,7 +406,7 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
             "categories": sorted({row["category"] for row in selected}),
             "environment_conditions": list(ENVIRONMENTS),
             "arms": list(ARMS),
-            "repetitions_per_cell": repetitions if (repetitions := REPETITIONS) else REPETITIONS,
+            "repetitions_per_cell": REPETITIONS,
             "full_trajectory_count": len(selected) * 2 * 2 * REPETITIONS,
             "model": native.MODEL,
             "temperature": 0,
@@ -443,10 +441,7 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
     (out_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     # The native system prompt is shared across status arms and uses the pinned upstream template.
-    for task in selected:
-        for env in ENVIRONMENTS:
-            prepared[(task["query_id"], env)]["prepared"]["_official_run"] = cb["official_run"]
-    built, prompt_audit = build_requests(selected, prepared)
+    built, prompt_audit = build_requests(selected, prepared, cb["official_run"])
     with (out_dir / "requests.jsonl").open("w", encoding="utf-8") as stream:
         for row in built:
             stream.write(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n")
