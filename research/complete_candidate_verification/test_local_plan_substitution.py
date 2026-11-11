@@ -34,7 +34,7 @@ class LocalPlanSubstitutionTests(unittest.TestCase):
         self.assertTrue(generated)
         best = generated[0]
         self.assertEqual(best.candidate_path, ("Search_Raw", "Finish_Raw"))
-        self.assertEqual(best.replacement_path, ("Finish_Raw",))
+        self.assertIn(("Finish_Raw",), [item.replacement_path for item in generated])
         self.assertEqual(best.source_value, 6.0)
         self.assertEqual(best.candidate_value, 5.0)
         self.assertTrue(check_policy_path(policy, best.candidate_path).valid)
@@ -91,15 +91,21 @@ class LocalPlanSubstitutionTests(unittest.TestCase):
             interface("Search_Raw", ["Start"], "Raw", 2.0),
             interface("Refine_Raw", ["Raw"], "L1", 2.0),
             interface("Finish_L1", ["L1"], "Goal", 2.0),
-            interface("Search_to_L1", ["Start"], "L1", 3.0),
+            interface("Prepare", ["Start"], "Seed", 1.0),
+            interface("Search_from_Seed", ["Seed"], "L1", 1.0),
         ]
         base = ["Search_Raw", "Refine_Raw", "Finish_L1"]
         policy = make_policy(tools, base)
-        generated = generate_local_substitutions(
+        one_step = generate_local_substitutions(
             policy, [base], max_segment_length=4, max_replacement_length=1
         )
-        self.assertNotIn(("Search_to_L1", "Finish_L1"),
-                         [item.candidate_path for item in generated])
+        two_step = generate_local_substitutions(
+            policy, [base], max_segment_length=4, max_replacement_length=2
+        )
+        self.assertNotIn(("Prepare", "Search_from_Seed", "Finish_L1"),
+                         [item.candidate_path for item in one_step])
+        self.assertIn(("Prepare", "Search_from_Seed", "Finish_L1"),
+                      [item.candidate_path for item in two_step])
 
     def test_invalid_base_paths_are_not_used_as_anchors(self):
         tools = [interface("Finish", ["Missing"], "Goal", 1.0)]

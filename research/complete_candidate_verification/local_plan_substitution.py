@@ -129,13 +129,15 @@ def generate_local_substitutions(
                                         )
                                         previous = records.get(candidate)
                                         order = (record.candidate_value, len(record.candidate_path),
-                                                 record.candidate_path, record.source_path,
+                                                 record.candidate_path, len(record.replacement_path),
+                                                 record.replacement_path, record.source_path,
                                                  record.start_index, record.end_index)
                                         if previous is None:
                                             records[candidate] = record
                                         else:
                                             old_order = (previous.candidate_value,
                                                 len(previous.candidate_path), previous.candidate_path,
+                                                len(previous.replacement_path), previous.replacement_path,
                                                 previous.source_path, previous.start_index,
                                                 previous.end_index)
                                             if order < old_order:
