@@ -44,10 +44,14 @@ def score_text(endpoint, content, reference, available, feasible):
         names = obj.get("candidates")
         if not isinstance(names, list) or len(names) > 3 or not all(isinstance(x, str) for x in names):
             names = []
+        valid = bool(names) and len(set(names)) == len(names) and all(
+            x in available and x in feasible for x in names)
         return {
             "reported_candidates": names,
-            "valid_candidates": bool(names) and len(set(names)) == len(names) and all(x in available and x in feasible for x in names),
-            "reported_optimal_nonincumbent": any(x in oracle and x != reference["incumbent"] for x in names),
+            "valid_candidates": valid,
+            "reported_optimal_nonincumbent": valid and any(
+                x in oracle and x != reference["incumbent"] for x in names),
+            "reported_optimal_candidate": valid and any(x in oracle for x in names),
             "reported_incumbent": reference["incumbent"] in names,
         }
     name = obj.get("chosen_tool")
@@ -69,10 +73,14 @@ def summarize(records):
                 "attempted": len(rows),
                 "successful_api": sum(x.get("provider_tokens", 0) > 0 for x in rows),
                 "correct": sum(
-                    bool(x.get("reported_optimal_nonincumbent")) if endpoint == "consideration"
+                    bool(x.get("reported_optimal_candidate")) if endpoint == "consideration"
                     else bool(x.get("optimal_choice")) if endpoint == "comparison"
                     else bool(x.get("optimal_executed"))
                     for x in rows
+                ),
+                "reported_optimal_nonincumbent": (
+                    sum(bool(x.get("reported_optimal_nonincumbent")) for x in rows)
+                    if endpoint == "consideration" else None
                 ),
                 "errors": sum(bool(x.get("error")) for x in rows),
             }
