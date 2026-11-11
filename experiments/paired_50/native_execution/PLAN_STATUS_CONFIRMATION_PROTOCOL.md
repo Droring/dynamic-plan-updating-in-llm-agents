@@ -35,12 +35,12 @@ Use the existing paired 50-task CostBench cohort, excluding only the five tasks 
 Select the first two eligible task IDs in lexicographic order within each of the five CostBench categories. Eligibility is fixed before any new provider call and requires:
 
 1. the archived RETAIN and SWITCH trajectories both contain a successful first native action;
-2. the first action name and exact argument string are identical in both paired environments and equal the incumbent plan's first tool;
+2. the first action name and exact argument string are identical in both paired environments; it may be on or off the incumbent plan;
 3. the common action is nonterminal and the changed tool is not consumed by that common prefix;
 4. replaying the exact common action in each paired native environment reproduces its archived result exactly;
-5. after that common action, the remaining incumbent suffix is feasible and minimum-cost in RETAIN, but strictly suboptimal in SWITCH.
+5. after that common action, the unexecuted incumbent suffix (dropping its first step only if the common action was that step) remains feasible and minimum-cost in RETAIN, but strictly suboptimal in SWITCH.
 
-This is a controlled post-action continuation cohort. It is **held out from the preceding plan-handoff intervention**, but may overlap with tasks used in other diagnostic studies; it is not a new or globally unseen CostBench dataset. Selection is conditioned on the archived baseline having taken the same incumbent first action in both paired environments; the scope of inference must reflect that restriction.
+This is a controlled post-action continuation cohort. It is **held out from the preceding plan-handoff intervention**, but may overlap with tasks used in other diagnostic studies; it is not a new or globally unseen CostBench dataset. Selection is conditioned on the archived baseline having taken the same first action in both paired environments; the scope of inference must reflect that restriction.
 
 If two eligible tasks cannot be found in every category, or any exact replay/hash check fails, stop before provider calls. Do not relax the selection rule after inspecting eligibility counts.
 
