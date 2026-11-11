@@ -1,13 +1,13 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 330,
+  "file_count": 331,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/candidate-decision-diagnostic.yml": "01731273ac188edab15a65ebcfa517a4f0e55f7c4e0d7dbb5d2f914f85dbbd63",
     ".github/workflows/counterfactual-gate.yml": "79a58074b34208cebe7f4ab5b72899dfd724d25ec1ab4df968563b365e79f3ff",
     ".github/workflows/paired-50-dataset-validation.yml": "9309c4f4b318b989ae6f21af55e29d93859ed06e420f8f5bc5e3aff798dbff6a",
-    ".github/workflows/paired-50-native-execution.yml": "279f3f785c7b7baa2cff580a3bd82eadb2bde7ef9eb80c0babb188476068a64b",
+    ".github/workflows/paired-50-native-execution.yml": "6f7ccf8791b91d6cf9d3394847a3693fa986b94765265f2dffffb6b9e380dc32",
     ".github/workflows/release-validation.yml": "1c85d8d5d56869dae4565083cee084c6029464889b1bd897ef8878b53711ccb4",
     ".github/workflows/research-structure-validation.yml": "eef5442a7b894a330f571640d595f70e78e87c134814c36c34fb4f7b96c0445c",
     ".gitignore": "b978668de8effb750afab519f88a8fc0b2d4d92898bc71c7a4bf651c9b82ffc2",
@@ -81,6 +81,7 @@
     "experiments/paired_50/native_execution/run_four_arm_experiment.py": "4d14dabe088b869ee7cce69f65cc483a9c3c9fabea65014de884a63a33201832",
     "experiments/paired_50/native_execution/run_official_harness.py": "40ad4ccdaa007f3dcaf6a4d5e2030eb2b718883abab42211c5d0406680c07877",
     "experiments/paired_50/native_execution/test_balanced_replanning.py": "c1aff1d3a22e5e6c293bd4c9ddb8fce9a71ea883dfd27d71ff9712e257392a0c",
+    "experiments/paired_50/native_execution/test_bounded_candidate_verifier.py": "0b607f839da963827d61a66d391843dfd6d2691410b1ae9c2c1cd0e23bf1e930",
     "experiments/paired_50/native_execution/test_candidate_diagnostic.py": "b47a53c21ee420d1bf794c052076e3f6ae5a73000d5449a5adecf6dbf5c825eb",
     "experiments/paired_50/native_execution/test_counterfactual_gate.py": "44143a167261948ed1a6d7337915504e64367e1ecfb7a44ed693766c9e8e4333",
     "experiments/paired_50/native_execution/test_four_arm_prompt_audit.py": "8fd7ad6cf490837a7812cecfd616e2c8e33521dcb2b791fbf17f9ea8dffcf705",
