@@ -302,9 +302,12 @@ jobs:
             --out "$RUNNER_TEMP/plan-handoff-dry-run"
       - name: Run the approved full-trajectory 2x2 screen
         shell: bash
+        env:
+          RESUME_PLAN_HANDOFF_RUN_ID: ${{ inputs.resume_plan_handoff_run_id }}
         run: |
           RESUME_ARGS=()
-          if [[ -n "${{ inputs.resume_plan_handoff_run_id }}" ]]; then
+          if [[ -n "$RESUME_PLAN_HANDOFF_RUN_ID" ]]; then
+            [[ "$RESUME_PLAN_HANDOFF_RUN_ID" =~ ^[0-9]+$ ]] || { echo "Resume run ID must be numeric"; exit 2; }
             RESUME_ARGS+=(--resume-from "$RUNNER_TEMP/plan-handoff-resume/plan-handoff-live")
           fi
           python experiments/paired_50/native_execution/run_plan_handoff_experiment.py \
@@ -327,10 +330,6 @@ jobs:
             ${{ runner.temp }}/common-action-restoration/
             ${{ runner.temp }}/plan-handoff-prompt-preflight/
             ${{ runner.temp }}/plan-handoff-live/
-            ${{ runner.temp }}/plan-handoff-live/call_events.jsonl
-            ${{ runner.temp }}/plan-handoff-live/responses.jsonl
-            ${{ runner.temp }}/plan-handoff-live/ledger.json
-            ${{ runner.temp }}/plan-handoff-live/summary.json
           if-no-files-found: warn
           retention-days: 90
 
