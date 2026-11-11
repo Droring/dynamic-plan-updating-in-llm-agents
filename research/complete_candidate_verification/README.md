@@ -46,7 +46,10 @@ From the repository root:
     python -m unittest research.complete_candidate_verification.test_costbench_native -v
     python -m research.complete_candidate_verification.dry_run
 
-Both commands must complete without a provider client, API key, or model call.
+The protocol and runner unit tests, plus the synthetic dry run, require no provider
+client, API key, or model call. The pinned native integration test also makes zero
+provider calls, but requires COSTBENCH_ROOT and the generated CostBench test
+search database; the release-validation workflow prepares both.
 
 ## Data separation
 
@@ -61,8 +64,10 @@ With the pinned CostBench checkout and generated search database available:
 
     python -m research.complete_candidate_verification.run_complete_candidate \
       --costbench-root ../CostBench \
-      --query-id Query00178 \
       --condition RETAIN
+
+By default, the command selects a frozen RETAIN checkpoint whose remaining plan
+contains at least two tools. Pass --query-id to select one specific checkpoint.
 
 This runs the full incumbent path through the official native tool helper using
 local deterministic planner/argument responses. It makes zero provider calls.
