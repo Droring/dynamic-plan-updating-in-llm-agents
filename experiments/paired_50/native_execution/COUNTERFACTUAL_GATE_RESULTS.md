@@ -4,7 +4,7 @@
 
 The two-stage plan-preserving gate did **not** improve balanced first-action accuracy. The verifier kept the incumbent in **all 16** cases where a previously generated no-plan C-arm candidate differed from it, including all six cases where that alternative was solver-optimal.
 
-This is a **controlled negative result** about a specific LLM-only verification design. It strengthens the observed failure mode: *independently generated better proposals are sometimes recognized as candidates yet rejected once the incumbent plan is reintroduced*, even in a dedicated text-only review step. It does not establish a unique private cognitive mechanism.
+This is a **controlled negative result** about a specific LLM-only verification design. The deliberately conservative instruction to ACCEPT only on clear evidence may itself contribute to the observed KEEP responses; this study does not isolate that prompt threshold from the incumbent-plan cue. It strengthens the observed failure mode: *independently generated better proposals are sometimes recognized as candidates yet rejected once the incumbent plan is reintroduced*, even in a dedicated text-only review step. It does not establish a unique private cognitive mechanism.
 
 ## Provenance
 
