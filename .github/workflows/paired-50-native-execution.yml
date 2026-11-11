@@ -79,6 +79,14 @@ jobs:
           run-id: 42665117176
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/four-arm-archive
+      - name: Evaluate bounded candidate verification without provider calls
+        run: |
+          python experiments/paired_50/native_execution/bounded_candidate_verifier.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --archive "$RUNNER_TEMP/four-arm-archive" \
+            --out "$RUNNER_TEMP/bounded-candidate-verifier.json"
+          python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"bounded-candidate-verifier.json"); d=json.load(open(p)); assert d["archived_first_action_trials"]==32 and d["new_deepseek_calls"]==0 and d["independent_base_tasks"]==8'
+
       - name: Validate 16 archived-first-action continuations without model calls
         run: |
           python experiments/paired_50/native_execution/run_four_arm_continuations.py \
