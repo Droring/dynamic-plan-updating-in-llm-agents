@@ -50,6 +50,10 @@ jobs:
           python -m pip install -r ../CostBench/requirements.txt numpy sympy
       - name: Run complete-candidate-verification offline protocol tests
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
+      - name: Run one pinned native CostBench committed-path execution
+        env:
+          COSTBENCH_ROOT: ../CostBench
+        run: python -m unittest research.complete_candidate_verification.test_costbench_native -v
       - name: Run complete test suite with CostBench integration enabled
         env:
           COSTBENCH_ROOT: ../CostBench
