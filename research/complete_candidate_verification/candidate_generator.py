@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import hashlib, inspect, json, time
 from typing import Any, Callable
 from .policy_input import PolicyInput, canonical_json
+from .errors import BudgetExceeded, ProviderOutcomeUnknown
 
 MAX_PLANNING_CALLS = 3
 MAX_PLAN_TOKENS = 2048
@@ -117,11 +118,15 @@ class CandidateGenerator:
         tokens = 0
         path = None
         error = None
+        fatal_error = None
         try:
             response = self.completion(messages=messages,
                 response_format={"type": "json_object"}, max_tokens=self.max_tokens)
             if inspect.isawaitable(response):
                 response = await response
+        except (BudgetExceeded, ProviderOutcomeUnknown) as exc:
+            error = f"{type(exc).__name__}:" + (str(exc) or type(exc).__name__)
+            fatal_error = exc
         except Exception as exc:
             error = "completion_error:" + (str(exc) or type(exc).__name__)
         else:
@@ -135,6 +140,8 @@ class CandidateGenerator:
             tuple(dict(message) for message in messages), response_sha,
             raw, tokens, round(time.perf_counter()-started, 7), error)
         self.proposals.append(proposal)
+        if fatal_error is not None:
+            raise fatal_error
         return proposal
 
     async def generate_repair(self, policy_input: PolicyInput) -> CandidateProposal:

@@ -4,6 +4,7 @@ from pathlib import Path
 from .policy_input import build_policy_input, build_policy_input_from_trace, reconstruct_observed_state
 from .submitted_plan_checker import check_submitted_path, select_strictly_better_plan
 from .candidate_generator import CandidateGenerator
+from .errors import BudgetExceeded, ProviderOutcomeUnknown
 from .update_controller import run_update
 from .committed_plan_executor import CommittedPlanExecutor, PlanExecutionError
 from .costbench_adapter import CostBenchNativeExecutionAdapter, CostBenchAdapterHook
@@ -123,6 +124,25 @@ class CandidateGeneratorTests(unittest.IsolatedAsyncioTestCase):
         self.assertIn("minimum-value",seen[0][0]["content"])
         self.assertIn("minimum-value",seen[1][0]["content"])
         self.assertEqual(gen.calls_used,3)
+    async def test_provider_outcome_unknown_stops_candidate_generation(self):
+        async def failing(**kwargs):
+            raise ProviderOutcomeUnknown("read timeout after request start")
+        generator=CandidateGenerator(failing)
+        with self.assertRaisesRegex(ProviderOutcomeUnknown,"read timeout"):
+            await generator.generate_repair(policy())
+        self.assertEqual(generator.calls_used,1)
+        self.assertEqual(len(generator.proposals),1)
+        self.assertTrue(generator.proposals[0].error.startswith("ProviderOutcomeUnknown:"))
+
+    async def test_budget_exhaustion_before_request_is_not_retried(self):
+        async def blocked(**kwargs):
+            raise BudgetExceeded("reservation cap reached before request")
+        generator=CandidateGenerator(blocked)
+        with self.assertRaisesRegex(BudgetExceeded,"reservation cap"):
+            await generator.generate_repair(policy())
+        self.assertEqual(generator.calls_used,1)
+        self.assertEqual(len(generator.proposals),1)
+
     async def test_revision_requires_feedback(self):
         async def fake(**kwargs): return {"plan":["Acquire_A","Finish_A"]}
         with self.assertRaisesRegex(ValueError,"concrete"):

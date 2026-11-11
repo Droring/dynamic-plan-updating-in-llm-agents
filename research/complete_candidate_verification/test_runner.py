@@ -8,6 +8,7 @@ from .committed_plan_executor import CommittedPlanExecutor
 from .policy_input import build_policy_input
 from .run_complete_candidate import (NativeExecutionResult, run_complete_candidate,
     deepseek_candidate_completion, deepseek_argument_completion)
+from .errors import NativeOutcomeUnknown, ProviderOutcomeUnknown
 from .test_protocol import tools
 
 
@@ -151,6 +152,43 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.status, "execution_error")
         self.assertEqual(result.parameter_calls, 1)
         self.assertFalse(result.goal_reached)
+
+    async def test_provider_outcome_unknown_propagates_without_retry(self):
+        policy = make_policy()
+        calls = 0
+        async def candidate_completion(**kwargs):
+            nonlocal calls
+            calls += 1
+            raise ProviderOutcomeUnknown("provider timeout")
+        async def argument_completion(**kwargs):
+            raise AssertionError("argument generation must not start")
+        def native_execute(**kwargs):
+            raise AssertionError("native execution must not start")
+        with self.assertRaisesRegex(ProviderOutcomeUnknown,"provider timeout"):
+            await run_complete_candidate(
+                policy, candidate_completion=candidate_completion,
+                argument_completion=argument_completion, native_execute=native_execute,
+            )
+        self.assertEqual(calls,1)
+
+    async def test_native_exception_is_marked_as_uncertain_not_retried(self):
+        policy = make_policy()
+        async def candidate_completion(**kwargs):
+            return {"choices": [{"message": {"content": json.dumps(
+                {"plan": ["Acquire_A", "Finish_A"]})}}]}
+        async def argument_completion(*, messages, tools, tool_choice, max_tokens):
+            name=tools[0]["function"]["name"]
+            return {"choices": [{"message": {"tool_calls": [{
+                "id":"call-uncertain",
+                "function":{"name":name,"arguments":'{"Start":"OBS-START"}'},
+            }]}}], "usage":{"total_tokens":3}}
+        def native_execute(**kwargs):
+            raise RuntimeError("connection dropped after native call started")
+        with self.assertRaisesRegex(NativeOutcomeUnknown,"outcome is uncertain"):
+            await run_complete_candidate(
+                policy,candidate_completion=candidate_completion,
+                argument_completion=argument_completion,native_execute=native_execute,
+            )
 
     async def test_malformed_argument_response_usage_and_prompt_are_logged(self):
         policy = make_policy()

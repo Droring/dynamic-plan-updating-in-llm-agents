@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any, Callable, Mapping
 
 from .committed_plan_executor import CommittedPlanExecutor, PlanExecutionError
+from .errors import BudgetExceeded, NativeOutcomeUnknown, ProviderOutcomeUnknown
 from .policy_input import PolicyInput, build_policy_input
 from .scoring_logging import append_jsonl_durable, write_json_atomic
 from .update_controller import UpdateDecision, run_update
@@ -337,7 +338,13 @@ async def run_complete_candidate(
                 native_result = await native_result
             if not isinstance(native_result, NativeExecutionResult):
                 raise TypeError("native_execute must return NativeExecutionResult")
+        except (BudgetExceeded, ProviderOutcomeUnknown, NativeOutcomeUnknown):
+            raise
         except Exception as exc:
+            if native_call_started:
+                raise NativeOutcomeUnknown(
+                    f"native call outcome is uncertain for {expected_tool}: {type(exc).__name__}: {exc}"
+                ) from exc
             error = f"{type(exc).__name__}: {exc}"
             executor.invalidate("argument_or_native_execution_exception")
             status = "execution_error"
