@@ -64,6 +64,10 @@ jobs:
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
       - name: Run complete-candidate replanning runner tests
         run: python -m unittest research.complete_candidate_verification.test_runner -v
+      - name: Run provider budget and uncertainty tests
+        run: python -m unittest research.complete_candidate_verification.test_provider -v
+      - name: Run frozen development-screen schedule tests
+        run: python -m unittest research.complete_candidate_verification.test_development_screen -v
       - name: Run 32-trajectory development-screen offline preflight
         run: python -m research.complete_candidate_verification.prepare_development_screen --costbench-root ../CostBench --out outputs/development_screen_preflight
       - name: Archive development-screen offline preflight

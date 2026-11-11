@@ -40,6 +40,8 @@ recorded and included in total usage.
 - costbench_adapter.py: adapter around the pinned native CostBench execution helper.
 - run_complete_candidate.py: full candidate-generation, strict-selection, argument-generation, and native-execution loop; includes DeepSeek-compatible call adapters and a provider-free native smoke path.
 - scoring_logging.py: post-hoc decision/execution scoring and durable records.
+- provider.py: shared token cap, pre-request reservations, durable request events, and no-retry uncertain-outcome handling.
+- run_development_screen.py: frozen 32-cell counterbalanced runner; live execution requires explicit --execute.
 - dry_run.py: provider-free end-to-end dry run.
 - test_protocol.py: offline unit and protocol tests.
 
@@ -51,6 +53,8 @@ From the repository root:
     python -m unittest research.complete_candidate_verification.test_runner -v
     python -m unittest research.complete_candidate_verification.test_costbench_native -v
     python -m research.complete_candidate_verification.dry_run
+    python -m unittest research.complete_candidate_verification.test_provider -v
+    python -m unittest research.complete_candidate_verification.test_development_screen -v
 
 The protocol and runner unit tests, plus the synthetic dry run, require no provider
 client, API key, or model call. The pinned native integration test also makes zero
@@ -79,5 +83,20 @@ baseline with the same provider-free native smoke harness.
 
 This runs the full incumbent path through the official native tool helper using
 local deterministic planner/argument responses. It makes zero provider calls.
-The DeepSeek adapters are exposed for the subsequent development screen, but
-this first implementation stage does not launch paid model experiments.
+
+## Frozen 32-trajectory development screen
+
+First run the offline preflight and materialize the exact schedule and prompts:
+
+    python -m research.complete_candidate_verification.run_development_screen \
+      --costbench-root ../CostBench \
+      --out outputs/complete_candidate_development_screen
+
+This command makes zero provider calls. Live execution requires an explicit
+`--execute` flag. The runner refuses a nonempty output directory, uses the
+pinned DeepSeek model with temperature 0 and thinking disabled, disables SDK
+retries, reserves every request against the frozen 1.2M-token hard cap, and
+durably records request-start events before sending. Provider/native uncertain
+outcomes stop the run without retry. The 32 trajectories are 8 previously
+explored base tasks × 2 conditions × 2 methods; they are development data, not
+held-out evidence. The base task, not each trajectory, is the analysis unit.
