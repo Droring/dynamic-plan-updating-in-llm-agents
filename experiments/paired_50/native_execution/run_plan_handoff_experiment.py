@@ -25,6 +25,61 @@ from preflight_common_action_restoration import ARMS, ENVIRONMENTS, TASKS
 TOL=1e-5
 
 
+def clone_trial_for_branch(trial):
+    """Deep-copy every mutable native tool instance for one isolated branch."""
+    cloned=copy.deepcopy(trial)
+    original_tools=trial["prepared"]["tool_objects"]
+    cloned_tools=cloned["prepared"]["tool_objects"]
+    if cloned_tools is original_tools or set(cloned_tools)!=set(original_tools):
+        raise ValueError("Native tool registry was not independently cloned")
+    if any(cloned_tools[name] is original_tools[name] for name in original_tools):
+        raise ValueError("At least one native tool object is shared across branches")
+    if cloned["prepared"]["state"] is trial["prepared"]["state"]:
+        raise ValueError("Typed checkpoint state was not independently cloned")
+    return cloned
+
+
+def validate_deepcopy_restores(requests,lookup,official_run):
+    """Prove four deep-copied branches replay the exact same native prefix."""
+    cells={}
+    for row in requests:
+        cells.setdefault((row["query_id"],row["environment"]),row)
+    summaries=[]
+    for key,request in sorted(cells.items()):
+        base=lookup[key]
+        outputs=[]
+        clone_ids=set()
+        for arm in ARMS:
+            branch=clone_trial_for_branch(base)
+            prepared=branch["prepared"]
+            clone_ids.add(id(prepared["tool_objects"]))
+            tool=prepared["tool_objects"][request["common_first_action"]]
+            result=official_run._execute_tool_simulation(
+                tool_obj=tool,arguments_str=request["common_arguments"],
+                refinement_level=native.REFINEMENT_LEVEL,
+                available_tools=prepared["tool_objects"])
+            result_text=str(result)
+            if isinstance(result,str) and result.startswith(native.ERROR_PREFIXES):
+                raise ValueError(f"Deep-copy branch native replay failed: {key}/{arm}")
+            if result_text!=request["common_tool_result"]:
+                raise ValueError(f"Deep-copy branch result differs from frozen observation: {key}/{arm}")
+            state=set(prepared["state"])
+            state.add(tool.output_type)
+            state_hash=native.canonical_sha(sorted(state))
+            if state_hash!=request["post_action_state_sha256"]:
+                raise ValueError(f"Deep-copy branch post-action state mismatch: {key}/{arm}")
+            outputs.append((result_text,state_hash))
+        if len(clone_ids)!=4 or len(set(outputs))!=1:
+            raise ValueError(f"Deep-copy branches are not independent and equivalent: {key}")
+        summaries.append({"query_id":key[0],"environment":key[1],
+                          "independent_tool_registries":4,
+                          "exact_native_result_matches":4,
+                          "post_action_state_matches":True})
+    return {"cells":len(summaries),"branch_contexts":len(summaries)*4,
+            "native_replays":len(summaries)*4,"passed":len(summaries)==10,
+            "rows":summaries}
+
+
 def load_and_validate(requests_path:Path,costbench_root:Path):
     requests=[json.loads(x) for x in requests_path.read_text(encoding="utf-8").splitlines() if x.strip()]
     if len(requests)!=80:
@@ -105,7 +160,10 @@ def load_and_validate(requests_path:Path,costbench_root:Path):
             raise ValueError(f"Common post-action history differs within four-arm cell: {key}")
         if len({r["tool_schema_sha256"] for r in rows})!=1:
             raise ValueError(f"Native tool schema differs within four-arm cell: {key}")
-    return requests,lookup,cb
+    clone_preflight=validate_deepcopy_restores(requests,lookup,cb["official_run"])
+    if not clone_preflight["passed"]:
+        raise ValueError("In-process native branch restoration preflight failed")
+    return requests,lookup,cb,clone_preflight
 
 
 def current_value(prepared,state):
@@ -331,7 +389,7 @@ async def run_live(requests,lookup,cb,args):
     rows=[]
     async with AsyncOpenAI(base_url="https://api.deepseek.com",api_key=key,timeout=args.timeout) as client:
         for index,request in enumerate(requests,1):
-            trial=lookup[(request["query_id"],request["environment"])]
+            trial=clone_trial_for_branch(lookup[(request["query_id"],request["environment"])])
             start=time.monotonic()
             try:
                 row=await run_one(request,trial,cb["official_run"],client,budget,args)
@@ -378,7 +436,7 @@ def main():
     args=p.parse_args()
     if args.max_tokens!=2048:
         p.error("The frozen experiment requires max_tokens=2048")
-    requests,lookup,cb=load_and_validate(args.requests.resolve(),args.costbench_root.resolve())
+    requests,lookup,cb,clone_preflight=load_and_validate(args.requests.resolve(),args.costbench_root.resolve())
     preflight={
         "status":"validated_no_provider_calls","provider_calls":0,
         "trajectories":len(requests),"base_tasks":len(TASKS),
