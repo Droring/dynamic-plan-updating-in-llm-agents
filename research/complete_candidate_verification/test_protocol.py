@@ -6,7 +6,7 @@ from .submitted_plan_checker import check_submitted_path, select_strictly_better
 from .candidate_generator import CandidateGenerator
 from .update_controller import run_update
 from .committed_plan_executor import CommittedPlanExecutor, PlanExecutionError
-from .costbench_adapter import CostBenchNativeExecutionAdapter
+from .costbench_adapter import CostBenchNativeExecutionAdapter, CostBenchAdapterHook
 from .scoring_logging import (balanced_accuracy, pair_accuracy, score_trajectory,
                               append_jsonl_durable, write_json_atomic)
 from .dry_run import run_dry_run, interface
@@ -176,6 +176,33 @@ class ExecutorTests(unittest.TestCase):
         state.add("B")
         self.assertEqual(adapter.confirm_observed_state(),"ADVANCED")
         self.assertEqual(ex.cursor,1)
+    def test_official_loop_hook_confirms_blocker_state_update(self):
+        item=policy(); ex=CommittedPlanExecutor(item,["Acquire_B","Finish_B"])
+        class FakeOfficial:
+            @staticmethod
+            def _execute_tool_simulation(**kwargs):
+                return "native observation"
+        class FakeBlocker:
+            def set_current_state(self,state):
+                self.current_state=set(state)
+        original_execute=FakeOfficial._execute_tool_simulation
+        original_set=FakeBlocker.set_current_state
+        hook=CostBenchAdapterHook(FakeOfficial,FakeBlocker)
+        class FakeTool:
+            name="Acquire_B"; input_types=["Start"]; output_type="B"
+        with hook.installed() as installed:
+            blocker=FakeBlocker()
+            blocker.set_current_state({"Start"})
+            installed.activate(ex,lambda:item.tool_interfaces)
+            result=FakeOfficial._execute_tool_simulation(
+                tool_obj=FakeTool(),arguments_str='{"Start":"OBS-1"}',
+                refinement_level=2,available_tools={})
+            self.assertEqual(result,"native observation")
+            blocker.set_current_state({"Start","B"})
+            self.assertEqual(ex.cursor,1)
+            self.assertEqual(ex.next_tool({"Start","B"},item.tool_interfaces),"Finish_B")
+        self.assertIs(FakeOfficial._execute_tool_simulation,original_execute)
+        self.assertIs(FakeBlocker.set_current_state,original_set)
 
 class ScoringTests(unittest.TestCase):
     def test_ba_and_pair_accuracy(self):
