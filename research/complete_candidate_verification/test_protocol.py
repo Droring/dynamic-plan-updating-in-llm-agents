@@ -88,11 +88,12 @@ class CandidateGeneratorTests(unittest.IsolatedAsyncioTestCase):
             seen.append(kwargs["messages"]); return {"plan":["Acquire_A","Finish_A"]}
         gen=CandidateGenerator(fake); item=policy()
         await gen.generate_repair(item); await gen.generate_fresh(item)
+        await gen.generate_revision(item,None,("invalid path",))
         with self.assertRaisesRegex(RuntimeError,"budget_exhausted"):
-            await gen.generate_revision(item,None,("invalid path",))
+            await gen.generate_revision(item,None,("second revision is forbidden",))
         self.assertIn("incumbent_remaining_plan",json.loads(seen[0][1]["content"]))
         self.assertNotIn("incumbent_remaining_plan",json.loads(seen[1][1]["content"]))
-        self.assertEqual(gen.calls_used,2)
+        self.assertEqual(gen.calls_used,3)
     async def test_revision_requires_feedback(self):
         async def fake(**kwargs): return {"plan":["Acquire_A","Finish_A"]}
         with self.assertRaisesRegex(ValueError,"concrete"):
