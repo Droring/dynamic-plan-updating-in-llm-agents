@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 345,
+  "file_count": 346,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -70,6 +70,7 @@
     "experiments/paired_50/native_execution/MECHANISM_AUDIT.md": "f81bd2b1d081092f1705fc60c9d0bd060d657d55e86df83b3c7051b7829803ac",
     "experiments/paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md": "903897bad4934f9ac7204e64a02227a86dd0f85535508ef5f19b1b984a2971b2",
     "experiments/paired_50/native_execution/NATIVE_PATH_VALUE_AUDIT.md": "53c3dbe08e12e8733a516a0d81a333c8708d06ae4542e5bfc01db0e5a811142e",
+    "experiments/paired_50/native_execution/PLAN_HANDOFF_STATE_TRACKING_PROTOCOL.md": "4ad3e765ebf258a64eb417a481ce05e812fcc3998ede2838022a29090758c8f2",
     "experiments/paired_50/native_execution/README.md": "97c9cb3ada482aec23c0870915a848a0e59115202d1b4209e8d9cdf985ed06e5",
     "experiments/paired_50/native_execution/RESULTS.md": "d436f35a796634aa6f33401e9e6e5e2c2d6bea55376e0cb3533b99440beb6ca4",
     "experiments/paired_50/native_execution/SMOKE_TEST_REPORT.md": "69271c199e91e64815e861dc6a88ecd4b52c1ee0cb9c958423fffe3d20972f97",
