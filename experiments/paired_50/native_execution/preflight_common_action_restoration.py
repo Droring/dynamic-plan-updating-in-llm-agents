@@ -146,6 +146,7 @@ def validate_branch_records(actions,branch_outputs):
             "source_environment":action["source_environment"],
             "source_policy":action["source_policy"],
             "source_action_trial_id":action["source_action_trial_id"],
+            "paired_source_trial_id":action["paired_source_trial_id"],
             "tool":action["tool"],
             "arguments_sha256":action["arguments_sha256"],
             "tool_result":group[0]["tool_result"],
@@ -158,7 +159,7 @@ def validate_branch_records(actions,branch_outputs):
             "four_independent_processes":True,
             "exact_arguments_match_across_arms":True,
             "native_result_match_across_arms":True,
-            "archived_result_match":action["environment"]!=action["source_environment"] or True,
+            "archived_result_match":True if action["environment"]==action["source_environment"] else None,
             "post_action_state_match":True,
         })
     # A task's paired environments must receive the same tool and exact arguments.
