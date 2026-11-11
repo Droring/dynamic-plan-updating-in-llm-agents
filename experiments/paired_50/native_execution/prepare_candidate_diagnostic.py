@@ -69,7 +69,7 @@ def make_prompt(prepared: dict, endpoint: str, menu: list[str] | None) -> str:
     )
     if original_tail not in base:
         raise ValueError("Cannot isolate original execution instruction")
-    return base.replace(original_tail, "") + "\\n\\n[Diagnostic candidate menu]\\n" + suffix
+    return base.replace(original_tail, "") + "\n\n[Diagnostic candidate menu]\n" + suffix
 
 
 def prepare(costbench_root: Path, data_dir: Path) -> dict:
