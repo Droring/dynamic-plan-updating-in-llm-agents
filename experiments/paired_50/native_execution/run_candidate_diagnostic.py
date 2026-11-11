@@ -124,7 +124,15 @@ async def run_live(prep, costbench_root, out, cap, max_tokens, limit):
             ref = refs[id_key]
             endpoint = row["endpoint"]
             system = screen.native.make_official_system_prompt(official_run, p["task"])
-            messages = [{"role": "system", "content": system}, {"role": "user", "content": row["user_message"]}]
+            # Text-only endpoints cannot receive callable tools. Supply the exact
+            # current native schemas as read-only JSON so all endpoints can
+            # inspect the same current tool values, names and prerequisites.
+            tool_context = (
+                "\\n\\n[Current native tool definitions: read-only context]\\n"
+                + json.dumps(row["tools"], sort_keys=True, ensure_ascii=False)
+            ) if endpoint != "execution" else ""
+            messages = [{"role": "system", "content": system},
+                        {"role": "user", "content": row["user_message"] + tool_context}]
             tools = row["tools"] if endpoint == "execution" else None
             reserve = screen.native.reservation_for_call(messages, row["tools"], max_tokens)
             if not budget.can_call(reserve):
