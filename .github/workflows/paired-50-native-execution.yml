@@ -79,6 +79,30 @@ jobs:
           run-id: 42665117176
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/four-arm-archive
+      - name: Download archived full trajectories for loss attribution
+        uses: actions/download-artifact@v4
+        with:
+          name: native-full-trajectory-comparison
+          run-id: 42974338707
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/full-trajectory-archive
+
+      - name: Attribute native trajectory loss from actual post-action typed states
+        run: |
+          python experiments/paired_50/native_execution/attribute_execution_loss.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --trajectories "$RUNNER_TEMP/full-trajectory-archive/full-trajectory-results/trajectories.jsonl" \
+            --out "$RUNNER_TEMP/native-step-loss-attribution.json"
+          python -c 'import json,os; r=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"native-step-loss-attribution.json"))); assert r["native_trajectories"]==30 and r["verified_telescoping"] and r["provider_calls"]==0'
+
+      - name: Archive offline step-loss evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-step-loss-attribution
+          path: ${{ runner.temp }}/native-step-loss-attribution.json
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Compare all-action graph planning with bounded candidate verification
         run: |
           python experiments/paired_50/native_execution/graph_planning_baseline.py \
