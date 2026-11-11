@@ -116,7 +116,7 @@ The [candidate diagnostic protocol](CANDIDATE_DECISION_DIAGNOSTIC.md) separates 
 python experiments/paired_50/native_execution/prepare_candidate_diagnostic.py --costbench-root ../CostBench --out candidate_diagnostic_dry_run.json
 ~~~
 
-### Running the candidate diagnostics
+**Completed real-model diagnostic:** [candidate-decision results](CANDIDATE_DECISION_RESULTS.md) — 75/75 requests, 415,040 tokens, 0 API errors; SWITCH optimal alternatives explicitly reported 6/7, supplied-menu comparison correct 6/14, native action correct 6/14. These are 8 reused tasks, not a held-out algorithm benchmark.\n\n### Running the candidate diagnostics
 
 The [candidate-decision workflow](../../../.github/workflows/candidate-decision-diagnostic.yml) is intentionally **manual-only**. In GitHub Actions, select **Candidate-decision mechanism diagnostic** → **Run workflow**, select `main`, tick `run_paid_diagnostic`, then launch. The paid job is bounded to 75 diagnostic requests and a 600,000-token cap, with exact prompts, responses, native tool observations, and per-checkpoint scoring saved in the `candidate-decision-results` artifact. An unavailable API key stops the job before paid execution. The diagnostic is exploratory, reuses eight previously examined tasks, and does not validate a new algorithm.
 
