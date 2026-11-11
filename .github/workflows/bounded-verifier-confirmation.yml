@@ -1,10 +1,6 @@
 name: Bounded verifier independent confirmation
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/bounded-verifier-confirmation.yml"
   workflow_dispatch:
     inputs:
       run_paid_confirmation:
@@ -18,9 +14,7 @@ permissions:
 
 jobs:
   confirmation:
-    if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.run_paid_confirmation) ||
-      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved bounded verifier confirmation once')
+    if: inputs.run_paid_confirmation
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
