@@ -52,6 +52,7 @@ class CompleteCandidateRun:
     decision_latency_seconds: float
     execution_latency_seconds: float
     error: str | None
+    executor_record: Mapping[str, Any] | None = None
 
     def to_record(self) -> dict[str, Any]:
         return {
@@ -73,6 +74,7 @@ class CompleteCandidateRun:
             "decision_latency_seconds": self.decision_latency_seconds,
             "execution_latency_seconds": self.execution_latency_seconds,
             "error": self.error,
+            "executor_record": dict(self.executor_record) if self.executor_record else None,
             "candidate_proposals": [
                 {
                     "source": item.source,
@@ -220,6 +222,7 @@ async def run_complete_candidate(
     policy_input: PolicyInput, *, candidate_completion: Callable[..., Any],
     argument_completion: Callable[..., Any],
     native_execute: Callable[..., NativeExecutionResult],
+    native_tool_objects: Mapping[str, Any] | None = None,
     max_argument_tokens: int = DEFAULT_MAX_TOKENS,
 ) -> CompleteCandidateRun:
     """Generate two full candidates, select, commit, and execute the exact path."""
@@ -232,7 +235,7 @@ async def run_complete_candidate(
         return CompleteCandidateRun(
             "stopped_without_feasible_plan", decision, (), (), False,
             policy_input.current_state_types, decision.planning_calls, 0,
-            planning_tokens, 0, decision_latency, 0.0, decision.reason,
+            planning_tokens, 0, decision_latency, 0.0, decision.reason, None,
         )
 
     executor = CommittedPlanExecutor(policy_input, decision.selected_plan)
@@ -273,7 +276,8 @@ async def run_complete_candidate(
             arguments = executor.validate_arguments(tool_name, arguments_str)
             native_result = native_execute(
                 tool_name=tool_name, arguments_str=arguments_str,
-                arguments=arguments, available_tools=request["tools"],
+                arguments=arguments,
+                available_tools=dict(native_tool_objects or {}),
             )
             if hasattr(native_result, "__await__"):
                 native_result = await native_result
@@ -285,9 +289,11 @@ async def run_complete_candidate(
             status = "execution_error"
             break
 
+        state_before = sorted(state)
         executed.append(tool_name)
         trace.append({
             "step": step_index + 1, "tool_name": tool_name, "arguments": arguments,
+            "state_before": state_before,
             "success": native_result.success, "observation": native_result.observation,
             "output_type": native_result.output_type, "output_id": native_result.output_id,
             "raw_output_type": native_result.raw_output_type, "error": native_result.error,
@@ -304,6 +310,7 @@ async def run_complete_candidate(
         })
 
         if not native_result.success:
+            trace[-1] = {**trace[-1], "state_after": sorted(state)}
             try:
                 executor.record_tool_result(tool_name=tool_name, success=False,
                     observed_state_types=state,
@@ -314,12 +321,14 @@ async def run_complete_candidate(
             break
 
         if native_result.raw_output_type != native_result.output_type:
+            trace[-1] = {**trace[-1], "state_after": sorted(state)}
             executor.invalidate("native_output_type_mismatch")
             error = (f"native output type mismatch: {native_result.raw_output_type!r} "
                      f"!= {native_result.output_type!r}")
             status = "execution_error"
             break
         state.add(native_result.output_type)
+        trace[-1] = {**trace[-1], "state_after": sorted(state)}
         try:
             advancement = executor.record_tool_result(
                 tool_name=tool_name, success=True, observed_state_types=state,
@@ -344,7 +353,7 @@ async def run_complete_candidate(
         status, decision, tuple(executed), tuple(trace),
         policy_input.goal_type in state, tuple(sorted(state)),
         decision.planning_calls, parameter_calls, planning_tokens, parameter_tokens,
-        decision_latency, execution_latency, error,
+        decision_latency, execution_latency, error, executor.execution_record(),
     )
 
 
@@ -417,7 +426,7 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
     planner, arguments = OfflinePlanner(), OfflineArguments()
     result = await run_complete_candidate(
         policy_input, candidate_completion=planner, argument_completion=arguments,
-        native_execute=execute,
+        native_execute=execute, native_tool_objects=prepared["tool_objects"],
     )
     if planner.calls != 2:
         raise AssertionError(f"expected two planning calls, got {planner.calls}")
@@ -426,24 +435,36 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
     return result
 
 
-def load_native_trial(costbench_root: Path, query_id: str, condition: str):
+def load_native_trial(costbench_root: Path, query_id: str | None, condition: str,
+                      minimum_plan_length: int = 1):
     native_dir = Path(__file__).resolve().parents[2] / "experiments" / "paired_50" / "native_execution"
     sys.path.insert(0, str(native_dir))
     import run_official_harness as native
     root = costbench_root.resolve()
     os.chdir(root)
     requests, manifest, registry = native.load_frozen_inputs()
-    request = next(row for row in requests if row["query_id"] == query_id
-                   and manifest[row["trial_id"]]["condition"] == condition)
     registry_rows = {row["task_id"]: row for row in registry["selection"]["task_ids"]}
     query_path = root / "env" / "data" / "runtime" / "queries" / "queries.json"
     query_rows = json.loads(query_path.read_text(encoding="utf-8"))
     queries = {row["query_id"].strip("<>"): row for row in query_rows}
     costbench = native.load_costbench(root)
-    prepared = native.prepare_trial(
-        request, manifest[request["trial_id"]], queries[query_id],
-        registry_rows[query_id], costbench)
-    return native, costbench, prepared, queries[query_id]
+    candidates = [
+        row for row in requests
+        if manifest[row["trial_id"]]["condition"] == condition
+        and (query_id is None or row["query_id"] == query_id)
+    ]
+    if not candidates:
+        raise ValueError(f"No frozen {condition} request found for query_id={query_id!r}")
+    for request in candidates:
+        selected_query_id = request["query_id"]
+        prepared = native.prepare_trial(
+            request, manifest[request["trial_id"]], queries[selected_query_id],
+            registry_rows[selected_query_id], costbench)
+        if len(prepared["incumbent_suffix"]) >= minimum_plan_length:
+            return native, costbench, prepared, queries[selected_query_id]
+    raise ValueError(
+        f"No {condition} checkpoint met minimum plan length {minimum_plan_length}"
+    )
 
 
 def main() -> int:
