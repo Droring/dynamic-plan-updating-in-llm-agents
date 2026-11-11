@@ -13,7 +13,7 @@ This protocol uses **only `main`**. Reuse the same pinned native CostBench revis
 On the existing 30 trajectories (5 base tasks × RETAIN/SWITCH × 3 first-action policies), evaluate every actually executed successful step with:
 
 \[
-\\delta_t=c(s_t,a_t)+V^*(s_{t+1})-V^*(s_t).
+\delta_t=c(s_t,a_t)+V^*(s_{t+1})-V^*(s_t).
 \]
 
 Here `s_{t+1}` must be **reconstructed from the recorded successful native tool observation**, updating the accumulated available types, rather than inferred from an ideal plan. Compute `V*(s_t)` and `V*(s_{t+1})` from the actual post-change tool graph using the same fixed values. Do not treat a different tool name or a different equally optimal path as a failure.
@@ -21,7 +21,7 @@ Here `s_{t+1}` must be **reconstructed from the recorded successful native tool 
 Require that every successful terminal trajectory satisfies:
 
 \[
-\\sum_t\\delta_t=\\text{realized full-path regret}
+\sum_t\delta_t=\text{realized full-path regret}
 \]
 
 within numeric tolerance; stop on violation. Record first positive-loss step and action, first-action loss, later cumulative loss, observed tool result, repeated execution, whether a step contributes a new type, completion status, and alternative-branch decisions. Separate type-state evidence from richer semantic information in tool text: the current benchmark's typed graph does not represent every possible external state side effect. An apparently nonproductive type repeat is **descriptive**, not automatically an error.
