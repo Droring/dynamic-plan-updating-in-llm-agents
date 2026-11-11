@@ -276,7 +276,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: plan-status-confirmation-preflight
-          path: \${{ runner.temp }}/plan-status-preflight
+          path: ${{ runner.temp }}/plan-status-preflight
       - name: Freeze the selected task cohort on main
         shell: bash
         run: |
