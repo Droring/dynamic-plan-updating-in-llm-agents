@@ -71,7 +71,7 @@ The search bounds are fixed at four replaced tools and two replacement tools. Th
 
 ## Next independent validation
 
-The agreed next validation uses **20 entirely new CostBench base tasks**, four from each of the five task categories, excluding all historical and derived tasks. It compares seven methods, for **20 × 2 conditions × 7 methods = 280 native trajectories**:
+The agreed next validation uses **20 entirely new CostBench base tasks**, four from each of the five task categories. The cohort is selected from the pre-allocated 40-task Validation split; its manifest and overlap audit are documented in [INDEPENDENT_VALIDATION_TASK_SELECTION.md](INDEPENDENT_VALIDATION_TASK_SELECTION.md). It compares seven methods, for **20 × 2 conditions × 7 methods = 280 native trajectories**:
 
 1. Original DeepSeek Agent.
 2. Simple RETAIN rule.
@@ -83,7 +83,7 @@ The agreed next validation uses **20 entirely new CostBench base tasks**, four f
 
 The original repair_plus_fresh method remains a historical development arm; it is not the new method because it added no unique SWITCH coverage in the 32-trajectory screen.
 
-The model configuration is DeepSeek Flash, temperature 0, thinking disabled. The maximum is three planning calls per trajectory; parameter-generation calls are counted separately and included in total usage. The exact total token ceiling and maximum output settings must be frozen before any paid run.
+The model configuration is DeepSeek Flash, temperature 0, thinking disabled. The maximum is three planning calls per trajectory; parameter-generation calls are counted separately and included in total usage. The total token ceiling and maximum output settings must be frozen before any paid run. The checkpoint-construction procedure and exact implementations of all seven arms must also be pinned.
 
 The hard validation gates are:
 
@@ -93,6 +93,6 @@ The hard validation gates are:
 - The new method must not fall below the ordinary complete-candidate control.
 - Goal success and complete-trajectory quality must not regress.
 
-The later frozen test uses **60 entirely new tasks**, 12 per category, for 840 primary trajectories, plus the previously planned 120 stability repeats. It remains sealed unless the independent validation passes.
+The later test remains sealed and unselected. The pre-allocated 80-task locked-test pool has category counts of 11 accommodation, 11 attraction, 15 dining, 19 shopping, and 24 transportation; any later 60-task composition and any 12-per-category top-up must be decided before unsealing.
 
 **No paid DeepSeek calls, independent validation runs, or final-test runs were started in this stage.** The independent cohort remains unstarted.

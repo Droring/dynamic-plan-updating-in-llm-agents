@@ -128,8 +128,10 @@ The offline release-validation workflow also verifies:
   SWITCH continuation with zero provider calls;
 - the remaining protocol, provider, schedule, and repository regression suites.
 
-The current independent validation remains 20 entirely new tasks, four per
-CostBench category, with seven comparison arms and 280 trajectories. The new
+The current independent validation now has 20 selected tasks from the pre-allocated
+40-task Validation split, four per CostBench category, with seven comparison arms
+and 280 planned trajectories. The selected cohort is disjoint from the historical
+50-task and 80-task cohorts and from the development prompt/algorithm screens. The new
 method occupies the previously reserved "New Method" arm. The exact archived
 prompt for the "Best Existing Prompt" arm and its hash must be frozen before
 the task manifest is released. The final 60-task test remains sealed until the

@@ -89,7 +89,7 @@ The pinned native integration suite also checks a SWITCH checkpoint in which the
 
 ## Independent validation plan
 
-The next validation is frozen at **20 entirely new base tasks**, four per CostBench category, excluding all historical and derived tasks. The seven comparison arms are:
+The next validation cohort has been selected from the pre-allocated 40-task Validation split: **20 entirely new base tasks**, four per CostBench category, with zero overlap against the historical 50-task paired cohort, 80-task official development cohort, eight-task development screen, and four-arm prompt screen. See [INDEPENDENT_VALIDATION_TASK_SELECTION.md](INDEPENDENT_VALIDATION_TASK_SELECTION.md) and the machine-readable manifest. The seven comparison arms are:
 
 1. Original DeepSeek Agent.
 2. Simple RETAIN rule.
@@ -99,11 +99,11 @@ The next validation is frozen at **20 entirely new base tasks**, four per CostBe
 6. New method: fresh_with_local_substitution.
 7. Full graph planning with the same executor.
 
-This gives **280 trajectories** (20 tasks × RETAIN/SWITCH × seven methods). Use DeepSeek Flash, temperature 0, thinking disabled, and at most three planning calls per trajectory. Parameter-generation calls are counted separately and included in total usage. The total token ceiling and exact output-token settings must be fixed before any paid execution.
+This gives **280 trajectories** (20 tasks × RETAIN/SWITCH × seven methods). Use DeepSeek Flash, temperature 0, thinking disabled, and at most three planning calls per trajectory. Parameter-generation calls are counted separately and included in total usage. The total token ceiling, exact output-token settings, checkpoint construction, and exact implementations of the bounded-verifier and full-graph arms must be frozen before any paid execution.
 
 Go/no-go gates: RETAIN 20/20; SWITCH at least 14/20; balanced accuracy at least 85%; no result below the ordinary complete-candidate control; no regression in goal success or complete-trajectory quality.
 
-The subsequent frozen test contains 60 entirely new tasks (12 per category), 840 primary trajectories, plus 120 preselected stability repeats. It remains sealed unless the independent validation passes.
+The later test remains sealed and unselected. The existing 80-task locked-test allocation is category-imbalanced (11 accommodation, 11 attraction, 15 dining, 19 shopping, 24 transportation), so the final 60-task composition must be fixed before unsealing; no final-test IDs are included in the validation manifest.
 
 The exact A_original prompt arm and category-specific system-prompt hashes are now frozen. The total token ceiling and maximum output settings remain to be set. No paid DeepSeek calls or independent validation runs have been launched.
 
