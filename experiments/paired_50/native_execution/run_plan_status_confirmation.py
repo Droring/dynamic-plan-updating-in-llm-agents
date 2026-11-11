@@ -66,7 +66,12 @@ def load_and_validate(requests_path, manifest_path, costbench_root):
             p = prepared[(qid, env)]["prepared"]
             if p["checkpoint_sha256"] != cell["checkpoint_sha256"]:
                 raise ValueError(f"Checkpoint hash mismatch: {qid}/{env}")
-            if p["incumbent_suffix"][1:] != cell["remaining_incumbent_plan"]:
+            expected_remaining = (
+                p["incumbent_suffix"][1:]
+                if cell["common_first_action"] == p["incumbent_suffix"][0]
+                else p["incumbent_suffix"]
+            )
+            if expected_remaining != cell["remaining_incumbent_plan"]:
                 raise ValueError(f"Incumbent suffix mismatch: {qid}/{env}")
 
     grouped = defaultdict(dict)
