@@ -101,6 +101,10 @@ def load_and_validate(requests_path:Path,costbench_root:Path):
             raise ValueError(f"System prompt differs within four-arm cell: {key}")
         if len({r["common_first_action"] for r in rows})!=1 or len({r["common_arguments"] for r in rows})!=1 or len({r["common_tool_result_sha256"] for r in rows})!=1:
             raise ValueError(f"Common action differs within four-arm cell: {key}")
+        if len({native.canonical_sha(r["payload"]["messages"][:-1]) for r in rows})!=1:
+            raise ValueError(f"Common post-action history differs within four-arm cell: {key}")
+        if len({r["tool_schema_sha256"] for r in rows})!=1:
+            raise ValueError(f"Native tool schema differs within four-arm cell: {key}")
     return requests,lookup,cb
 
 
@@ -142,6 +146,8 @@ async def run_one(request,trial,official_run,client,budget,args):
     halt="max_steps"
     plan_cursor=0
     incumbent_cursor=0
+    plan_deviated=False
+    incumbent_deviated=False
     for step_index in range(1,args.max_steps+1):
         if prepared["goal_type"] in state:
             halt="goal_reached"
@@ -204,19 +210,26 @@ async def run_one(request,trial,official_run,client,budget,args):
             if delta < -TOL:
                 raise ValueError(f"Negative Bellman loss after successful action {name}: {delta}")
             delta=max(0.0,delta)
+        matches_plan=(plan is not None and not plan_deviated and plan_cursor<len(plan) and name==plan[plan_cursor])
+        matches_incumbent=(not incumbent_deviated and incumbent_cursor<len(incumbent) and name==incumbent[incumbent_cursor])
         trace.append({
             "step":step_index,"tool":name,"arguments":arguments,"success":True,
             "cost":float(tool.cost),"output":output,
             "state_before":before_state,"state_after":after_state,
             "V_before":before_value,"V_after":after_value,
             "bellman_loss":delta,
-            "matches_updated_plan_next":(plan is not None and plan_cursor<len(plan) and name==plan[plan_cursor]),
-            "matches_incumbent_plan_next":(incumbent_cursor<len(incumbent) and name==incumbent[incumbent_cursor]),
+            "matches_updated_plan_next":matches_plan,
+            "matches_incumbent_plan_next":matches_incumbent,
         })
-        if plan is not None and plan_cursor<len(plan) and name==plan[plan_cursor]:
-            plan_cursor+=1
-        if incumbent_cursor<len(incumbent) and name==incumbent[incumbent_cursor]:
+        if plan is not None:
+            if matches_plan:
+                plan_cursor+=1
+            else:
+                plan_deviated=True
+        if matches_incumbent:
             incumbent_cursor+=1
+        else:
+            incumbent_deviated=True
         if ledger is not None:
             ledger=update_ledger(ledger,f"STEP-{step_index:02d}",name,tool.output_type,output,True)
             messages.append({"role":"user","content":"[Updated observed-state ledger]\n"+render_ledger(ledger)})
@@ -229,6 +242,10 @@ async def run_one(request,trial,official_run,client,budget,args):
     reached=prepared["goal_type"] in state
     continuation_cost=sum(float(x["cost"]) for x in trace if x.get("success") and x.get("cost") is not None)
     continuation_regret=(continuation_cost-start_value) if reached else None
+    if continuation_regret is not None and continuation_regret < -TOL:
+        raise ValueError("Realized continuation is cheaper than the graph reference value")
+    if continuation_regret is not None:
+        continuation_regret=max(0.0,continuation_regret)
     loss_values=[x["bellman_loss"] for x in trace if x.get("bellman_loss") is not None]
     bellman_sum=sum(loss_values)
     if reached and all(x.get("success") for x in trace):
