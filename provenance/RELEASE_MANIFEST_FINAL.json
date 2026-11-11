@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 342,
+  "file_count": 343,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -65,6 +65,7 @@
     "experiments/paired_50/native_execution/FOUR_ARM_INFORMATION_LOCALIZATION_PROTOCOL.md": "f61e9eabecea8a29703f85a1f6e326b3ec6826ce52f089c3523fe9d401d5a02f",
     "experiments/paired_50/native_execution/FOUR_ARM_TASK_MANIFEST.json": "eb265e500e6481fe17886866d0e27b52e1c718773d0eedc49e4732c9a663a7a7",
     "experiments/paired_50/native_execution/FULL_TRAJECTORY_COMPARISON_PROTOCOL.md": "315d5ff6af51bb19c1776e14de3b5764ef826d033a6e7c017a77de4c22eb7ca0",
+    "experiments/paired_50/native_execution/FULL_TRAJECTORY_COMPARISON_RESULTS.md": "9bf10e05927fe732d9604cca3b20d617b8ee6194e9fab614f8a49909197b793d",
     "experiments/paired_50/native_execution/MECHANISM_ANALYSIS.md": "a281c0c726b57133bc23b51faca6802db0f567e5a795843d8d60b8876f3d3d93",
     "experiments/paired_50/native_execution/MECHANISM_AUDIT.md": "f81bd2b1d081092f1705fc60c9d0bd060d657d55e86df83b3c7051b7829803ac",
     "experiments/paired_50/native_execution/MECHANISM_STUDY_FINAL_REPORT.md": "903897bad4934f9ac7204e64a02227a86dd0f85535508ef5f19b1b984a2971b2",
