@@ -101,3 +101,37 @@ Freeze the common-first-action source IDs, tool arguments, native result hashes,
 ## Subsequent publication direction
 
 Only after the 2×2 reveals a remaining failure should we consider (i) incomplete/partially observed events beyond CostBench, or (ii) a selective update-scope selector. Graph dependence and plan repair alone are classical planning baselines, not automatic novelty claims.
+
+
+## Offline implementation freeze addendum
+
+### Common-action restoration result
+
+The restoration preflight is complete and passed: **10 task/environment checkpoints × 4 independent OS processes = 40 native replays**. All 40 replayed the exact archived graph-planner first-action arguments and reproduced the exact archived native tool-result string; the post-action typed-state hash matched across all four restorations for each of the ten checkpoints. The check used zero provider calls. See the `common-action-restoration-preflight` artifact from the pinned GitHub Actions validation run.
+
+This certifies the native action/result/state handoff under the pinned CostBench snapshot. It does not mean the four prompt variants have been run or evaluated.
+
+### Archived assistant content normalization
+
+The archived full-trajectory records retain the first tool name, exact argument string, exact native result, and checkpoint hash, but do **not** retain the assistant's free-form text accompanying that first tool call. Therefore the post-action continuation history uses a normalized assistant tool-call message with `content: null` in **all four arms**. The exact archived tool arguments and tool observation are retained. This limitation is explicit; the experiment must not be described as reproducing the original assistant reasoning text.
+
+### Frozen prompt matrix
+
+The offline prompt builder is [`prepare_plan_handoff_experiment.py`](prepare_plan_handoff_experiment.py). It creates the same post-action conversation history and native tool schemas for all arms, then adds one standardized post-action user message containing two fixed sections:
+
+- **Plan handoff:** A/C receive no replacement path; the original plan remains visible in the preceding history. B/D receive the complete continuation recomputed by the unrestricted typed-graph Dijkstra planner from the actual post-action type-state, and the earlier plan is explicitly marked superseded.
+- **Observed-state ledger:** A/B receive no separate ledger. C/D receive a deterministic ledger containing only checkpoint-visible types and the exact common native observation, with source/action identifiers.
+
+The ledger renderer records confirmed facts, an empty invalidated set unless an explicit contradiction is observed, and unknown semantic facts. The current CostBench typed state is monotonic, so the renderer **does not infer invalidation** from the addition of another type. After each later successful native action, `update_ledger` appends the newly observed output type and exact observation; failed actions add an unknown state effect instead. This is an observable typed-state ledger, not a general semantic world-state tracker.
+
+The post-action message in every arm also states that the common first action has already completed and must not be repeated. All arms receive the same native tool definitions, goal, original request, prefix, common action, exact result, model settings and output limit.
+
+### Development-screen run matrix and model freeze
+
+The offline builder creates **5 previously explored tasks × 2 environment conditions × 4 arms × 2 repetitions = 80 continuation requests**. These are development-screen tasks, not an unseen confirmation set. The frozen model configuration is `deepseek-flash`, temperature 0, thinking disabled, and 2,048 maximum output tokens per call.
+
+The builder reports the harness's conservative `reservation_units` (serialized request bytes plus output allowance and fixed buffer). These units are a request-budget reservation measure, **not a claim about actual tokenizer tokens**. No model call is made by prompt preparation. Review the generated request count and reservation total before any paid run.
+
+The 2×2 prompt preflight must pass all of the following for every task/environment cell: identical common-history hash across A/B/C/D; identical tool-schema hash; four distinct prompt hashes; balanced plan-handoff and ledger treatment flags; matching restoration, argument, result and post-action state hashes. Any mismatch blocks the live experiment.
+
+**Current gate:** native common-action restoration passed. Prompt construction and ledger-renderer tests are the next offline gate. No paid model experiment is authorized by this addendum.
