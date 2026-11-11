@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -32,8 +33,16 @@ _COST_TEXT = re.compile(r"(?i)\bCost:\s*[0-9]+(?:\.[0-9]+)?")
 
 
 def git_blob_sha(path: Path) -> str:
-    raw = path.read_bytes()
-    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
+    relative = path.resolve().relative_to(REPO_ROOT.resolve()).as_posix()
+    subprocess.run(
+        ["git", "-C", str(REPO_ROOT), "diff", "--quiet", "HEAD", "--", relative],
+        check=True,
+    )
+    result = subprocess.run(
+        ["git", "-C", str(REPO_ROOT), "rev-parse", f"HEAD:{relative}"],
+        check=True, capture_output=True, text=True,
+    )
+    return result.stdout.strip()
 
 
 def sha256(value: Any) -> str:
