@@ -28,11 +28,12 @@ def shortest_feasible_path(prepared, max_steps=None, expansion_limit=200000):
         return 0.0, []
     count = itertools.count()
     heap = [(0.0, 0, next(count), state, ())]
-    best = {state: 0.0}
+    best = {(state, 0) if max_steps is not None else state: 0.0}
     visited = 0
     while heap:
         value, steps, _, available, path = heapq.heappop(heap)
-        if value > best.get(available, float("inf")) + 1e-9:
+        key = (available, steps) if max_steps is not None else available
+        if value > best.get(key, float("inf")) + 1e-9:
             continue
         visited += 1
         if visited > expansion_limit:
@@ -48,9 +49,10 @@ def shortest_feasible_path(prepared, max_steps=None, expansion_limit=200000):
                 continue
             new_state = available.union([tool.output_type])
             new_value = value + float(tool.cost)
-            if new_value + 1e-9 >= best.get(new_state, float("inf")):
+            next_key = (new_state, steps + 1) if max_steps is not None else new_state
+            if new_value + 1e-9 >= best.get(next_key, float("inf")):
                 continue
-            best[new_state] = new_value
+            best[next_key] = new_value
             heapq.heappush(heap, (new_value, steps+1, next(count),
                                   new_state, path + (name,)))
     return None
