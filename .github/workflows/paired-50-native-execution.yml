@@ -93,7 +93,7 @@ jobs:
             --costbench-root "$RUNNER_TEMP/CostBench" \
             --trajectories "$RUNNER_TEMP/full-trajectory-archive/full-trajectory-results/trajectories.jsonl" \
             --out "$RUNNER_TEMP/common-action-restoration"
-          python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"common-action-restoration","common_action_restoration_preflight.json"); r=json.load(open(p)); assert r["status"]=="passed" and r["restored_branch_contexts"]==40 and r["provider_calls"]==0 and r["exact_archived_native_result_matches"]==40'
+          python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"common-action-restoration","common_action_restoration_preflight.json"); r=json.load(open(p)); assert r["status"]=="passed" and r["restored_branch_contexts"]==40 and r["provider_calls"]==0 and r["exact_common_arguments_matches"]==40 and r["exact_archived_native_result_matches"]==20 and r["native_result_matches_across_arms"]==40 and r["paired_environments_share_common_tool_and_arguments"]==5'
 
       - name: Archive common-action restoration preflight
         uses: actions/upload-artifact@v4
