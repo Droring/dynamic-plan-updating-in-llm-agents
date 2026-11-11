@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 329,
+  "file_count": 330,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/candidate-decision-diagnostic.yml": "01731273ac188edab15a65ebcfa517a4f0e55f7c4e0d7dbb5d2f914f85dbbd63",
@@ -69,6 +69,7 @@
     "experiments/paired_50/native_execution/SMOKE_TEST_REPORT.md": "69271c199e91e64815e861dc6a88ecd4b52c1ee0cb9c958423fffe3d20972f97",
     "experiments/paired_50/native_execution/analyze_mechanism_strata.py": "ff955d4744911ccf4ff9300af9bf110bcb17d1e1916fd43652a31a5b961f34be",
     "experiments/paired_50/native_execution/archive/native-execution-archive.zip": "6587a6b2c319069d27d07fe9ca21eb3464b38f200f73f6ef4555208b13694630",
+    "experiments/paired_50/native_execution/bounded_candidate_verifier.py": "89fae4410171a5e78cddf17aa252e4ddb232290ef61f40afd85249e312b24556",
     "experiments/paired_50/native_execution/four_arm_prompt_audit.py": "5b1763365eb1ec23ac9e57371ce9c05690c80d204a49c3968cea109e4d1f7492",
     "experiments/paired_50/native_execution/merge_split_run_results.py": "a9d2aa7a07932ab65302ec2d1f3695f33be81e7d9ea4d21888075041945e27a8",
     "experiments/paired_50/native_execution/native_path_value_audit.py": "da837444ffeb53ef24578b9f02027d6293567a80706106e63509e066c5896f8f",
