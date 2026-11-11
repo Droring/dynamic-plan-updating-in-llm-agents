@@ -254,11 +254,11 @@ async def run_complete_candidate(
     native_execute: Callable[..., NativeExecutionResult],
     native_tool_objects: Mapping[str, Any] | None = None,
     max_argument_tokens: int = DEFAULT_MAX_TOKENS,
-    candidate_strategy: str = "repair_plus_fresh",
+    candidate_strategy: str = "fresh_only",
     max_tool_steps: int = DEFAULT_MAX_TOOL_STEPS,
     native_system_prompt: str | None = None,
 ) -> CompleteCandidateRun:
-    """Generate two full candidates, select, commit, and execute the exact path."""
+    """Generate a complete candidate, select, commit, and execute the exact path."""
     if max_tool_steps <= 0:
         raise ValueError("max_tool_steps must be positive")
     decision_start = time.perf_counter()
@@ -515,7 +515,7 @@ def make_policy_input_from_prepared(
 
 async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[str, Any],
                                    native: Any, costbench: Mapping[str, Any],
-                                   candidate_strategy: str = "repair_plus_fresh",
+                                   candidate_strategy: str = "fresh_only",
                                    max_tool_steps: int = DEFAULT_MAX_TOOL_STEPS) -> CompleteCandidateRun:
     """Execute a complete native trajectory using deterministic mocks and zero API calls."""
     history = make_observation_history(prepared, query, native)
@@ -590,8 +590,11 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
         max_tool_steps=max_tool_steps,
         native_system_prompt=native_system_prompt,
     )
-    if planner.calls != 2:
-        raise AssertionError(f"expected two planning calls, got {planner.calls}")
+    expected_planning_calls = 1 if candidate_strategy == "fresh_only" else 2
+    if planner.calls != expected_planning_calls:
+        raise AssertionError(
+            f"expected {expected_planning_calls} planning calls, got {planner.calls}"
+        )
     if arguments.calls != len(result.executed_path):
         raise AssertionError("parameter call count differs from native executed path")
     return result
@@ -636,8 +639,8 @@ def main() -> int:
                         help="Optional fixed query ID; by default select a multi-step RETAIN checkpoint.")
     parser.add_argument("--condition", choices=("RETAIN", "SWITCH"), default="RETAIN")
     parser.add_argument("--candidate-strategy",
-                        choices=("repair_plus_fresh", "fresh_plus_fresh"),
-                        default="repair_plus_fresh")
+                        choices=("fresh_only", "repair_plus_fresh", "fresh_plus_fresh"),
+                        default="fresh_only")
     parser.add_argument("--max-tool-steps", type=int, default=DEFAULT_MAX_TOOL_STEPS)
     parser.add_argument("--out", type=Path, default=Path("outputs/complete_candidate_offline_smoke"))
     args = parser.parse_args()

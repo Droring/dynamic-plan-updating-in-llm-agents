@@ -42,10 +42,10 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
     async def test_full_candidate_switch_and_native_execution(self):
         policy = make_policy(with_history=True)
         plans = [
-            {"plan": ["Acquire_A", "Finish_A"]},
             {"plan": ["Acquire_B", "Finish_B"]},
         ]
         planner_calls = 0
+        planner_messages = []
         observed_ids = {"Start": "OBS-START", "A": "OBS-A"}
         native_outputs = {"Acquire_A": "A", "Finish_A": "Goal",
                           "Acquire_B": "B", "Finish_B": "Goal"}
@@ -53,6 +53,7 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         async def candidate_completion(**kwargs):
             nonlocal planner_calls
             plan = plans[planner_calls]
+            planner_messages.append(kwargs["messages"])
             planner_calls += 1
             return {
                 "choices": [{"message": {"content": json.dumps(plan)}}],
@@ -97,15 +98,20 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(result.status, "goal_reached")
         self.assertEqual(result.decision.action, "SWITCH")
-        self.assertEqual(result.decision.candidate_strategy, "repair_plus_fresh")
+        self.assertEqual(result.decision.candidate_strategy, "fresh_only")
         self.assertEqual(result.executed_path, ("Acquire_B", "Finish_B"))
         self.assertTrue(result.goal_reached)
-        self.assertEqual(result.planning_calls, 2)
+        self.assertEqual(result.planning_calls, 1)
         self.assertEqual(result.parameter_calls, 2)
-        self.assertEqual(result.planning_tokens, 22)
+        self.assertEqual(result.planning_tokens, 11)
         self.assertEqual(result.parameter_tokens, 14)
-        self.assertEqual(planner_calls, 2)
+        self.assertEqual(planner_calls, 1)
         self.assertEqual(parameter_calls, 2)
+        self.assertEqual(len(planner_messages), 1)
+        self.assertNotIn(
+            "incumbent_remaining_plan",
+            json.loads(planner_messages[0][1]["content"]),
+        )
         self.assertTrue(result.executor_record["finished"])
         self.assertEqual(result.trace[0]["state_before"], ["A", "Start"])
         self.assertEqual(result.trace[0]["state_after"], ["A", "B", "Start"])

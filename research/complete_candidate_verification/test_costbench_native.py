@@ -28,7 +28,7 @@ class PinnedCostBenchNativeTests(unittest.TestCase):
         self.assertEqual(result.decision.action, "RETAIN")
         self.assertEqual(result.decision.selected_plan, tuple(prepared["incumbent_suffix"]))
         self.assertEqual(result.executed_path, tuple(prepared["incumbent_suffix"]))
-        self.assertEqual(result.planning_calls, 2)
+        self.assertEqual(result.planning_calls, 1)
         self.assertEqual(result.parameter_calls, len(result.executed_path))
         self.assertEqual(result.planning_tokens, 0)
         self.assertEqual(result.parameter_tokens, 0)

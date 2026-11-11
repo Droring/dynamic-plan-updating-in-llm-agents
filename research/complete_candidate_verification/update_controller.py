@@ -1,4 +1,4 @@
-"""Orchestrate candidate generation and deterministic strict plan selection."""
+"""Orchestrate fresh candidate generation and deterministic strict plan selection."""
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Callable, Sequence
@@ -39,12 +39,30 @@ def _decision(selection: PlanSelection, incumbent: PathCheck,
 
 async def run_update(policy_input: PolicyInput,
                      completion: Callable[..., Any],
-                     candidate_strategy: str = "repair_plus_fresh") -> UpdateDecision:
-    """Compare two predeclared candidate-generation strategies under one call budget."""
+                     candidate_strategy: str = "fresh_only") -> UpdateDecision:
+    """Run the one-candidate policy or an explicitly requested frozen-screen replay.
+
+    The current simplified policy makes exactly one Fresh planning request. The two
+    historical strategies are retained only to reproduce the completed development
+    screen; they are not used by the current method or its default execution path.
+    """
+    incumbent = check_policy_path(policy_input, policy_input.old_remaining_plan)
+
+    if candidate_strategy == "fresh_only":
+        generator = CandidateGenerator(completion, max_calls=1)
+        proposals = [await generator.generate_fresh(policy_input)]
+        checks = _check_proposals(policy_input, proposals)
+        paths = [proposal.path for proposal in proposals if proposal.path is not None]
+        selection = select_strictly_better_plan(policy_input, paths)
+        return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)
+
+    # Frozen historical development-screen replay. Do not use these strategies for
+    # new method runs: the two Fresh prompts are identical, and Repair added no
+    # unique strict-better SWITCH coverage in the completed development cohort.
     if candidate_strategy not in {"repair_plus_fresh", "fresh_plus_fresh"}:
         raise ValueError("unknown candidate strategy")
+
     generator = CandidateGenerator(completion, max_calls=3)
-    incumbent = check_policy_path(policy_input, policy_input.old_remaining_plan)
     if candidate_strategy == "repair_plus_fresh":
         proposals = [await generator.generate_repair(policy_input),
                      await generator.generate_fresh(policy_input)]
@@ -52,12 +70,12 @@ async def run_update(policy_input: PolicyInput,
         proposals = [await generator.generate_fresh(policy_input),
                      await generator.generate_fresh(policy_input)]
     checks = _check_proposals(policy_input, proposals)
-    paths = [p.path for p in proposals if p.path is not None]
+    paths = [proposal.path for proposal in proposals if proposal.path is not None]
     selection = select_strictly_better_plan(policy_input, paths)
     if selection.action == "SWITCH":
         return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)
 
-    # A valid tie/loss is not a reason to spend a third call.
+    # Preserve the frozen historical revision rule only for exact replay.
     invalid_indices = [i for i, check in enumerate(checks)
                        if not check.valid and proposals[i].path is not None]
     format_indices = [i for i, proposal in enumerate(proposals)
@@ -73,6 +91,6 @@ async def run_update(policy_input: PolicyInput,
             include_incumbent=(candidate_strategy == "repair_plus_fresh"))
         proposals.append(revision)
         checks = _check_proposals(policy_input, proposals)
-        paths = [p.path for p in proposals if p.path is not None]
+        paths = [proposal.path for proposal in proposals if proposal.path is not None]
         selection = select_strictly_better_plan(policy_input, paths)
     return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)

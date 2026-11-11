@@ -159,42 +159,88 @@ class CandidateGeneratorTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("incumbent_remaining_plan",payload)
         self.assertIn("failed_candidate",payload)
 class ControllerTests(unittest.IsolatedAsyncioTestCase):
-    async def test_strict_better_candidate_switches(self):
-        responses=[{"plan":["Acquire_A","Finish_A"]},{"plan":["Acquire_B","Finish_B"]}]
-        calls=0
+    async def test_fresh_only_switches_with_one_complete_candidate(self):
+        seen = []
+        calls = 0
         async def fake(**kwargs):
             nonlocal calls
-            v=responses[calls]; calls+=1; return v
-        d=await run_update(policy(),fake)
-        self.assertEqual(d.action,"SWITCH")
-        self.assertEqual(d.selected_plan,("Acquire_B","Finish_B"))
-        self.assertEqual(d.planning_calls,2)
-    async def test_third_call_only_repairs_structural_error(self):
-        responses=[{"plan":["Finish_A"]},{"plan":["Acquire_A","Finish_A"]},
-                   {"plan":["Acquire_B","Finish_B"]}]
-        calls=0
-        async def fake(**kwargs):
-            nonlocal calls
-            v=responses[calls]; calls+=1; return v
-        d=await run_update(policy(),fake)
-        self.assertEqual(d.action,"SWITCH"); self.assertEqual(d.planning_calls,3)
-    async def test_valid_tie_does_not_trigger_third_call(self):
-        async def fake(**kwargs): return {"plan":["Acquire_A","Finish_A"]}
-        d=await run_update(policy(),fake)
-        self.assertEqual(d.action,"RETAIN"); self.assertEqual(d.planning_calls,2)
+            calls += 1
+            seen.append(kwargs["messages"])
+            return {"plan": ["Acquire_B", "Finish_B"]}
+        decision = await run_update(policy(), fake)
+        self.assertEqual(decision.action, "SWITCH")
+        self.assertEqual(decision.selected_plan, ("Acquire_B", "Finish_B"))
+        self.assertEqual(decision.candidate_strategy, "fresh_only")
+        self.assertEqual(decision.planning_calls, 1)
+        self.assertEqual(calls, 1)
+        self.assertEqual(len(decision.proposals), 1)
+        self.assertEqual(decision.proposals[0].source, "fresh")
+        payload = json.loads(seen[0][1]["content"])
+        self.assertNotIn("incumbent_remaining_plan", payload)
 
-    async def test_fresh_sampling_baseline_uses_two_independent_prompts(self):
-        seen=[]
+    async def test_fresh_only_retains_on_tie_without_repeated_call(self):
+        calls = 0
+        async def fake(**kwargs):
+            nonlocal calls
+            calls += 1
+            return {"plan": ["Acquire_A", "Finish_A"]}
+        decision = await run_update(policy(), fake)
+        self.assertEqual(decision.action, "RETAIN")
+        self.assertEqual(decision.planning_calls, 1)
+        self.assertEqual(calls, 1)
+
+    async def test_fresh_only_does_not_retry_an_infeasible_candidate(self):
+        calls = 0
+        async def fake(**kwargs):
+            nonlocal calls
+            calls += 1
+            return {"plan": ["Finish_A"]}
+        decision = await run_update(policy(), fake)
+        self.assertEqual(decision.action, "RETAIN")
+        self.assertEqual(decision.planning_calls, 1)
+        self.assertEqual(calls, 1)
+        self.assertFalse(decision.candidate_checks[0].valid)
+
+    async def test_historical_third_call_only_revises_structural_error(self):
+        responses = [
+            {"plan": ["Finish_A"]},
+            {"plan": ["Acquire_A", "Finish_A"]},
+            {"plan": ["Acquire_B", "Finish_B"]},
+        ]
+        calls = 0
+        async def fake(**kwargs):
+            nonlocal calls
+            value = responses[calls]
+            calls += 1
+            return value
+        decision = await run_update(policy(), fake, candidate_strategy="repair_plus_fresh")
+        self.assertEqual(decision.action, "SWITCH")
+        self.assertEqual(decision.planning_calls, 3)
+
+    async def test_historical_valid_tie_does_not_trigger_third_call(self):
+        calls = 0
+        async def fake(**kwargs):
+            nonlocal calls
+            calls += 1
+            return {"plan": ["Acquire_A", "Finish_A"]}
+        decision = await run_update(policy(), fake, candidate_strategy="repair_plus_fresh")
+        self.assertEqual(decision.action, "RETAIN")
+        self.assertEqual(decision.planning_calls, 2)
+        self.assertEqual(calls, 2)
+
+    async def test_frozen_fresh_baseline_repeats_identical_prompt(self):
+        seen = []
         async def fake(**kwargs):
             seen.append(kwargs["messages"])
-            return {"plan":["Acquire_A","Finish_A"]}
-        d=await run_update(policy(),fake,candidate_strategy="fresh_plus_fresh")
-        self.assertEqual(d.action,"RETAIN")
-        self.assertEqual(d.candidate_strategy,"fresh_plus_fresh")
-        self.assertEqual(len(seen),2)
+            return {"plan": ["Acquire_A", "Finish_A"]}
+        decision = await run_update(policy(), fake, candidate_strategy="fresh_plus_fresh")
+        self.assertEqual(decision.action, "RETAIN")
+        self.assertEqual(decision.candidate_strategy, "fresh_plus_fresh")
+        self.assertEqual(len(seen), 2)
+        self.assertEqual(seen[0], seen[1])
         for messages in seen:
-            payload=json.loads(messages[1]["content"])
-            self.assertNotIn("incumbent_remaining_plan",payload)
+            payload = json.loads(messages[1]["content"])
+            self.assertNotIn("incumbent_remaining_plan", payload)
 
 class ExecutorTests(unittest.TestCase):
     def test_exact_order_and_cursor(self):

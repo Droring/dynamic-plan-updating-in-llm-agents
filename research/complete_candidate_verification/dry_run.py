@@ -19,7 +19,6 @@ class FakeCompletion:
     def __init__(self):
         self.calls = 0
         self.responses = [
-            {"plan": ["Acquire_A", "Finish_A"]},
             {"plan": ["Acquire_B", "Finish_B"]},
         ]
     async def __call__(self, **kwargs):
@@ -55,6 +54,8 @@ async def run_dry_run() -> dict:
         executed.append(name)
     if not executor.finished or current != {"Start", "B", "Goal"}:
         raise AssertionError("dry-run native observation sequence did not finish")
+    if fake.calls != 1:
+        raise AssertionError(f"fresh-only dry run expected one planning call, got {fake.calls}")
     return {"status": "passed", "provider_calls": 0, "planning_calls": fake.calls,
             "decision": decision.action, "selected_plan": list(decision.selected_plan),
             "executed_plan": executed, "executor": executor.execution_record()}
