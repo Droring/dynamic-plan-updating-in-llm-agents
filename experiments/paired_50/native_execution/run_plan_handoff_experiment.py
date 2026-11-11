@@ -12,6 +12,7 @@ import asyncio
 import copy
 import json
 import os
+import shutil
 import time
 from collections import defaultdict
 from pathlib import Path
@@ -190,6 +191,43 @@ def load_and_validate(requests_path:Path,costbench_root:Path):
     if not clone_preflight["passed"]:
         raise ValueError("In-process native branch restoration preflight failed")
     return requests,lookup,cb,clone_preflight
+
+
+def load_resume_state(resume_dir: Path, requests, effective_cap: int, approved_cap: int, orphaned_reserve: int):
+    """Load only a durable completed-trial prefix; refuse to replay an uncertain active trial."""
+    resume_dir=Path(resume_dir).resolve()
+    response_path=resume_dir/"responses.jsonl"
+    ledger_path=resume_dir/"ledger.json"
+    if not response_path.is_file() or not ledger_path.is_file():
+        raise FileNotFoundError("Resume directory must contain responses.jsonl and ledger.json")
+    records=native.read_jsonl(response_path)
+    ledger=json.loads(ledger_path.read_text(encoding="utf-8"))
+    if ledger.get("status")!="incomplete":
+        raise ValueError("Only an incomplete, checkpointed run can be resumed")
+    if ledger.get("active_trial_id") is not None:
+        raise ValueError("The prior run stopped inside a trial; refusing to replay it because provider usage may be duplicated")
+    if not records or len(records)>=len(requests):
+        raise ValueError("Resume checkpoint must contain a nonempty, incomplete trial prefix")
+    expected_ids=[r["trial_id"] for r in requests[:len(records)]]
+    actual_ids=[r.get("trial_id") for r in records]
+    if actual_ids!=expected_ids:
+        raise ValueError("Resume records are not an exact prefix of the frozen trial order")
+    for index,(record,request) in enumerate(zip(records,requests)):
+        if record.get("payload_sha256")!=request.get("payload_sha256"):
+            raise ValueError(f"Resume payload hash mismatch at frozen index {index}")
+    if ledger.get("completed_trial_ids")!=expected_ids:
+        raise ValueError("Resume ledger completed-trial list does not match saved responses")
+    if ledger.get("approved_total_token_cap")!=approved_cap:
+        raise ValueError("Resume approved token cap differs from the original run")
+    if ledger.get("prior_orphaned_attempt_reserve")!=orphaned_reserve:
+        raise ValueError("Resume orphaned-attempt reserve differs from the original run")
+    if ledger.get("effective_new_run_token_cap")!=effective_cap:
+        raise ValueError("Resume effective token cap differs from the original run")
+    charged=int(ledger.get("provider_tokens_charged_this_run") or 0)
+    reserved=int(ledger.get("reservation_units_requested_this_run") or 0)
+    if charged>effective_cap:
+        raise ValueError("Resume ledger exceeds the effective token cap")
+    return records,charged,reserved
 
 
 def current_value(prepared,state):
@@ -464,10 +502,26 @@ async def run_live(requests,lookup,cb,args):
     if args.orphaned_attempt_reserve < 0 or args.orphaned_attempt_reserve >= args.cap:
         raise ValueError("orphaned_attempt_reserve must be nonnegative and smaller than cap")
     effective_cap=args.cap-args.orphaned_attempt_reserve
-    budget=native.TokenBudget(effective_cap)
-    rows=[]
+    prior_rows=[]
+    prior_charged=0
+    prior_reserved=0
+    if args.resume_from is not None:
+        prior_rows,prior_charged,prior_reserved=load_resume_state(
+            args.resume_from,requests,effective_cap,args.cap,args.orphaned_attempt_reserve
+        )
+    budget=native.TokenBudget(effective_cap,charged=prior_charged,reserved=prior_reserved)
+    rows=list(prior_rows)
     events_path=args.out/"call_events.jsonl"
     ledger_path=args.out/"ledger.json"
+    if prior_rows:
+        with (args.out/"responses.jsonl").open("w",encoding="utf-8") as stream:
+            for prior in prior_rows:
+                stream.write(json.dumps(prior,ensure_ascii=False,sort_keys=True)+"\\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        previous_events=args.resume_from/"call_events.jsonl"
+        if previous_events.is_file():
+            shutil.copyfile(previous_events,events_path)
 
     def persist_ledger(status, active_trial=None, active_call_count=0, active_trial_tokens=0):
         save_json_durable(ledger_path,{
@@ -487,7 +541,10 @@ async def run_live(requests,lookup,cb,args):
 
     persist_ledger("in_progress")
     async with AsyncOpenAI(base_url="https://api.deepseek.com",api_key=key,timeout=args.timeout) as client:
+        completed_ids={row["trial_id"] for row in rows}
         for index,request in enumerate(requests,1):
+            if request["trial_id"] in completed_ids:
+                continue
             trial=clone_trial_for_branch(lookup[(request["query_id"],request["environment"])])
             start=time.monotonic()
             trial_events=[]
@@ -516,7 +573,8 @@ async def run_live(requests,lookup,cb,args):
                 row={
                     "trial_id":request["trial_id"],"query_id":request["query_id"],
                     "environment":request["environment"],"arm":request["arm"],
-                    "repetition":request["repetition"],"goal_reached":False,
+                    "repetition":request["repetition"],"payload_sha256":request["payload_sha256"],
+                    "goal_reached":False,
                     "halt_reason":"execution_error:"+str(exc),
                     "model_calls":len(response_events),
                     "provider_tokens":sum(int(x.get("provider_tokens") or x.get("provider_tokens_accounted") or 0) for x in trial_events if x["event"] in ("model_response","model_call_error")),
@@ -544,6 +602,7 @@ async def run_live(requests,lookup,cb,args):
         "prior_orphaned_attempt_reserve":args.orphaned_attempt_reserve,
         "effective_new_run_token_cap":budget.cap,
         "call_event_journal":"call_events.jsonl",
+        "resumed_from_completed_trajectories":len(prior_rows),
     })
     save_json_durable(args.out/"summary.json",summary)
     persist_ledger("complete" if len(rows)==len(requests) else "incomplete")
@@ -562,6 +621,8 @@ def main():
     p.add_argument("--timeout",type=int,default=120)
     p.add_argument("--orphaned-attempt-reserve",type=int,default=0,
                    help="Conservatively reserve part of the approved cap for a prior paid attempt whose usage record was lost.")
+    p.add_argument("--resume-from",type=Path,default=None,
+                   help="Resume from a prior output directory containing a durable completed-trial prefix.")
     args=p.parse_args()
     if args.max_tokens!=2048:
         p.error("The frozen experiment requires max_tokens=2048")
