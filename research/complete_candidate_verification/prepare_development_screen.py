@@ -29,7 +29,7 @@ SOURCE_FILES = {
     "model_requests_blob_sha": REPO_ROOT / "experiments/paired_50/generated/model_requests_100.jsonl",
     "trial_manifest_blob_sha": REPO_ROOT / "experiments/paired_50/generated/trial_manifest_100.json",
 }
-_COST_TEXT = re.compile(r"(?i)\bCost:\s*[0-9]+(?:\.[0-9]+)?")
+_COST_TEXT = re.compile(r"(?i)\bThis tool has a cost of [0-9]+(?:\.[0-9]+)? units\.")
 
 
 def git_blob_sha(path: Path) -> str:
