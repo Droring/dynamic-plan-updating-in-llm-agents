@@ -77,6 +77,18 @@ def load_and_validate(requests_path:Path,costbench_root:Path):
         post_state.add(tool.output_type)
         if native.canonical_sha(sorted(post_state))!=r["post_action_state_sha256"]:
             raise ValueError(f"Post-action state hash mismatch: {r['trial_id']}")
+        initial_path=graph.shortest_feasible_path(prepared)
+        post_path=graph.shortest_feasible_path({**prepared,"state":post_state})
+        if initial_path is None or post_path is None or not post_path[1]:
+            raise ValueError(f"Frozen common action leaves no continuation: {r['trial_id']}")
+        prefix_loss=float(tool.cost)+float(post_path[0])-float(initial_path[0])
+        if abs(prefix_loss-float(r["common_prefix_loss"]))>TOL:
+            raise ValueError(f"Common-prefix loss metadata mismatch: {r['trial_id']}")
+        if abs(float(initial_path[0])-float(r["initial_optimal_value"]))>TOL or abs(float(post_path[0])-float(r["post_action_optimal_value"]))>TOL:
+            raise ValueError(f"Optimal continuation value metadata mismatch: {r['trial_id']}")
+        expected_plan=list(post_path[1])
+        if r["arm"] in ("B","D") and r.get("updated_plan")!=expected_plan:
+            raise ValueError(f"Replacement plan differs from reconstructed graph plan: {r['trial_id']}")
         if (r["arm"] in ("C","D")) != (r.get("initial_ledger") is not None):
             raise ValueError(f"Ledger treatment metadata mismatch: {r['trial_id']}")
         if (r["arm"] in ("B","D")) != (r.get("updated_plan") is not None):
@@ -303,6 +315,7 @@ async def run_live(requests,lookup,cb,args):
     async with AsyncOpenAI(base_url="https://api.deepseek.com",api_key=key,timeout=args.timeout) as client:
         for index,request in enumerate(requests,1):
             trial=lookup[(request["query_id"],request["environment"])]
+            start=time.monotonic()
             try:
                 row=await run_one(request,trial,cb["official_run"],client,budget,args)
             except Exception as exc:
@@ -313,7 +326,7 @@ async def run_live(requests,lookup,cb,args):
                     "halt_reason":"execution_error:"+str(exc),"model_calls":0,
                     "provider_tokens":0,"continuation_regret":None,
                 }
-            row["elapsed_seconds"]=round(time.monotonic()-start,3) if "start" in locals() else None
+            row["elapsed_seconds"]=round(time.monotonic()-start,3)
             rows.append(row)
             native.append_jsonl(args.out/"responses.jsonl",row)
             native.save_json(args.out/"ledger.json",{
