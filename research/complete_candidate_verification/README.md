@@ -93,7 +93,7 @@ The next validation is frozen at **20 entirely new base tasks**, four per CostBe
 
 1. Original DeepSeek Agent.
 2. Simple RETAIN rule.
-3. Best existing prompt (the exact archived prompt and hash must be frozen before the task manifest is released).
+3. Best existing prompt: A_original from the four-arm screen, selected by historical balanced accuracy; see [BEST_EXISTING_PROMPT_SELECTION.md](BEST_EXISTING_PROMPT_SELECTION.md).
 4. Existing bounded verifier plus complete-plan handoff.
 5. Ordinary Fresh full-candidate generation with the same checker and executor.
 6. New method: fresh_with_local_substitution.
@@ -105,7 +105,7 @@ Go/no-go gates: RETAIN 20/20; SWITCH at least 14/20; balanced accuracy at least 
 
 The subsequent frozen test contains 60 entirely new tasks (12 per category), 840 primary trajectories, plus 120 preselected stability repeats. It remains sealed unless the independent validation passes.
 
-The exact historical prompt for arm 3 and its hash are still a protocol-freeze item. No paid DeepSeek calls or independent validation runs have been launched.
+The exact A_original prompt arm and category-specific system-prompt hashes are now frozen. The total token ceiling and maximum output settings remain to be set. No paid DeepSeek calls or independent validation runs have been launched.
 
 ## Current research status
 

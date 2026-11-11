@@ -75,7 +75,7 @@ The agreed next validation uses **20 entirely new CostBench base tasks**, four f
 
 1. Original DeepSeek Agent.
 2. Simple RETAIN rule.
-3. Best existing prompt (exact archived prompt and hash must be frozen before task-manifest release).
+3. Best existing prompt: frozen A_original arm from the prior four-arm screen; see [BEST_EXISTING_PROMPT_SELECTION.md](BEST_EXISTING_PROMPT_SELECTION.md).
 4. Existing bounded verifier with complete-plan handoff.
 5. Ordinary Fresh full-candidate generation with the same checker and executor.
 6. **New method: fresh_with_local_substitution.**
