@@ -470,16 +470,19 @@ def load_native_trial(costbench_root: Path, query_id: str | None, condition: str
 def main() -> int:
     parser = argparse.ArgumentParser(description="Provider-free native CostBench complete-plan smoke test.")
     parser.add_argument("--costbench-root", type=Path, required=True)
-    parser.add_argument("--query-id", default="Query00178")
+    parser.add_argument("--query-id", default=None,
+                        help="Optional fixed query ID; by default select a multi-step RETAIN checkpoint.")
     parser.add_argument("--condition", choices=("RETAIN", "SWITCH"), default="RETAIN")
     parser.add_argument("--out", type=Path, default=Path("outputs/complete_candidate_offline_smoke"))
     args = parser.parse_args()
+    minimum_plan_length = 2 if args.query_id is None else 1
     native, costbench, prepared, query = load_native_trial(
-        args.costbench_root, args.query_id, args.condition)
+        args.costbench_root, args.query_id, args.condition,
+        minimum_plan_length=minimum_plan_length)
     result = asyncio.run(run_native_offline_smoke(prepared, query, native, costbench))
     record = result.to_record()
     record.update({
-        "query_id": args.query_id,
+        "query_id": prepared["query_id"],
         "condition_for_posthoc_audit_only": args.condition,
         "provider_api_calls": 0,
         "upstream_costbench_revision": costbench["revision"],
