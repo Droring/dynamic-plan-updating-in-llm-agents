@@ -69,6 +69,27 @@ class CommonActionRestorationTests(unittest.TestCase):
             self.assertEqual(pair[0]["tool"],pair[1]["tool"])
             self.assertEqual(pair[0]["arguments"],pair[1]["arguments"])
 
+    def test_skips_candidate_not_feasible_in_both_paired_states(self):
+        from types import SimpleNamespace
+        rows=archive_fixture()
+        bad=next(r for r in rows if r["query_id"]==TASKS[0] and r["environment"]=="SWITCH" and r["policy"]=="graph_planner")
+        bad["steps"][0]["tool"]="not_available_in_retain"
+        bad["path"][0]="not_available_in_retain"
+        bad["controlled_first_action"]="not_available_in_retain"
+        lookup={}
+        for q in TASKS:
+            for env in ENVIRONMENTS:
+                tools={"shared_action":SimpleNamespace(input_types={"Start"},output_type="Intermediate",cost=1.0)}
+                if q==TASKS[0] and env=="SWITCH":
+                    tools["not_available_in_retain"]=SimpleNamespace(input_types={"Start"},output_type="Intermediate",cost=1.0)
+                lookup[(q,env)]={
+                    "prepared":{"tool_objects":tools,"state":{"Start"},"goal_type":"Goal"}
+                }
+        actions=select_common_actions(rows,lookup)
+        selected=[a for a in actions if a["query_id"]==TASKS[0]]
+        self.assertTrue(all(a["tool"]=="shared_action" for a in selected))
+        self.assertTrue(all(a["source_policy"]=="candidate_gate" for a in selected))
+
     def test_rejects_missing_or_duplicate_trajectory(self):
         rows=archive_fixture()
         with self.assertRaises(ValueError):
