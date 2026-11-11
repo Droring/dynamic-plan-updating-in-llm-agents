@@ -153,6 +153,15 @@ class ExecutorTests(unittest.TestCase):
         self.assertEqual(ex.validate_arguments("Acquire_B",'{"Start":"OBS-1"}'),{"Start":"OBS-1"})
         with self.assertRaisesRegex(PlanExecutionError,"missing required"):
             ex.validate_arguments("Acquire_B","{}")
+    def test_argument_request_exposes_only_committed_next_tool(self):
+        item=policy(); ex=CommittedPlanExecutor(item,["Acquire_B","Finish_B"])
+        request=ex.build_argument_request(
+            [{"role":"system","content":"original"},{"role":"user","content":"request"}],
+            ["Start"],item.tool_interfaces)
+        self.assertEqual(request["tool_name"],"Acquire_B")
+        self.assertEqual(len(request["tools"]),1)
+        self.assertEqual(request["tools"][0]["function"]["name"],"Acquire_B")
+        self.assertEqual(request["tool_choice"],"required")
     def test_native_adapter_waits_for_real_state_update(self):
         item=policy(); ex=CommittedPlanExecutor(item,["Acquire_B","Finish_B"])
         state={"Start"}
