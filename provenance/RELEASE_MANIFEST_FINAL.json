@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 321,
+  "file_count": 322,
   "sha256": {
     ".github/workflows/candidate-decision-diagnostic.yml": "01731273ac188edab15a65ebcfa517a4f0e55f7c4e0d7dbb5d2f914f85dbbd63",
     ".github/workflows/paired-50-dataset-validation.yml": "9309c4f4b318b989ae6f21af55e29d93859ed06e420f8f5bc5e3aff798dbff6a",
@@ -46,6 +46,7 @@
     "experiments/paired_50/live_results/deepseek-flash/ledger.json": "4dcbea3e9775b35a806d8b9fccf6a91639d0447bd58400981f6b9398e03c4014",
     "experiments/paired_50/live_results/deepseek-flash/responses.jsonl": "1e139210291448944fbcccc0d3fc9794ad394027847d21da86debd4fad3d5afe",
     "experiments/paired_50/live_results/deepseek-flash/scores.json": "3d73cca73ac2bc328e28a1651fc66870758183d16695a5ca7af2f77b8c540067",
+    "experiments/paired_50/native_execution/BALANCED_REPLANNING_PROTOCOL.md": "77c8f864405a1ff6c4ceea42eb16b5743a0b3be6ba28117dbc5029fad0dfb11f",
     "experiments/paired_50/native_execution/CANDIDATE_DECISION_DIAGNOSTIC.md": "1606ae7bda89ca69796d7f156c00af94fbeb3948ddafa45a20a5950a088c4f89",
     "experiments/paired_50/native_execution/CANDIDATE_DECISION_RESULTS.md": "7ebe2a316355890f2708de79425e1816b2f27d165fae9f675fab64014762e050",
     "experiments/paired_50/native_execution/CONTINUATION_PROTOCOL.md": "eb91686d40d93da07aa9c0c22e269325caa61607007ff025a60d5ba016b9c234",
