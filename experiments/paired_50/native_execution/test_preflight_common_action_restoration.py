@@ -81,7 +81,7 @@ class CommonActionRestorationTests(unittest.TestCase):
         actions=select_common_actions(archive_fixture())
         outputs=branch_fixture(actions)
         for row in outputs["D"]["rows"]:
-            row["process_id"]=outputs["C"]["process_id"]
+            row["process_id"]=outputs["C"]["rows"][0]["process_id"]
         with self.assertRaises(ValueError):
             validate_branch_records(actions,outputs)
 
