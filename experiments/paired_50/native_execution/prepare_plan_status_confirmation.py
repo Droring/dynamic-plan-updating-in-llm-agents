@@ -68,6 +68,10 @@ def make_status_message(common_action, remaining_incumbent, replacement_path, go
         "Planner continuation: " + " -> ".join(replacement_path) + "\n\n"
         "[Previously supplied plan]\n"
         "Remaining incumbent suffix: " + " -> ".join(remaining_incumbent) + "\n"
+        "Status convention: VALID means this remaining incumbent suffix is still minimum-cost "
+        "from the current post-action state; STALE means it remains feasible but is strictly "
+        "more expensive than a minimum-cost continuation; UNSET means no validity annotation "
+        "is supplied. The status applies only to the remaining incumbent suffix.\n"
         "Prior-plan status: " + status + "."
     )
 
@@ -255,11 +259,6 @@ def build_requests(selected, prepared, official_run, repetitions=REPETITIONS):
             base_messages = [
                 {"role": "system", "content": native.make_official_system_prompt(official_run, p["task"])},
             ]
-            # The official system prompt is rebuilt below from the loaded native
-            # CostBench module; this placeholder is replaced by the caller.
-            raise_if_missing = base_messages[0]["content"]
-            if raise_if_missing is None:
-                raise ValueError("System prompt could not be constructed")
             user_message = native.make_checkpoint_user_message(p)
             base_messages.extend([
                 {"role": "user", "content": user_message},
@@ -402,6 +401,7 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
             "requests_sha256": native.sha_bytes((DATA_DIR / "model_requests_100.jsonl").read_bytes()),
             "task_registry_sha256": native.sha_bytes((DATA_DIR / "task_registry_50.json").read_bytes()),
             "archived_response_count": len(responses),
+            "archived_responses_sha256": native.sha_bytes(Path(responses_path).read_bytes()),
         },
         "design": {
             "base_tasks": len(selected),
