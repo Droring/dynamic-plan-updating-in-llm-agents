@@ -1,0 +1,60 @@
+name: Frozen 32-trajectory development screen
+
+on:
+  push:
+    branches:
+      - research/complete-candidate-verification
+
+permissions:
+  contents: read
+
+concurrency:
+  group: complete-candidate-development-screen
+  cancel-in-progress: false
+
+jobs:
+  development-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checkout pinned official CostBench
+        run: |
+          git clone --filter=blob:none https://github.com/JiayuJeff/CostBench.git ../CostBench
+          git -C ../CostBench checkout 6424069f3f773ade076bcedbed302ed47cfb1837
+          test "$(git -C ../CostBench rev-parse HEAD)" = 6424069f3f773ade076bcedbed302ed47cfb1837
+          python -m pip install -r ../CostBench/requirements.txt numpy sympy openai
+      - name: Generate pinned CostBench test search database
+        working-directory: ../CostBench
+        run: |
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          mkdir -p env/data/static/search_spaces
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+          test -s env/data/static/search_spaces/test_search_space.json
+      - name: Execute frozen 32-trajectory DeepSeek development screen
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          python -m research.complete_candidate_verification.run_development_screen \
+            --costbench-root ../CostBench \
+            --out outputs/complete_candidate_development_screen \
+            --token-cap 1200000 \
+            --timeout 90 \
+            --execute
+      - name: Archive complete development-screen records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: complete-candidate-development-screen
+          path: outputs/complete_candidate_development_screen/
+          if-no-files-found: warn
