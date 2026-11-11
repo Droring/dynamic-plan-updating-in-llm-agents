@@ -103,6 +103,24 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
+      - name: Build and validate the 2x2 plan-handoff prompt matrix offline
+        run: |
+          python experiments/paired_50/native_execution/prepare_plan_handoff_experiment.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --trajectories "$RUNNER_TEMP/full-trajectory-archive/full-trajectory-results/trajectories.jsonl" \
+            --restoration-report "$RUNNER_TEMP/common-action-restoration/common_action_restoration_preflight.json" \
+            --repetitions 2 \
+            --out "$RUNNER_TEMP/plan-handoff-prompt-preflight"
+          python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"plan-handoff-prompt-preflight","summary.json"); r=json.load(open(p)); assert r["status"]=="offline_prompt_preflight_passed" and r["request_count"]==80 and r["provider_calls"]==0 and r["common_history_and_tool_schema_matched"] and r["all_cells_have_four_arms"]'
+
+      - name: Archive offline plan-handoff prompt preflight
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan-handoff-prompt-preflight
+          path: ${{ runner.temp }}/plan-handoff-prompt-preflight/
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Attribute native trajectory loss from actual post-action typed states
         run: |
           python experiments/paired_50/native_execution/attribute_execution_loss.py \
