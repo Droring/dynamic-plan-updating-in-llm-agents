@@ -89,3 +89,5 @@ jobs:
             ${{ runner.temp }}/full-trajectory-results/
           if-no-files-found: warn
           retention-days: 90
+
+# Rerun after correcting the frozen protocol test fixture.
