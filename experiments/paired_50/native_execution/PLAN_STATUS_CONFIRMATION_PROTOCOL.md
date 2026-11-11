@@ -30,7 +30,7 @@ The status is computed offline from the pinned native CostBench tool graph. It i
 
 ## Task selection and common post-action state
 
-Use the existing paired 50-task CostBench cohort, but exclude tasks already used in the four-arm mechanism screen, bounded-verifier confirmation, or five-task plan-handoff development screen.
+Use the existing paired 50-task CostBench cohort, excluding only the five tasks used in the preceding Plan Handoff × State Tracking development screen. Tasks may overlap with other earlier CostBench diagnostics; this cohort is held out from the plan-handoff intervention, not globally unseen.
 
 Select the first two eligible task IDs in lexicographic order within each of the five CostBench categories. Eligibility is fixed before any new provider call and requires:
 
@@ -40,7 +40,7 @@ Select the first two eligible task IDs in lexicographic order within each of the
 4. replaying the exact common action in each paired native environment reproduces its archived result exactly;
 5. after that common action, the remaining incumbent suffix is feasible and minimum-cost in RETAIN, but strictly suboptimal in SWITCH.
 
-This is a controlled post-action continuation cohort. It is **held out from the plan-handoff mechanism intervention**, not a new or unseen CostBench dataset. Selection is conditioned on the archived baseline having taken the same incumbent first action in both paired environments; the scope of inference must reflect that restriction.
+This is a controlled post-action continuation cohort. It is **held out from the preceding plan-handoff intervention**, but may overlap with tasks used in other diagnostic studies; it is not a new or globally unseen CostBench dataset. Selection is conditioned on the archived baseline having taken the same incumbent first action in both paired environments; the scope of inference must reflect that restriction.
 
 If two eligible tasks cannot be found in every category, or any exact replay/hash check fails, stop before provider calls. Do not relax the selection rule after inspecting eligibility counts.
 
