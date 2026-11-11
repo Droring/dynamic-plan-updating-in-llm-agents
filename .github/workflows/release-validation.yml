@@ -48,6 +48,8 @@ jobs:
           git -C ../CostBench checkout 6424069f3f773ade076bcedbed302ed47cfb1837
           test "$(git -C ../CostBench rev-parse HEAD)" = 6424069f3f773ade076bcedbed302ed47cfb1837
           python -m pip install -r ../CostBench/requirements.txt numpy sympy
+      - name: Run complete-candidate-verification offline protocol tests
+        run: python -m unittest research.complete_candidate_verification.test_protocol -v
       - name: Run complete test suite with CostBench integration enabled
         env:
           COSTBENCH_ROOT: ../CostBench
