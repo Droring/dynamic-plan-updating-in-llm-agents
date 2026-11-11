@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 348,
+  "file_count": 349,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -9,7 +9,7 @@
     ".github/workflows/counterfactual-gate.yml": "79a58074b34208cebe7f4ab5b72899dfd724d25ec1ab4df968563b365e79f3ff",
     ".github/workflows/full-trajectory-comparison.yml": "d004efbb5ba77bee332a76b830b3def52012a7c0a3c3fdc0d67e5a85a0ca9a7b",
     ".github/workflows/paired-50-dataset-validation.yml": "9309c4f4b318b989ae6f21af55e29d93859ed06e420f8f5bc5e3aff798dbff6a",
-    ".github/workflows/paired-50-native-execution.yml": "7ef9399da7f6d535292d7e4d7819844dc55a04d157b7921b506305ad5b32de0c",
+    ".github/workflows/paired-50-native-execution.yml": "a9298a32e05b78c7c4e6a8335848d7e3266ac99248df45011977e1436676caf4",
     ".github/workflows/release-validation.yml": "1c85d8d5d56869dae4565083cee084c6029464889b1bd897ef8878b53711ccb4",
     ".github/workflows/research-structure-validation.yml": "eef5442a7b894a330f571640d595f70e78e87c134814c36c34fb4f7b96c0445c",
     ".gitignore": "b978668de8effb750afab519f88a8fc0b2d4d92898bc71c7a4bf651c9b82ffc2",
@@ -105,6 +105,7 @@
     "experiments/paired_50/native_execution/test_graph_planning_baseline.py": "f2c60d35a623aa18c62fe3c305c01b35dc89f212ac488a95cdb00edcac117c0f",
     "experiments/paired_50/native_execution/test_mechanism_strata.py": "1f934e2f42a6f1e6c4b3248f51316d6e5d34130c429645a2f8e7be0c82e45182",
     "experiments/paired_50/native_execution/test_path_value_audit.py": "917e2d1b0e5189ac1cffe514bdeae72c21b2a25ea1b5fb38ee37038362e67b94",
+    "experiments/paired_50/native_execution/test_preflight_common_action_restoration.py": "17f16065a649afbbc5ff33ecccedb3872faa29989badf3f4c0a8b8635d716169",
     "experiments/paired_50/native_execution/test_protocol.py": "20f11c36f17816cefadedb5805a816b8b702ffc5b9eab7f95d60bdd0617ef005",
     "experiments/paired_50/provenance/source_records/README.md": "37229e7bc99ede5953892aa5f364349f3325909ffbc98b24141af79df2e57539",
     "experiments/paired_50/provenance/source_records/source_archive/README.md": "490ea98cc3cc9c75635f4e2ede650ab6dc3b656b9ed796b2f40c680a21983548",
