@@ -1,10 +1,6 @@
 name: Candidate-decision mechanism diagnostic
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/candidate-decision-diagnostic.yml"
   workflow_dispatch:
     inputs:
       run_paid_diagnostic:
@@ -18,9 +14,7 @@ permissions:
 
 jobs:
   candidate-diagnostic:
-    if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.run_paid_diagnostic) ||
-      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved candidate-decision diagnostic once')
+    if: inputs.run_paid_diagnostic
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
