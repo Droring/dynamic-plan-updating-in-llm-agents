@@ -41,6 +41,10 @@ The first executed tool is the observable action measure:
 
 The full path relation and goal-state success are reported separately. This avoids treating an initial RETAIN action as proof that the model never replanned later.
 
+## Paid run recovery
+
+The initial paid plan-handoff attempt stopped at result persistence because the runner called a JSONL helper that did not exist in the native harness. Its first trial's provider usage was not archived, so that attempt is excluded from analysis. The runner now journals each model response and native tool result, durably checkpoints progress, and supports safe resume from a completed-trial prefix while refusing to replay an uncertain active trial. See [the run recovery record](PLAN_HANDOFF_RUN_RECOVERY.md) for the failure evidence and budget treatment.
+
 ## Offline validation
 
 Use Python 3.12 and a local CostBench checkout at the pinned revision.
