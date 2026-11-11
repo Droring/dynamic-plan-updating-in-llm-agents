@@ -113,6 +113,8 @@ def validate_branch_records(actions, branch_outputs):
             "checkpoint_sha256": action["checkpoint_sha256"],
             "initial_state_sha256": group[0]["initial_state_sha256"],
             "post_action_state_sha256": group[0]["post_action_state_sha256"],
+            "tool_registry_sha256": group[0]["tool_registry_sha256"],
+            "output_type": group[0]["output_type"],
             "four_independent_processes": True,
             "exact_arguments_match": True,
             "exact_native_result_match": True,
