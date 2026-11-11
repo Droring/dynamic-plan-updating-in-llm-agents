@@ -11,10 +11,11 @@ Historical experiment scripts are not modified.
    into both planning and argument-generation contexts; evaluation labels and
    oracle fields are rejected recursively.
 2. Proposed strategy: generate one local-repair candidate while showing the incumbent.
-3. Proposed strategy: generate one independent full-replanning candidate without showing the incumbent.
-   Matched baseline: generate two independent full-replanning candidates, without
-   showing the incumbent in either prompt. Both strategies share the same call
-   budget, path checker, strict selection, and committed-plan executor.
+3. Proposed strategy: generate one full-replanning candidate without showing the incumbent.
+   Matched baseline: make two separate full-replanning calls using the same fresh
+   prompt, without showing the incumbent. At the frozen temperature 0 these are
+   repeated calls, not independent stochastic samples. Both strategies share the
+   same call budget, path checker, strict selection, and committed-plan executor.
 4. Validate each submitted complete path deterministically. The checker does not
    search, expand, or complete a candidate.
 5. Replace a feasible incumbent only when a submitted feasible complete path has
@@ -100,3 +101,18 @@ durably records request-start events before sending. Provider/native uncertain
 outcomes stop the run without retry. The 32 trajectories are 8 previously
 explored base tasks × 2 conditions × 2 methods; they are development data, not
 held-out evidence. The base task, not each trajectory, is the analysis unit.
+
+
+## Development-screen result
+
+The frozen 32-trajectory screen is complete. Both Repair + Fresh and Fresh + Fresh
+achieved execution-grounded BA 75.0%, RETAIN 8/8, SWITCH 4/8, Pair Accuracy 50.0%,
+and 100% goal success. Their selected plans and executed paths were identical in
+all 16 matched task-condition cells. Repair + Fresh increased candidate-path
+diversity but added no unique strict-better SWITCH candidate. Under the frozen
+stop rule, do not proceed to the 12-task independent pilot with this version.
+
+The complete analysis is in [DEVELOPMENT_SCREEN_RESULTS.md](DEVELOPMENT_SCREEN_RESULTS.md),
+with machine-readable results in [DEVELOPMENT_SCREEN_RESULTS.json](DEVELOPMENT_SCREEN_RESULTS.json).
+The original prompts, responses, provider ledger, native events and schedule are
+archived in [GitHub Actions run 43050073958](https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43050073958).

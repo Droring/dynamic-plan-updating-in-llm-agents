@@ -1,9 +1,13 @@
 name: Frozen 32-trajectory development screen
 
 on:
-  push:
-    branches:
-      - research/complete-candidate-verification
+  workflow_dispatch:
+    inputs:
+      authorize_live_calls:
+        description: "Authorize the frozen 32-trajectory DeepSeek run (billable API calls)"
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -14,6 +18,7 @@ concurrency:
 
 jobs:
   development-screen:
+    if: ${{ inputs.authorize_live_calls }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
