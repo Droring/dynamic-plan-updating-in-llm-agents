@@ -29,6 +29,11 @@ on:
         required: true
         type: boolean
         default: false
+      run_paid_plan_status_confirmation:
+        description: "Run the 80-trajectory plan-status annotation confirmation (1,200,000-token hard cap)"
+        required: true
+        type: boolean
+        default: false
       resume_plan_handoff_run_id:
         description: "Optional prior incomplete plan-handoff run ID; resumes only a durable completed-trial prefix"
         required: false
@@ -207,6 +212,34 @@ jobs:
           unzip -p "$archive" responses.jsonl > "$RUNNER_TEMP/native-archive/responses.jsonl"
           test "$(wc -l < "$RUNNER_TEMP/native-archive/responses.jsonl")" -eq 100
 
+      - name: Prepare and validate plan-status annotation confirmation offline
+        shell: bash
+        run: |
+          FROZEN_ARGS=()
+          FROZEN_MANIFEST="experiments/paired_50/native_execution/PLAN_STATUS_CONFIRMATION_MANIFEST.json"
+          if [[ -f "$FROZEN_MANIFEST" ]]; then
+            FROZEN_ARGS+=(--frozen-manifest "$FROZEN_MANIFEST")
+          fi
+          python experiments/paired_50/native_execution/prepare_plan_status_confirmation.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --responses "$RUNNER_TEMP/native-archive/responses.jsonl" \
+            --out "$RUNNER_TEMP/plan-status-preflight" \
+            "${FROZEN_ARGS[@]}"
+          python experiments/paired_50/native_execution/run_plan_status_confirmation.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --requests "$RUNNER_TEMP/plan-status-preflight/requests.jsonl" \
+            --manifest "$RUNNER_TEMP/plan-status-preflight/manifest.json" \
+            --out "$RUNNER_TEMP/plan-status-dry-run"
+          python -c 'import json,os; p=os.path.join(os.environ["RUNNER_TEMP"],"plan-status-preflight","summary.json"); d=json.load(open(p)); assert d["status"]=="offline_plan_status_preflight_passed" and d["provider_calls"]==0 and d["base_tasks"]==10 and d["request_count"]==80; m=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"plan-status-preflight","manifest.json"))); assert len(m["selected_task_ids"])==10'
+
+      - name: Upload plan-status confirmation preflight
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan-status-confirmation-preflight
+          path: ${{ runner.temp }}/plan-status-preflight/
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Recompute native path-value and action-regret audit
         run: |
           python experiments/paired_50/native_execution/native_path_value_audit.py \
@@ -330,6 +363,65 @@ jobs:
             ${{ runner.temp }}/common-action-restoration/
             ${{ runner.temp }}/plan-handoff-prompt-preflight/
             ${{ runner.temp }}/plan-handoff-live/
+          if-no-files-found: warn
+          retention-days: 90
+
+  paid-plan-status-confirmation:
+    needs: offline-validation
+    if: github.event_name == 'workflow_dispatch' && inputs.run_paid_plan_status_confirmation && !inputs.run_paid_smoke && !inputs.run_paid_continuations && !inputs.run_paid_formal && !inputs.run_paid_plan_handoff
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - name: Check out study repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch pinned CostBench source
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+      - name: Install pinned harness dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+      - name: Generate the pinned CostBench test search database
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py --generate_test --test_config_path env/domains/travel/travel_config.yaml --num-times 5000 --num-time-combinations 5000 --seed 42
+          mkdir -p env/data/static/search_spaces
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+          test -s env/data/static/search_spaces/test_search_space.json
+      - name: Download the frozen offline preflight
+        uses: actions/download-artifact@v4
+        with:
+          name: plan-status-confirmation-preflight
+          path: ${{ runner.temp }}/plan-status-preflight
+      - name: Verify API secret is present without printing it
+        run: test -n "$DEEPSEEK_API_KEY"
+      - name: Run the approved plan-status annotation confirmation
+        run: |
+          python experiments/paired_50/native_execution/run_plan_status_confirmation.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --requests "$RUNNER_TEMP/plan-status-preflight/requests.jsonl" \
+            --manifest "$RUNNER_TEMP/plan-status-preflight/manifest.json" \
+            --out "$RUNNER_TEMP/plan-status-live" \
+            --cap 1200000 --max-tokens 2048 --max-steps 8 --timeout 120 --live
+      - name: Upload plan-status confirmation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan-status-annotation-confirmation
+          path: |
+            ${{ runner.temp }}/plan-status-live/
+            ${{ runner.temp }}/plan-status-preflight/
           if-no-files-found: warn
           retention-days: 90
 
