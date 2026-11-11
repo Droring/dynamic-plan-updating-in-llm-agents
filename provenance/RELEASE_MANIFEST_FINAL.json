@@ -83,7 +83,7 @@
     "experiments/paired_50/native_execution/graph_planning_baseline.py": "65b5cc55e05ebca324fadbcf3fa487d80424d0bd8f0367cf5f830968a1549ebc",
     "experiments/paired_50/native_execution/merge_split_run_results.py": "a9d2aa7a07932ab65302ec2d1f3695f33be81e7d9ea4d21888075041945e27a8",
     "experiments/paired_50/native_execution/native_path_value_audit.py": "da837444ffeb53ef24578b9f02027d6293567a80706106e63509e066c5896f8f",
-    "experiments/paired_50/native_execution/preflight_common_action_restoration.py": "de3e9c732b33d018beba1602b53765bea9f168402cb64a94b0d73d4d79adfbf3",
+    "experiments/paired_50/native_execution/preflight_common_action_restoration.py": "42ccd7210d7b1be8ddf2fb5ccad8c6c44c7b7f4dd7d75e41f70c732d810cf862",
     "experiments/paired_50/native_execution/prepare_candidate_diagnostic.py": "e07ffea21066583eaf175659c26f06e48cfdf8a8693e591578bb417b32472a91",
     "experiments/paired_50/native_execution/prepare_plan_handoff_experiment.py": "92fcc57482dbaabe63a7f0f3ede402ab53cf4213cc85931b3729c85e487d7f9f",
     "experiments/paired_50/native_execution/run_balanced_replanning.py": "234b0d050e95fc1bf0820971abac4b054dc0545a737e9a605e1a4b6d006aa803",
