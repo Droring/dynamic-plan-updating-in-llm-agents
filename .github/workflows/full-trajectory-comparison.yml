@@ -1,0 +1,91 @@
+name: Native full-trajectory comparison
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/full-trajectory-comparison.yml"
+  workflow_dispatch:
+    inputs:
+      run_paid_trajectories:
+        description: "Authorize 30 native trajectories under 850000 total DeepSeek tokens"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  native-full-trajectory:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.run_paid_trajectories) ||
+      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved native full-trajectory comparison once')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch pinned CostBench checkout
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+      - name: Install pinned dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+      - name: Rebuild native test search space
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+      - name: Download archived independent confirmation first actions
+        uses: actions/download-artifact@v4
+        with:
+          name: bounded-verifier-confirmation
+          run-id: 42961827405
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/source-confirmation
+      - name: Validate native policy reconstruction without provider calls
+        run: |
+          python -m unittest discover -s experiments/paired_50/native_execution -p 'test_*.py' -v
+          python experiments/paired_50/native_execution/run_full_trajectory_comparison.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --confirmation-archive "$RUNNER_TEMP/source-confirmation/confirmation-results" \
+            > "$RUNNER_TEMP/full-trajectory-preflight.json"
+          python -c 'import json,os; x=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"full-trajectory-preflight.json"))); assert x["planned_paths"]==30 and x["provider_calls"]==0'
+      - name: Validate DeepSeek secret
+        run: test -n "$DEEPSEEK_API_KEY"
+      - name: Run controlled native full trajectories
+        run: |
+          python experiments/paired_50/native_execution/run_full_trajectory_comparison.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --confirmation-archive "$RUNNER_TEMP/source-confirmation/confirmation-results" \
+            --out "$RUNNER_TEMP/full-trajectory-results" \
+            --cap 850000 \
+            --max-tokens 1024 \
+            --live
+      - name: Archive executed trajectories and verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-full-trajectory-comparison
+          path: |
+            ${{ runner.temp }}/full-trajectory-preflight.json
+            ${{ runner.temp }}/full-trajectory-results/
+          if-no-files-found: warn
+          retention-days: 90
