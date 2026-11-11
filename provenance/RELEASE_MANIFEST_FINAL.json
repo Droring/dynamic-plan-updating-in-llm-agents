@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 359,
+  "file_count": 360,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -31,7 +31,7 @@
     "docs/STUDY_PROTOCOL.md": "08d1b1af58d23db547ddc43919ea81c39fc6290fce52a95b935171c15eebdf7c",
     "docs/STUDY_PROTOCOL_zh.md": "0a8c7aa5bc075684d6299b6acb5af3d2e7d2d2aaa07ce917a8b9083880b716be",
     "docs/TERMINOLOGY.md": "e8cc615f1e44d14e37c84756e5faefa2152331cb7089721a268e3bbe6ddcc53c",
-    "experiments/README.md": "69f4057cd8c2eacf33594e79a997dfffbb1f1146790a31a02647daa75c47f0c0",
+    "experiments/README.md": "6e7a57107969ecfb9933bfffb4d75117e85441f770092e173465268831de2e58",
     "experiments/interventions/README.md": "6a797a3012be9632fa85cafa157297027e89063b0187905c851110747b7ed8bb",
     "experiments/mechanism_diagnosis/README.md": "ad1fe24dbf9270fcf4dd98c0a1a04cc58428c4447c0049cfc652101905507ed1",
     "experiments/native_80/README.md": "cb3057e177b40d79f0d3dc8b67b1efca3c30d38a35b5660b4ef81cdaaabc2d5a",
@@ -73,6 +73,7 @@
     "experiments/paired_50/native_execution/PLAN_HANDOFF_PROMPT_PREFLIGHT_REPORT.md": "6e98e1afa8dc41e93b8eba73befb4788bc5321c02d0d12dbe0133cc18f746e6d",
     "experiments/paired_50/native_execution/PLAN_HANDOFF_RUN_RECOVERY.md": "3f6a0fea8a6ea1d190b60888f17cc6358e7bd7e7fbb71380f2cf27ac218275c7",
     "experiments/paired_50/native_execution/PLAN_HANDOFF_STATE_TRACKING_PROTOCOL.md": "cf728b94afd2fc9a062b57722bac8d4826326ca04a39136c7025875ce34a30ee",
+    "experiments/paired_50/native_execution/PLAN_STATUS_CONFIRMATION_MANIFEST.json": "875109307114dacd4d8025aab50ecac6aaf9e4e3bf53955c5f4af5cbb4637165",
     "experiments/paired_50/native_execution/PLAN_STATUS_CONFIRMATION_PROTOCOL.md": "f799d0afcfb1cea6c081fe57e3bd81d48d7854984906c80bc64ddf0a096ed351",
     "experiments/paired_50/native_execution/README.md": "5512e274ac719705f1031083d1fc2200aa5a05c4e8428cd143d3bfcb30b91bc4",
     "experiments/paired_50/native_execution/RESULTS.md": "d436f35a796634aa6f33401e9e6e5e2c2d6bea55376e0cb3533b99440beb6ca4",
