@@ -1,4 +1,5 @@
 import unittest
+from types import SimpleNamespace
 
 from prepare_candidate_diagnostic import deterministic_orders, make_prompt
 from run_candidate_diagnostic import score_text, summarize
@@ -20,6 +21,7 @@ class CandidateDecisionDiagnosticTests(unittest.TestCase):
             "user_request": "Find destination.",
             "goal_type": "Goal",
             "changed_tool": "old",
+            "tool_objects": {"old": SimpleNamespace(cost=5.0)},
         }
         for endpoint in ("comparison", "execution"):
             prompt = make_prompt(prepared, endpoint, ["old", "new"])
