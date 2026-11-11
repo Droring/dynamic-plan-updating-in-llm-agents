@@ -1,0 +1,82 @@
+name: Plan-preserving balanced replanning pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/balanced-replanning-pilot.yml"
+  workflow_dispatch:
+    inputs:
+      run_paid_pilot:
+        description: "Authorize 64 DeepSeek requests, token cap 750000"
+        type: boolean
+        default: false
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  balanced-pilot:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.run_paid_pilot) ||
+      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved balanced replanning pilot once')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch pinned CostBench source
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+      - name: Install CostBench dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+      - name: Generate native search space
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+      - name: Run unit tests and paired preflight
+        run: |
+          python -m unittest discover -s experiments/paired_50/native_execution -p 'test_*.py' -v
+          python experiments/paired_50/native_execution/run_balanced_replanning.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            > "$RUNNER_TEMP/balanced-preflight.json"
+          python -c 'import json,os; d=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"balanced-preflight.json"))); assert d["trials_prepared"] == 64 and d["unique_request_hashes"] == 32 and d["provider_calls"] == 0'
+      - name: Verify DeepSeek key is configured without printing it
+        run: test -n "$DEEPSEEK_API_KEY"
+      - name: Run 64 balanced replanning first-action trials
+        run: |
+          python experiments/paired_50/native_execution/run_balanced_replanning.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --out "$RUNNER_TEMP/balanced-pilot-results" \
+            --cap 750000 \
+            --repetitions 2 \
+            --max-tokens 2048 \
+            --live
+      - name: Archive model requests and scoring
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: balanced-replanning-pilot
+          path: |
+            ${{ runner.temp }}/balanced-preflight.json
+            ${{ runner.temp }}/balanced-pilot-results/
+          if-no-files-found: warn
+          retention-days: 90
