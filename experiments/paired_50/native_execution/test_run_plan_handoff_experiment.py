@@ -46,7 +46,7 @@ class PlanHandoffRunnerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)
             (root/"responses.jsonl").write_text(
-                json.dumps({"trial_id":"trial-1","payload_sha256":"hash-1"})+"\\n",
+                json.dumps({"trial_id":"trial-1","payload_sha256":"hash-1"})+"\n",
                 encoding="utf-8",
             )
             ledger={
@@ -73,7 +73,7 @@ class PlanHandoffRunnerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)
             (root/"responses.jsonl").write_text(
-                json.dumps({"trial_id":"trial-1","payload_sha256":"hash-1"})+"\\n",
+                json.dumps({"trial_id":"trial-1","payload_sha256":"hash-1"})+"\n",
                 encoding="utf-8",
             )
             ledger={
