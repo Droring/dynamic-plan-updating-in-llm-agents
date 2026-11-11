@@ -1,7 +1,7 @@
 import unittest
 from types import SimpleNamespace
 
-from run_plan_handoff_experiment import current_value, summarize
+from run_plan_handoff_experiment import current_value, summarize, append_jsonl, save_json_durable
 from preflight_common_action_restoration import TASKS, ENVIRONMENTS, ARMS
 
 
@@ -20,6 +20,30 @@ class PlanHandoffRunnerTests(unittest.TestCase):
         self.assertIsNot(cloned["prepared"]["tool_objects"],trial["prepared"]["tool_objects"])
         self.assertIsNot(cloned["prepared"]["tool_objects"]["step"],tool)
         self.assertIsNot(cloned["prepared"]["state"],trial["prepared"]["state"])
+
+    def test_jsonl_append_is_durable_and_preserves_record_order(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/"nested"/"responses.jsonl"
+            append_jsonl(path,{"trial_id":"trial-1","provider_tokens":12})
+            append_jsonl(path,{"trial_id":"trial-2","provider_tokens":18})
+            rows=[json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual([row["trial_id"] for row in rows],["trial-1","trial-2"])
+            self.assertEqual(sum(row["provider_tokens"] for row in rows),30)
+
+    def test_json_checkpoint_is_atomically_written(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/"ledger.json"
+            save_json_durable(path,{"status":"in_progress","charged":42})
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["charged"],42)
+            self.assertFalse(path.with_name(path.name+".tmp").exists())
 
     def test_summary_keeps_base_task_as_statistical_unit(self):
         rows=[]
