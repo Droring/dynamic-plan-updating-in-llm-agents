@@ -45,6 +45,16 @@ The full path relation and goal-state success are reported separately. This avoi
 
 The initial paid plan-handoff attempt stopped at result persistence because the runner called a JSONL helper that did not exist in the native harness. Its first trial's provider usage was not archived, so that attempt is excluded from analysis. The runner now journals each model response and native tool result, durably checkpoints progress, and supports safe resume from a completed-trial prefix while refusing to replay an uncertain active trial. See [the run recovery record](PLAN_HANDOFF_RUN_RECOVERY.md) for the failure evidence and budget treatment.
 
+## Plan-status annotation confirmation
+
+The next controlled follow-up holds the complete planner-computed continuation fixed in both arms and changes only the prior-plan status label: `UNSET` versus an oracle-derived `VALID`/`STALE` annotation. The protocol, offline selector, and native continuation runner are:
+
+- [Plan-status annotation protocol](PLAN_STATUS_CONFIRMATION_PROTOCOL.md)
+- [Offline task and prompt preparation](prepare_plan_status_confirmation.py)
+- [Native continuation runner](run_plan_status_confirmation.py)
+
+The confirmation cohort is selected from the existing 50-task dataset, excluding earlier mechanism cohorts and requiring an identical successful incumbent first action across the paired environments. It is held out from the plan-handoff intervention, not a new CostBench dataset. The annotation is privileged diagnostic information, not a deployable method. The selected task manifest must be committed before any paid run. No model calls are made during preparation or dry-run validation.
+
 ## Offline validation
 
 Use Python 3.12 and a local CostBench checkout at the pinned revision.
