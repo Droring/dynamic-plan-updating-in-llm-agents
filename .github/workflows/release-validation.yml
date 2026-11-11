@@ -48,6 +48,18 @@ jobs:
           git -C ../CostBench checkout 6424069f3f773ade076bcedbed302ed47cfb1837
           test "$(git -C ../CostBench rev-parse HEAD)" = 6424069f3f773ade076bcedbed302ed47cfb1837
           python -m pip install -r ../CostBench/requirements.txt numpy sympy
+      - name: Generate the pinned CostBench test search database
+        working-directory: ../CostBench
+        run: |
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          mkdir -p env/data/static/search_spaces
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+          test -s env/data/static/search_spaces/test_search_space.json
       - name: Run complete-candidate-verification offline protocol tests
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
       - name: Run one pinned native CostBench committed-path execution
