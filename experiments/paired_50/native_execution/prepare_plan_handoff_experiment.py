@@ -239,6 +239,10 @@ def build_requests(trajectories, restoration, costbench_root, repetitions=REPETI
             raise ValueError(f"Common executed history differs across arms: {key}")
         if len({v["tool_schema_sha256"] for v in arm_hashes.values()})!=1:
             raise ValueError(f"Tool schemas differ across arms: {key}")
+        if len({v["prompt_sha256"] for v in arm_hashes.values()})!=4:
+            raise ValueError(f"Factorial prompt conditions are not distinct: {key}")
+        if len({v["plan_handoff"] for v in arm_hashes.values()})!=2 or len({v["state_ledger"] for v in arm_hashes.values()})!=2:
+            raise ValueError(f"Factorial treatment flags are not balanced: {key}")
         cell_summaries.append({
             "query_id":key[0],"environment":key[1],
             "common_first_action":action["tool"],
