@@ -106,7 +106,7 @@
     "experiments/paired_50/native_execution/test_graph_planning_baseline.py": "f2c60d35a623aa18c62fe3c305c01b35dc89f212ac488a95cdb00edcac117c0f",
     "experiments/paired_50/native_execution/test_mechanism_strata.py": "1f934e2f42a6f1e6c4b3248f51316d6e5d34130c429645a2f8e7be0c82e45182",
     "experiments/paired_50/native_execution/test_path_value_audit.py": "917e2d1b0e5189ac1cffe514bdeae72c21b2a25ea1b5fb38ee37038362e67b94",
-    "experiments/paired_50/native_execution/test_preflight_common_action_restoration.py": "f34567d0e1bf5caad59f8876c6bbce2d666fb63812c95ab1db187f0b5e1a5125",
+    "experiments/paired_50/native_execution/test_preflight_common_action_restoration.py": "3c1b00d00291490f37b8247e8f1fc447d51e92b6f01933d0ef94062caff4ec30",
     "experiments/paired_50/native_execution/test_prepare_plan_handoff_experiment.py": "85c649af5c3b480b11e90beeb274c35dba6d04dfc44739591bbc1f6e30d5b4de",
     "experiments/paired_50/native_execution/test_protocol.py": "20f11c36f17816cefadedb5805a816b8b702ffc5b9eab7f95d60bdd0617ef005",
     "experiments/paired_50/provenance/source_records/README.md": "37229e7bc99ede5953892aa5f364349f3325909ffbc98b24141af79df2e57539",
