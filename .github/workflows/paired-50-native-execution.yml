@@ -262,6 +262,42 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
+  freeze-plan-status-manifest:
+    needs: offline-validation
+    if: github.event_name == 'push' && needs.offline-validation.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Check out the validated main revision
+        uses: actions/checkout@v4
+      - name: Download the validated plan-status manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: plan-status-confirmation-preflight
+          path: \${{ runner.temp }}/plan-status-preflight
+      - name: Freeze the selected task cohort on main
+        shell: bash
+        run: |
+          source_manifest="$RUNNER_TEMP/plan-status-preflight/manifest.json"
+          target="experiments/paired_50/native_execution/PLAN_STATUS_CONFIRMATION_MANIFEST.json"
+          test -s "$source_manifest"
+          if [[ -f "$target" ]]; then
+            cmp -s "$source_manifest" "$target" || {
+              echo "Frozen plan-status manifest differs from the validated cohort."
+              exit 1
+            }
+            echo "Frozen plan-status manifest already matches the validated cohort."
+          else
+            cp "$source_manifest" "$target"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add "$target"
+            git commit -m "Freeze plan-status confirmation task cohort"
+            git push origin HEAD:main
+          fi
+
   paid-plan-handoff:
     if: github.event_name == 'workflow_dispatch' && inputs.run_paid_plan_handoff && !inputs.run_paid_smoke && !inputs.run_paid_continuations && !inputs.run_paid_formal
     runs-on: ubuntu-latest
