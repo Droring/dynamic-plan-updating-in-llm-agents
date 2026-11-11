@@ -1,0 +1,91 @@
+name: Counterfactual proposal verification gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/counterfactual-gate.yml"
+  workflow_dispatch:
+    inputs:
+      run_paid_gate:
+        description: "Authorize up to 16 DeepSeek verifier calls, max 250000 provider tokens"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  counterfactual-gate:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.run_paid_gate) ||
+      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved counterfactual verification gate once')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch pinned CostBench
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+      - name: Install pinned dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+      - name: Rebuild native test search space
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+      - name: Download original no-plan proposals
+        uses: actions/download-artifact@v4
+        with:
+          name: four-arm-deepseek-formal
+          run-id: 42665117176
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/formal-archive
+      - name: Validate full experiment code and frozen candidate provenance
+        run: |
+          python -m unittest discover -s experiments/paired_50/native_execution -p 'test_*.py' -v
+          python experiments/paired_50/native_execution/run_counterfactual_gate.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --archive "$RUNNER_TEMP/formal-archive" \
+            > "$RUNNER_TEMP/gate-preflight.json"
+          python -c 'import json,os; x=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"gate-preflight.json"))); assert x["checkpoints"] == 32 and x["candidate_deviations"] == 16 and x["new_provider_calls"] == 0'
+      - name: Validate API secret availability
+        run: test -n "$DEEPSEEK_API_KEY"
+      - name: Execute approved candidate verification gate
+        run: |
+          python experiments/paired_50/native_execution/run_counterfactual_gate.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --archive "$RUNNER_TEMP/formal-archive" \
+            --out "$RUNNER_TEMP/gate-results" \
+            --cap 250000 \
+            --max-tokens 768 \
+            --live
+      - name: Save archived gate decisions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: counterfactual-gate-results
+          path: |
+            ${{ runner.temp }}/gate-preflight.json
+            ${{ runner.temp }}/gate-results/
+          if-no-files-found: warn
+          retention-days: 90
