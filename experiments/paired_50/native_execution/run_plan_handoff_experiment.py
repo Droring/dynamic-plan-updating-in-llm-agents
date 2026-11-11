@@ -48,9 +48,11 @@ def validate_deepcopy_restores(requests,lookup,official_run):
     for key,request in sorted(cells.items()):
         base=lookup[key]
         outputs=[]
+        clones=[]
         clone_ids=set()
         for arm in ARMS:
             branch=clone_trial_for_branch(base)
+            clones.append(branch)
             prepared=branch["prepared"]
             clone_ids.add(id(prepared["tool_objects"]))
             tool=prepared["tool_objects"][request["common_first_action"]]
