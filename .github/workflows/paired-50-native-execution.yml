@@ -30,7 +30,7 @@ on:
         type: boolean
         default: false
       run_paid_plan_status_confirmation:
-        description: "Run the 80-trajectory plan-status annotation confirmation (1,200,000-token hard cap)"
+        description: "Run the 80-trajectory checkpoint-level plan-status annotation confirmation (1,200,000-token hard cap)"
         required: true
         type: boolean
         default: false
@@ -222,7 +222,6 @@ jobs:
           fi
           python experiments/paired_50/native_execution/prepare_plan_status_confirmation.py \
             --costbench-root "$RUNNER_TEMP/CostBench" \
-            --responses "$RUNNER_TEMP/native-archive/responses.jsonl" \
             --out "$RUNNER_TEMP/plan-status-preflight" \
             "${FROZEN_ARGS[@]}"
           python experiments/paired_50/native_execution/run_plan_status_confirmation.py \
@@ -406,7 +405,7 @@ jobs:
           path: ${{ runner.temp }}/plan-status-preflight
       - name: Verify API secret is present without printing it
         run: test -n "$DEEPSEEK_API_KEY"
-      - name: Run the approved plan-status annotation confirmation
+      - name: Run the approved checkpoint-level plan-status annotation confirmation
         run: |
           python experiments/paired_50/native_execution/run_plan_status_confirmation.py \
             --costbench-root "$RUNNER_TEMP/CostBench" \
