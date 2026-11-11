@@ -1,10 +1,6 @@
 name: Plan-preserving balanced replanning pilot
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/balanced-replanning-pilot.yml"
   workflow_dispatch:
     inputs:
       run_paid_pilot:
@@ -18,9 +14,7 @@ permissions:
 
 jobs:
   balanced-pilot:
-    if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.run_paid_pilot) ||
-      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved balanced replanning pilot once')
+    if: inputs.run_paid_pilot
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
