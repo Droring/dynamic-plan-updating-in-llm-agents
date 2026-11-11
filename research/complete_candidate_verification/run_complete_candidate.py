@@ -264,13 +264,13 @@ async def run_complete_candidate(
         expected_tool = executor.next_tool(state, policy_input.tool_interfaces)
         request = executor.build_argument_request(messages, state, policy_input.tool_interfaces)
         try:
+            parameter_calls += 1
             response = argument_completion(
                 messages=request["messages"], tools=request["tools"],
                 tool_choice=request["tool_choice"], max_tokens=max_argument_tokens,
             )
             if hasattr(response, "__await__"):
                 response = await response
-            parameter_calls += 1
             tool_name, arguments_str, used_tokens = _argument_payload(response, expected_tool)
             parameter_tokens += used_tokens
             arguments = executor.validate_arguments(tool_name, arguments_str)
