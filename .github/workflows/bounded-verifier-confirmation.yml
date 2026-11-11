@@ -1,0 +1,87 @@
+name: Bounded verifier independent confirmation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/bounded-verifier-confirmation.yml"
+  workflow_dispatch:
+    inputs:
+      run_paid_confirmation:
+        description: "Authorize exactly 20 new DeepSeek C-candidate requests, cap 350000 tokens"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  confirmation:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.run_paid_confirmation) ||
+      (github.event_name == 'push' && github.event.head_commit.message == 'Run approved bounded verifier confirmation once')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch pinned CostBench checkout
+        shell: bash
+        run: |
+          git init "$RUNNER_TEMP/CostBench"
+          git -C "$RUNNER_TEMP/CostBench" remote add origin https://github.com/JiayuJeff/CostBench.git
+          git -C "$RUNNER_TEMP/CostBench" fetch --depth 1 origin 6424069f3f773ade076bcedbed302ed47cfb1837
+          git -C "$RUNNER_TEMP/CostBench" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/CostBench" rev-parse HEAD)" = "6424069f3f773ade076bcedbed302ed47cfb1837"
+      - name: Install pinned source dependencies
+        run: python -m pip install -r "$RUNNER_TEMP/CostBench/requirements.txt" numpy
+      - name: Regenerate native search-space data
+        working-directory: ${{ runner.temp }}/CostBench
+        shell: bash
+        run: |
+          test ! -e env/data/runtime/id_history/id_generator_state_test.json
+          python env/domains/travel/generate_search_space.py \
+            --generate_test \
+            --test_config_path env/domains/travel/travel_config.yaml \
+            --num-times 5000 \
+            --num-time-combinations 5000 \
+            --seed 42
+          cp env/data/static/search_spaces/test/search_space.json env/data/static/search_spaces/test_search_space.json
+      - name: Test fixed evaluation protocol and regenerate frozen candidates
+        run: |
+          python -m unittest discover -s experiments/paired_50/native_execution -p 'test_*.py' -v
+          python experiments/paired_50/native_execution/run_bounded_verifier_confirmation.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            > "$RUNNER_TEMP/confirmation-preflight.json"
+          python -c 'import json,os; a=json.load(open(os.path.join(os.environ["RUNNER_TEMP"],"confirmation-preflight.json"))); assert a["trials_prepared"]==20 and a["provider_calls"]==0'
+      - name: Check DeepSeek key presence
+        run: test -n "$DEEPSEEK_API_KEY"
+      - name: Generate twenty new no-plan native first actions
+        run: |
+          python experiments/paired_50/native_execution/run_bounded_verifier_confirmation.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --out "$RUNNER_TEMP/confirmation-results" \
+            --cap 350000 \
+            --max-tokens 2048 \
+            --live
+      - name: Score fixed bounded verifier after generation
+        run: |
+          python experiments/paired_50/native_execution/run_bounded_verifier_confirmation.py \
+            --costbench-root "$RUNNER_TEMP/CostBench" \
+            --score-from "$RUNNER_TEMP/confirmation-results/responses.jsonl" \
+            --out "$RUNNER_TEMP/confirmation-results"
+      - name: Archive confirmation first actions and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bounded-verifier-confirmation
+          path: |
+            ${{ runner.temp }}/confirmation-preflight.json
+            ${{ runner.temp }}/confirmation-results/
+          if-no-files-found: warn
+          retention-days: 90
