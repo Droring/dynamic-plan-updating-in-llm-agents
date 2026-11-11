@@ -227,6 +227,7 @@ async def run_one(request,trial,official_run,client,budget,args,event_sink=None)
     trace=[]
     tokens=0
     model_calls=0
+    provider_outcome_unknown=False
     halt="max_steps"
     plan_cursor=0
     incumbent_cursor=0
@@ -251,6 +252,7 @@ async def run_one(request,trial,official_run,client,budget,args,event_sink=None)
         except Exception as exc:
             halt="reservation_cap" if "reservation_cap" in str(exc) else "api_error:"+str(exc)
             charged_delta=max(0,budget.charged-charged_before)
+            provider_outcome_unknown=halt.startswith("api_error") and charged_delta==0
             if charged_delta:
                 model_calls+=1
                 tokens+=charged_delta
@@ -403,9 +405,7 @@ async def run_one(request,trial,official_run,client,budget,args,event_sink=None)
         "continuation_bellman_loss_sum":round(bellman_sum,8),
         "full_path_regret":None if full_regret is None else round(max(0.0,full_regret),8),
         "model_calls":model_calls,"provider_tokens":tokens,
-        "provider_outcome_unknown":any(
-            x.get("provider_outcome_unknown") for x in (event_sink.events if hasattr(event_sink,"events") else [])
-        ) if event_sink is not None else False,
+        "provider_outcome_unknown":provider_outcome_unknown,
         "updated_plan":plan,"updated_plan_steps_matched":plan_cursor if plan is not None else None,
         "incumbent_plan":incumbent,"incumbent_steps_matched":incumbent_cursor,
         "ledger_enabled":ledger is not None,"final_ledger":ledger,
