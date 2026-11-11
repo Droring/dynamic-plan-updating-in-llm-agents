@@ -107,6 +107,15 @@ The initial run completed 66 trajectories and stopped during the next one at the
 - [Native 100-trajectory path-value audit](NATIVE_PATH_VALUE_AUDIT.md)
 - [Offline audit implementation](native_path_value_audit.py)
 
+
+## Candidate-decision localization (offline preparation)
+
+The [candidate diagnostic protocol](CANDIDATE_DECISION_DIAGNOSTIC.md) separates explicit candidate reporting, comparison with a fixed feasible candidate menu, and the conversion of a selected candidate into a native tool action. The [offline prompt builder](prepare_candidate_diagnostic.py) reconstructs all 16 frozen checkpoints and uses the pinned native solver to validate candidate feasibility and first-action ties. It prepares 75 diagnostic prompt variants across 15 first-action-eligible checkpoints; Query00403 remains a separate path-level exception. **The builder does not call DeepSeek; these diagnostics have not yet been measured.**
+
+~~~bash
+python experiments/paired_50/native_execution/prepare_candidate_diagnostic.py --costbench-root ../CostBench --out candidate_diagnostic_dry_run.json
+~~~
+
 ## Paid execution
 
 Set DEEPSEEK_API_KEY in the shell, then start with one complete pair (two trajectories):
