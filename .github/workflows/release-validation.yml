@@ -62,6 +62,8 @@ jobs:
           test -s env/data/static/search_spaces/test_search_space.json
       - name: Run complete-candidate-verification offline protocol tests
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
+      - name: Run bounded local plan substitution tests
+        run: python -m unittest research.complete_candidate_verification.test_local_plan_substitution -v
       - name: Run complete-candidate replanning runner tests
         run: python -m unittest research.complete_candidate_verification.test_runner -v
       - name: Run provider budget and uncertainty tests

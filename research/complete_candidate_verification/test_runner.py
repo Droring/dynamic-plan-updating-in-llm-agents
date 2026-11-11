@@ -120,6 +120,58 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.trace[0]["parameter_response"]["choices"][0]["message"]["tool_calls"][0]["function"]["name"], "Acquire_B")
         self.assertTrue(result.trace[0]["parameter_response_sha256"])
 
+    async def test_local_substitution_switches_and_executes_without_extra_planning_call(self):
+        policy = make_policy(with_history=True)
+        planner_calls = 0
+        async def candidate_completion(**kwargs):
+            nonlocal planner_calls
+            planner_calls += 1
+            return {
+                "choices": [{"message": {"content": json.dumps(
+                    {"plan": ["Finish_A"]})}}],
+                "usage": {"total_tokens": 11},
+            }
+
+        observed_ids = {"Start": "OBS-START", "A": "OBS-A"}
+        parameter_calls = 0
+        async def argument_completion(*, messages, tools, tool_choice, max_tokens):
+            nonlocal parameter_calls
+            parameter_calls += 1
+            self.assertEqual(len(tools), 1)
+            name = tools[0]["function"]["name"]
+            required = tools[0]["function"]["parameters"]["required"]
+            arguments = {key: observed_ids[key] for key in required}
+            return {
+                "choices": [{"message": {"tool_calls": [{
+                    "id": f"local-{parameter_calls}",
+                    "function": {"name": name, "arguments": json.dumps(arguments)},
+                }]}}],
+                "usage": {"total_tokens": 7},
+            }
+
+        def native_execute(*, tool_name, arguments_str, arguments, available_tools):
+            output_id = "OBS-GOAL"
+            observed_ids["Goal"] = output_id
+            return NativeExecutionResult(True, "Observed Goal", "Goal", output_id, "Goal")
+
+        result = await run_complete_candidate(
+            policy, candidate_completion=candidate_completion,
+            argument_completion=argument_completion, native_execute=native_execute,
+            candidate_strategy="fresh_with_local_substitution",
+        )
+        self.assertEqual(result.status, "goal_reached")
+        self.assertEqual(result.decision.action, "SWITCH")
+        self.assertEqual(result.decision.selected_plan, ("Finish_A_Cheap",))
+        self.assertEqual(result.executed_path, ("Finish_A_Cheap",))
+        self.assertEqual(result.planning_calls, 1)
+        self.assertEqual(planner_calls, 1)
+        self.assertEqual(parameter_calls, 1)
+        self.assertGreaterEqual(len(result.decision.local_substitutions), 1)
+        self.assertEqual(
+            result.to_record()["local_substitutions"][0]["candidate_path"],
+            ["Finish_A_Cheap"],
+        )
+
     async def test_deepseek_adapters_build_expected_nonstreaming_requests(self):
         seen = []
         class FakeCompletions:

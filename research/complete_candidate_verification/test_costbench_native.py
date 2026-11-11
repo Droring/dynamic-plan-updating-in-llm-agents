@@ -37,6 +37,29 @@ class PinnedCostBenchNativeTests(unittest.TestCase):
         self.assertTrue(all(row["success"] for row in result.trace))
         self.assertTrue(all(row["output_id"] for row in result.trace))
 
+    def test_bounded_local_substitution_recovers_a_shorter_native_switch_path(self):
+        root = Path(os.environ["COSTBENCH_ROOT"]).resolve()
+        native, costbench, prepared, query = load_native_trial(
+            root, query_id="Query00178", condition="SWITCH", minimum_plan_length=1
+        )
+        result = asyncio.run(
+            run_native_offline_smoke(
+                prepared, query, native, costbench,
+                candidate_strategy="fresh_with_local_substitution",
+            )
+        )
+        self.assertEqual(result.status, "goal_reached", msg=result.error)
+        self.assertEqual(result.decision.action, "SWITCH")
+        self.assertEqual(
+            result.decision.selected_plan,
+            ("Search_Transportation_Candidates", "Transportation_Finish_from_Step1_3Steps"),
+        )
+        self.assertEqual(result.executed_path, result.decision.selected_plan)
+        self.assertEqual(result.planning_calls, 1)
+        self.assertEqual(result.parameter_calls, 2)
+        self.assertTrue(result.goal_reached)
+
+
 
 if __name__ == "__main__":
     unittest.main()

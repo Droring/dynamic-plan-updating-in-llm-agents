@@ -5,6 +5,7 @@ from typing import Any, Callable, Sequence
 from .candidate_generator import CandidateGenerator, CandidateProposal
 from .policy_input import PolicyInput
 from .submitted_plan_checker import PathCheck, PlanSelection, check_policy_path, select_strictly_better_plan
+from .local_plan_substitution import LocalSubstitution, generate_local_substitutions
 
 @dataclass(frozen=True)
 class UpdateDecision:
@@ -17,6 +18,7 @@ class UpdateDecision:
     planning_calls: int
     provider_tokens: int
     candidate_strategy: str
+    local_substitutions: tuple[LocalSubstitution, ...] = ()
 
 def _check_proposals(policy_input: PolicyInput,
                      proposals: Sequence[CandidateProposal]) -> tuple[PathCheck, ...]:
@@ -32,10 +34,12 @@ def _check_proposals(policy_input: PolicyInput,
 def _decision(selection: PlanSelection, incumbent: PathCheck,
               checks: tuple[PathCheck, ...], proposals: Sequence[CandidateProposal],
               generator: CandidateGenerator,
-              candidate_strategy: str) -> UpdateDecision:
+              candidate_strategy: str,
+              local_substitutions: Sequence[LocalSubstitution] = ()) -> UpdateDecision:
     return UpdateDecision(selection.action, selection.selected_plan, selection.reason,
         incumbent, checks, tuple(proposals), generator.calls_used,
-        sum(x.provider_tokens for x in proposals), candidate_strategy)
+        sum(x.provider_tokens for x in proposals), candidate_strategy,
+        tuple(local_substitutions))
 
 async def run_update(policy_input: PolicyInput,
                      completion: Callable[..., Any],
@@ -48,13 +52,28 @@ async def run_update(policy_input: PolicyInput,
     """
     incumbent = check_policy_path(policy_input, policy_input.old_remaining_plan)
 
-    if candidate_strategy == "fresh_only":
+    if candidate_strategy in {"fresh_only", "fresh_with_local_substitution"}:
         generator = CandidateGenerator(completion, max_calls=1)
         proposals = [await generator.generate_fresh(policy_input)]
-        checks = _check_proposals(policy_input, proposals)
+        if candidate_strategy == "fresh_only":
+            checks = _check_proposals(policy_input, proposals)
+            paths = [proposal.path for proposal in proposals if proposal.path is not None]
+            selection = select_strictly_better_plan(policy_input, paths)
+            return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)
+
+        # The local operator is anchored only to the incumbent and one Fresh proposal.
+        # It does not search arbitrary paths from the checkpoint.
+        base_paths = []
+        if incumbent.valid:
+            base_paths.append(incumbent.path)
+        if proposals[0].path is not None:
+            base_paths.append(proposals[0].path)
+        substitutions = generate_local_substitutions(policy_input, base_paths)
         paths = [proposal.path for proposal in proposals if proposal.path is not None]
+        paths.extend(item.candidate_path for item in substitutions)
         selection = select_strictly_better_plan(policy_input, paths)
-        return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)
+        return _decision(selection, incumbent, selection.candidate_checks,
+                         proposals, generator, candidate_strategy, substitutions)
 
     # Frozen historical development-screen replay. Do not use these strategies for
     # new method runs: the two Fresh prompts are identical, and Repair added no

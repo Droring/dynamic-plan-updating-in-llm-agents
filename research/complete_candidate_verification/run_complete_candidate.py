@@ -79,6 +79,9 @@ class CompleteCandidateRun:
             "execution_latency_seconds": self.execution_latency_seconds,
             "error": self.error,
             "executor_record": dict(self.executor_record) if self.executor_record else None,
+            "local_substitutions": [
+                item.to_record() for item in self.decision.local_substitutions
+            ],
             "candidate_proposals": [
                 {
                     "source": item.source,
@@ -590,7 +593,9 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
         max_tool_steps=max_tool_steps,
         native_system_prompt=native_system_prompt,
     )
-    expected_planning_calls = 1 if candidate_strategy == "fresh_only" else 2
+    expected_planning_calls = 1 if candidate_strategy in {
+        "fresh_only", "fresh_with_local_substitution"
+    } else 2
     if planner.calls != expected_planning_calls:
         raise AssertionError(
             f"expected {expected_planning_calls} planning calls, got {planner.calls}"
@@ -639,7 +644,8 @@ def main() -> int:
                         help="Optional fixed query ID; by default select a multi-step RETAIN checkpoint.")
     parser.add_argument("--condition", choices=("RETAIN", "SWITCH"), default="RETAIN")
     parser.add_argument("--candidate-strategy",
-                        choices=("fresh_only", "repair_plus_fresh", "fresh_plus_fresh"),
+                        choices=("fresh_only", "fresh_with_local_substitution",
+                                 "repair_plus_fresh", "fresh_plus_fresh"),
                         default="fresh_only")
     parser.add_argument("--max-tool-steps", type=int, default=DEFAULT_MAX_TOOL_STEPS)
     parser.add_argument("--out", type=Path, default=Path("outputs/complete_candidate_offline_smoke"))

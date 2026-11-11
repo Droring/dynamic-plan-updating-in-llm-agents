@@ -136,3 +136,25 @@ evaluation protocol.
 
 See [SIMPLIFICATION_ACCEPTANCE.md](SIMPLIFICATION_ACCEPTANCE.md) for the code
 changes, offline regression evidence, and the explicit stop decision.
+
+
+## Bounded type-contract local substitution
+
+An experimental candidate strategy, `fresh_with_local_substitution`, is available
+for development and offline validation. It makes the same single Fresh planning
+request as `fresh_only`, then examines only contiguous segments of the incumbent
+and Fresh complete paths. It enumerates replacement sequences of at most two tools
+for segments of at most four tools, requiring the replacement to be executable from
+the segment's starting state and to produce the segment's boundary output type.
+Every spliced full path is checked by the unchanged submitted-path checker.
+
+This is a bounded neighborhood operator, not a shortest-path planner: it does not
+search arbitrary paths from the checkpoint to the goal. It adds no model calls and
+does not access condition labels, oracle paths, or evaluation scores. The exact
+bounds are fixed at four replaced tools and two replacement tools.
+
+The strategy is not the default and has not been independently validated. Its
+development rationale and retrospective analysis are documented in
+[LOCAL_SUBSTITUTION_MECHANISM.md](LOCAL_SUBSTITUTION_MECHANISM.md). It must be
+compared against both ordinary Fresh planning and full graph planning on the
+already frozen independent protocol before any effectiveness claim.
