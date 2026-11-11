@@ -17,7 +17,7 @@ class PinnedCostBenchNativeTests(unittest.TestCase):
     def test_complete_committed_path_runs_to_goal_with_zero_provider_calls(self):
         root = Path(os.environ["COSTBENCH_ROOT"]).resolve()
         native, costbench, prepared, query = load_native_trial(
-            root, query_id="Query00178", condition="RETAIN"
+            root, query_id=None, condition="RETAIN", minimum_plan_length=2
         )
         result = asyncio.run(
             run_native_offline_smoke(prepared, query, native, costbench)
@@ -32,7 +32,7 @@ class PinnedCostBenchNativeTests(unittest.TestCase):
         self.assertEqual(result.parameter_calls, len(result.executed_path))
         self.assertEqual(result.planning_tokens, 0)
         self.assertEqual(result.parameter_tokens, 0)
-        self.assertGreater(len(result.trace), 0)
+        self.assertGreaterEqual(len(result.trace), 2)
         self.assertEqual(len(result.trace), len(prepared["incumbent_suffix"]))
         self.assertTrue(all(row["success"] for row in result.trace))
         self.assertTrue(all(row["output_id"] for row in result.trace))
