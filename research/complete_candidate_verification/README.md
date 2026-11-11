@@ -118,3 +118,21 @@ candidate-generation diagnosis and baseline caveat are documented in
 
 The historical screen is not being rerun during simplification. No new API calls
 or new task conditions are part of this phase.
+
+
+## Research interpretation after simplification
+
+The one-call Fresh policy is the ordinary complete-candidate baseline combined
+with the same submitted-path checker, strict selector, and committed-plan
+executor. It is retained as the simplest reproducible reference implementation,
+not presented as a distinct new algorithm or as an improvement over that baseline.
+
+Accordingly, the completed development screen does not justify launching the
+planned independent validation with both the ordinary Fresh baseline and a
+nominal "new method" that now has no distinct intervention. The next-stage
+experiment remains on hold until a genuinely distinct, testable mechanism is
+specified. This is a research GO/NO-GO conclusion, not a change to the frozen
+evaluation protocol.
+
+See [SIMPLIFICATION_ACCEPTANCE.md](SIMPLIFICATION_ACCEPTANCE.md) for the code
+changes, offline regression evidence, and the explicit stop decision.
