@@ -139,8 +139,8 @@ def inspect_candidate(task_id, category, response_by_trial, request_by_id, prepa
     common_action = next(iter(first_tools))
     common_arguments = next(iter(first_args))
     incumbent = pair["RETAIN"][0]["prepared"]["incumbent_suffix"]
-    if not incumbent or common_action != incumbent[0]:
-        return None, "common_archived_action_is_not_incumbent_first_action"
+    if not incumbent:
+        return None, "missing_incumbent_suffix"
     if pair["SWITCH"][0]["prepared"]["incumbent_suffix"] != incumbent:
         raise ValueError(f"Paired incumbent suffix mismatch: {task_id}")
     if any(pair[e][0]["prepared"]["changed_tool"] == common_action for e in ENVIRONMENTS):
@@ -148,7 +148,9 @@ def inspect_candidate(task_id, category, response_by_trial, request_by_id, prepa
     if not isinstance(common_arguments, str) or not common_arguments.strip():
         return None, "missing_common_action_arguments"
 
-    remaining_incumbent = list(incumbent[1:])
+    remaining_incumbent = (
+        list(incumbent[1:]) if common_action == incumbent[0] else list(incumbent)
+    )
     if not remaining_incumbent:
         return None, "common_action_would_finish_the_task"
 
@@ -387,13 +389,13 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
         frozen = json.loads(Path(frozen_manifest).read_text(encoding="utf-8"))
         if frozen.get("selected_task_ids") != selected_ids:
             raise ValueError("Deterministic eligible task selection differs from committed frozen manifest")
-        if frozen.get("selection_rule") != "First two eligible task IDs in lexicographic order per CostBench category after excluding the five tasks used in the preceding plan-handoff × state-ledger screen; eligibility requires the archived paired first action to be identical, incumbent-first, successful and nonterminal, and requires post-action incumbent status VALID in RETAIN and STALE in SWITCH.":
+        if frozen.get("selection_rule") != "First two eligible task IDs in lexicographic order per CostBench category after excluding the five tasks used in the preceding plan-handoff × state-ledger screen; eligibility requires the archived paired first action name and exact arguments to be identical, successful and nonterminal in both environments, and requires the remaining incumbent plan to be feasible and VALID in RETAIN but STALE in SWITCH after that common action.":
             raise ValueError("Frozen selection rule does not match the implemented rule")
 
     manifest = {
         "schema": "paired-50-plan-status-annotation-confirmation",
         "status": "offline_frozen_no_provider_calls",
-        "selection_rule": "First two eligible task IDs in lexicographic order per CostBench category after excluding the five tasks used in the preceding plan-handoff × state-ledger screen; eligibility requires the archived paired first action to be identical, incumbent-first, successful and nonterminal, and requires post-action incumbent status VALID in RETAIN and STALE in SWITCH.",
+        "selection_rule": "First two eligible task IDs in lexicographic order per CostBench category after excluding the five tasks used in the preceding plan-handoff × state-ledger screen; eligibility requires the archived paired first action name and exact arguments to be identical, successful and nonterminal in both environments, and requires the remaining incumbent plan to be feasible and VALID in RETAIN but STALE in SWITCH after that common action.",
         "source": {
             "upstream_costbench_revision": native.UPSTREAM_SHA,
             "requests_sha256": native.sha_bytes((DATA_DIR / "model_requests_100.jsonl").read_bytes()),
@@ -431,7 +433,7 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
         ],
         "interpretation_boundary": [
             "This is held out from the preceding plan-handoff × state-ledger intervention, not from every earlier CostBench diagnostic; all tasks belong to the existing 50-task cohort.",
-            "The selection is conditioned on the archived baseline having executed the same incumbent first action with the same arguments in both paired environments, so conclusions apply to this controlled post-action continuation cohort.",
+            "The selection is conditioned on the archived baseline having executed the same first action with the same arguments in both paired environments; the common action may be on or off the incumbent plan, and the remaining incumbent plan must remain feasible in both states.",
             "The graph planner supplies the same complete minimum-cost continuation to both arms. The annotated arm additionally receives an oracle-derived VALID or STALE status for the remaining incumbent plan; this is a privileged diagnostic intervention, not a deployable method.",
             "The independent statistical unit is the base task. Repetitions and RETAIN/SWITCH conditions are paired within task.",
         ],
