@@ -63,7 +63,13 @@ def make_prompt(prepared: dict, endpoint: str, menu: list[str] | None) -> str:
             "Call exactly one of those tools now, using valid current-state arguments. "
             "Do not provide a label-only response."
         )
-    return base + "\n\n[Diagnostic candidate menu]\n" + suffix
+    original_tail = (
+        "Make one tool call at a time. Do not merely state a decision; execute the task "
+        f"until the goal type {prepared['goal_type']} is reached, then provide the final answer."
+    )
+    if original_tail not in base:
+        raise ValueError("Cannot isolate original execution instruction")
+    return base.replace(original_tail, "") + "\\n\\n[Diagnostic candidate menu]\\n" + suffix
 
 
 def prepare(costbench_root: Path, data_dir: Path) -> dict:
