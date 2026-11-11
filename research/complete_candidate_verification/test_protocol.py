@@ -120,6 +120,8 @@ class CandidateGeneratorTests(unittest.IsolatedAsyncioTestCase):
             await gen.generate_revision(item,None,("second revision is forbidden",))
         self.assertIn("incumbent_remaining_plan",json.loads(seen[0][1]["content"]))
         self.assertNotIn("incumbent_remaining_plan",json.loads(seen[1][1]["content"]))
+        self.assertIn("minimum-value",seen[0][0]["content"])
+        self.assertIn("minimum-value",seen[1][0]["content"])
         self.assertEqual(gen.calls_used,3)
     async def test_revision_requires_feedback(self):
         async def fake(**kwargs): return {"plan":["Acquire_A","Finish_A"]}

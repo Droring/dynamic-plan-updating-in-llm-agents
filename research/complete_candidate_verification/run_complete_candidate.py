@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import os
 import sys
@@ -83,7 +84,9 @@ class CompleteCandidateRun:
                     "path": list(item.path) if item.path is not None else None,
                     "call_index": item.call_index,
                     "prompt_sha256": item.prompt_sha256,
+                    "prompt_messages": [dict(message) for message in item.prompt_messages],
                     "response_sha256": item.response_sha256,
+                    "raw_response": item.raw_response,
                     "provider_tokens": item.provider_tokens,
                     "elapsed_seconds": item.elapsed_seconds,
                     "error": item.error,
@@ -228,6 +231,7 @@ async def run_complete_candidate(
     max_argument_tokens: int = DEFAULT_MAX_TOKENS,
     candidate_strategy: str = "repair_plus_fresh",
     max_tool_steps: int = DEFAULT_MAX_TOOL_STEPS,
+    native_system_prompt: str | None = None,
 ) -> CompleteCandidateRun:
     """Generate two full candidates, select, commit, and execute the exact path."""
     if max_tool_steps <= 0:
@@ -255,12 +259,18 @@ async def run_complete_candidate(
 
     executor = CommittedPlanExecutor(policy_input, decision.selected_plan)
     state = set(policy_input.current_state_types)
+    controller_instruction = (
+        "The controller commits a complete plan before execution. Follow only the "
+        "committed next tool, do not choose another tool, and use identifiers found "
+        "in the original request or exact native observations."
+    )
+    system_content = (
+        native_system_prompt.strip() + "\n\n" + controller_instruction
+        if native_system_prompt and native_system_prompt.strip()
+        else "Reach the requested goal from the supplied checkpoint. " + controller_instruction
+    )
     messages: list[dict[str, Any]] = [
-        {"role": "system", "content": (
-            "Reach the requested goal from the supplied checkpoint. The controller "
-            "commits a complete plan before execution. Follow only the committed next "
-            "tool and use identifiers found in actual observations."
-        )},
+        {"role": "system", "content": system_content},
         {"role": "user", "content": json.dumps({
             "task": policy_input.task, "user_request": policy_input.user_request,
             "goal_type": policy_input.goal_type, "current_state_types": sorted(state),
@@ -297,6 +307,15 @@ async def run_complete_candidate(
     for step_index in range(len(decision.selected_plan)):
         expected_tool = executor.next_tool(state, policy_input.tool_interfaces)
         request = executor.build_argument_request(messages, state, policy_input.tool_interfaces)
+        response = None
+        tool_name = None
+        arguments_str = None
+        arguments = None
+        native_call_started = False
+        prompt_sha = hashlib.sha256(json.dumps(
+            request["messages"], ensure_ascii=False, sort_keys=True,
+            separators=(",", ":")).encode("utf-8")).hexdigest()
+        tokens_before = parameter_tokens
         try:
             parameter_calls += 1
             response = argument_completion(
@@ -305,9 +324,10 @@ async def run_complete_candidate(
             )
             if hasattr(response, "__await__"):
                 response = await response
-            tool_name, arguments_str, used_tokens = _argument_payload(response, expected_tool)
-            parameter_tokens += used_tokens
+            parameter_tokens += _response_usage(response)
+            tool_name, arguments_str, _ = _argument_payload(response, expected_tool)
             arguments = executor.validate_arguments(tool_name, arguments_str)
+            native_call_started = True
             native_result = native_execute(
                 tool_name=tool_name, arguments_str=arguments_str,
                 arguments=arguments,
@@ -321,6 +341,21 @@ async def run_complete_candidate(
             error = f"{type(exc).__name__}: {exc}"
             executor.invalidate("argument_or_native_execution_exception")
             status = "execution_error"
+            trace.append({
+                "step": step_index + 1,
+                "expected_tool": expected_tool,
+                "tool_name": tool_name,
+                "arguments": arguments,
+                "state_before": sorted(state),
+                "parameter_prompt_sha256": prompt_sha,
+                "parameter_prompt_messages": request["messages"],
+                "parameter_tool_schema": request["tools"],
+                "parameter_tool_choice": request["tool_choice"],
+                "parameter_tokens": parameter_tokens - tokens_before,
+                "native_call_started": native_call_started,
+                "native_outcome": "unknown" if native_call_started else "not_started",
+                "error": error,
+            })
             break
 
         state_before = sorted(state)
@@ -328,6 +363,11 @@ async def run_complete_candidate(
         trace.append({
             "step": step_index + 1, "tool_name": tool_name, "arguments": arguments,
             "state_before": state_before,
+            "parameter_prompt_sha256": prompt_sha,
+            "parameter_prompt_messages": request["messages"],
+            "parameter_tool_schema": request["tools"],
+            "parameter_tool_choice": request["tool_choice"],
+            "parameter_tokens": parameter_tokens - tokens_before,
             "success": native_result.success, "observation": native_result.observation,
             "output_type": native_result.output_type, "output_id": native_result.output_id,
             "raw_output_type": native_result.raw_output_type, "error": native_result.error,
@@ -500,11 +540,14 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
         return result
 
     planner, arguments = OfflinePlanner(), OfflineArguments()
+    native_system_prompt = native.make_official_system_prompt(
+        costbench["official_run"], prepared["task"])
     result = await run_complete_candidate(
         policy_input, candidate_completion=planner, argument_completion=arguments,
         native_execute=execute, native_tool_objects=prepared["tool_objects"],
         candidate_strategy=candidate_strategy,
         max_tool_steps=max_tool_steps,
+        native_system_prompt=native_system_prompt,
     )
     if planner.calls != 2:
         raise AssertionError(f"expected two planning calls, got {planner.calls}")

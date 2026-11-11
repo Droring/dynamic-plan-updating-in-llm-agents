@@ -92,6 +92,7 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
             candidate_completion=candidate_completion,
             argument_completion=argument_completion,
             native_execute=native_execute,
+            native_system_prompt="Official CostBench system instructions.",
         )
         self.assertEqual(result.status, "goal_reached")
         self.assertEqual(result.decision.action, "SWITCH")
@@ -107,6 +108,8 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(result.executor_record["finished"])
         self.assertEqual(result.trace[0]["state_before"], ["A", "Start"])
         self.assertEqual(result.trace[0]["state_after"], ["A", "B", "Start"])
+        self.assertIn("Official CostBench system instructions.", result.trace[0]["parameter_prompt_messages"][0]["content"])
+        self.assertTrue(result.to_record()["candidate_proposals"][0]["prompt_messages"])
 
     async def test_deepseek_adapters_build_expected_nonstreaming_requests(self):
         seen = []
@@ -148,6 +151,26 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.status, "execution_error")
         self.assertEqual(result.parameter_calls, 1)
         self.assertFalse(result.goal_reached)
+
+    async def test_malformed_argument_response_usage_and_prompt_are_logged(self):
+        policy = make_policy()
+        async def candidate_completion(**kwargs):
+            return {"choices": [{"message": {"content": json.dumps(
+                {"plan": ["Acquire_A", "Finish_A"]})}}]}
+        async def argument_completion(**kwargs):
+            return {"choices": [{"message": {"content": "not a tool call"}}],
+                    "usage": {"total_tokens": 13}}
+        def native_execute(**kwargs):
+            raise AssertionError("native execution must not start")
+        result = await run_complete_candidate(
+            policy, candidate_completion=candidate_completion,
+            argument_completion=argument_completion, native_execute=native_execute,
+        )
+        self.assertEqual(result.status, "execution_error")
+        self.assertEqual(result.parameter_tokens, 13)
+        self.assertEqual(len(result.trace), 1)
+        self.assertFalse(result.trace[0]["native_call_started"])
+        self.assertTrue(result.trace[0]["parameter_prompt_messages"])
 
     async def test_selected_plan_over_step_limit_stops_before_native_execution(self):
         policy = make_policy()

@@ -14,6 +14,7 @@ class CandidateProposal:
     path: tuple[str, ...] | None
     call_index: int
     prompt_sha256: str
+    prompt_messages: tuple[dict[str, Any], ...]
     response_sha256: str | None
     raw_response: str | None
     provider_tokens: int
@@ -42,14 +43,20 @@ class CandidateGenerator:
             "to the goal using only the currently exposed tool catalogue. Return exactly "
             'one JSON object: {"plan":["Exact_Tool_Name", ...]}. Do not return arguments, '
             "a first action only, explanations, labels, or alternatives. Do not invent tools. "
-            "The path must include every required dependency and reach the goal."
+            "The path must include every required dependency and reach the goal. "
+            "Among feasible complete paths, minimize the sum of the current per-tool "
+            "values shown in the tool descriptions. Do not assume a feasible incumbent "
+            "is still minimum-value after the environment changes."
         )
         if source == "repair":
-            system += (" Generate a local-repair candidate: preserve as much of the incumbent "
-                       "remaining plan as is feasible, but return a complete current path.")
+            system += (" Generate a local-repair candidate using the incumbent as a starting "
+                       "point. Preserve a segment only if it remains part of a minimum-value "
+                       "feasible complete path; replace it when it prevents a lower-value path. "
+                       "Do not retain a segment solely because it is in the incumbent.")
         elif source == "fresh":
-            system += (" Generate independently from the current state and request. The "
-                       "incumbent plan is intentionally not provided to this candidate.")
+            system += (" Generate independently from the current state and request, "
+                       "minimizing current total path value. The incumbent plan is intentionally "
+                       "not provided to this candidate.")
         elif source in {"revision", "fresh_revision"}:
             system += (" Revise the failed submitted candidate into one complete path. Use "
                        "only the concrete validation feedback below; do not assume hidden facts.")
@@ -124,7 +131,8 @@ class CandidateGenerator:
                 path = self._parse_path(raw)
             except Exception as exc:
                 error = "candidate_format_error:" + (str(exc) or type(exc).__name__)
-        proposal = CandidateProposal(source, path, call_index, prompt_sha, response_sha,
+        proposal = CandidateProposal(source, path, call_index, prompt_sha,
+            tuple(dict(message) for message in messages), response_sha,
             raw, tokens, round(time.perf_counter()-started, 7), error)
         self.proposals.append(proposal)
         return proposal
