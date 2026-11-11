@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import json
 import unittest
+from types import SimpleNamespace
 
 from .committed_plan_executor import CommittedPlanExecutor
 from .policy_input import build_policy_input
-from .run_complete_candidate import NativeExecutionResult, run_complete_candidate
+from .run_complete_candidate import (NativeExecutionResult, run_complete_candidate,
+    deepseek_candidate_completion, deepseek_argument_completion)
 from .test_protocol import tools
 
 
@@ -84,6 +86,50 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.parameter_tokens, 14)
         self.assertEqual(planner_calls, 2)
         self.assertEqual(parameter_calls, 2)
+        self.assertTrue(result.executor_record["finished"])
+        self.assertEqual(result.trace[0]["state_before"], ["Start"])
+        self.assertEqual(result.trace[0]["state_after"], ["B", "Start"])
+
+    async def test_deepseek_adapters_build_expected_nonstreaming_requests(self):
+        seen = []
+        class FakeCompletions:
+            async def create(self, **kwargs):
+                seen.append(kwargs)
+                return {"choices": [{"message": {"content": '{"plan":["A"]}'}}]}
+        client = SimpleNamespace(chat=SimpleNamespace(
+            completions=FakeCompletions()
+        ))
+        candidate = deepseek_candidate_completion(client, model="deepseek-flash")
+        await candidate(messages=[{"role": "user", "content": "plan"}],
+                        response_format={"type": "json_object"}, max_tokens=128)
+        argument = deepseek_argument_completion(client, model="deepseek-flash")
+        await argument(messages=[{"role": "user", "content": "args"}],
+                       tools=[{"type": "function", "function": {"name": "A"}}],
+                       tool_choice="required", max_tokens=64)
+        self.assertEqual(len(seen), 2)
+        self.assertEqual(seen[0]["model"], "deepseek-flash")
+        self.assertEqual(seen[0]["response_format"], {"type": "json_object"})
+        self.assertEqual(seen[0]["extra_body"], {"thinking": {"type": "disabled"}})
+        self.assertEqual(seen[1]["tool_choice"], "required")
+        self.assertFalse(seen[1]["parallel_tool_calls"])
+        self.assertEqual(len(seen[1]["tools"]), 1)
+
+    async def test_failed_argument_request_is_counted(self):
+        policy = make_policy()
+        async def candidate_completion(**kwargs):
+            return {"choices": [{"message": {"content": json.dumps(
+                {"plan": ["Acquire_A", "Finish_A"]})}}]}
+        async def argument_completion(**kwargs):
+            raise RuntimeError("offline argument provider failure")
+        def native_execute(**kwargs):
+            raise AssertionError("native execution must not start")
+        result = await run_complete_candidate(
+            policy, candidate_completion=candidate_completion,
+            argument_completion=argument_completion, native_execute=native_execute,
+        )
+        self.assertEqual(result.status, "execution_error")
+        self.assertEqual(result.parameter_calls, 1)
+        self.assertFalse(result.goal_reached)
 
     async def test_native_failure_invalidates_and_does_not_advance(self):
         policy = make_policy()
