@@ -34,6 +34,24 @@ class PlanHandoffRunnerTests(unittest.TestCase):
             self.assertEqual([row["trial_id"] for row in rows],["trial-1","trial-2"])
             self.assertEqual(sum(row["provider_tokens"] for row in rows),30)
 
+    def test_summary_counts_unknown_provider_outcomes(self):
+        rows=[]
+        for q in TASKS:
+            for env in ENVIRONMENTS:
+                for arm in ARMS:
+                    for rep in (1,2):
+                        rows.append({
+                            "query_id":q,"environment":env,"arm":arm,
+                            "repetition":rep,"goal_reached":False,
+                            "continuation_regret":None,"full_path_regret":None,
+                            "provider_tokens":0,"model_calls":0,
+                            "halt_reason":"api_error:timeout",
+                            "provider_outcome_unknown":False,
+                        })
+        rows[0]["provider_outcome_unknown"]=True
+        summary=summarize(rows,80,SimpleNamespace(charged=0,reserved=0,cap=2443584))
+        self.assertEqual(summary["unknown_provider_outcomes"],1)
+
     def test_json_checkpoint_is_atomically_written(self):
         import json
         import tempfile
