@@ -99,10 +99,10 @@ def validate_branch_records(actions, branch_outputs):
         for field in required_equal:
             if len({r[field] for r in group}) != 1:
                 raise ValueError(f"Four-arm mismatch for {key}: {field}")
-        if group[0]["tool_result"] != action["tool_result"]:
-            raise ValueError(f"Native result differs from archived source for {key}")
-        if group[0]["arguments"] != action["arguments"]:
-            raise ValueError(f"Exact native arguments differ from archived source for {key}")
+        if not all(r["tool_result"] == action["tool_result"] for r in group):
+            raise ValueError(f"Native result differs from archived source in at least one branch for {key}")
+        if not all(r["arguments"] == action["arguments"] for r in group):
+            raise ValueError(f"Exact native arguments differ from archived source in at least one branch for {key}")
         if not all(r["native_success"] for r in group):
             raise ValueError(f"Native first action failed in one or more restored branches: {key}")
         summaries.append({
