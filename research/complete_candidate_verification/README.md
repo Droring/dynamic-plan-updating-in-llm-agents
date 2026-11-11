@@ -32,6 +32,7 @@ recorded and included in total usage.
 - update_controller.py: candidate orchestration and deterministic choice.
 - committed_plan_executor.py: state-bound plan certificate, exact tool order and cursor.
 - costbench_adapter.py: adapter around the pinned native CostBench execution helper.
+- run_complete_candidate.py: full candidate-generation, strict-selection, argument-generation, and native-execution loop; includes DeepSeek-compatible call adapters and a provider-free native smoke path.
 - scoring_logging.py: post-hoc decision/execution scoring and durable records.
 - dry_run.py: provider-free end-to-end dry run.
 - test_protocol.py: offline unit and protocol tests.
@@ -41,6 +42,8 @@ recorded and included in total usage.
 From the repository root:
 
     python -m unittest research.complete_candidate_verification.test_protocol -v
+    python -m unittest research.complete_candidate_verification.test_runner -v
+    python -m unittest research.complete_candidate_verification.test_costbench_native -v
     python -m research.complete_candidate_verification.dry_run
 
 Both commands must complete without a provider client, API key, or model call.
@@ -51,3 +54,17 @@ The policy input type has no condition, oracle, regret, reference-path, or answe
 key fields. The evaluator may consume condition labels and the official optimum
 only after execution. The checker receives only the submitted path and public
 tool interfaces; it never imports a graph-search routine or a ground-truth solver.
+
+## Full native CostBench smoke test
+
+With the pinned CostBench checkout and generated search database available:
+
+    python -m research.complete_candidate_verification.run_complete_candidate \
+      --costbench-root ../CostBench \
+      --query-id Query00178 \
+      --condition RETAIN
+
+This runs the full incumbent path through the official native tool helper using
+local deterministic planner/argument responses. It makes zero provider calls.
+The DeepSeek adapters are exposed for the subsequent development screen, but
+this first implementation stage does not launch paid model experiments.

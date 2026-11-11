@@ -62,6 +62,8 @@ jobs:
           test -s env/data/static/search_spaces/test_search_space.json
       - name: Run complete-candidate-verification offline protocol tests
         run: python -m unittest research.complete_candidate_verification.test_protocol -v
+      - name: Run complete-candidate replanning runner tests
+        run: python -m unittest research.complete_candidate_verification.test_runner -v
       - name: Run one pinned native CostBench committed-path execution
         env:
           COSTBENCH_ROOT: ../CostBench
