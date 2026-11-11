@@ -62,7 +62,9 @@ class CandidateGenerator:
 
     @staticmethod
     def _extract_text_and_tokens(response: Any) -> tuple[str, int]:
-        tokens = int(getattr(getattr(response, "usage", None), "total_tokens", 0) or 0)
+        usage = response.get("usage") if isinstance(response, dict) else getattr(response, "usage", None)
+        token_value = usage.get("total_tokens", 0) if isinstance(usage, dict) else getattr(usage, "total_tokens", 0)
+        tokens = int(token_value or 0)
         if isinstance(response, str):
             return response, tokens
         if isinstance(response, dict):
