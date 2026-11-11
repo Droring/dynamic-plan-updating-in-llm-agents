@@ -16,6 +16,7 @@ class UpdateDecision:
     proposals: tuple[CandidateProposal, ...]
     planning_calls: int
     provider_tokens: int
+    candidate_strategy: str
 
 def _check_proposals(policy_input: PolicyInput,
                      proposals: Sequence[CandidateProposal]) -> tuple[PathCheck, ...]:
@@ -30,23 +31,31 @@ def _check_proposals(policy_input: PolicyInput,
 
 def _decision(selection: PlanSelection, incumbent: PathCheck,
               checks: tuple[PathCheck, ...], proposals: Sequence[CandidateProposal],
-              generator: CandidateGenerator) -> UpdateDecision:
+              generator: CandidateGenerator,
+              candidate_strategy: str) -> UpdateDecision:
     return UpdateDecision(selection.action, selection.selected_plan, selection.reason,
         incumbent, checks, tuple(proposals), generator.calls_used,
-        sum(x.provider_tokens for x in proposals))
+        sum(x.provider_tokens for x in proposals), candidate_strategy)
 
 async def run_update(policy_input: PolicyInput,
-                     completion: Callable[..., Any]) -> UpdateDecision:
-    """Two initial candidates; one feedback revision only for concrete invalidity."""
+                     completion: Callable[..., Any],
+                     candidate_strategy: str = "repair_plus_fresh") -> UpdateDecision:
+    """Compare two predeclared candidate-generation strategies under one call budget."""
+    if candidate_strategy not in {"repair_plus_fresh", "fresh_plus_fresh"}:
+        raise ValueError("unknown candidate strategy")
     generator = CandidateGenerator(completion, max_calls=3)
     incumbent = check_policy_path(policy_input, policy_input.old_remaining_plan)
-    proposals = [await generator.generate_repair(policy_input),
-                 await generator.generate_fresh(policy_input)]
+    if candidate_strategy == "repair_plus_fresh":
+        proposals = [await generator.generate_repair(policy_input),
+                     await generator.generate_fresh(policy_input)]
+    else:
+        proposals = [await generator.generate_fresh(policy_input),
+                     await generator.generate_fresh(policy_input)]
     checks = _check_proposals(policy_input, proposals)
     paths = [p.path for p in proposals if p.path is not None]
     selection = select_strictly_better_plan(policy_input, paths)
     if selection.action == "SWITCH":
-        return _decision(selection, incumbent, checks, proposals, generator)
+        return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)
 
     # A valid tie/loss is not a reason to spend a third call.
     invalid_indices = [i for i, check in enumerate(checks)
@@ -60,9 +69,10 @@ async def run_update(policy_input: PolicyInput,
         if not feedback:
             feedback = (proposals[index].error or "candidate_format_error",)
         revision = await generator.generate_revision(
-            policy_input, proposals[index].path, tuple(feedback))
+            policy_input, proposals[index].path, tuple(feedback),
+            include_incumbent=(candidate_strategy == "repair_plus_fresh"))
         proposals.append(revision)
         checks = _check_proposals(policy_input, proposals)
         paths = [p.path for p in proposals if p.path is not None]
         selection = select_strictly_better_plan(policy_input, paths)
-    return _decision(selection, incumbent, checks, proposals, generator)
+    return _decision(selection, incumbent, checks, proposals, generator, candidate_strategy)

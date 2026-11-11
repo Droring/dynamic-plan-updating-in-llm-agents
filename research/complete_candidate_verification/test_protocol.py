@@ -55,6 +55,27 @@ class PolicyInputTests(unittest.TestCase):
             old_remaining_plan=["Finish_A"],current_tool_interfaces=tools(),checkpoint_id="x")
         self.assertEqual(item.current_state_types,("A","Start"))
 
+    def test_exact_native_observation_history_is_exposed_and_whitelisted(self):
+        history=[{"tool_name":"Acquire_A","arguments":{"Start":"OBS-START"},
+                  "observation":"Observed A as OBS-A","output_type":"A","output_id":"OBS-A"}]
+        item=build_policy_input(task="dining",user_request="x",goal_type="Goal",
+            observed_state_types=["Start","A"],old_remaining_plan=["Finish_A"],
+            current_tool_interfaces=tools(),checkpoint_id="x",observation_history=history)
+        self.assertEqual(item.prompt_payload(True)["observation_history"],history)
+        bad=[{**history[0],"condition":"SWITCH"}]
+        with self.assertRaisesRegex(ValueError,"evaluation-only"):
+            build_policy_input(task="dining",user_request="x",goal_type="Goal",
+                observed_state_types=["Start","A"],old_remaining_plan=["Finish_A"],
+                current_tool_interfaces=tools(),checkpoint_id="x",observation_history=bad)
+
+    def test_observation_history_must_match_observed_state_and_tool_contract(self):
+        history=[{"tool_name":"Acquire_A","arguments":{"Start":"OBS-START"},
+                  "observation":"Observed A as OBS-A","output_type":"Wrong","output_id":"OBS-A"}]
+        with self.assertRaisesRegex(ValueError,"output type disagrees"):
+            build_policy_input(task="dining",user_request="x",goal_type="Goal",
+                observed_state_types=["Start","A"],old_remaining_plan=["Finish_A"],
+                current_tool_interfaces=tools(),checkpoint_id="x",observation_history=history)
+
 class PathCheckerTests(unittest.TestCase):
     def test_complete_path(self):
         r=check_submitted_path(["Start"],"Goal",["Acquire_A","Finish_A"],tools())
@@ -81,6 +102,12 @@ class PathCheckerTests(unittest.TestCase):
         item=policy(old=["Missing_Tool"])
         self.assertEqual(select_strictly_better_plan(item,[]).action,"STOP")
 
+    def test_sub_epsilon_improvement_is_treated_as_tie(self):
+        near_tie_tools=tools()+[interface("Finish_A_Near_Tie",["A"],"Goal",3.9999995)]
+        item=policy(interfaces=near_tie_tools)
+        selection=select_strictly_better_plan(item,[["Acquire_A","Finish_A_Near_Tie"]])
+        self.assertEqual(selection.action,"RETAIN")
+
 class CandidateGeneratorTests(unittest.IsolatedAsyncioTestCase):
     async def test_two_sources_and_budget(self):
         seen=[]
@@ -99,6 +126,16 @@ class CandidateGeneratorTests(unittest.IsolatedAsyncioTestCase):
         with self.assertRaisesRegex(ValueError,"concrete"):
             await CandidateGenerator(fake).generate_revision(policy(),None,())
 
+    async def test_fresh_revision_does_not_reintroduce_incumbent(self):
+        seen=[]
+        async def fake(**kwargs):
+            seen.append(kwargs["messages"])
+            return {"plan":["Acquire_B","Finish_B"]}
+        await CandidateGenerator(fake).generate_revision(
+            policy(),("Missing_Tool",),("tool_not_available",),include_incumbent=False)
+        payload=json.loads(seen[0][1]["content"])
+        self.assertNotIn("incumbent_remaining_plan",payload)
+        self.assertIn("failed_candidate",payload)
 class ControllerTests(unittest.IsolatedAsyncioTestCase):
     async def test_strict_better_candidate_switches(self):
         responses=[{"plan":["Acquire_A","Finish_A"]},{"plan":["Acquire_B","Finish_B"]}]
@@ -123,6 +160,19 @@ class ControllerTests(unittest.IsolatedAsyncioTestCase):
         async def fake(**kwargs): return {"plan":["Acquire_A","Finish_A"]}
         d=await run_update(policy(),fake)
         self.assertEqual(d.action,"RETAIN"); self.assertEqual(d.planning_calls,2)
+
+    async def test_fresh_sampling_baseline_uses_two_independent_prompts(self):
+        seen=[]
+        async def fake(**kwargs):
+            seen.append(kwargs["messages"])
+            return {"plan":["Acquire_A","Finish_A"]}
+        d=await run_update(policy(),fake,candidate_strategy="fresh_plus_fresh")
+        self.assertEqual(d.action,"RETAIN")
+        self.assertEqual(d.candidate_strategy,"fresh_plus_fresh")
+        self.assertEqual(len(seen),2)
+        for messages in seen:
+            payload=json.loads(messages[1]["content"])
+            self.assertNotIn("incumbent_remaining_plan",payload)
 
 class ExecutorTests(unittest.TestCase):
     def test_exact_order_and_cursor(self):

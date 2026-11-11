@@ -114,6 +114,7 @@ class PolicyInput:
     old_remaining_plan: tuple[str, ...]
     tool_interfaces: tuple[Mapping[str, Any], ...]
     checkpoint_id: str
+    observation_history: tuple[Mapping[str, Any], ...] = ()
 
     @property
     def tool_catalog_sha256(self) -> str:
@@ -127,7 +128,8 @@ class PolicyInput:
         payload = {"task": self.task, "user_request": self.user_request,
                    "goal_type": self.goal_type,
                    "current_state_types": list(self.current_state_types),
-                   "current_tools": list(self.tool_interfaces)}
+                   "current_tools": list(self.tool_interfaces),
+                   "observation_history": [dict(item) for item in self.observation_history]}
         if include_incumbent:
             payload["incumbent_remaining_plan"] = list(self.old_remaining_plan)
         reject_evaluation_fields(payload)
@@ -138,6 +140,7 @@ def build_policy_input(*, task: str, user_request: str, goal_type: str,
                        old_remaining_plan: Sequence[str],
                        current_tool_interfaces: Sequence[Mapping[str, Any]],
                        checkpoint_id: str,
+                       observation_history: Sequence[Mapping[str, Any]] = (),
                        source_record: Mapping[str, Any] | None = None) -> PolicyInput:
     if source_record is not None:
         reject_evaluation_fields(source_record, "source_record")
@@ -154,9 +157,39 @@ def build_policy_input(*, task: str, user_request: str, goal_type: str,
     if not old or any(not isinstance(x, str) or not x for x in old):
         raise ValueError("a complete non-empty incumbent remaining plan is required")
     interfaces = tuple(json.loads(canonical_json(x)) for x in current_tool_interfaces)
-    parse_public_tool_interfaces(interfaces)
+    contracts = parse_public_tool_interfaces(interfaces)
+    history: list[dict[str, Any]] = []
+    for index, raw_item in enumerate(observation_history):
+        if not isinstance(raw_item, Mapping):
+            raise ValueError(f"observation history entry {index} must be an object")
+        reject_evaluation_fields(raw_item, f"observation_history[{index}]")
+        required_keys = {"tool_name", "arguments", "observation", "output_type", "output_id"}
+        if set(raw_item) != required_keys:
+            raise ValueError(f"observation history entry {index} has an invalid schema")
+        name = raw_item["tool_name"]
+        if not isinstance(name, str) or name not in contracts:
+            raise ValueError(f"observation history references an unavailable tool at {index}")
+        contract = contracts[name]
+        arguments = raw_item["arguments"]
+        if not isinstance(arguments, Mapping):
+            raise ValueError(f"observation history arguments must be an object at {index}")
+        properties = contract.interface["function"]["parameters"]["properties"]
+        required_inputs = set(contract.required_inputs)
+        if not required_inputs.issubset(arguments) or set(arguments) - set(properties):
+            raise ValueError(f"observation history arguments violate the public schema at {index}")
+        if any(not isinstance(value, str) or not value for value in arguments.values()):
+            raise ValueError(f"observation history arguments must be non-empty strings at {index}")
+        if raw_item["output_type"] != contract.output_type:
+            raise ValueError(f"observation history output type disagrees with the tool contract at {index}")
+        if raw_item["output_type"] not in state:
+            raise ValueError(f"observation history output type is absent from observed state at {index}")
+        if not isinstance(raw_item["observation"], str) or not raw_item["observation"].strip():
+            raise ValueError(f"observation history must contain the exact native observation at {index}")
+        if not isinstance(raw_item["output_id"], str) or not raw_item["output_id"].strip():
+            raise ValueError(f"observation history must contain the native output identifier at {index}")
+        history.append(json.loads(canonical_json(raw_item)))
     return PolicyInput(task.strip(), user_request.strip(), goal_type.strip(),
-                       state, old, interfaces, checkpoint_id)
+                       state, old, interfaces, checkpoint_id, tuple(history))
 
 def build_policy_input_from_trace(*, task: str, user_request: str, goal_type: str,
                                   initial_state_types: Iterable[str],

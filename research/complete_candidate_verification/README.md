@@ -6,9 +6,15 @@ Historical experiment scripts are not modified.
 ## Frozen method
 
 1. Build a policy input only from the task request, goal, observed typed state,
-   actual incumbent remaining plan, and currently exposed tool interfaces.
-2. Generate one local-repair candidate while showing the incumbent.
-3. Generate one independent full-replanning candidate without showing the incumbent.
+   exact successful native tool observations, actual incumbent remaining plan,
+   and currently exposed tool interfaces. Historical observations are replayed
+   into both planning and argument-generation contexts; evaluation labels and
+   oracle fields are rejected recursively.
+2. Proposed strategy: generate one local-repair candidate while showing the incumbent.
+3. Proposed strategy: generate one independent full-replanning candidate without showing the incumbent.
+   Matched baseline: generate two independent full-replanning candidates, without
+   showing the incumbent in either prompt. Both strategies share the same call
+   budget, path checker, strict selection, and committed-plan executor.
 4. Validate each submitted complete path deterministically. The checker does not
    search, expand, or complete a candidate.
 5. Replace a feasible incumbent only when a submitted feasible complete path has
@@ -68,6 +74,8 @@ With the pinned CostBench checkout and generated search database available:
 
 By default, the command selects a frozen RETAIN checkpoint whose remaining plan
 contains at least two tools. Pass --query-id to select one specific checkpoint.
+Use --candidate-strategy fresh_plus_fresh to run the matched ordinary-sampling
+baseline with the same provider-free native smoke harness.
 
 This runs the full incumbent path through the official native tool helper using
 local deterministic planner/argument responses. It makes zero provider calls.

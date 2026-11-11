@@ -11,27 +11,41 @@ from .run_complete_candidate import (NativeExecutionResult, run_complete_candida
 from .test_protocol import tools
 
 
-def make_policy():
+def make_policy(with_history=False):
+    history = ()
+    state = ["Start"]
+    old_plan = ["Acquire_A", "Finish_A"]
+    if with_history:
+        state = ["Start", "A"]
+        old_plan = ["Finish_A"]
+        history = ({
+            "tool_name": "Acquire_A",
+            "arguments": {"Start": "OBS-START"},
+            "observation": "Observed A as OBS-A",
+            "output_type": "A",
+            "output_id": "OBS-A",
+        },)
     return build_policy_input(
         task="dining",
         user_request="Complete the requested task.",
         goal_type="Goal",
-        observed_state_types=["Start"],
-        old_remaining_plan=["Acquire_A", "Finish_A"],
+        observed_state_types=state,
+        old_remaining_plan=old_plan,
         current_tool_interfaces=tools(),
         checkpoint_id="runner-checkpoint",
+        observation_history=history,
     )
 
 
 class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
     async def test_full_candidate_switch_and_native_execution(self):
-        policy = make_policy()
+        policy = make_policy(with_history=True)
         plans = [
             {"plan": ["Acquire_A", "Finish_A"]},
             {"plan": ["Acquire_B", "Finish_B"]},
         ]
         planner_calls = 0
-        observed_ids = {"Start": "OBS-START"}
+        observed_ids = {"Start": "OBS-START", "A": "OBS-A"}
         native_outputs = {"Acquire_A": "A", "Finish_A": "Goal",
                           "Acquire_B": "B", "Finish_B": "Goal"}
 
@@ -49,6 +63,9 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
             nonlocal parameter_calls
             parameter_calls += 1
             self.assertEqual(len(tools), 1)
+            self.assertTrue(any(m.get("role") == "tool" and m.get("content") == "Observed A as OBS-A"
+                                for m in messages))
+            self.assertTrue(any("OBS-A" in json.dumps(m) for m in messages))
             name = tools[0]["function"]["name"]
             required = tools[0]["function"]["parameters"]["required"]
             arguments = {key: observed_ids[key] for key in required}
@@ -78,6 +95,7 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(result.status, "goal_reached")
         self.assertEqual(result.decision.action, "SWITCH")
+        self.assertEqual(result.decision.candidate_strategy, "repair_plus_fresh")
         self.assertEqual(result.executed_path, ("Acquire_B", "Finish_B"))
         self.assertTrue(result.goal_reached)
         self.assertEqual(result.planning_calls, 2)
@@ -87,8 +105,8 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(planner_calls, 2)
         self.assertEqual(parameter_calls, 2)
         self.assertTrue(result.executor_record["finished"])
-        self.assertEqual(result.trace[0]["state_before"], ["Start"])
-        self.assertEqual(result.trace[0]["state_after"], ["B", "Start"])
+        self.assertEqual(result.trace[0]["state_before"], ["A", "Start"])
+        self.assertEqual(result.trace[0]["state_after"], ["A", "B", "Start"])
 
     async def test_deepseek_adapters_build_expected_nonstreaming_requests(self):
         seen = []

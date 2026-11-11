@@ -58,6 +58,7 @@ class CompleteCandidateRun:
         return {
             "status": self.status,
             "decision": self.decision.action,
+            "candidate_strategy": self.decision.candidate_strategy,
             "decision_reason": self.decision.reason,
             "selected_plan": list(self.decision.selected_plan or ()),
             "incumbent_plan": list(self.decision.incumbent_check.path),
@@ -224,10 +225,11 @@ async def run_complete_candidate(
     native_execute: Callable[..., NativeExecutionResult],
     native_tool_objects: Mapping[str, Any] | None = None,
     max_argument_tokens: int = DEFAULT_MAX_TOKENS,
+    candidate_strategy: str = "repair_plus_fresh",
 ) -> CompleteCandidateRun:
     """Generate two full candidates, select, commit, and execute the exact path."""
     decision_start = time.perf_counter()
-    decision = await run_update(policy_input, candidate_completion)
+    decision = await run_update(policy_input, candidate_completion, candidate_strategy)
     decision_latency = time.perf_counter() - decision_start
     planning_tokens = sum(item.provider_tokens for item in decision.proposals)
 
@@ -250,8 +252,27 @@ async def run_complete_candidate(
             "task": policy_input.task, "user_request": policy_input.user_request,
             "goal_type": policy_input.goal_type, "current_state_types": sorted(state),
             "checkpoint_id": policy_input.checkpoint_id,
+            "instruction": "Continue from this checkpoint. Use only identifiers and values present in the original request or native tool observations.",
         }, ensure_ascii=False, sort_keys=True)},
     ]
+    for history_index, item in enumerate(policy_input.observation_history, start=1):
+        call_id = f"checkpoint_tool_call_{history_index}"
+        messages.append({
+            "role": "assistant", "content": None,
+            "tool_calls": [{"id": call_id, "type": "function",
+                "function": {"name": item["tool_name"],
+                             "arguments": json.dumps(item["arguments"], ensure_ascii=False, sort_keys=True)}}],
+        })
+        messages.append({
+            "role": "tool", "tool_call_id": call_id, "name": item["tool_name"],
+            "content": item["observation"],
+        })
+        messages.append({
+            "role": "user",
+            "content": json.dumps({"confirmed_native_output": {
+                "tool_name": item["tool_name"], "output_type": item["output_type"],
+                "output_id": item["output_id"]}}, ensure_ascii=False, sort_keys=True),
+        })
     executed: list[str] = []
     trace: list[Mapping[str, Any]] = []
     parameter_calls = 0
@@ -308,6 +329,13 @@ async def run_complete_candidate(
             "role": "tool", "tool_call_id": call_id, "name": tool_name,
             "content": native_result.observation,
         })
+        if native_result.success:
+            messages.append({
+                "role": "user",
+                "content": json.dumps({"confirmed_native_output": {
+                    "tool_name": tool_name, "output_type": native_result.output_type,
+                    "output_id": native_result.output_id}}, ensure_ascii=False, sort_keys=True),
+            })
 
         if not native_result.success:
             trace[-1] = {**trace[-1], "state_after": sorted(state)}
@@ -357,21 +385,39 @@ async def run_complete_candidate(
     )
 
 
-def make_policy_input_from_prepared(prepared: Mapping[str, Any]) -> PolicyInput:
-    """Select policy-allowed fields only; never pass the evaluator's condition/oracle."""
+def make_policy_input_from_prepared(
+    prepared: Mapping[str, Any],
+    observation_history: tuple[Mapping[str, Any], ...] = (),
+) -> PolicyInput:
+    """Select policy-allowed fields and genuine native observations only."""
     return build_policy_input(
         task=prepared["task"], user_request=prepared["user_request"],
         goal_type=prepared["goal_type"], observed_state_types=prepared["state"],
         old_remaining_plan=prepared["incumbent_suffix"],
         current_tool_interfaces=prepared["tool_interfaces"],
         checkpoint_id=prepared["checkpoint_sha256"],
+        observation_history=observation_history,
     )
 
 
 async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[str, Any],
-                                   native: Any, costbench: Mapping[str, Any]) -> CompleteCandidateRun:
+                                   native: Any, costbench: Mapping[str, Any],
+                                   candidate_strategy: str = "repair_plus_fresh") -> CompleteCandidateRun:
     """Execute a complete native trajectory using deterministic mocks and zero API calls."""
-    policy_input = make_policy_input_from_prepared(prepared)
+    history: list[Mapping[str, Any]] = []
+    if prepared.get("prefix_name"):
+        prefix_tool = prepared["tool_objects"][prepared["prefix_name"]]
+        prefix_arguments = native.build_prefix_arguments(prefix_tool, query, prepared["task"])
+        if not prepared.get("prefix_output_id"):
+            raise ValueError("the completed prefix has no native output identifier")
+        history.append({
+            "tool_name": prepared["prefix_name"],
+            "arguments": prefix_arguments,
+            "observation": prepared["prefix_observation"],
+            "output_type": prefix_tool.output_type,
+            "output_id": str(prepared["prefix_output_id"]),
+        })
+    policy_input = make_policy_input_from_prepared(prepared, tuple(history))
     incumbent = list(policy_input.old_remaining_plan)
 
     class OfflinePlanner:
@@ -403,10 +449,19 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
             function = tools[0]["function"]
             name = function["name"]
             required = function["parameters"]["required"]
-            missing = [item for item in required if item not in observed_ids]
+            visible_ids = dict(observed_ids)
+            for message in messages:
+                if message.get("role") == "user":
+                    try:
+                        metadata = json.loads(message.get("content") or "{}").get("confirmed_native_output")
+                    except (TypeError, json.JSONDecodeError):
+                        metadata = None
+                    if metadata:
+                        visible_ids[metadata["output_type"]] = metadata["output_id"]
+            missing = [item for item in required if item not in visible_ids]
             if missing:
-                raise ValueError(f"no observed identifiers for {name}: {missing}")
-            arguments = {item: observed_ids[item] for item in required}
+                raise ValueError(f"no observed identifiers in the prompt for {name}: {missing}")
+            arguments = {item: visible_ids[item] for item in required}
             return {"choices": [{"message": {"tool_calls": [{
                 "id": f"offline-{self.calls}",
                 "function": {"name": name, "arguments": json.dumps(arguments)},
@@ -427,6 +482,7 @@ async def run_native_offline_smoke(prepared: Mapping[str, Any], query: Mapping[s
     result = await run_complete_candidate(
         policy_input, candidate_completion=planner, argument_completion=arguments,
         native_execute=execute, native_tool_objects=prepared["tool_objects"],
+        candidate_strategy=candidate_strategy,
     )
     if planner.calls != 2:
         raise AssertionError(f"expected two planning calls, got {planner.calls}")
@@ -473,17 +529,22 @@ def main() -> int:
     parser.add_argument("--query-id", default=None,
                         help="Optional fixed query ID; by default select a multi-step RETAIN checkpoint.")
     parser.add_argument("--condition", choices=("RETAIN", "SWITCH"), default="RETAIN")
+    parser.add_argument("--candidate-strategy",
+                        choices=("repair_plus_fresh", "fresh_plus_fresh"),
+                        default="repair_plus_fresh")
     parser.add_argument("--out", type=Path, default=Path("outputs/complete_candidate_offline_smoke"))
     args = parser.parse_args()
     minimum_plan_length = 2 if args.query_id is None else 1
     native, costbench, prepared, query = load_native_trial(
         args.costbench_root, args.query_id, args.condition,
         minimum_plan_length=minimum_plan_length)
-    result = asyncio.run(run_native_offline_smoke(prepared, query, native, costbench))
+    result = asyncio.run(run_native_offline_smoke(
+        prepared, query, native, costbench, candidate_strategy=args.candidate_strategy))
     record = result.to_record()
     record.update({
         "query_id": prepared["query_id"],
         "condition_for_posthoc_audit_only": args.condition,
+        "candidate_strategy": args.candidate_strategy,
         "provider_api_calls": 0,
         "upstream_costbench_revision": costbench["revision"],
     })

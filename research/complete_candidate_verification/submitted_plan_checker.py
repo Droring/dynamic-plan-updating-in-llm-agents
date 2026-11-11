@@ -5,7 +5,7 @@ import math
 from typing import Any, Iterable, Mapping, Sequence
 from .policy_input import PolicyInput, parse_public_tool_interfaces
 
-EPSILON = 1e-9
+EPSILON = 1e-6
 
 @dataclass(frozen=True)
 class PathCheck:

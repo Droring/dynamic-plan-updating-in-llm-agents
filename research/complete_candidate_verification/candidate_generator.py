@@ -50,9 +50,11 @@ class CandidateGenerator:
         elif source == "fresh":
             system += (" Generate independently from the current state and request. The "
                        "incumbent plan is intentionally not provided to this candidate.")
-        elif source == "revision":
+        elif source in {"revision", "fresh_revision"}:
             system += (" Revise the failed submitted candidate into one complete path. Use "
                        "only the concrete validation feedback below; do not assume hidden facts.")
+            if source == "fresh_revision":
+                system += " Generate independently without consulting the incumbent plan."
             payload["failed_candidate"] = list(failed_path or ())
             payload["validation_feedback"] = list(feedback)
         else:
@@ -135,8 +137,10 @@ class CandidateGenerator:
 
     async def generate_revision(self, policy_input: PolicyInput,
                                 failed_path: tuple[str, ...] | None,
-                                feedback: tuple[str, ...]) -> CandidateProposal:
+                                feedback: tuple[str, ...],
+                                include_incumbent: bool = True) -> CandidateProposal:
         if not feedback:
             raise ValueError("revision requires concrete validation feedback")
-        return await self._generate(policy_input, "revision",
+        source = "revision" if include_incumbent else "fresh_revision"
+        return await self._generate(policy_input, source,
                                     feedback=feedback, failed_path=failed_path)
