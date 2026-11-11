@@ -1,7 +1,7 @@
 {
   "description": "SHA-256 of every tracked release file, excluding release manifest snapshots; hashes are computed over raw file bytes.",
   "algorithm": "SHA-256",
-  "file_count": 350,
+  "file_count": 351,
   "sha256": {
     ".github/workflows/balanced-replanning-pilot.yml": "4fa96b74eac0704b3708b05a6d6e52a8b760741c480a2d668f08440f6df73c00",
     ".github/workflows/bounded-verifier-confirmation.yml": "21fa387ba4e14b1a2fce94f281969ab6259dd6ee57da15acb2fbab783b9188e1",
@@ -107,6 +107,7 @@
     "experiments/paired_50/native_execution/test_mechanism_strata.py": "1f934e2f42a6f1e6c4b3248f51316d6e5d34130c429645a2f8e7be0c82e45182",
     "experiments/paired_50/native_execution/test_path_value_audit.py": "917e2d1b0e5189ac1cffe514bdeae72c21b2a25ea1b5fb38ee37038362e67b94",
     "experiments/paired_50/native_execution/test_preflight_common_action_restoration.py": "f34567d0e1bf5caad59f8876c6bbce2d666fb63812c95ab1db187f0b5e1a5125",
+    "experiments/paired_50/native_execution/test_prepare_plan_handoff_experiment.py": "85c649af5c3b480b11e90beeb274c35dba6d04dfc44739591bbc1f6e30d5b4de",
     "experiments/paired_50/native_execution/test_protocol.py": "20f11c36f17816cefadedb5805a816b8b702ffc5b9eab7f95d60bdd0617ef005",
     "experiments/paired_50/provenance/source_records/README.md": "37229e7bc99ede5953892aa5f364349f3325909ffbc98b24141af79df2e57539",
     "experiments/paired_50/provenance/source_records/source_archive/README.md": "490ea98cc3cc9c75635f4e2ede650ab6dc3b656b9ed796b2f40c680a21983548",
