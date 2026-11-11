@@ -1,0 +1,631 @@
+{
+  "schema": "paired-50-plan-status-annotation-confirmation",
+  "status": "offline_frozen_no_provider_calls",
+  "selection_rule": "First two eligible task IDs in lexicographic order per CostBench category after excluding all prior mechanism cohorts; eligibility requires a valid paired frozen checkpoint, a feasible incumbent suffix, and an independently reconstructed native graph optimum that confirms VALID in RETAIN and STALE in SWITCH.",
+  "source": {
+    "upstream_costbench_revision": "6424069f3f773ade076bcedbed302ed47cfb1837",
+    "requests_sha256": "a3f368ee12b7edc6fdea1fa6da90779a93c3e8c5b1d57309876784268d56c9e7",
+    "task_registry_sha256": "79a803f255a4ccb45070c3e72697fc5f8b34fae594e5bd5789122a28e57caf8a"
+  },
+  "design": {
+    "base_tasks": 10,
+    "categories": [
+      "accommodation",
+      "attraction",
+      "dining",
+      "shopping",
+      "transportation"
+    ],
+    "environment_conditions": [
+      "RETAIN",
+      "SWITCH"
+    ],
+    "arms": [
+      "UNMARKED",
+      "ANNOTATED"
+    ],
+    "repetitions_per_cell": 2,
+    "full_trajectory_count": 80,
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "thinking": "disabled",
+    "max_tokens_per_call": 2048,
+    "provider_calls_during_preparation": 0
+  },
+  "excluded_prior_mechanism_tasks": [
+    "Query00178",
+    "Query00188",
+    "Query00227",
+    "Query00347",
+    "Query00351",
+    "Query00403",
+    "Query00425",
+    "Query00518",
+    "Query00549",
+    "Query00550",
+    "Query00576",
+    "Query00685",
+    "Query00689",
+    "Query00705",
+    "Query00706",
+    "Query00851",
+    "Query00858",
+    "Query00865"
+  ],
+  "eligible_counts_by_category": {
+    "accommodation": 6,
+    "attraction": 6,
+    "dining": 6,
+    "shopping": 7,
+    "transportation": 7
+  },
+  "rejected_reasons": {
+    "previously_used_mechanism_task": 18
+  },
+  "selected_task_ids": [
+    "Query00440",
+    "Query00466",
+    "Query00590",
+    "Query00598",
+    "Query00738",
+    "Query00740",
+    "Query00867",
+    "Query00898",
+    "Query00229",
+    "Query00236"
+  ],
+  "tasks": [
+    {
+      "query_id": "Query00440",
+      "category": "accommodation",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00440",
+          "category": "accommodation",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "b2c20ef976842731e92220bd93c1d2bf257ed40c18ef685cf17bc017387b9607",
+          "prefix": [
+            "Accommodation_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Accommodation_Finish_from_Step1_3Steps"
+          ],
+          "incumbent_value": 60.02,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Accommodation_Finish_from_Step1_3Steps"
+          ],
+          "optimal_value": 60.02,
+          "changed_tool": "Accommodation_Finish_from_Step1_3Steps",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "7453e2fe29f8fe8145292b1e628dae948487c9a51dcacd9091e44bd6ade8f8b6",
+          "source_trial_id": "aed62062b2d4d4277f93"
+        },
+        "SWITCH": {
+          "query_id": "Query00440",
+          "category": "accommodation",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "b2c20ef976842731e92220bd93c1d2bf257ed40c18ef685cf17bc017387b9607",
+          "prefix": [
+            "Accommodation_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Accommodation_Finish_from_Step1_3Steps"
+          ],
+          "incumbent_value": 61.51,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Accommodation_Refinement_Step1",
+            "Accommodation_Refinement_Step2",
+            "Select_Final_Accommodation"
+          ],
+          "optimal_value": 60.21,
+          "changed_tool": "Accommodation_Finish_from_Step1_3Steps",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "84ee191085d83057aff10be5a5731cf5ec87cd48bb8dab29502fb529351fe44f",
+          "source_trial_id": "6c58640be082753a5eec"
+        }
+      }
+    },
+    {
+      "query_id": "Query00466",
+      "category": "accommodation",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00466",
+          "category": "accommodation",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "176aba6634f0fb9289ad52743b6b6e89d15ceb09db9eea59454f745fcf962dd6",
+          "prefix": [
+            "Decide_Accommodation_Preference"
+          ],
+          "incumbent_plan": [
+            "Accommodation_Search_Planning_to_Step2",
+            "Select_Final_Accommodation"
+          ],
+          "incumbent_value": 80.09,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Accommodation_Search_Planning_to_Step2",
+            "Select_Final_Accommodation"
+          ],
+          "optimal_value": 80.09,
+          "changed_tool": "Accommodation_Search_to_Final_4Steps",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "402a21f5ac8384fd2b261b161797ac73eba56c06ee67487fa18bbf898336f093",
+          "source_trial_id": "a3d872648aa27714b95f"
+        },
+        "SWITCH": {
+          "query_id": "Query00466",
+          "category": "accommodation",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "176aba6634f0fb9289ad52743b6b6e89d15ceb09db9eea59454f745fcf962dd6",
+          "prefix": [
+            "Decide_Accommodation_Preference"
+          ],
+          "incumbent_plan": [
+            "Accommodation_Search_Planning_to_Step2",
+            "Select_Final_Accommodation"
+          ],
+          "incumbent_value": 80.09,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Accommodation_Search_to_Final_4Steps"
+          ],
+          "optimal_value": 78.79,
+          "changed_tool": "Accommodation_Search_to_Final_4Steps",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "c9e73c9fe6f4b6a136306cfca086c1ade63b5eb9aee5c36713c85751d265826e",
+          "source_trial_id": "c933562aa47ec67aa3e0"
+        }
+      }
+    },
+    {
+      "query_id": "Query00590",
+      "category": "attraction",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00590",
+          "category": "attraction",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "4c244b71eddc23f3c6a6fa9cee1d82e8b12d8b19be636cf4cc21c4f0911b6dbd",
+          "prefix": [
+            "Attraction_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Attraction_Refine_to_Step2",
+            "Select_Final_Attraction"
+          ],
+          "incumbent_value": 59.75,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Attraction_Refine_to_Step2",
+            "Select_Final_Attraction"
+          ],
+          "optimal_value": 59.75,
+          "changed_tool": "Attraction_Finish_from_Step1_3Steps",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "6343559455110924d75206e192dba15de6bd4bca68c6b27180c1f3df48fe542a",
+          "source_trial_id": "0c5d3268664e33b197a6"
+        },
+        "SWITCH": {
+          "query_id": "Query00590",
+          "category": "attraction",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "4c244b71eddc23f3c6a6fa9cee1d82e8b12d8b19be636cf4cc21c4f0911b6dbd",
+          "prefix": [
+            "Attraction_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Attraction_Refine_to_Step2",
+            "Select_Final_Attraction"
+          ],
+          "incumbent_value": 59.75,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Attraction_Finish_from_Step1_3Steps"
+          ],
+          "optimal_value": 58.45,
+          "changed_tool": "Attraction_Finish_from_Step1_3Steps",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "32ece22a2d3e356bd53620d290988396b5866d4115bab14f9e0417b0b5fb6c29",
+          "source_trial_id": "7c13de6454e66c97df26"
+        }
+      }
+    },
+    {
+      "query_id": "Query00598",
+      "category": "attraction",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00598",
+          "category": "attraction",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "a34422f4251f8d9608c5b955d9f3617c671cfffcf4fee81b05c8f085bdc9beaa",
+          "prefix": [
+            "Attraction_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Attraction_Finish_from_Step1_3Steps"
+          ],
+          "incumbent_value": 61.15,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Attraction_Finish_from_Step1_3Steps"
+          ],
+          "optimal_value": 61.15,
+          "changed_tool": "Attraction_Finish_from_Step1_3Steps",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "7b5c094f0132b8f7527d0401dd3d4c2f59db9524df10cd448562b52d3ecab874",
+          "source_trial_id": "9bd87915fbf99eacede7"
+        },
+        "SWITCH": {
+          "query_id": "Query00598",
+          "category": "attraction",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "a34422f4251f8d9608c5b955d9f3617c671cfffcf4fee81b05c8f085bdc9beaa",
+          "prefix": [
+            "Attraction_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Attraction_Finish_from_Step1_3Steps"
+          ],
+          "incumbent_value": 62.55,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Attraction_Refinement_Step1",
+            "Attraction_Finalize_from_Step2"
+          ],
+          "optimal_value": 61.25,
+          "changed_tool": "Attraction_Finish_from_Step1_3Steps",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "8fab80c0e6d1e9987ab941f8cc445522af917b7beda1f31f5898198b3516ff25",
+          "source_trial_id": "ef9c687c73f1065bbaa0"
+        }
+      }
+    },
+    {
+      "query_id": "Query00738",
+      "category": "dining",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00738",
+          "category": "dining",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "a9e78592a19da39aea3ae272a45258aeaa19e50a1603bb0e8caf93da487a7539",
+          "prefix": [
+            "Dining_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Dining_Finish_from_Step1_3Steps"
+          ],
+          "incumbent_value": 60.34,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Dining_Finish_from_Step1_3Steps"
+          ],
+          "optimal_value": 60.34,
+          "changed_tool": "Select_Final_Dining",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "84b0b4c3dd1f8c4984458acc6767b625aabbdb474cfe1fd020d2396d26076081",
+          "source_trial_id": "4da89b49952ef698c7d1"
+        },
+        "SWITCH": {
+          "query_id": "Query00738",
+          "category": "dining",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "a9e78592a19da39aea3ae272a45258aeaa19e50a1603bb0e8caf93da487a7539",
+          "prefix": [
+            "Dining_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Dining_Finish_from_Step1_3Steps"
+          ],
+          "incumbent_value": 60.34,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Dining_Refinement_Step1",
+            "Dining_Refinement_Step2",
+            "Select_Final_Dining"
+          ],
+          "optimal_value": 59.04,
+          "changed_tool": "Select_Final_Dining",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "a733254ed5c05f3849947ac76886dde06992cf4b4ebc00f9c33cfe8b8b2839f2",
+          "source_trial_id": "71e22ba6cbce3b214571"
+        }
+      }
+    },
+    {
+      "query_id": "Query00740",
+      "category": "dining",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00740",
+          "category": "dining",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "4452c4e9334311611fdfadbc100d11c9a7487b3f043bf00db5b79a3bdb14e081",
+          "prefix": [
+            "Dining_Full_Planning_to_Step1"
+          ],
+          "incumbent_plan": [
+            "Dining_Finalize_from_Step2"
+          ],
+          "incumbent_value": 41.39,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Dining_Finalize_from_Step2"
+          ],
+          "optimal_value": 41.39,
+          "changed_tool": "Dining_Finalize_from_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "f8944c705eb28577c0cc2950b1c4fb3ff5a27c9d64f34b306c43c744de009069",
+          "source_trial_id": "ccbbab0d09857ed7453e"
+        },
+        "SWITCH": {
+          "query_id": "Query00740",
+          "category": "dining",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "4452c4e9334311611fdfadbc100d11c9a7487b3f043bf00db5b79a3bdb14e081",
+          "prefix": [
+            "Dining_Full_Planning_to_Step1"
+          ],
+          "incumbent_plan": [
+            "Dining_Finalize_from_Step2"
+          ],
+          "incumbent_value": 42.8,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Dining_Refinement_Step2",
+            "Select_Final_Dining"
+          ],
+          "optimal_value": 41.5,
+          "changed_tool": "Dining_Finalize_from_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "6fe2a393f23f803b8040e393f20304977d8555ec71ea2891cf6bb8362ace6ace",
+          "source_trial_id": "b5d21877450323d09ea7"
+        }
+      }
+    },
+    {
+      "query_id": "Query00867",
+      "category": "shopping",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00867",
+          "category": "shopping",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "41e0dc0dea66cbec316122f0cbb813692ca4db9a1dc61a9f6538e1fae01d1cb6",
+          "prefix": [
+            "Decide_Shopping_Preference"
+          ],
+          "incumbent_plan": [
+            "Shopping_Search_Planning_to_Step2",
+            "Select_Final_Shopping"
+          ],
+          "incumbent_value": 80.32,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Shopping_Search_Planning_to_Step2",
+            "Select_Final_Shopping"
+          ],
+          "optimal_value": 80.32,
+          "changed_tool": "Shopping_Finalize_from_Step2",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "5b01cfc35916895b1e3a1a67cddbd03e3d7fda288e5903cb7e2de23c3d34137a",
+          "source_trial_id": "ce394b8072eeab8693f9"
+        },
+        "SWITCH": {
+          "query_id": "Query00867",
+          "category": "shopping",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "41e0dc0dea66cbec316122f0cbb813692ca4db9a1dc61a9f6538e1fae01d1cb6",
+          "prefix": [
+            "Decide_Shopping_Preference"
+          ],
+          "incumbent_plan": [
+            "Shopping_Search_Planning_to_Step2",
+            "Select_Final_Shopping"
+          ],
+          "incumbent_value": 80.32,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Shopping_Search_to_Step1",
+            "Shopping_Finalize_from_Step2"
+          ],
+          "optimal_value": 79.02,
+          "changed_tool": "Shopping_Finalize_from_Step2",
+          "changed_tool_position": "outside_incumbent",
+          "tool_schema_sha256": "89774907b0688dc34b769b86d36564ba79acc662f172e6ac2981fa7d8819e947",
+          "source_trial_id": "cb5f7ab3f6435d37c4fa"
+        }
+      }
+    },
+    {
+      "query_id": "Query00898",
+      "category": "shopping",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00898",
+          "category": "shopping",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "70ccbd8c51b14530f656bba6e8b33b97f0f15a5e02a5f084cbde033423d68cfd",
+          "prefix": [
+            "Shopping_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Shopping_Refine_to_Step2",
+            "Select_Final_Shopping"
+          ],
+          "incumbent_value": 58.86,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Shopping_Refine_to_Step2",
+            "Select_Final_Shopping"
+          ],
+          "optimal_value": 58.86,
+          "changed_tool": "Shopping_Refine_to_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "acc6160659e1537bd122d187cb846fa78461cd3ffb955d3689c2c7cf2fc3b2d6",
+          "source_trial_id": "2210a220cc38542f2089"
+        },
+        "SWITCH": {
+          "query_id": "Query00898",
+          "category": "shopping",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "70ccbd8c51b14530f656bba6e8b33b97f0f15a5e02a5f084cbde033423d68cfd",
+          "prefix": [
+            "Shopping_Preference_and_Search"
+          ],
+          "incumbent_plan": [
+            "Shopping_Refine_to_Step2",
+            "Select_Final_Shopping"
+          ],
+          "incumbent_value": 60.29,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Shopping_Refinement_Step1",
+            "Shopping_Refinement_Step2",
+            "Select_Final_Shopping"
+          ],
+          "optimal_value": 58.99,
+          "changed_tool": "Shopping_Refine_to_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "f6dfbbcac33f4a4cd7f351cc0b8afe303f3dd19c0e109c248696def981989b88",
+          "source_trial_id": "d68e1503089c7866b31d"
+        }
+      }
+    },
+    {
+      "query_id": "Query00229",
+      "category": "transportation",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00229",
+          "category": "transportation",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "2e950f9a7cecd8d9b6b1433966b5cfc03023ea0852d21419c76d28692ed3fe7e",
+          "prefix": [
+            "Transportation_Full_Planning_to_Step1"
+          ],
+          "incumbent_plan": [
+            "Transportation_Finalize_from_Step2"
+          ],
+          "incumbent_value": 41.0,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Transportation_Finalize_from_Step2"
+          ],
+          "optimal_value": 41.0,
+          "changed_tool": "Transportation_Finalize_from_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "a3c671020d395818606ff141b07bc1a04f2392de6b97bdfcb3a193a311209bf7",
+          "source_trial_id": "82d8902318e49ec529d1"
+        },
+        "SWITCH": {
+          "query_id": "Query00229",
+          "category": "transportation",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "2e950f9a7cecd8d9b6b1433966b5cfc03023ea0852d21419c76d28692ed3fe7e",
+          "prefix": [
+            "Transportation_Full_Planning_to_Step1"
+          ],
+          "incumbent_plan": [
+            "Transportation_Finalize_from_Step2"
+          ],
+          "incumbent_value": 42.49,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Transportation_Refinement_Step2",
+            "Select_Final_Transportation"
+          ],
+          "optimal_value": 41.19,
+          "changed_tool": "Transportation_Finalize_from_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "44500a8001559a5af61fbee3c698840916644cd01f45e829ffb45c0d09807d09",
+          "source_trial_id": "0c0061b4f85063e5d7b5"
+        }
+      }
+    },
+    {
+      "query_id": "Query00236",
+      "category": "transportation",
+      "cells": {
+        "RETAIN": {
+          "query_id": "Query00236",
+          "category": "transportation",
+          "environment": "RETAIN",
+          "checkpoint_sha256": "8ce618ea9ea7211bf46c87535a463f49b872e3e18d9acb44ac624e77b46594d8",
+          "prefix": [
+            "Decide_Transportation_Preference"
+          ],
+          "incumbent_plan": [
+            "Transportation_Search_Planning_to_Step2",
+            "Select_Final_Transportation"
+          ],
+          "incumbent_value": 78.99,
+          "prior_plan_status": "VALID",
+          "status_gap": 0.0,
+          "replacement_plan": [
+            "Transportation_Search_Planning_to_Step2",
+            "Select_Final_Transportation"
+          ],
+          "optimal_value": 78.99,
+          "changed_tool": "Transportation_Search_Planning_to_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "3eaf80a1fbcf6e334aede880fcda1f2596a79c882697a7edaf5beb443015919a",
+          "source_trial_id": "9a04bc19ac02674f6882"
+        },
+        "SWITCH": {
+          "query_id": "Query00236",
+          "category": "transportation",
+          "environment": "SWITCH",
+          "checkpoint_sha256": "8ce618ea9ea7211bf46c87535a463f49b872e3e18d9acb44ac624e77b46594d8",
+          "prefix": [
+            "Decide_Transportation_Preference"
+          ],
+          "incumbent_plan": [
+            "Transportation_Search_Planning_to_Step2",
+            "Select_Final_Transportation"
+          ],
+          "incumbent_value": 80.38,
+          "prior_plan_status": "STALE",
+          "status_gap": 1.3,
+          "replacement_plan": [
+            "Transportation_Search_to_Final_4Steps"
+          ],
+          "optimal_value": 79.08,
+          "changed_tool": "Transportation_Search_Planning_to_Step2",
+          "changed_tool_position": 1,
+          "tool_schema_sha256": "e562b0f3579d58f2799b6029aba7436b2379ab29ff8ed7a3ed79a661988082bd",
+          "source_trial_id": "4847dbec97cbdcc8d46c"
+        }
+      }
+    }
+  ],
+  "interpretation_boundary": [
+    "This is a held-out confirmation within the existing 50-task CostBench cohort, not a new or unseen dataset.",
+    "Tasks used in the four-arm mechanism screen, bounded-verifier confirmation, and five-task plan-handoff development screen are excluded.",
+    "Both arms start from the exact same frozen checkpoint within each environment and receive the same complete graph-planner continuation; only the explicit VALID/STALE annotation differs.",
+    "The annotation is oracle-derived diagnostic information, not a deployable policy result.",
+    "The independent statistical unit is the base task. Repetitions and RETAIN/SWITCH conditions are nested and paired within task."
+  ]
+}
