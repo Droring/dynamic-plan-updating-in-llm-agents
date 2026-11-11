@@ -152,3 +152,10 @@ The final selection rule therefore uses a **shared, feasible, nonterminal prefix
 This common prefix is a **controlled checkpoint intervention**, not a claim that the selected action is optimal in both environments. Its immediate action loss is held fixed within each A/B/C/D comparison and must be recorded separately from continuation regret. The resulting study estimates post-prefix continuation quality, not end-to-end performance from the original pre-action checkpoint.
 
 The earlier graph-planner-first-action replay remains a valid reproducibility check, but it is **superseded as the source of the final 2×2 continuation checkpoints**. The final nonterminal common-action restoration must pass its own 40-replay gate before prompt generation can pass.
+
+
+### Final offline gate status
+
+The final shared nonterminal-prefix restoration, 80-request factorial prompt construction, and in-process deep-copy branch isolation all passed in GitHub Actions. The live runner reconstructs a fresh native tool registry and typed state for every trajectory; it replays and verifies the common native action before asking the model for the next action. This avoids mutable state leaking between the four arms or repeated trials.
+
+The paid workflow is manually gated by `run_paid_plan_handoff`, uses DeepSeek Flash with the frozen settings, and has a 3,443,584 actual-provider-token hard cap. It repeats the offline gates before making any provider request. **No model calls have been made in this stage.** The five-task 80-trajectory screen remains exploratory and must be followed by a separate held-out confirmation if it produces a stable effect.
