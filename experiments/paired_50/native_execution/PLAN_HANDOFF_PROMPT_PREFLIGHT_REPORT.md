@@ -66,3 +66,12 @@ Frozen model configuration: `deepseek-flash`, temperature 0, thinking disabled, 
 These five base tasks have already been explored and are a development screen, not an unseen confirmation set. Repeated runs remain nested within the same five independent tasks. B/D use an externally computed graph-planner path and are privileged diagnostic interventions, not deployable LLM-only method results.
 
 No DeepSeek call has been made in this stage. The live runner [`run_plan_handoff_experiment.py`](run_plan_handoff_experiment.py) replays the common action in each fresh branch, measures post-action Bellman loss and full continuation regret, and updates the ledger only in C/D. The manual workflow gate has a 3,443,584-token hard cap; it is separate from offline prompt preparation.
+
+
+## Live-run isolation and dispatch gate
+
+The offline runner validation also passed a second, in-process isolation check: each A/B/C/D branch receives a deep copy of the native tool registry and typed checkpoint state. **40/40 deep-copied native action replays** reproduced the frozen environment-specific observation and post-action state. The live runner creates a fresh copy for every one of the 80 trajectories, preventing mutable tool state from leaking between arms or repetitions.
+
+The manual GitHub Actions input is `run_paid_plan_handoff`. The paid job repeats the independent-process restoration, prompt construction and deep-copy dry run before the first API call. It then runs the 80-trajectory continuation screen with a hard cap of **3,443,584 actual provider tokens** and uploads the raw per-trajectory records even if the run stops early. The 80 prompt starts may each require multiple continuation calls.
+
+**No paid model call has been made.** The paid job is intentionally manual; offline validation and prompt generation do not start it automatically.
