@@ -114,6 +114,16 @@ def _response_usage(response: Any) -> int:
     return int(value or 0)
 
 
+def _response_record(response: Any) -> dict[str, Any]:
+    if isinstance(response, dict):
+        payload = response
+    elif callable(getattr(response, "model_dump", None)):
+        payload = response.model_dump(mode="json")
+    else:
+        payload = {"response_repr": repr(response)}
+    return json.loads(json.dumps(payload, ensure_ascii=False, default=str))
+
+
 def _first_message(response: Any) -> Any:
     choices = response.get("choices") if isinstance(response, dict) else getattr(response, "choices", None)
     if not choices:
@@ -164,11 +174,18 @@ def deepseek_candidate_completion(client: Any, *, model: str = DEFAULT_MODEL,
                                   thinking: str = "disabled") -> Callable[..., Any]:
     """Return the candidate-generator callback for an OpenAI-compatible DeepSeek client."""
     async def complete(*, messages, response_format, max_tokens):
-        return await client.chat.completions.create(
-            model=model, messages=messages, temperature=0, max_tokens=max_tokens,
-            response_format=response_format,
-            extra_body={"thinking": {"type": thinking}},
-        )
+        try:
+            return await client.chat.completions.create(
+                model=model, messages=messages, temperature=0, max_tokens=max_tokens,
+                response_format=response_format,
+                extra_body={"thinking": {"type": thinking}},
+            )
+        except ProviderOutcomeUnknown:
+            raise
+        except Exception as exc:
+            raise ProviderOutcomeUnknown(
+                f"candidate provider outcome is unknown: {type(exc).__name__}: {exc}"
+            ) from exc
     return complete
 
 
@@ -176,11 +193,18 @@ def deepseek_argument_completion(client: Any, *, model: str = DEFAULT_MODEL,
                                  thinking: str = "disabled") -> Callable[..., Any]:
     """Return the argument-generation callback; only the committed next tool is exposed."""
     async def complete(*, messages, tools, tool_choice, max_tokens):
-        return await client.chat.completions.create(
-            model=model, messages=messages, temperature=0, max_tokens=max_tokens,
-            tools=tools, tool_choice=tool_choice, parallel_tool_calls=False,
-            extra_body={"thinking": {"type": thinking}},
-        )
+        try:
+            return await client.chat.completions.create(
+                model=model, messages=messages, temperature=0, max_tokens=max_tokens,
+                tools=tools, tool_choice=tool_choice, parallel_tool_calls=False,
+                extra_body={"thinking": {"type": thinking}},
+            )
+        except ProviderOutcomeUnknown:
+            raise
+        except Exception as exc:
+            raise ProviderOutcomeUnknown(
+                f"argument provider outcome is unknown: {type(exc).__name__}: {exc}"
+            ) from exc
     return complete
 
 
@@ -309,6 +333,8 @@ async def run_complete_candidate(
         expected_tool = executor.next_tool(state, policy_input.tool_interfaces)
         request = executor.build_argument_request(messages, state, policy_input.tool_interfaces)
         response = None
+        response_payload = None
+        response_sha = None
         tool_name = None
         arguments_str = None
         arguments = None
@@ -325,6 +351,10 @@ async def run_complete_candidate(
             )
             if hasattr(response, "__await__"):
                 response = await response
+            response_payload = _response_record(response)
+            response_sha = hashlib.sha256(json.dumps(
+                response_payload, ensure_ascii=False, sort_keys=True,
+                separators=(",", ":")).encode("utf-8")).hexdigest()
             parameter_tokens += _response_usage(response)
             tool_name, arguments_str, _ = _argument_payload(response, expected_tool)
             arguments = executor.validate_arguments(tool_name, arguments_str)
@@ -359,6 +389,8 @@ async def run_complete_candidate(
                 "parameter_tool_schema": request["tools"],
                 "parameter_tool_choice": request["tool_choice"],
                 "parameter_tokens": parameter_tokens - tokens_before,
+                "parameter_response_sha256": response_sha,
+                "parameter_response": response_payload,
                 "native_call_started": native_call_started,
                 "native_outcome": "unknown" if native_call_started else "not_started",
                 "error": error,
@@ -375,6 +407,8 @@ async def run_complete_candidate(
             "parameter_tool_schema": request["tools"],
             "parameter_tool_choice": request["tool_choice"],
             "parameter_tokens": parameter_tokens - tokens_before,
+            "parameter_response_sha256": response_sha,
+            "parameter_response": response_payload,
             "success": native_result.success, "observation": native_result.observation,
             "output_type": native_result.output_type, "output_id": native_result.output_id,
             "raw_output_type": native_result.raw_output_type, "error": native_result.error,

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -21,6 +22,18 @@ from .run_complete_candidate import (
 
 HERE = Path(__file__).resolve().parent
 MANIFEST_PATH = HERE / "DEVELOPMENT_SCREEN_MANIFEST.json"
+REPO_ROOT = HERE.parents[1]
+SOURCE_FILES = {
+    "task_registry_blob_sha": REPO_ROOT / "experiments/paired_50/generated/task_registry_50.json",
+    "model_requests_blob_sha": REPO_ROOT / "experiments/paired_50/generated/model_requests_100.jsonl",
+    "trial_manifest_blob_sha": REPO_ROOT / "experiments/paired_50/generated/trial_manifest_100.json",
+}
+_COST_TEXT = re.compile(r"(?i)\\bCost:\\s*[0-9]+(?:\\.[0-9]+)?")
+
+
+def git_blob_sha(path: Path) -> str:
+    raw = path.read_bytes()
+    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw).hexdigest()
 
 
 def sha256(value: Any) -> str:
@@ -33,7 +46,7 @@ def _contracts(prepared: dict[str, Any]):
 
 def _validate_pair(task: dict[str, Any], retain: dict[str, Any], switch: dict[str, Any]) -> dict[str, Any]:
     fixed_fields = (
-        "query_id", "task", "goal_type", "checkpoint_sha256", "prefix",
+        "query_id", "task", "goal_type", "checkpoint_sha256", "state", "prefix",
         "prefix_name", "prefix_observation", "prefix_output_id",
         "incumbent_suffix", "changed_tool", "user_request",
     )
@@ -55,6 +68,12 @@ def _validate_pair(task: dict[str, Any], retain: dict[str, Any], switch: dict[st
             right.interface["function"]["parameters"]
         ):
             raise ValueError(f"{task['query_id']} tool parameter schema changed: {name}")
+        left_description = left.interface["function"]["description"]
+        right_description = right.interface["function"]["description"]
+        if _COST_TEXT.sub("Cost: <value>", left_description) != _COST_TEXT.sub(
+            "Cost: <value>", right_description
+        ):
+            raise ValueError(f"{task['query_id']} tool description changed beyond its cost: {name}")
         if abs(left.cost - right.cost) > 1e-9:
             changed_costs.append(name)
     if changed_costs != [retain["changed_tool"]]:
@@ -81,6 +100,14 @@ def _validate_pair(task: dict[str, Any], retain: dict[str, Any], switch: dict[st
 
 def prepare(args: argparse.Namespace) -> dict[str, Any]:
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    source_hashes = {}
+    for field, path in SOURCE_FILES.items():
+        if not path.is_file():
+            raise FileNotFoundError(f"frozen source file is missing: {path}")
+        actual = git_blob_sha(path)
+        if actual != manifest["source"][field]:
+            raise ValueError(f"frozen source blob mismatch for {path.name}: {actual}")
+        source_hashes[field] = actual
     root = args.costbench_root.resolve()
     loaded: dict[str, dict[str, tuple[Any, ...]]] = {}
     prompts: dict[str, Any] = {}
@@ -156,6 +183,7 @@ def prepare(args: argparse.Namespace) -> dict[str, Any]:
         "schema": "complete-candidate-development-screen-preflight-v1",
         "status": "passed",
         "provider_calls": 0,
+        "source_blob_hashes_verified": source_hashes,
         "upstream_costbench_revision": manifest["design"]["upstream_costbench_revision"],
         "model_configuration": {
             "model": manifest["design"]["model"],

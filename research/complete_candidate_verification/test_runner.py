@@ -111,6 +111,8 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.trace[0]["state_after"], ["A", "B", "Start"])
         self.assertIn("Official CostBench system instructions.", result.trace[0]["parameter_prompt_messages"][0]["content"])
         self.assertTrue(result.to_record()["candidate_proposals"][0]["prompt_messages"])
+        self.assertEqual(result.trace[0]["parameter_response"]["choices"][0]["message"]["tool_calls"][0]["function"]["name"], "Acquire_B")
+        self.assertTrue(result.trace[0]["parameter_response_sha256"])
 
     async def test_deepseek_adapters_build_expected_nonstreaming_requests(self):
         seen = []
@@ -209,6 +211,8 @@ class CompleteCandidateRunnerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(result.trace), 1)
         self.assertFalse(result.trace[0]["native_call_started"])
         self.assertTrue(result.trace[0]["parameter_prompt_messages"])
+        self.assertEqual(result.trace[0]["parameter_response"]["choices"][0]["message"]["content"], "not a tool call")
+        self.assertTrue(result.trace[0]["parameter_response_sha256"])
 
     async def test_selected_plan_over_step_limit_stops_before_native_execution(self):
         policy = make_policy()
