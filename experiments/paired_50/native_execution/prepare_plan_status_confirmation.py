@@ -383,6 +383,23 @@ def prepare(costbench_root, responses_path, out_dir, frozen_manifest=None):
         eligible.append(candidate)
         candidate_cells[qid] = cells
 
+    eligibility_diagnostic = {
+        "eligible_task_ids_by_category": {
+            category: sorted(row["query_id"] for row in eligible if row["category"] == category)
+            for category in sorted(set(categories.values()))
+        },
+        "eligible_counts_by_category": {
+            category: sum(row["category"] == category for row in eligible)
+            for category in sorted(set(categories.values()))
+        },
+        "rejected_reasons": dict(sorted(rejected.items())),
+        "excluded_prior_mechanism_task_count": len(excluded),
+    }
+    print(
+        "PLAN_STATUS_ELIGIBILITY_DIAGNOSTIC="
+        + json.dumps(eligibility_diagnostic, ensure_ascii=False, sort_keys=True),
+        flush=True,
+    )
     selected = select_tasks(eligible)
     selected_ids = [row["query_id"] for row in selected]
     if frozen_manifest is not None:
