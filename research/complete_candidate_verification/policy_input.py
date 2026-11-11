@@ -153,7 +153,7 @@ def build_policy_input(*, task: str, user_request: str, goal_type: str,
     old = tuple(old_remaining_plan)
     if not old or any(not isinstance(x, str) or not x for x in old):
         raise ValueError("a complete non-empty incumbent remaining plan is required")
-    interfaces = tuple(dict(x) for x in current_tool_interfaces)
+    interfaces = tuple(json.loads(canonical_json(x)) for x in current_tool_interfaces)
     parse_public_tool_interfaces(interfaces)
     return PolicyInput(task.strip(), user_request.strip(), goal_type.strip(),
                        state, old, interfaces, checkpoint_id)

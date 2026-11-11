@@ -8,7 +8,7 @@ from .update_controller import run_update
 from .committed_plan_executor import CommittedPlanExecutor, PlanExecutionError
 from .costbench_adapter import CostBenchNativeExecutionAdapter, CostBenchAdapterHook
 from .scoring_logging import (balanced_accuracy, pair_accuracy, score_trajectory,
-                              append_jsonl_durable, write_json_atomic)
+                              summarize_records, append_jsonl_durable, write_json_atomic)
 from .dry_run import run_dry_run, interface
 
 def tools():
@@ -208,14 +208,25 @@ class ScoringTests(unittest.TestCase):
     def test_ba_and_pair_accuracy(self):
         rows=[
             score_trajectory(task_id="t1",condition="RETAIN",decision="RETAIN",goal_reached=True,
-                executed_path=["Acquire_A","Finish_A"],incumbent_path=["Acquire_A","Finish_A"],
+                executed_path=["Acquire_A","Finish_A"],committed_path=["Acquire_A","Finish_A"],incumbent_path=["Acquire_A","Finish_A"],
                 current_tool_costs={"Acquire_A":2,"Finish_A":4},oracle_optimal_value=6),
             score_trajectory(task_id="t1",condition="SWITCH",decision="SWITCH",goal_reached=True,
-                executed_path=["Acquire_B","Finish_B"],incumbent_path=["Acquire_A","Finish_A"],
+                executed_path=["Acquire_B","Finish_B"],committed_path=["Acquire_B","Finish_B"],incumbent_path=["Acquire_A","Finish_A"],
                 current_tool_costs={"Acquire_A":2,"Finish_A":4,"Acquire_B":0.5,"Finish_B":1},
                 oracle_optimal_value=1.5)]
         self.assertEqual(balanced_accuracy(rows),1.0)
         self.assertEqual(pair_accuracy(rows),1.0)
+        summary=summarize_records(rows)
+        self.assertEqual(summary["execution_grounded_balanced_accuracy"],1.0)
+        self.assertEqual(summary["trajectory_count"],2)
+    def test_committed_path_mismatch_fails_execution_score(self):
+        row=score_trajectory(task_id="t2",condition="SWITCH",decision="SWITCH",
+            goal_reached=True,executed_path=["Acquire_B","Finish_B"],
+            committed_path=["Acquire_A","Finish_A"],incumbent_path=["Acquire_A","Finish_A"],
+            current_tool_costs={"Acquire_A":2,"Finish_A":4,"Acquire_B":0.5,"Finish_B":1},
+            oracle_optimal_value=1.5)
+        self.assertFalse(row["committed_path_match"])
+        self.assertFalse(row["execution_correct"])
     def test_durable_logs(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/"rows.jsonl"; append_jsonl_durable(p,{"ok":True})
