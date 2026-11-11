@@ -85,6 +85,28 @@ class CommittedPlanExecutor:
         self.invalidate("next_committed_tool_not_exposed")
         raise PlanExecutionError("next committed tool is no longer exposed")
 
+    def build_argument_request(self, messages: Iterable[Mapping[str, Any]],
+                               current_state_types: Iterable[str],
+                               current_tool_interfaces: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+        """Constrain the LLM to arguments for the already committed next tool."""
+        name = self.next_tool(current_state_types, current_tool_interfaces)
+        if name is None:
+            return {"tool_name": None, "messages": list(messages), "tools": [],
+                    "tool_choice": "none"}
+        interface = self.next_tool_interface(current_state_types, current_tool_interfaces)
+        prompt = (
+            "The complete plan has already been committed by the controller: "
+            + " -> ".join(self.plan) + ". Your only task is to produce valid arguments "
+            + "for the exact next tool " + name + ". Do not select, replace, reorder, "
+            + "or add tools. Use only identifiers and values present in the conversation "
+            + "observations. Call exactly this tool."
+        )
+        prepared_messages = [dict(item) for item in messages]
+        insert_at = 1 if prepared_messages and prepared_messages[0].get("role") == "system" else 0
+        prepared_messages.insert(insert_at, {"role": "system", "content": prompt})
+        return {"tool_name": name, "messages": prepared_messages,
+                "tools": [dict(interface)], "tool_choice": "required"}
+
     def validate_arguments(self, tool_name: str,
                            arguments: str | Mapping[str, Any]) -> dict[str, Any]:
         if tool_name not in self.contracts:
