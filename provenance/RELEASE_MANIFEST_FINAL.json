@@ -66,7 +66,7 @@
     "experiments/paired_50/native_execution/merge_split_run_results.py": "a9d2aa7a07932ab65302ec2d1f3695f33be81e7d9ea4d21888075041945e27a8",
     "experiments/paired_50/native_execution/native_path_value_audit.py": "da837444ffeb53ef24578b9f02027d6293567a80706106e63509e066c5896f8f",
     "experiments/paired_50/native_execution/prepare_candidate_diagnostic.py": "e07ffea21066583eaf175659c26f06e48cfdf8a8693e591578bb417b32472a91",
-    "experiments/paired_50/native_execution/run_candidate_diagnostic.py": "48d3c50d74f5918e0459410d103f1a11d60b0a68295e6934b4d3f944bc41f2cf",
+    "experiments/paired_50/native_execution/run_candidate_diagnostic.py": "74ea87651ba92f7b2be30006ac0ca48a40949949635b43ce385bef948427dab1",
     "experiments/paired_50/native_execution/run_four_arm_continuations.py": "a86da0b81350ac9bd9e1ddd8fc48870ef2366832c4a26cc78d5cd2645ab21085",
     "experiments/paired_50/native_execution/run_four_arm_experiment.py": "2a8ad8c9a33276e652758d110deb1eb733ddf6a1810119449b7b16a315ed0ff6",
     "experiments/paired_50/native_execution/run_official_harness.py": "40ad4ccdaa007f3dcaf6a4d5e2030eb2b718883abab42211c5d0406680c07877",
