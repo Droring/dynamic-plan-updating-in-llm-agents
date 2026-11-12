@@ -1,0 +1,908 @@
+{
+  "schema": "adaplanner-trigger-transfer-audit-v1",
+  "status": "offline_development_audit",
+  "provider_calls": 0,
+  "scope": "27 uniquely recoverable Agent-authored plans selected from 67 observed dynamic events in the official 80-task development population",
+  "source_files": {
+    "original_agent_audit": "research/costbench_method_studies/plan_commitment_evidence_gate/evidence/ORIGINAL_AGENT_RETENTION_AUDIT.json",
+    "native_event_cohort": "research/costbench_method_studies/plan_commitment_evidence_gate/evidence/native_event_cohort_67/RESULTS.json",
+    "original_dynamic_shards": [
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard00/results_deepseek-flash_blocked-cost_change-1_refinement_2.json",
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard01/results_deepseek-flash_blocked-cost_change-1_refinement_2.json",
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard02/results_deepseek-flash_blocked-cost_change-1_refinement_2.json",
+      "research/costbench_method_studies/official_dev_baseline/evidence/results/official_cost_change/shard03/results_deepseek-flash_blocked-cost_change-1_refinement_2.json"
+    ],
+    "upstream_adaplanner_notebook": "https://github.com/haotiansun14/AdaPlanner/blob/main/ALFWorld/alfworld.ipynb",
+    "upstream_costbench_blocker": "https://github.com/JiayuJeff/CostBench/blob/6424069f3f773ade076bcedbed302ed47cfb1837/env/utils/blocker.py",
+    "upstream_costbench_tool_registry": "https://github.com/JiayuJeff/CostBench/blob/6424069f3f773ade076bcedbed302ed47cfb1837/env/domains/travel/tool_registry.py"
+  },
+  "trigger_definitions": {
+    "ada_execution_failure_proxy": "A post-event native tool output contains a clear execution-error marker, or the task does not reach its native goal state. This is a cross-benchmark proxy, not a replay of AdaPlanner Python assertions.",
+    "coarse_environment_event": "Any recorded CostBench cost_change event.",
+    "graph_reference_trigger": "The independently audited incumbent-versus-current-best objective gap exceeds the pre-existing frozen decision margin for that task. This is retrospective graph evidence, not an LLM-only trigger."
+  },
+  "summary": {
+    "official_development_tasks": 80,
+    "observed_dynamic_event_tasks": 67,
+    "valid_agent_authored_plan_tasks": 27,
+    "event_type_counts": {
+      "cost_change": 27
+    },
+    "event_step_counts": {
+      "1": 25,
+      "2": 2
+    },
+    "coarse_cost_change_triggered": 27,
+    "ada_execution_failure_proxy_triggered": 0,
+    "incumbent_plan_feasible": 27,
+    "post_event_tool_error_outputs": 0,
+    "post_event_tool_outputs": 47,
+    "goal_reached": 27,
+    "official_final_answer_accepted": 24,
+    "first_action_follows_incumbent": 27,
+    "first_action_matches_current_optimum": 15,
+    "first_action_not_current_optimum": 12,
+    "positive_objective_gap": 13,
+    "zero_objective_gap": 14,
+    "positive_gap_within_frozen_margin": 8,
+    "gap_exceeds_frozen_margin": 5,
+    "graph_reference_retain": 22,
+    "graph_reference_switch": 5
+  },
+  "interpretation_boundaries": [
+    "CostBench does not log AdaPlanner-style generated Python assertions, predicted-observation assertions, or code checkpoints. The execution-failure proxy cannot be interpreted as an exact AdaPlanner replay.",
+    "All selected cases are development tasks with uniquely recoverable Agent-authored plans; they are a subset of 27 out of 67 observed events, not a random held-out cohort.",
+    "The 0.25 decision margin is inherited from the existing frozen evidence-gate protocol; it was not tuned on these outcomes.",
+    "First-action mismatch with the selected graph-optimal first action is not identical to positive full-path objective gap because alternative optimal paths and downstream differences can occur.",
+    "The graph-reference trigger uses an exact current public-tool graph audit. It is a diagnostic reference, not a validated AdaPlanner implementation.",
+    "The benchmark event changes tool-cost attributes. It is used here as a controlled plan-relevant environment update, not as a claim that tool-cost optimization is the research contribution."
+  ],
+  "records": [
+    {
+      "query_id": "Query00233",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Refinement_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 64.48,
+      "current_best_value": 64.34,
+      "objective_gap": 0.14,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Refinement_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "first_action": "Transportation_Refinement_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00235",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Refinement_Step2",
+        "Select_Final_Transportation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 36.89,
+      "current_best_value": 36.89,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Refinement_Step2",
+        "Select_Final_Transportation"
+      ],
+      "first_action": "Transportation_Refinement_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00243",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Select_Final_Transportation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 21.45,
+      "current_best_value": 21.45,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Select_Final_Transportation"
+      ],
+      "first_action": "Select_Final_Transportation",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00248",
+      "category": "transportation",
+      "event_step": 2,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 65.32,
+      "current_best_value": 65.32,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "first_action": "Transportation_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00249",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 80.27,
+      "current_best_value": 79.93,
+      "objective_gap": 0.34,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": true,
+      "graph_reference_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "first_action": "Transportation_Search_to_Final_4Steps",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00269",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 72.93,
+      "current_best_value": 72.76,
+      "objective_gap": 0.17,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Search_to_Final_4Steps"
+      ],
+      "first_action": "Transportation_Search_to_Final_4Steps",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00292",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Search_to_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 83.65,
+      "current_best_value": 83.42,
+      "objective_gap": 0.23,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Search_to_Step1",
+        "Transportation_Finalize_from_Step2"
+      ],
+      "first_action": "Transportation_Search_to_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00298",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 36.35,
+      "current_best_value": 36.35,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Finalize_from_Step2"
+      ],
+      "first_action": "Transportation_Finalize_from_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00310",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 65.28,
+      "current_best_value": 65.26,
+      "objective_gap": 0.02,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Refine_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "first_action": "Transportation_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": false
+    },
+    {
+      "query_id": "Query00321",
+      "category": "transportation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 80.07,
+      "current_best_value": 80.07,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Transportation_Search_Planning_to_Step2",
+        "Select_Final_Transportation"
+      ],
+      "first_action": "Transportation_Search_Planning_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00342",
+      "category": "accommodation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Select_Final_Accommodation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 17.31,
+      "current_best_value": 17.31,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Select_Final_Accommodation"
+      ],
+      "first_action": "Select_Final_Accommodation",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00452",
+      "category": "accommodation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 3,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Finish_from_Step1_3Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 75.87,
+      "current_best_value": 75.69,
+      "objective_gap": 0.18,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Search_Accommodation_Candidates",
+        "Accommodation_Refine_to_Step2",
+        "Select_Final_Accommodation"
+      ],
+      "first_action": "Search_Accommodation_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": false
+    },
+    {
+      "query_id": "Query00458",
+      "category": "accommodation",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Select_Final_Accommodation"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 24.99,
+      "current_best_value": 24.99,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Select_Final_Accommodation"
+      ],
+      "first_action": "Select_Final_Accommodation",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00528",
+      "category": "attraction",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Attraction_Search_to_Final_4Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 82.36,
+      "current_best_value": 82.29,
+      "objective_gap": 0.07,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Attraction_Search_to_Final_4Steps"
+      ],
+      "first_action": "Attraction_Search_to_Final_4Steps",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00535",
+      "category": "attraction",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Attraction_Refine_to_Step2",
+        "Select_Final_Attraction"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 61.45,
+      "current_best_value": 61.17,
+      "objective_gap": 0.28,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": true,
+      "graph_reference_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Attraction_Refine_to_Step2",
+        "Select_Final_Attraction"
+      ],
+      "first_action": "Attraction_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00583",
+      "category": "attraction",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 3,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Attraction_Search_to_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 82.8,
+      "current_best_value": 82.51,
+      "objective_gap": 0.29,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": true,
+      "graph_reference_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Attraction_Search_to_Step1",
+        "Attraction_Refinement_Step2",
+        "Select_Final_Attraction"
+      ],
+      "first_action": "Attraction_Search_to_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00641",
+      "category": "attraction",
+      "event_step": 2,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 55.04,
+      "current_best_value": 55.04,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Attraction_Refinement_Step1",
+        "Attraction_Finalize_from_Step2"
+      ],
+      "first_action": "Attraction_Refinement_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00690",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Select_Final_Dining"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 19.58,
+      "current_best_value": 19.58,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Select_Final_Dining"
+      ],
+      "first_action": "Select_Final_Dining",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00695",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 35.7,
+      "current_best_value": 35.7,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "first_action": "Dining_Refinement_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00757",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Dining_Search_to_Final_4Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 85.96,
+      "current_best_value": 85.19,
+      "objective_gap": 0.77,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": true,
+      "graph_reference_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Dining_Search_to_Final_4Steps"
+      ],
+      "first_action": "Dining_Search_to_Final_4Steps",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00769",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 3,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Search_Dining_Candidates",
+        "Dining_Finish_from_Step1_3Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 81.85,
+      "current_best_value": 81.34,
+      "objective_gap": 0.51,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": true,
+      "graph_reference_action": "SWITCH_FROM_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Search_Dining_Candidates",
+        "Dining_Refinement_Step1",
+        "Dining_Finalize_from_Step2"
+      ],
+      "first_action": "Search_Dining_Candidates",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00802",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 66.91,
+      "current_best_value": 66.91,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "first_action": "Dining_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00822",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 57.04,
+      "current_best_value": 57.04,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Dining_Refine_to_Step2",
+        "Select_Final_Dining"
+      ],
+      "first_action": "Dining_Refine_to_Step2",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00833",
+      "category": "dining",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 3,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Dining_Search_to_Step1",
+        "Dining_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 80.49,
+      "current_best_value": 80.42,
+      "objective_gap": 0.07,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Dining_Search_to_Step1",
+        "Dining_Refinement_Step2",
+        "Select_Final_Dining"
+      ],
+      "first_action": "Dining_Search_to_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": false,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00843",
+      "category": "shopping",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Shopping_Search_to_Final_4Steps"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 72.45,
+      "current_best_value": 72.2,
+      "objective_gap": 0.25,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Shopping_Search_to_Final_4Steps"
+      ],
+      "first_action": "Shopping_Search_to_Final_4Steps",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": false,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": false,
+      "goal_reached": true,
+      "official_final_answer_accepted": false
+    },
+    {
+      "query_id": "Query00912",
+      "category": "shopping",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 2,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Shopping_Refinement_Step1",
+        "Shopping_Finalize_from_Step2"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 57.33,
+      "current_best_value": 57.33,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Shopping_Refinement_Step1",
+        "Shopping_Finalize_from_Step2"
+      ],
+      "first_action": "Shopping_Refinement_Step1",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    },
+    {
+      "query_id": "Query00978",
+      "category": "shopping",
+      "event_step": 1,
+      "event_type": "cost_change",
+      "event_change_trigger": true,
+      "post_event_tool_output_count": 1,
+      "post_event_tool_error_count": 0,
+      "ada_execution_failure_proxy": false,
+      "incumbent_suffix": [
+        "Select_Final_Shopping"
+      ],
+      "incumbent_feasible": true,
+      "current_incumbent_value": 23.61,
+      "current_best_value": 23.61,
+      "objective_gap": 0,
+      "frozen_decision_margin": 0.25,
+      "graph_reference_trigger": false,
+      "graph_reference_action": "RETAIN_OBSERVED_LLM_PLAN",
+      "actual_post_event_calls": [
+        "Select_Final_Shopping"
+      ],
+      "first_action": "Select_Final_Shopping",
+      "first_action_follows_incumbent": true,
+      "first_action_matches_current_optimum": true,
+      "exact_incumbent_suffix": true,
+      "exact_current_optimal_suffix": true,
+      "goal_reached": true,
+      "official_final_answer_accepted": true
+    }
+  ]
+}
