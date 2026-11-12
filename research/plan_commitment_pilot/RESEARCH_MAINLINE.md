@@ -72,6 +72,8 @@ Future method design should follow a replicated action-level failure mechanism. 
 
 ## Reading path
 
+0. [Top-conference algorithm review and candidate protocol](TOP_CONFERENCE_ALGORITHM_REVIEW.md)
+
 1. [Unified 50-task RETAIN/SWITCH study](../../experiments/paired_50/README.md)
 2. [Native execution protocol and detailed results](../../experiments/paired_50/native_execution/README.md)
 3. [Official 80-task native robustness audit](../../experiments/native_80/README.md)
