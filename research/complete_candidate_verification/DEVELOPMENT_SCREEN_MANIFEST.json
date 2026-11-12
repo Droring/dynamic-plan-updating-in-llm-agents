@@ -1,0 +1,165 @@
+{
+  "schema": "complete-candidate-development-screen-v1",
+  "status": "frozen_task_cohort_offline_preflight_pending",
+  "source": {
+    "task_registry_blob_sha": "63eaa425c04ba8faf769dbf536194a89fd8d723c",
+    "model_requests_blob_sha": "29736482cca9497ce80246cc279980e263b9af04",
+    "trial_manifest_blob_sha": "5563686f5950705c6a2c8921560a9a139c298870",
+    "upstream_costbench_revision": "6424069f3f773ade076bcedbed302ed47cfb1837"
+  },
+  "selection": {
+    "cohort_type": "previously_explored_development_cohort",
+    "independent_base_tasks": 8,
+    "held_out": false,
+    "category_distribution": {
+      "transportation": 1,
+      "accommodation": 2,
+      "attraction": 3,
+      "dining": 1,
+      "shopping": 1
+    },
+    "rationale": "Five tasks reproduce the established RETAIN-correct/SWITCH-incorrect pattern; three add paired counter-patterns (both correct, both incorrect, and RETAIN-incorrect/SWITCH-correct). This outcome-enriched cohort is for method development only, not confirmation.",
+    "tasks": [
+      {
+        "query_id": "Query00178",
+        "category": "transportation",
+        "checkpoint_sha256": "2195a89ef47ac5e39ec87dd3171f15a8a05f00964b565752f12f3826bf90c883",
+        "previous_pattern": "retain_correct_switch_incorrect",
+        "trial_ids": {
+          "RETAIN": "b80b41be2cb2b6514b25",
+          "SWITCH": "f0856586d6738dfc45b7"
+        }
+      },
+      {
+        "query_id": "Query00351",
+        "category": "accommodation",
+        "checkpoint_sha256": "28529461ece1b67d2e619e2969207add12d8be2f6e13cfea824694ef50453d76",
+        "previous_pattern": "retain_correct_switch_incorrect",
+        "trial_ids": {
+          "RETAIN": "6317efcfa6f4c65f82ba",
+          "SWITCH": "5cfa25e145a174ed1e57"
+        }
+      },
+      {
+        "query_id": "Query00549",
+        "category": "attraction",
+        "checkpoint_sha256": "fca013818e233b48e8ecce02b17055764479f8c3bf9d32d190c903ad4e6b61f0",
+        "previous_pattern": "retain_correct_switch_incorrect",
+        "trial_ids": {
+          "RETAIN": "12adea1ebedc0b3ed94d",
+          "SWITCH": "7ab20da336d0aaa440c9"
+        }
+      },
+      {
+        "query_id": "Query00689",
+        "category": "dining",
+        "checkpoint_sha256": "4230e59fe7f10b0b8291a2a6506e264822765a1bd83acc5d07e7ccc8fda6558b",
+        "previous_pattern": "retain_correct_switch_incorrect",
+        "trial_ids": {
+          "RETAIN": "a2387fa8f6d5d781cd7f",
+          "SWITCH": "cec7133724d8080ea6d2"
+        }
+      },
+      {
+        "query_id": "Query00851",
+        "category": "shopping",
+        "checkpoint_sha256": "4877644647decf1b6aee0168997a6d8c8105832cf88801cd8422474d57a501ba",
+        "previous_pattern": "retain_correct_switch_incorrect",
+        "trial_ids": {
+          "RETAIN": "54666df88dbc8bcaff4f",
+          "SWITCH": "307a7cc618e67ea7de37"
+        }
+      },
+      {
+        "query_id": "Query00440",
+        "category": "accommodation",
+        "checkpoint_sha256": "b2c20ef976842731e92220bd93c1d2bf257ed40c18ef685cf17bc017387b9607",
+        "previous_pattern": "retain_correct_switch_correct",
+        "trial_ids": {
+          "RETAIN": "aed62062b2d4d4277f93",
+          "SWITCH": "6c58640be082753a5eec"
+        }
+      },
+      {
+        "query_id": "Query00598",
+        "category": "attraction",
+        "checkpoint_sha256": "a34422f4251f8d9608c5b955d9f3617c671cfffcf4fee81b05c8f085bdc9beaa",
+        "previous_pattern": "retain_incorrect_switch_incorrect",
+        "trial_ids": {
+          "RETAIN": "9bd87915fbf99eacede7",
+          "SWITCH": "ef9c687c73f1065bbaa0"
+        }
+      },
+      {
+        "query_id": "Query00662",
+        "category": "attraction",
+        "checkpoint_sha256": "dc9c3a9bcc11f9165f61a4b6757c2767a7210b0924ed54a81f46470a7dbf8093",
+        "previous_pattern": "retain_incorrect_switch_correct",
+        "trial_ids": {
+          "RETAIN": "2bd525330e63a3e8410b",
+          "SWITCH": "e10317d51eb6a91107d8"
+        }
+      }
+    ]
+  },
+  "design": {
+    "environment_conditions": [
+      "RETAIN",
+      "SWITCH"
+    ],
+    "methods": [
+      {
+        "id": "repair_plus_fresh",
+        "candidate_sources": [
+          "incumbent_informed_repair",
+          "independent_fresh_replan"
+        ]
+      },
+      {
+        "id": "fresh_plus_fresh",
+        "candidate_sources": [
+          "independent_fresh_replan",
+          "independent_fresh_replan"
+        ]
+      }
+    ],
+    "repetitions_per_task_condition_method": 1,
+    "base_tasks": 8,
+    "task_condition_method_cells": 32,
+    "full_native_trajectories": 32,
+    "maximum_planning_calls_per_trajectory": 3,
+    "maximum_tool_steps_per_trajectory": 7,
+    "maximum_output_tokens_per_call": 2048,
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "thinking": "disabled",
+    "upstream_costbench_revision": "6424069f3f773ade076bcedbed302ed47cfb1837",
+    "planned_provider_token_hard_cap": 1200000,
+    "provider_calls_before_offline_preflight": 0
+  },
+  "analysis": {
+    "primary": "execution_grounded_balanced_accuracy",
+    "secondary": [
+      "decision_balanced_accuracy",
+      "pair_accuracy",
+      "goal_success_rate",
+      "exact_optimal_trajectory_rate",
+      "candidate_validity",
+      "complete_plan_rate",
+      "per_task_method_difference",
+      "first_positive_loss_step",
+      "candidate_path_distinctness"
+    ],
+    "unit_of_analysis": "base_task",
+    "report_conditions_separately": true,
+    "treat_repetitions_as_independent": false,
+    "oracle_and_condition_fields_policy_visible": false
+  },
+  "stop_rules": [
+    "Stop before provider calls if any paired checkpoint, incumbent suffix, state, prefix observation, or native tool schema does not match the frozen manifest.",
+    "Stop if the current tool-cost difference is not confined to the single declared changed tool.",
+    "Stop if any policy prompt contains condition labels, oracle paths, oracle values, regret, or reference-answer fields.",
+    "Do not silently retry a provider call with an uncertain outcome.",
+    "A plan longer than seven tool steps is scored as a policy failure and is not executed."
+  ]
+}

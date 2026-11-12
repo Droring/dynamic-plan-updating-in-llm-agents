@@ -64,3 +64,7 @@ Exact raw files:
 - [First run detailed corrected score](evidence/mechanism_probe/SCORE.json)
 - [Identity control lock](evidence/candidate_identity/LOCK.json)
 - [Identity control detailed score](evidence/candidate_identity/SCORE.json)
+
+## Follow-up: AdaPlanner trigger transfer audit
+
+The follow-up offline audit compares AdaPlanner's execution-failure/non-completion trigger with the existing native CostBench Agent-plan evidence. It finds a distinction between executable plans and plans whose decision quality has drifted. See [AdaPlanner Trigger Transfer Audit](ADAPLANNER_TRIGGER_TRANSFER_AUDIT.md) and its [reproducible audit script](audit_adaplanner_trigger_transfer.py).

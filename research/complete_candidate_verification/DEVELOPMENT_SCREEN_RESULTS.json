@@ -1,0 +1,95 @@
+{
+  "schema": "complete-candidate-development-screen-analysis-v1",
+  "run_id": 43050073958,
+  "run_url": "https://github.com/Droring/dynamic-plan-updating-in-llm-agents/actions/runs/43050073958",
+  "code_commit": "a6fc8d623f7dba0b90a4d9601f199dec17b037b3",
+  "upstream_costbench_revision": "6424069f3f773ade076bcedbed302ed47cfb1837",
+  "status": "complete_stop_before_independent_pilot",
+  "design": {
+    "base_tasks": 8,
+    "conditions": [
+      "RETAIN",
+      "SWITCH"
+    ],
+    "methods": [
+      "repair_plus_fresh",
+      "fresh_plus_fresh"
+    ],
+    "trajectories": 32,
+    "held_out": false,
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "thinking": "disabled"
+  },
+  "execution_integrity": {
+    "completed_trajectories": 32,
+    "unique_cells": 32,
+    "goal_reached": 32,
+    "selected_plan_executed_exactly": 32,
+    "candidate_paths_valid_feasible_complete": 64,
+    "native_calls_successful_with_output_ids": 60,
+    "provider_calls": 124,
+    "provider_retries": 0,
+    "provider_tokens": 408466,
+    "provider_token_cap": 1200000,
+    "planning_calls": 64,
+    "planning_tokens": 288294,
+    "argument_calls": 60,
+    "argument_tokens": 120172
+  },
+  "methods": {
+    "repair_plus_fresh": {
+      "retain_correct": 8,
+      "retain_total": 8,
+      "switch_correct": 4,
+      "switch_total": 8,
+      "execution_grounded_balanced_accuracy": 0.75,
+      "decision_balanced_accuracy": 0.75,
+      "pair_accuracy": 0.5,
+      "goal_success_rate": 1,
+      "exact_optimal_trajectory_rate": 0.625,
+      "distinct_candidate_path_pairs": 9,
+      "total_pairs": 16,
+      "repair_strict_better_switch_tasks": 3,
+      "fresh_strict_better_switch_tasks": 4,
+      "union_strict_better_switch_tasks": 4
+    },
+    "fresh_plus_fresh": {
+      "retain_correct": 8,
+      "retain_total": 8,
+      "switch_correct": 4,
+      "switch_total": 8,
+      "execution_grounded_balanced_accuracy": 0.75,
+      "decision_balanced_accuracy": 0.75,
+      "pair_accuracy": 0.5,
+      "goal_success_rate": 1,
+      "exact_optimal_trajectory_rate": 0.625,
+      "distinct_candidate_path_pairs": 1,
+      "total_pairs": 16
+    }
+  },
+  "matched_comparisons": {
+    "same_decision_and_executed_path": 16,
+    "total": 16,
+    "balanced_accuracy_difference_percentage_points": 0
+  },
+  "switch_misses": [
+    "Query00178",
+    "Query00351",
+    "Query00549",
+    "Query00689"
+  ],
+  "switch_successes": [
+    "Query00440",
+    "Query00598",
+    "Query00662",
+    "Query00851"
+  ],
+  "baseline_caveat": "Fresh+Fresh used identical prompt messages for both calls at temperature 0; candidate paths were identical in 15/16 task-condition trajectories.",
+  "decision": "Do not expand to the 12-task independent pilot. The repair candidate added path diversity but no unique strict-better SWITCH coverage and no BA improvement; apply the frozen stop-and-simplify rule.",
+  "artifact": {
+    "id": 13868243944,
+    "name": "complete-candidate-development-screen",
+    "sha256": "d5b71f94985c8c7d19bff1a37daf3403af7121989e608295842df3255b4b64bf"
+  }
+}
